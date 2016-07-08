@@ -2,12 +2,13 @@ package serviceImpl;
 
 import enums.StateMessage;
 import service.LoginService;
+import enums.Power;
 
 /**
  * Created by zs on 2016/7/8.
  */
 public class LoginServiceImpl implements LoginService {
-    @Override
+//    @Override
     //注册
     public StateMessage addUser(String userId, String password, Power power) throws Exception{
 //        //验证information
@@ -22,7 +23,7 @@ public class LoginServiceImpl implements LoginService {
 //        }
         return StateMessage.SUCCESS;
     }
-    @Override
+//    @Override
     //登录
     public StateMessage loginUser(String userId, String password) throws Exception{
 //        UserPO userPo = null;
@@ -41,6 +42,6 @@ public class LoginServiceImpl implements LoginService {
 //            System.out.println("密码不对哟，看看大小写输对了没");
 //            return StateMessage.FAIL;
 //        }
-          return StateMessage.SUSSESS;
+          return StateMessage.SUCCESS;
     }
 }
