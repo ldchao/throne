@@ -5,6 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <!-- this page's styles -->
+    <link href="../css/projectpage.css" rel="stylesheet">
+
     <!-- Bootstrap core CSS -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <%--<link href="../css/bootstrap.css" rel="stylesheet">--%>
@@ -57,8 +60,11 @@
     </div><!-- /.container -->
 </nav><!-- /.navbar -->
 
+<div id="introduce_parent" onclick="showIntroduce()"></div>
+<div id="introduce_child">
+    <h1>介绍部分</h1>
+</div>
 
-<footer> © CRCheck 2016</footer>
 
 <%--登录--%>
 <div id="Login" class="modal hide fade in" style="display: none;">
@@ -121,8 +127,10 @@
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="../js/jquery.js"></script>
 <script src="../js/bootstrap.js"></script>
+<script src="../js/projectpage.js"></script>
 
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 <script src="../js/ie10-viewport-bug-workaround.js"></script>
+
 </body>
 </html>

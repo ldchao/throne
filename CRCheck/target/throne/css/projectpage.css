@@ -1,0 +1,15 @@
+#introduce_parent {
+    width: 100%;
+    height: 105px;
+    background-color: #88a7da;
+    margin-top: 50px;
+    display: block;
+}
+
+#introduce_child {
+    width: 100%;
+    height: 250px;
+    background-color: #88a7da;
+    margin-top: 0px;
+    display: none;
+}
