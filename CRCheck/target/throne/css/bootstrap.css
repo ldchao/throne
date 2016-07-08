@@ -1,3 +1,5 @@
+/* form-control end */
+
 /*!
  * Bootstrap v2.3.2
  *
@@ -147,8 +149,7 @@ button,
 input[type="button"],
 input[type="reset"],
 input[type="submit"],
-input[type="radio"],
-input[type="checkbox"] {
+input[type="radio"]{
   cursor: pointer;
 }
 
@@ -1166,8 +1167,7 @@ input[type="color"]:focus,
           box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
 }
 
-input[type="radio"],
-input[type="checkbox"] {
+input[type="radio"]{
   margin: 4px 0 0;
   margin-top: 1px \9;
   *margin-top: 0;
@@ -1179,8 +1179,7 @@ input[type="image"],
 input[type="submit"],
 input[type="reset"],
 input[type="button"],
-input[type="radio"],
-input[type="checkbox"] {
+input[type="radio"]{
   width: auto;
 }
 
@@ -1208,8 +1207,7 @@ select[size] {
 
 select:focus,
 input[type="file"]:focus,
-input[type="radio"]:focus,
-input[type="checkbox"]:focus {
+input[type="radio"]:focus {
   outline: thin dotted #333;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
@@ -1251,33 +1249,28 @@ textarea::-webkit-input-placeholder {
   color: #999999;
 }
 
-.radio,
-.checkbox {
+.radio{
   min-height: 20px;
   padding-left: 20px;
 }
 
-.radio input[type="radio"],
-.checkbox input[type="checkbox"] {
+.radio input[type="radio"] {
   float: left;
   margin-left: -20px;
 }
 
-.controls > .radio:first-child,
-.controls > .checkbox:first-child {
+.controls > .radio:first-child{
   padding-top: 5px;
 }
 
-.radio.inline,
-.checkbox.inline {
+.radio.inline {
   display: inline-block;
   padding-top: 5px;
   margin-bottom: 0;
   vertical-align: middle;
 }
 
-.radio.inline + .radio.inline,
-.checkbox.inline + .checkbox.inline {
+.radio.inline + .radio.inline{
   margin-left: 10px;
 }
 
@@ -1432,7 +1425,6 @@ textarea.span1,
   float: left;
 }
 
-.controls-row .checkbox[class*="span"],
 .controls-row .radio[class*="span"] {
   padding-top: 5px;
 }
@@ -1448,9 +1440,7 @@ textarea[readonly] {
 }
 
 input[type="radio"][disabled],
-input[type="checkbox"][disabled],
-input[type="radio"][readonly],
-input[type="checkbox"][readonly] {
+input[type="radio"][readonly] {
   background-color: transparent;
 }
 
@@ -1460,7 +1450,6 @@ input[type="checkbox"][readonly] {
   color: #c09853;
 }
 
-.control-group.warning .checkbox,
 .control-group.warning .radio,
 .control-group.warning input,
 .control-group.warning select,
@@ -1499,7 +1488,6 @@ input[type="checkbox"][readonly] {
   color: #b94a48;
 }
 
-.control-group.error .checkbox,
 .control-group.error .radio,
 .control-group.error input,
 .control-group.error select,
@@ -1538,7 +1526,6 @@ input[type="checkbox"][readonly] {
   color: #468847;
 }
 
-.control-group.success .checkbox,
 .control-group.success .radio,
 .control-group.success input,
 .control-group.success select,
@@ -1577,7 +1564,6 @@ input[type="checkbox"][readonly] {
   color: #3a87ad;
 }
 
-.control-group.info .checkbox,
 .control-group.info .radio,
 .control-group.info input,
 .control-group.info select,
@@ -1917,18 +1903,14 @@ input.search-query {
 }
 
 .form-search .radio,
-.form-search .checkbox,
-.form-inline .radio,
-.form-inline .checkbox {
+.form-inline .radio {
   padding-left: 0;
   margin-bottom: 0;
   vertical-align: middle;
 }
 
 .form-search .radio input[type="radio"],
-.form-search .checkbox input[type="checkbox"],
-.form-inline .radio input[type="radio"],
-.form-inline .checkbox input[type="checkbox"] {
+.form-inline .radio input[type="radio"] {
   float: left;
   margin-right: 3px;
   margin-left: 0;
@@ -4480,8 +4462,7 @@ input[type="submit"].btn.btn-mini {
 
 .navbar-form input,
 .navbar-form select,
-.navbar-form .radio,
-.navbar-form .checkbox {
+.navbar-form .radio {
   margin-top: 5px;
 }
 
@@ -4493,7 +4474,6 @@ input[type="submit"].btn.btn-mini {
 }
 
 .navbar-form input[type="image"],
-.navbar-form input[type="checkbox"],
 .navbar-form input[type="radio"] {
   margin-top: 3px;
 }
@@ -6166,28 +6146,4 @@ a.badge:focus {
 
 .affix {
   position: fixed;
-}
-
-.log_reg {
-  font-family: "PingFang SC";
-  font-size: 26px;
-  color: #5471a3;
-}
-
-.log_reg_div{
-  margin-top: 23px;
-  text-align: center;
-}
-
-.input_field_div{
-  margin-top: 24px;
-  text-align: center;
-}
-
-.input_field {
-  width: 380px;
-  height: 46px;
-  border-radius: 6px;
-  border-color: #88a7da;
-  margin-bottom: 18px;
 }
