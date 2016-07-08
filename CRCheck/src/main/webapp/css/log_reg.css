@@ -1,0 +1,128 @@
+.log_reg {
+	font-family: "PingFang SC";
+	font-size: 26px;
+	color: #5471a3;
+}
+
+.log_reg_div {
+	margin-top: 25px;
+	text-align: center;
+}
+
+.input_field_div {
+	margin-top: 24px;
+	text-align: center;
+}
+
+.switchbtn_div {
+	margin-left: 45px;
+}
+
+.switchbtn_div .logtip {
+	font-family: PingFang SC;
+	font-size: 18px;
+	color: #5471a3;
+	position: relative;
+	top: 2px;
+	left: 11px;
+}
+
+.switchtip_div {
+	position: absolute;
+	right: 46px;
+	bottom: 119px;
+}
+
+.switchtip {
+	font-family: PingFang SC;
+	font-size: 16px;
+	color: #5471a3;
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+.logbtn_div {
+	margin-top: 18px;
+	text-align: center;
+}
+
+.logbtn {
+	width: 380px;
+	height: 38px;
+	background-color: #7595e0;
+	font-family: PingFang SC;
+	font-size: 18px;
+	color: white;
+	border-radius: 6px;
+	border: none;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+	-webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow
+		ease-in-out .15s;
+	-o-transition: border-color ease-in-out .15s, box-shadow ease-in-out
+		.15s;
+	transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s
+}
+
+.input_field[type=text],
+.input_field[type=password] {
+	width: 380px;
+	height: 46px;
+	margin-bottom: 18px;
+	font-size: 18px;
+	line-height: 1.4;
+	background-color: #fff;
+	background-image: none;
+	border: 1px solid #a5bce4;
+	border-radius: 6px;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+	-webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow
+		ease-in-out .15s;
+	-o-transition: border-color ease-in-out .15s, box-shadow ease-in-out
+		.15s;
+	transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s
+}
+
+.input_field[type=text]:focus,
+.input_field[type=password]:focus {
+	border-color: #536e9e;
+	outline: 0;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px
+		rgba(102, 175, 233, .6);
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px
+		rgba(102, 175, 233, .6)
+}
+
+.input_field[type=text]:hover,
+.input_field[type=password]:hover {
+	border-color: #536e9e;
+	outline: 0;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px
+		rgba(102, 175, 233, .6);
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px
+		rgba(102, 175, 233, .6)
+}
+
+.input_field::-moz-placeholder {
+	color: #a5bce4;
+	opacity: 1
+}
+
+.input_field:-ms-input-placeholder {
+	color: #a5bce4
+}
+
+.input_field::-webkit-input-placeholder {
+	color: #a5bce4
+}
+
+.input_field[disabled], .input_field[readonly], fieldset[disabled] .input_field
+	{
+	background-color: #eee;
+	opacity: 1
+}
+
+.input_field[disabled], fieldset[disabled] .input_field {
+	cursor: not-allowed
+}
