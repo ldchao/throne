@@ -45,7 +45,7 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="HomePage.jsp">首页</a></li>
+                <li><a href="HomePage.jsp">首页</a></li>
                 <li><a href="ProjectPage.jsp">项目</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">

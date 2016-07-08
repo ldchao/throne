@@ -12,6 +12,9 @@
     <!-- Custom styles for login and register -->
     <link href="../css/log_reg.css" rel="stylesheet">
 
+    <!-- checkbox styles -->
+    <link href="../css/mycheckbox.css" rel="stylesheet">
+
     <!-- specific styles -->
     <link href="../css/component.css" rel="stylesheet">
 
@@ -38,16 +41,16 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#"><img src="../image/logo.png" id="logo" title="返回首页"></a>
+            <a class="navbar-brand" href="HomePage.jsp"><img src="../image/logo.png" id="logo" title="返回首页"></a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">首页</a></li>
-                <li><a href="#about">项目</a></li>
+                <li class="active"><a href="HomePage.jsp">首页</a></li>
+                <li><a href="ProjectPage.jsp">项目</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">登录</a></li>
-                <li><a href="#">注册</a></li>
+                <li><a data-toggle="modal" href="#Login">登录</a></li>
+                <li><a data-toggle="modal" href="#Register">注册</a></li>
             </ul>
             <button class="nav common-button navbar-right" style="margin-top:10px; margin-right:15px;">发起评审</button>
         </div><!-- /.nav-collapse -->
@@ -57,11 +60,67 @@
 
 <footer> © CRCheck 2016</footer>
 
+<%--登录--%>
+<div id="Login" class="modal hide fade in" style="display: none;">
+
+    <div class="log_reg_div">
+        <span class="log_reg">登录CRC平台</span>
+    </div>
+
+    <div class="input_field_div">
+        <input class="input_field" type="text" placeholder="键入您的用户名">
+        <input class="input_field" type="password" placeholder="键入您的密码">
+    </div>
+
+    <div class="switchbtn_div">
+        <input class="mui-switch mui-switch-animbg" type="checkbox">
+        <span class="logtip">记住密码</span>
+    </div>
+
+    <div class="switchtip_div">
+        <a class="switchtip" data-toggle="modal" href="#Register"
+           data-dismiss="modal">注册新帐号</a>
+    </div>
+
+    <div class="logbtn_div">
+        <button class="logbtn">登录</button>
+    </div>
+
+</div>
+
+<%--注册--%>
+<div id="Register" class="modal hide fade in" style="display: none;">
+
+    <div class="log_reg_div">
+        <span class="log_reg">立即加入CRC评审</span>
+    </div>
+
+    <div class="input_field_div">
+        <input class="input_field" type="text" placeholder="键入您的用户名">
+        <input class="input_field" type="password" placeholder="键入您的密码">
+    </div>
+
+    <div class="switchbtn_div">
+        <input class="mui-switch mui-switch-animbg" type="checkbox">
+        <span class="logtip">是否允许任何人邀请你</span>
+    </div>
+
+    <div class="switchtip_div">
+        <a class="switchtip" data-toggle="modal" href="#Login"
+           data-dismiss="modal">登录已有帐号</a>
+    </div>
+
+    <div class="logbtn_div">
+        <button class="logbtn">注册</button>
+    </div>
+
+</div>
+
 <!-- Bootstrap core JavaScript
     ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
-<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
-<script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="../js/jquery.js"></script>
+<script src="../js/bootstrap.js"></script>
 
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 <script src="../js/ie10-viewport-bug-workaround.js"></script>
