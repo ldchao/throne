@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-5-22 0:50:17 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="POJO.User" table="user" catalog="thrones">
+        <id name="id" type="string">
+            <column name="id" length="20" />
+            <generator class="assigned" />
+        </id>
+        <property name="password" type="string">
+            <column name="password" length="20" not-null="true" />
+        </property>
+
+        <property name="email" type="string">
+            <column name="email" length="20" />
+        </property>
+
+        <property name="sex" type="string">
+            <column name="sex" length="20" />
+        </property>
+
+        <property name="phone" type="string">
+            <column name="phone" length="20" />
+        </property>
+
+        <property name="address" type="string">
+            <column name="address" length="100" />
+        </property>
+
+        <property name="email" type="string">
+            <column name="email" length="20" />
+        </property>
+
+        <property name="userLogin" type="string">
+            <column name="userLogin" length="20" />
+        </property>
+
+        <property name="userState" type="string">
+            <column name="userState" length="20" />
+        </property>
+    </class>
+</hibernate-mapping>
