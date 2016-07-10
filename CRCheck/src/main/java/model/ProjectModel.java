@@ -4,6 +4,8 @@ import enums.Language;
 import enums.Power;
 import enums.ProjectState;
 
+import java.util.ArrayList;
+
 /**
  * Created by lvdechao on 2016/7/10.
  */
@@ -20,7 +22,7 @@ public class ProjectModel {
     String endDate;
     String projectPath;
     String qualityFeedback;
-
+    ArrayList<InvitationMessage> invitationList;
 
 
 }
