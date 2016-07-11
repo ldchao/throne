@@ -6,6 +6,7 @@ import POJO.Invitement;
  * Created by dlydd on 2016/7/11.
  */
 public interface InvitementDao {
+    //id是自增的，不过目前没增加，要手动输入
     public boolean addInvitement(Invitement invitement);
 
     public boolean deleteInvitementbyProject(String pid);
