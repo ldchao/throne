@@ -11,6 +11,7 @@ import javax.persistence.Id;
 @Entity
 public class Project {
     private String id;
+    private String name;
     private String userId;
     private String type;
     private String description;
@@ -30,6 +31,16 @@ public class Project {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    @Basic
+    @Column(name = "name", nullable = false, length = 50)
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Basic
@@ -140,6 +151,7 @@ public class Project {
         Project project = (Project) o;
 
         if (id != null ? !id.equals(project.id) : project.id != null) return false;
+        if (name != null ? !name.equals(project.name) : project.name != null) return false;
         if (userId != null ? !userId.equals(project.userId) : project.userId != null) return false;
         if (type != null ? !type.equals(project.type) : project.type != null) return false;
         if (description != null ? !description.equals(project.description) : project.description != null) return false;
@@ -160,6 +172,7 @@ public class Project {
     @Override
     public int hashCode() {
         int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (userId != null ? userId.hashCode() : 0);
         result = 31 * result + (type != null ? type.hashCode() : 0);
         result = 31 * result + (description != null ? description.hashCode() : 0);
