@@ -3,7 +3,7 @@ package DaoImpl;
 import Connection.connection;
 import Dao.SummaryDao;
 import POJO.Summary;
-import org.hibernate.query.Query;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 

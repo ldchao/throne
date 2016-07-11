@@ -1,6 +1,8 @@
 
 CRCheck/.idea/workspace.xml
 
+CRCheck/target/
+
 CRCheck/target/throne/META-INF/MANIFEST.MF
 
 CRCheck/target/throne/WEB-INF/lib/javassist-3.12.0.GA.jar
@@ -21,3 +23,9 @@ CRCheck/target/throne/pages/HomePage.jsp
 
 CRCheck/target/throne/css/component.css
 CRCheck/.idea/dataSources.local.xml
+
+CRCheck/target/throne/WEB-INF/classes/serviceImpl/InvitationListServiceImpl.class
+
+CRCheck/target/throne/WEB-INF/classes/serviceImpl/InvitationListServiceImpl.class
+
+*.class

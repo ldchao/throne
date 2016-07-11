@@ -103,7 +103,7 @@
 
     <div class="input_field_div">
         <input class="input_field" id="userId_reg" type="text" placeholder="键入您的用户名">
-        <input class="input_field" id="password_reg" type="password" placeholder="键入您的密码">
+        <input class="input_field" id="password_reg" type="password" placeholder="键入您的密码(不少于6位)">
     </div>
 
     <div class="switchbtn_div">

@@ -5,12 +5,14 @@ import Dao.InvitementDao;
 import POJO.Invitement;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.query.Query;
+import org.hibernate.Query;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
+ *
+ *
  * Created by dlydd on 2016/7/11.
  */
 public class InvitementDaoImpl implements InvitementDao{

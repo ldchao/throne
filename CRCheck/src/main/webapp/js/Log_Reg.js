@@ -13,7 +13,7 @@ function Login() {
         $("#userId_log").parent().append("<label class='lblerr_1'>" + "请输入用户名" + "</label>");
         valid = false;
     }
-    
+
     if (password == "") {
         $("#password_log").parent().append("<label class='lblerr_2'>" + "请输入密码" + "</label>");
         valid = false;
@@ -31,7 +31,7 @@ function Login() {
             success: function (result) {
                 if (result == "SUCCESS") {
                     window.location.href = "../pages/HomePage.jsp"
-                } else if (result == "ERROR") {
+                } else if (result == "FAIL") {
                     $("#password_log").parent().append("<label class='lblerr_2'>" + "用户名不存在或密码错误" + "</label>");
                 } else {
                     alert("数据库连接失败啦");
@@ -68,6 +68,16 @@ function Register() {
         valid = false;
     }
 
+    if (password.length < 6) {
+        $("#userId_reg").parent().append("<label class='lblerr_2'>" + "密码太短啦" + "</label>");
+        valid = false;
+    }
+
+    if (password.length > 20) {
+        $("#userId_reg").parent().append("<label class='lblerr_2'>" + "密码超过20位啦" + "</label>");
+        valid = false;
+    }
+
     if (valid == true) {
         $.ajax({
             type: "post",
@@ -81,14 +91,14 @@ function Register() {
             success: function (result) {
                 if (result == "SUCCESS") {
                     window.location.href = "../pages/HomePage.jsp"
-                } else if (result == "ERROR") {
-                    $("#password_reg").parent().append("<label class='lblerr_2'>" + "用户名不存在或密码错误" + "</label>");
+                } else if (result == "FAIL") {
+                    $("#password_reg").parent().append("<label class='lblerr_1'>" + "用户名已存在" + "</label>");
                 } else {
                     alert("数据库连接失败啦");
                 }
             },
             error: function () {
-                alert("数据库连接失败啦")
+                alert("获取数据失败啦")
             }
         })
     } else {

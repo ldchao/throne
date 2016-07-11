@@ -1,14 +1,15 @@
-#logo{
+#logo {
     width: auto;
     height: 35px;
     vertical-align: middle;
 }
 
-.common-button{
-    color:#fff;
-    border:none;
+.common-button {
+    cursor: pointer;
+    color: #fff;
+    border: none;
     background-color: #7595E0;
-    width:80px;
+    width: 80px;
     height: 30px;
     padding: 0 4px;
     border-radius: 4px;
@@ -19,6 +20,36 @@
     -webkit-transition: 0.3s;
 }
 
-.common-button:hover{
+.common-button:hover {
     background-color: #577ACB;
+}
+
+footer {
+    margin-top: 20px;
+    height: 150px;
+    horiz-align: center;
+}
+
+#back-to-top {
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+    background-color: rgba(139, 164, 239, 0.7);
+    color: #ffffff;
+    text-align: center;
+    border-radius: 2px;
+    z-index: 1;
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+    display: none;
+}
+
+#back-to-top:hover {
+    background-color: rgb(139, 164, 239);
+}
+
+#back-to-top i {
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
 }
