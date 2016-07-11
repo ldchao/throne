@@ -3,10 +3,12 @@ package serviceImpl;
 import Dao.ProjectDao;
 import DaoImpl.ProjectDaoImpl;
 import POJO.Project;
+import enums.MessageState;
 import enums.ProjectState;
 import enums.UniversalState;
 import model.ProjectModel;
 import service.InvitationListService;
+import service.MessageService;
 import service.ProjectService;
 
 /**
@@ -18,14 +20,17 @@ public class ProjectServiceImpl implements ProjectService{
         ProjectDao dao = new ProjectDaoImpl();
         Project p=new Project();
         InvitationListService invite=new InvitationListServiceImpl();
+        MessageService message=new MessageServiceImpl();
         //projectModel转project
         p.setId(projectModel.getProjectID());
         p.setUserId(projectModel.getUserID());
         //p.setType();
         //加入数据库
         boolean a=dao.addProject(p);
-        UniversalState b=invite.saveInvitationList(projectModel.getInvitationList());
-        if(a&&b.equals(UniversalState.SUCCESS))
+        UniversalState b = invite.saveInvitationList(projectModel.getInvitationList());
+        //发送消息
+        UniversalState c = message.setIssueMessage(projectModel);
+        if(a&&b.equals(UniversalState.SUCCESS)&&c.equals(UniversalState.SUCCESS))
             return UniversalState.SUCCESS;
         return UniversalState.FAIL;
     }

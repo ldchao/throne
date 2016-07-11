@@ -22,6 +22,7 @@ public class LoginServiceImpl implements LoginService {
         user.setPassword(password);
         user.setUserState(String.valueOf(power));
         user.setUserLogin("ONLINE");
+        user.setChecklistPath("");
         boolean result=true;
         try {
             result=dao.addUser(user);
@@ -57,4 +58,25 @@ public class LoginServiceImpl implements LoginService {
     }
     //TODO
     //测试
+    public static void main(String[] args) {
+        UserDao dao = new UserDaoImpl();
+
+        //创建PO并保存
+        User user = new User();
+        user.setId("saige");
+        user.setPassword("saige");
+        user.setUserState(String.valueOf("PUBLIC"));
+        user.setUserLogin("ONLINE");
+        user.setChecklistPath("123");
+        boolean result = true;
+        try {
+            result = dao.addUser(user);
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.print("1233");
+        }
+        if (!result)
+            System.out.print("23333");
+        System.out.print("43333");
+    }
 }
