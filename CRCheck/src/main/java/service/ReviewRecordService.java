@@ -1,5 +1,6 @@
 package service;
 
+import enums.ApproveState;
 import enums.UniversalState;
 import model.ReviewRecord;
 
@@ -19,4 +20,15 @@ public interface ReviewRecordService {
     //查看评审记录
     public ArrayList<ReviewRecord> checkReviewRecord(String projectID);
 
+    //合并评审记录（前面为待合并项ID（个人表中），后面会合并后结果）
+    public UniversalState mergeReviewRecord(ArrayList<String> recordIDList,ReviewRecord result);
+
+    //分解评审记录
+    public UniversalState disassembleReviewRecord(ReviewRecord result);
+
+    //审批评审记录（审批个人的评审记录，reviewRecordID为个人评审记录表格中ID）
+    public UniversalState approveReviewRecord(String reviewRecordID, ApproveState approveState);
+
+    //删除评审(只删除汇总表格，reviewRecordID为汇总评审记录表格中ID)
+    public UniversalState deleteReviewRecord(String reviewRecordID);
 }

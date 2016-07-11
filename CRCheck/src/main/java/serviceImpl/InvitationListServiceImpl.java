@@ -1,5 +1,6 @@
 package serviceImpl;
 
+import enums.MessageState;
 import enums.UniversalState;
 import model.InvitationMessage;
 import service.InvitationListService;
@@ -17,7 +18,7 @@ public class InvitationListServiceImpl implements InvitationListService{
         return null;
     }
 
-    public UniversalState changeInvitationState(String userID, String projectID) {
+    public UniversalState changeInvitationState(String userID, String projectID, MessageState state) {
         return null;
     }
 }

@@ -1,5 +1,6 @@
 package service;
 
+import enums.MessageState;
 import enums.UniversalState;
 import model.InvitationMessage;
 
@@ -17,6 +18,6 @@ public interface InvitationListService {
     public UniversalState saveInvitationList(ArrayList<InvitationMessage> list);
 
     //改变用户是否接收邀请的状态
-    public UniversalState changeInvitationState(String userID,String projectID);
+    public UniversalState changeInvitationState(String userID, String projectID, MessageState state);
 
 }
