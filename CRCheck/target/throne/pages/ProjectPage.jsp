@@ -74,8 +74,8 @@
     </div>
 
     <div class="input_field_div">
-        <input class="input_field" type="text" placeholder="键入您的用户名">
-        <input class="input_field" type="password" placeholder="键入您的密码">
+        <input class="input_field" id="userId_log" type="text" placeholder="键入您的用户名">
+        <input class="input_field" id="password_log" type="password" placeholder="键入您的密码">
     </div>
 
     <div class="switchbtn_div">
@@ -89,7 +89,7 @@
     </div>
 
     <div class="logbtn_div">
-        <button class="logbtn">登录</button>
+        <button class="logbtn" onclick="Login()">登录</button>
     </div>
 
 </div>
@@ -102,12 +102,12 @@
     </div>
 
     <div class="input_field_div">
-        <input class="input_field" type="text" placeholder="键入您的用户名">
-        <input class="input_field" type="password" placeholder="键入您的密码">
+        <input class="input_field" id="userId_reg" type="text" placeholder="键入您的用户名">
+        <input class="input_field" id="password_reg" type="password" placeholder="键入您的密码">
     </div>
 
     <div class="switchbtn_div">
-        <input class="mui-switch mui-switch-animbg" type="checkbox">
+        <input class="mui-switch mui-switch-animbg" id="power_reg" type="checkbox">
         <span class="logtip">是否允许任何人邀请你</span>
     </div>
 
@@ -117,7 +117,7 @@
     </div>
 
     <div class="logbtn_div">
-        <button class="logbtn">注册</button>
+        <button class="logbtn" onclick="Register()">注册</button>
     </div>
 
 </div>
@@ -128,6 +128,7 @@
 <script src="../js/jquery.js"></script>
 <script src="../js/bootstrap.js"></script>
 <script src="../js/projectpage.js"></script>
+<script src="../js/Log_Reg.js"></script>
 
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 <script src="../js/ie10-viewport-bug-workaround.js"></script>
