@@ -33,18 +33,18 @@
 }
 
 .add_style_1 {
-    width: 55px;
-    border: 7px solid #7595e0;
+    width: 45px;
+    border: 6px solid #7595e0;
     border-radius: 4px;
-    margin-top: 37px;
+    margin-top: 38px;
 }
 
 .add_style_2 {
-    height: 55px;
+    height: 45px;
     width: 0;
-    border: 7px solid #7595e0;
+    border: 6px solid #7595e0;
     border-radius: 4px;
-    margin-top: -62px;
+    margin-top: -55px;
 }
 
 .circle_div:hover,

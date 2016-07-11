@@ -29,3 +29,11 @@ CRCheck/target/throne/WEB-INF/classes/serviceImpl/InvitationListServiceImpl.clas
 CRCheck/target/throne/WEB-INF/classes/serviceImpl/InvitationListServiceImpl.class
 
 *.class
+
+CRCheck/target/throne/WEB-INF/classes/controller/MainController.class
+
+CRCheck/target/throne/WEB-INF/classes/Dao/ProjectDao.class
+
+CRCheck/target/throne/WEB-INF/classes/Dao/ProjectDao.class
+
+CRCheck/target/throne/WEB-INF/classes/controller/MainController.class
