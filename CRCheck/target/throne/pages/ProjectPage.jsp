@@ -65,6 +65,25 @@
     <h1>介绍部分</h1>
 </div>
 
+<div class="invite_div">
+
+    <div class="left_div">
+        <span class="text_style_left">邀请你的项目伙伴</span>
+        <span class="text_style_left">定时高效</span>
+    </div>
+
+    <div class="circle_div">
+        <hr class="add_style_1">
+        <hr class="add_style_2">
+    </div>
+
+    <div class="right_div">
+        <span class="text_style_right">从这里开始添加你的</span>
+        <span class="text_style_right">评审项目</span>
+    </div>
+
+</div>
+
 
 <%--登录--%>
 <div id="Login" class="modal hide fade in" style="display: none;">

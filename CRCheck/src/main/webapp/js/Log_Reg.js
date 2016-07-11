@@ -48,7 +48,6 @@ function Login() {
 
 function Register() {
 
-
     var userId = document.getElementById("userId_reg").value;
     var password = document.getElementById("password_reg").value;
     var power = "PRIVATE";

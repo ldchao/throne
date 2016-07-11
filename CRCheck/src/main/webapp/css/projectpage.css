@@ -13,3 +13,74 @@
     margin-top: 0px;
     display: none;
 }
+
+.invite_div {
+    width: 735px;
+    height: 210px;
+    background-color: #f0f4fd;
+    margin: 60px auto;
+    text-align: center;
+}
+
+.circle_div {
+    width: 104px;
+    height: 104px;
+    border-radius: 60px;
+    border: 8px solid #7595e0;
+    display: inline-block;
+    margin-top: 53px;
+    cursor: pointer;
+}
+
+.add_style_1 {
+    width: 55px;
+    border: 7px solid #7595e0;
+    border-radius: 4px;
+    margin-top: 37px;
+}
+
+.add_style_2 {
+    height: 55px;
+    width: 0;
+    border: 7px solid #7595e0;
+    border-radius: 4px;
+    margin-top: -62px;
+}
+
+.circle_div:hover,
+.circle_div:hover > .add_style_1,
+.circle_div:hover > .add_style_2 {
+    border-color: #3b8fe7;
+}
+
+.left_div {
+    width: 214px;
+    height: 60px;
+    float: left;
+    display: inline-block;
+    margin-top: 73px;
+    margin-left: 8%;
+}
+
+.right_div {
+    width: 214px;
+    height: 60px;
+    float: right;
+    display: inline-block;
+    margin-top: 73px;
+    margin-right: 8%;
+}
+
+.text_style_left {
+    font-size: 22px;
+    font-family: "PingFang SC";
+    color: #7595e0;
+    float: right;
+}
+
+.text_style_right {
+    font-size: 22px;
+    font-family: "PingFang SC";
+    color: #7595e0;
+    float: left;
+}
