@@ -10,5 +10,11 @@ public interface InvitementDao {
 
     public boolean deleteInvitementbyProject(String pid);
 
-    public boolean deleteInvitement
+    public boolean deleteInvitementbyUser(String uid);
+
+    public boolean deleteInvitement(String pid, String uid);
+
+    public boolean updateInvitement(Invitement invitemnent);
+
+    public Invitement findInvitement(String pid, String uid);
 }
