@@ -4,8 +4,11 @@ import Connection.connection;
 import Dao.ProjectDao;
 import POJO.Project;
 import POJO.User;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+
+import java.util.List;
 
 /**
  * Created by mm on 2016/7/11.
@@ -18,15 +21,15 @@ public class ProjectDaoImpl implements ProjectDao{
                 session.save(project);
                 Transaction transaction=session.beginTransaction();
                 transaction.commit();
-                session.close();
+                connection.closeSession(session);
                 return true;
             }else {
-                session.close();
+                connection.closeSession(session);
                 return  false;
             }
         }catch(Exception e){
             e.printStackTrace();
-            session.close();
+            connection.closeSession(session);
             return false;
         }
     }
@@ -40,13 +43,14 @@ public class ProjectDaoImpl implements ProjectDao{
                 session.delete(project);
                 Transaction transaction=session.beginTransaction();
                 transaction.commit();
+                connection.closeSession(session);
                 return true;
             }else{
-                session.close();
+                connection.closeSession(session);
                 return false;
             }
         }catch (Exception e){
-            session.close();
+            connection.closeSession(session);
             return false;
         }
     }
@@ -58,16 +62,31 @@ public class ProjectDaoImpl implements ProjectDao{
                 session.update(project);
                 Transaction transaction=session.beginTransaction();
                 transaction.commit();
-                session.close();
+                connection.closeSession(session);
                 return true;
             }else {
-                session.close();
+                connection.closeSession(session);
                 return  false;
             }
         }catch(Exception e){
             e.printStackTrace();
-            session.close();
+            connection.closeSession(session);
             return false;
+        }
+    }
+
+    public List findProjectByUserId(String userId) {
+        Session session=connection.getSession();
+        try {
+            String hql="from Project p where userId="+userId;
+            Query query=session.createQuery(hql);
+            List list=query.list();
+            connection.closeSession(session);
+            return list;
+        }catch (Exception e){
+            e.printStackTrace();
+            connection.closeSession(session);
+            return null;
         }
     }
 
@@ -75,14 +94,14 @@ public class ProjectDaoImpl implements ProjectDao{
         Session session= connection.getSession();
         try {
             Project project=session.get(Project.class,id);
-            session.close();
+            connection.closeSession(session);
             if (project!=null){
                 return project;
             }else {
                 return null;
             }
         }catch (Exception e){
-            session.close();
+            connection.closeSession(session);
             return null;
         }
     }
