@@ -50,7 +50,7 @@ public class UserDaoImpl implements UserDao {
     public boolean update(User user) {
         Session session= connection.getSession();
         try {
-            if (findUser(user.getId())==null){
+            if (findUser(user.getId())!=null){
                 session.update(user);
                 Transaction transaction=session.beginTransaction();
                 transaction.commit();

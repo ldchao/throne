@@ -10,15 +10,16 @@ import POJO.User;
  */
 public class test {
     public static void  main(String[]args){
+        connection connection=new connection();
         UserDaoImpl userDao=new UserDaoImpl();
         User user=new User();
         user.setId("xichao");
         user.setPassword("123");
         user.setAddress("hello");
         user.setUserLogin("online");
-        user.setUserState("private");
-        user.setChecklistPath("src");
-        userDao.addUser(user);
+        user.setUserState("add");
+        user.setChecklistPath("cshld");
+        userDao.update(user);
 
 
 //        SummaryDaoImpl summaryDao=new SummaryDaoImpl();
