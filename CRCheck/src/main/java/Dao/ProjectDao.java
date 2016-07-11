@@ -7,6 +7,7 @@ import POJO.Project;
  */
 public interface
 ProjectDao {
+    //all the attributes must be set,id is automatically set(but not realized,so you need to set it manually)
     public boolean addProject(Project project);
 
     public boolean deleteProject(String id);

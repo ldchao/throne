@@ -12,7 +12,7 @@ import javax.persistence.Id;
 public class Summary {
     private Integer id;//identity, automatically given by the software
     private String projectId;
-    private String location;
+    private String location;//where the error found
     private String type;//the error type
     private String description;//detail of the error
     private String combination;//combination of the Persionalreviews

@@ -8,7 +8,7 @@ import java.util.List;
  * Created by mm on 2016/7/11.
  */
 public interface SummaryDao {
-    //tip: the attribute "id" is automatically set ,the other must be set manually
+    //tip: the attribute "id" is automatically set (but not realized,so right you need to set it manually),the other must be set manually
     public boolean addSummary(Summary summary);
 
     //tip: get all the Summary of a project

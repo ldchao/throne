@@ -78,15 +78,16 @@ public class SummaryDaoImpl implements SummaryDao {
                 summary.setId(id);
                 session.delete(summary);
                 Transaction transaction=session.beginTransaction();
-                session.close();
+                transaction.commit();
+                connection.closeSession(session);
                 return true;
             }else{
-                session.close();
+                connection.closeSession(session);
                 return false;
             }
         }catch (Exception e){
             e.printStackTrace();
-            session.close();
+            connection.closeSession(session);
             return false;
         }
     }
@@ -96,10 +97,10 @@ public class SummaryDaoImpl implements SummaryDao {
         Session session=connection.getSession();
         try {
             Summary summary=(Summary) session.get(Summary.class,id);
-            session.close();
+            connection.closeSession(session);
             return summary;
         }catch (Exception e){
-            session.close();
+            connection.closeSession(session);
             return null;
         }
     }

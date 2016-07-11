@@ -11,18 +11,25 @@ public class connection {
     private static Configuration configuration;
     private static SessionFactory sessionFactory;
 
-    private connection(){
+//    private connection(){
+//
+//    }
 
+
+    public connection(){
+          configuration=new Configuration().configure();
+          sessionFactory=configuration.buildSessionFactory();
     }
 
+
     public static Session getSession(){
-        if (sessionFactory==null){
-            configuration=new Configuration().configure();
-            sessionFactory=configuration.buildSessionFactory();
+//        if (sessionFactory==null){
+//            configuration=new Configuration().configure();
+//            sessionFactory=configuration.buildSessionFactory();
+//            return sessionFactory.openSession();
+//        }else {
             return sessionFactory.openSession();
-        }else {
-            return sessionFactory.openSession();
-        }
+//        }
     }
 
     public static void closeSession(Session session){
