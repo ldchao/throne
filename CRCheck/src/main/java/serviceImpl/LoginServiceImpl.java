@@ -20,9 +20,8 @@ public class LoginServiceImpl implements LoginService {
         User user=new User();
         user.setId(userId);
         user.setPassword(password);
-        String p=power.toString();
-        System.out.print(p);
-        user.setUserState(p);
+        user.setUserState(String.valueOf(power));
+        user.setUserLogin("ONLINE");
         boolean result=true;
         try {
             result=dao.addUser(user);
