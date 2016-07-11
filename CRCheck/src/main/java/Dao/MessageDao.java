@@ -12,5 +12,5 @@ public interface MessageDao {
 
     public boolean updateMessage(Message message);
 
-    public boolean findMessage(String id);
+    public Message findMessage(String uid);
 }
