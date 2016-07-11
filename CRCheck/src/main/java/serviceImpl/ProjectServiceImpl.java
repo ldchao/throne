@@ -17,21 +17,21 @@ import service.ProjectService;
 public class ProjectServiceImpl implements ProjectService{
     public UniversalState addProject(ProjectModel projectModel) {
         //初始化对象
-        ProjectDao dao = new ProjectDaoImpl();
-        Project p=new Project();
-        InvitationListService invite=new InvitationListServiceImpl();
-        MessageService message=new MessageServiceImpl();
-        //projectModel转project
-        p.setId(projectModel.getProjectID());
-        p.setUserId(projectModel.getUserID());
-        //p.setType();
-        //加入数据库
-        boolean a=dao.addProject(p);
-        UniversalState b = invite.saveInvitationList(projectModel.getInvitationList());
-        //发送消息
-        UniversalState c = message.setIssueMessage(projectModel);
-        if(a&&b.equals(UniversalState.SUCCESS)&&c.equals(UniversalState.SUCCESS))
-            return UniversalState.SUCCESS;
+//        ProjectDao dao = new ProjectDaoImpl();
+//        Project p=new Project();
+//        InvitationListService invite=new InvitationListServiceImpl();
+//        MessageService message=new MessageServiceImpl();
+//        //projectModel转project
+//        p.setId(projectModel.getProjectID());
+//        p.setUserId(projectModel.getUserID());
+//        //p.setType();
+//        //加入数据库
+//        boolean a=dao.addProject(p);
+//        UniversalState b = invite.saveInvitationList(projectModel.getInvitationList());
+//        //发送消息
+//        UniversalState c = message.setIssueMessage(projectModel);
+//        if(a&&b.equals(UniversalState.SUCCESS)&&c.equals(UniversalState.SUCCESS))
+//            return UniversalState.SUCCESS;
         return UniversalState.FAIL;
     }
 
