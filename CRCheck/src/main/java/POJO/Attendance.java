@@ -9,7 +9,7 @@ import javax.persistence.Id;
  * Created by mm on 2016/7/11.
  */
 @Entity
-public class Attention {
+public class Attendance {
     private Integer id;
     private String state;
     private String qualityReviewPath;
@@ -71,14 +71,14 @@ public class Attention {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Attention attention = (Attention) o;
+        Attendance that = (Attendance) o;
 
-        if (id != null ? !id.equals(attention.id) : attention.id != null) return false;
-        if (state != null ? !state.equals(attention.state) : attention.state != null) return false;
-        if (qualityReviewPath != null ? !qualityReviewPath.equals(attention.qualityReviewPath) : attention.qualityReviewPath != null)
+        if (id != null ? !id.equals(that.id) : that.id != null) return false;
+        if (state != null ? !state.equals(that.state) : that.state != null) return false;
+        if (qualityReviewPath != null ? !qualityReviewPath.equals(that.qualityReviewPath) : that.qualityReviewPath != null)
             return false;
-        if (userId != null ? !userId.equals(attention.userId) : attention.userId != null) return false;
-        if (projectId != null ? !projectId.equals(attention.projectId) : attention.projectId != null) return false;
+        if (userId != null ? !userId.equals(that.userId) : that.userId != null) return false;
+        if (projectId != null ? !projectId.equals(that.projectId) : that.projectId != null) return false;
 
         return true;
     }

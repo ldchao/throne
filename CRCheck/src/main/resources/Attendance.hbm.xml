@@ -4,7 +4,7 @@
     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
-    <class name="POJO.Attention" table="attention" schema="throne">
+    <class name="POJO.Attendance" table="attendance" schema="throne">
         <id name="id">
             <column name="id" sql-type="int(11)"/>
         </id>

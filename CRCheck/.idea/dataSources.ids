@@ -12,10 +12,10 @@
       <table id="3" parent="1" name="user"/>
       <table id="4" parent="1" name="message"/>
       <table id="5" parent="1" name="friends"/>
-      <table id="6" parent="1" name="attention"/>
-      <table id="7" parent="1" name="invitement"/>
-      <table id="8" parent="1" name="personalreview"/>
-      <table id="9" parent="1" name="summary"/>
+      <table id="6" parent="1" name="invitement"/>
+      <table id="7" parent="1" name="personalreview"/>
+      <table id="8" parent="1" name="summary"/>
+      <table id="9" parent="1" name="attendance"/>
       <column id="10" parent="2" name="id">
         <mandatory>1</mandatory>
         <data-type>varchar(20)</data-type>
@@ -205,200 +205,200 @@
         <mandatory>1</mandatory>
         <data-type>int(11)</data-type>
       </column>
-      <column id="51" parent="6" name="state">
-        <mandatory>1</mandatory>
-        <data-type>varchar(20)</data-type>
-        <default-expression>&apos;NOT_ENTIRELY_COMMIT&apos;</default-expression>
-      </column>
-      <column id="52" parent="6" name="qualityReviewPath">
-        <mandatory>1</mandatory>
-        <data-type>text</data-type>
-      </column>
-      <column id="53" parent="6" name="userId">
+      <column id="51" parent="6" name="userId">
         <mandatory>1</mandatory>
         <data-type>varchar(20)</data-type>
         <default-expression>&apos;&apos;</default-expression>
       </column>
-      <column id="54" parent="6" name="projectId">
+      <column id="52" parent="6" name="projectId">
         <mandatory>1</mandatory>
         <data-type>varchar(20)</data-type>
         <default-expression>&apos;&apos;</default-expression>
       </column>
-      <index id="55" parent="6" name="attention_project">
-        <columns>projectId</columns>
-        <desc-columns></desc-columns>
-      </index>
-      <index id="56" parent="6" name="attention_user">
-        <columns>userId</columns>
-        <desc-columns></desc-columns>
-      </index>
-      <key id="57" parent="6" name="PRIMARY">
-        <columns>id</columns>
-        <primary>1</primary>
-      </key>
-      <foreign-key id="58" parent="6" name="attention_project">
-        <columns>projectId</columns>
-        <ref-key>~.project.PRIMARY</ref-key>
-        <cascade-update-rule>restrict</cascade-update-rule>
-        <cascade-delete-rule>restrict</cascade-delete-rule>
-      </foreign-key>
-      <foreign-key id="59" parent="6" name="attention_user">
-        <columns>userId</columns>
-        <ref-key>~.user.PRIMARY</ref-key>
-        <cascade-update-rule>restrict</cascade-update-rule>
-        <cascade-delete-rule>restrict</cascade-delete-rule>
-      </foreign-key>
-      <column id="60" parent="7" name="id">
-        <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
-      </column>
-      <column id="61" parent="7" name="userId">
-        <mandatory>1</mandatory>
-        <data-type>varchar(20)</data-type>
-        <default-expression>&apos;&apos;</default-expression>
-      </column>
-      <column id="62" parent="7" name="projectId">
-        <mandatory>1</mandatory>
-        <data-type>varchar(20)</data-type>
-        <default-expression>&apos;&apos;</default-expression>
-      </column>
-      <column id="63" parent="7" name="state">
+      <column id="53" parent="6" name="state">
         <mandatory>1</mandatory>
         <data-type>varchar(20)</data-type>
         <default-expression>&apos;NOTACCEPT&apos;</default-expression>
       </column>
-      <index id="64" parent="7" name="invitement_project">
+      <index id="54" parent="6" name="invitement_project">
         <columns>projectId</columns>
         <desc-columns></desc-columns>
       </index>
-      <index id="65" parent="7" name="invitement_user">
+      <index id="55" parent="6" name="invitement_user">
         <columns>userId</columns>
         <desc-columns></desc-columns>
       </index>
-      <key id="66" parent="7" name="PRIMARY">
+      <key id="56" parent="6" name="PRIMARY">
         <columns>id</columns>
         <primary>1</primary>
       </key>
-      <foreign-key id="67" parent="7" name="invitement_project">
+      <foreign-key id="57" parent="6" name="invitement_project">
         <columns>projectId</columns>
         <ref-key>~.project.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>
-      <foreign-key id="68" parent="7" name="invitement_user">
+      <foreign-key id="58" parent="6" name="invitement_user">
         <columns>userId</columns>
         <ref-key>~.user.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>
-      <column id="69" parent="8" name="id">
+      <column id="59" parent="7" name="id">
         <mandatory>1</mandatory>
         <data-type>int(11)</data-type>
       </column>
-      <column id="70" parent="8" name="userId">
+      <column id="60" parent="7" name="userId">
         <mandatory>1</mandatory>
         <data-type>varchar(20)</data-type>
         <default-expression>&apos;&apos;</default-expression>
       </column>
-      <column id="71" parent="8" name="projectId">
+      <column id="61" parent="7" name="projectId">
         <mandatory>1</mandatory>
         <data-type>varchar(20)</data-type>
         <default-expression>&apos;&apos;</default-expression>
       </column>
-      <column id="72" parent="8" name="commitTime">
+      <column id="62" parent="7" name="commitTime">
         <mandatory>1</mandatory>
         <data-type>varchar(20)</data-type>
         <default-expression>&apos;&apos;</default-expression>
       </column>
-      <column id="73" parent="8" name="location">
+      <column id="63" parent="7" name="location">
         <mandatory>1</mandatory>
         <data-type>varchar(255)</data-type>
         <default-expression>&apos;&apos;</default-expression>
       </column>
-      <column id="74" parent="8" name="type">
+      <column id="64" parent="7" name="type">
         <mandatory>1</mandatory>
         <data-type>varchar(255)</data-type>
         <default-expression>&apos;&apos;</default-expression>
       </column>
-      <column id="75" parent="8" name="description">
+      <column id="65" parent="7" name="description">
         <mandatory>1</mandatory>
         <data-type>varchar(255)</data-type>
         <default-expression>&apos;&apos;</default-expression>
       </column>
-      <column id="76" parent="8" name="state">
+      <column id="66" parent="7" name="state">
         <mandatory>1</mandatory>
         <data-type>varchar(20)</data-type>
         <default-expression>&apos;NOT_TOTAL_COMMIT&apos;</default-expression>
       </column>
-      <column id="77" parent="8" name="result">
+      <column id="67" parent="7" name="result">
         <mandatory>1</mandatory>
         <data-type>varchar(20)</data-type>
         <default-expression>&apos;ADMITTED&apos;</default-expression>
       </column>
-      <index id="78" parent="8" name="review_project">
+      <index id="68" parent="7" name="review_project">
         <columns>projectId</columns>
         <desc-columns></desc-columns>
       </index>
-      <index id="79" parent="8" name="review_user">
+      <index id="69" parent="7" name="review_user">
         <columns>userId</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <key id="70" parent="7" name="PRIMARY">
+        <columns>id</columns>
+        <primary>1</primary>
+      </key>
+      <foreign-key id="71" parent="7" name="review_project">
+        <columns>projectId</columns>
+        <ref-key>~.project.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <foreign-key id="72" parent="7" name="review_user">
+        <columns>userId</columns>
+        <ref-key>~.user.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <column id="73" parent="8" name="id">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="74" parent="8" name="projectId">
+        <mandatory>1</mandatory>
+        <data-type>varchar(20)</data-type>
+        <default-expression>&apos;&apos;</default-expression>
+      </column>
+      <column id="75" parent="8" name="location">
+        <mandatory>1</mandatory>
+        <data-type>varchar(255)</data-type>
+        <default-expression>&apos;&apos;</default-expression>
+      </column>
+      <column id="76" parent="8" name="type">
+        <mandatory>1</mandatory>
+        <data-type>varchar(255)</data-type>
+        <default-expression>&apos;&apos;</default-expression>
+      </column>
+      <column id="77" parent="8" name="description">
+        <mandatory>1</mandatory>
+        <data-type>varchar(255)</data-type>
+        <default-expression>&apos;&apos;</default-expression>
+      </column>
+      <column id="78" parent="8" name="combination">
+        <mandatory>1</mandatory>
+        <data-type>varchar(255)</data-type>
+        <default-expression>&apos;&apos;</default-expression>
+      </column>
+      <index id="79" parent="8" name="summary_project">
+        <columns>projectId</columns>
         <desc-columns></desc-columns>
       </index>
       <key id="80" parent="8" name="PRIMARY">
         <columns>id</columns>
         <primary>1</primary>
       </key>
-      <foreign-key id="81" parent="8" name="review_project">
+      <foreign-key id="81" parent="8" name="summary_project">
         <columns>projectId</columns>
         <ref-key>~.project.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>
-      <foreign-key id="82" parent="8" name="review_user">
-        <columns>userId</columns>
-        <ref-key>~.user.PRIMARY</ref-key>
-        <cascade-update-rule>restrict</cascade-update-rule>
-        <cascade-delete-rule>restrict</cascade-delete-rule>
-      </foreign-key>
-      <column id="83" parent="9" name="id">
+      <column id="82" parent="9" name="id">
         <mandatory>1</mandatory>
         <data-type>int(11)</data-type>
       </column>
-      <column id="84" parent="9" name="projectId">
+      <column id="83" parent="9" name="state">
+        <mandatory>1</mandatory>
+        <data-type>varchar(20)</data-type>
+        <default-expression>&apos;NOT_ENTIRELY_COMMIT&apos;</default-expression>
+      </column>
+      <column id="84" parent="9" name="qualityReviewPath">
+        <mandatory>1</mandatory>
+        <data-type>text</data-type>
+      </column>
+      <column id="85" parent="9" name="userId">
         <mandatory>1</mandatory>
         <data-type>varchar(20)</data-type>
         <default-expression>&apos;&apos;</default-expression>
       </column>
-      <column id="85" parent="9" name="location">
+      <column id="86" parent="9" name="projectId">
         <mandatory>1</mandatory>
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(20)</data-type>
         <default-expression>&apos;&apos;</default-expression>
       </column>
-      <column id="86" parent="9" name="type">
-        <mandatory>1</mandatory>
-        <data-type>varchar(255)</data-type>
-        <default-expression>&apos;&apos;</default-expression>
-      </column>
-      <column id="87" parent="9" name="description">
-        <mandatory>1</mandatory>
-        <data-type>varchar(255)</data-type>
-        <default-expression>&apos;&apos;</default-expression>
-      </column>
-      <column id="88" parent="9" name="combination">
-        <mandatory>1</mandatory>
-        <data-type>varchar(255)</data-type>
-        <default-expression>&apos;&apos;</default-expression>
-      </column>
-      <index id="89" parent="9" name="summary_project">
+      <index id="87" parent="9" name="attention_project">
         <columns>projectId</columns>
         <desc-columns></desc-columns>
       </index>
-      <key id="90" parent="9" name="PRIMARY">
+      <index id="88" parent="9" name="attention_user">
+        <columns>userId</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <key id="89" parent="9" name="PRIMARY">
         <columns>id</columns>
         <primary>1</primary>
       </key>
-      <foreign-key id="91" parent="9" name="summary_project">
+      <foreign-key id="90" parent="9" name="attention_project">
         <columns>projectId</columns>
         <ref-key>~.project.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+      <foreign-key id="91" parent="9" name="attention_user">
+        <columns>userId</columns>
+        <ref-key>~.user.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>
