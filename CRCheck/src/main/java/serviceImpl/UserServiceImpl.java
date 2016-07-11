@@ -1,5 +1,9 @@
 package serviceImpl;
 
+import Dao.UserDao;
+import DaoImpl.UserDaoImpl;
+import POJO.User;
+import enums.Power;
 import model.UserModel;
 import service.UserService;
 
@@ -8,6 +12,15 @@ import service.UserService;
  */
 public class UserServiceImpl implements UserService {
     public UserModel getUser(String userid){
+        UserModel model=new UserModel();
+        UserDao dao=new UserDaoImpl();
+        User user=new User();
+        user=dao.findUser(userid);
+        model.setId(user.getId());
+        model.setPassword(user.getPassword());
+        model.setPower(Power.valueOf(user.getUserState()));
         return null;
     }
+    //TODO
+    //测试
 }
