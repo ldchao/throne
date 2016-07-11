@@ -3,6 +3,7 @@ package DaoImpl;
 import Connection.connection;
 import Dao.ProjectDao;
 import POJO.Project;
+import POJO.User;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -52,11 +53,37 @@ public class ProjectDaoImpl implements ProjectDao{
 
     public boolean updateProject(Project project) {
         Session session= connection.getSession();
-        return false;
+        try {
+            if (findProject(project.getId())!=null){
+                session.update(project);
+                Transaction transaction=session.beginTransaction();
+                transaction.commit();
+                session.close();
+                return true;
+            }else {
+                session.close();
+                return  false;
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+            session.close();
+            return false;
+        }
     }
 
     public Project findProject(String id) {
         Session session= connection.getSession();
-        return null;
+        try {
+            Project project=session.get(Project.class,id);
+            session.close();
+            if (project!=null){
+                return project;
+            }else {
+                return null;
+            }
+        }catch (Exception e){
+            session.close();
+            return null;
+        }
     }
 }

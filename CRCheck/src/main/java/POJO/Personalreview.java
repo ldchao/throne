@@ -14,11 +14,11 @@ public class Personalreview {
     private String userId;
     private String projectId;
     private String commitTime;
-    private String location;
-    private String type;
-    private String description;
-    private String state;
-    private String result;
+    private String location;//the location of the error
+    private String type;//the type of the error
+    private String description;//the detail of the error
+    private String state;//two state:NOT_ENTIRELY_COMMIT, ENTIRELY_COMMIT
+    private String result;//NOT_ADMITED,ADMITTED
 
     @Id
     @Column(name = "id", nullable = false)

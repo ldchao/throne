@@ -10,27 +10,27 @@ import POJO.User;
  */
 public class test {
     public static void  main(String[]args){
-        connection connection=new connection();
-        UserDaoImpl userDao=new UserDaoImpl();
-        User user=new User();
-        user.setId("xichao");
-        user.setPassword("123");
-        user.setAddress("hello");
-        user.setUserLogin("online");
-        user.setUserState("add");
-        user.setChecklistPath("cshld");
-        userDao.update(user);
+//        connection connection=new connection();
+//        UserDaoImpl userDao=new UserDaoImpl();
+//        User user=new User();
+//        user.setId("xichao");
+//        user.setPassword("123");
+//        user.setAddress("hello");
+//        user.setUserLogin("online");
+//        user.setUserState("add");
+//        user.setChecklistPath("cshld");
+//        userDao.update(user);
 
 
-//        SummaryDaoImpl summaryDao=new SummaryDaoImpl();
-//        Summary summary=new Summary();
-//        summary.setId(123);
-//        summary.setCombination("jdjaj");
-//        summary.setDescription("222");
-//        summary.setLocation("fatchao");
-//        summary.setProjectId("123");
-//        summary.setType("shuai");
-//        summaryDao.delete(123);
+        SummaryDaoImpl summaryDao=new SummaryDaoImpl();
+        Summary summary=new Summary();
+        summary.setId(123);
+        summary.setCombination("jdjaj");
+        summary.setDescription("222");
+        summary.setLocation("fatchao");
+        summary.setProjectId("123");
+        summary.setType("shuai");
+        summaryDao.delete(23);
 
 
     }

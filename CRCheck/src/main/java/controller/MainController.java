@@ -14,7 +14,6 @@ public class MainController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index() {
-        new connection();
         return "HomePage";
     }
 }
