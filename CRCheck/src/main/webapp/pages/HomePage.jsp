@@ -7,6 +7,7 @@
 
     <!-- Bootstrap core CSS -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <%--<link href="../css/bootstrap.css" rel="stylesheet">--%>
 
     <!-- Custom styles for login and register -->
@@ -56,6 +57,60 @@
         </div><!-- /.nav-collapse -->
     </div><!-- /.container -->
 </nav><!-- /.navbar -->
+
+<div class="jumbotron" style="height: 720px;background-color: #8a6d3b;">
+    <div class="container" style="margin-top: 0">
+        <div class="row">
+            <div class="col-sm-6" style="background-color: #7595e0; height: 672px;">
+
+            </div>
+            <div class="col-sm-6" style="background-color: #5e5e5e; height: 672px;">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6" style="background-color: #5e5e5e; height: 300px;">
+
+        </div>
+        <div class="col-sm-6 hidden-sm" style="background-color: #7595e0; height:300px;">
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6 hidden-sm" style="background-color: #5e5e5e; height: 300px;">
+
+        </div>
+        <div class="col-sm-6" style="background-color: #7595e0; height:300px;">
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6" style="background-color: #5e5e5e; height: 300px;">
+
+        </div>
+        <div class="col-sm-6 hidden-sm" style="background-color: #7595e0; height:300px;">
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6 hidden-sm" style="background-color: #5e5e5e; height: 300px;">
+
+        </div>
+        <div class="col-sm-6" style="background-color: #7595e0; height:300px;">
+
+        </div>
+    </div>
+</div>
+
+
+<a href="#" id="back-to-top"><i class="fa fa-angle-up"></i></a>
 
 
 <footer> © CRCheck 2016</footer>
@@ -116,11 +171,35 @@
 
 </div>
 
+
 <!-- Bootstrap core JavaScript
     ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
+<%--<script src="../js/main.js"></script>--%>
 <script src="../js/jquery.js"></script>
 <script src="../js/bootstrap.js"></script>
+<script type="text/javascript">
+    /**
+     * Created by marioquer on 16/7/11.
+     */
+    function backToTop() {
+        $(window).scroll(function () {
+            if ($(this).scrollTop() > 150) {
+                $("#back-to-top").fadeIn();
+            } else {
+                $("#back-to-top").fadeOut();
+            }
+        });
+        $("#back-to-top").click(function () {
+            $("html, body").animate({scrollTop: 0}, 500);
+        });
+    }
+    $(document).ready(function () {
+        backToTop();
+    })
+
+</script>
+
 
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 <script src="../js/ie10-viewport-bug-workaround.js"></script>

@@ -2,3 +2,21 @@
 CRCheck/.idea/workspace.xml
 
 CRCheck/target/throne/META-INF/MANIFEST.MF
+
+CRCheck/target/throne/WEB-INF/lib/javassist-3.12.0.GA.jar
+
+CRCheck/target/throne/WEB-INF/lib/hibernate-jpa-2.0-api-1.0.0.Final.jar
+
+CRCheck/target/throne/WEB-INF/lib/hibernate-entitymanager-3.6.10.Final.jar
+
+CRCheck/target/throne/WEB-INF/lib/cglib-2.2.jar
+
+CRCheck/target/throne/WEB-INF/lib/asm-3.1.jar
+
+CRCheck/target/throne/WEB-INF/classes/POJO/DBconnection.class
+
+CRCheck/target/throne/WEB-INF/classes/model/ProjectModel.class
+
+CRCheck/target/throne/pages/HomePage.jsp
+
+CRCheck/target/throne/css/component.css
