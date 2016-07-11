@@ -14,9 +14,9 @@ public interface SummaryDao {
     //tip: get all the Summary of a project
     public List findSummary(String projectId);
 
-    //tip: if update succeed ,it will return true .And all the attributes must be set
+    //tip: if update succeed ,it will return true
     public boolean update(Summary summary);
 
     //tip: if delete succeed ,it will return true
-    public boolean delete(int id);
+    public boolean delete(String id);
 }

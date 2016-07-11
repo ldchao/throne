@@ -3,7 +3,7 @@ package DaoImpl;
 import Connection.connection;
 import Dao.SummaryDao;
 import POJO.Summary;
-import org.hibernate.query.Query;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -16,20 +16,14 @@ public class SummaryDaoImpl implements SummaryDao {
     public boolean addSummary(Summary summary) {
         Session session= connection.getSession();
         try {
-            if (findSummaryById(summary.getId())==null){
-                session.save(summary);
-                Transaction transaction=session.beginTransaction();
-                transaction.commit();
-                connection.closeSession(session);
-                return true;
-            }else{
-                connection.closeSession(session);
-                return false;
-            }
 
+            session.save(summary);
+            Transaction transaction=session.beginTransaction();
+            transaction.commit();
+            return true;
         }catch (Exception e){
             e.printStackTrace();
-            connection.closeSession(session);
+            session.close();
             return false;
         }
     }
@@ -40,68 +34,20 @@ public class SummaryDaoImpl implements SummaryDao {
             String hql="from Summary s where s.projectId="+projectId;
             Query query=session.createQuery(hql);
             List list=query.list();
-            connection.closeSession(session);
-            return list;
         }catch (Exception e){
             e.printStackTrace();
-            connection.closeSession(session);
             return null;
         }
+        return null;
     }
 
     public boolean update(Summary summary) {
         Session session= connection.getSession();
-        try{
-            if (findSummaryById(summary.getId())!=null){
-                session.update(summary);
-                Transaction transaction=session.beginTransaction();
-                transaction.commit();
-                connection.closeSession(session);
-                return true;
-            }else {
-                connection.closeSession(session);
-                return false;
-            }
-
-        }catch (Exception e){
-            e.printStackTrace();
-            connection.closeSession(session);
-            return false;
-        }
+        return false;
     }
 
-    public boolean delete(int id) {
+    public boolean delete(String id) {
         Session session= connection.getSession();
-        try {
-            if(findSummaryById(id)!=null){
-                Summary summary=new Summary();
-                summary.setId(id);
-                session.delete(summary);
-                Transaction transaction=session.beginTransaction();
-                session.close();
-                return true;
-            }else{
-                session.close();
-                return false;
-            }
-        }catch (Exception e){
-            e.printStackTrace();
-            session.close();
-            return false;
-        }
+        return false;
     }
-
-
-    public Summary findSummaryById(int id) {
-        Session session=connection.getSession();
-        try {
-            Summary summary=(Summary) session.get(Summary.class,id);
-            session.close();
-            return summary;
-        }catch (Exception e){
-            session.close();
-            return null;
-        }
-    }
-
 }

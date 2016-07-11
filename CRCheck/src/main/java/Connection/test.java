@@ -8,17 +8,15 @@ import POJO.User;
  */
 public class test {
     public static void  main(String[]args){
-//        UserDaoImpl userDao=new UserDaoImpl();
-//        User user=new User();
-//        user.setId("pangchao");
-//        user.setPassword("123");
+        UserDaoImpl userDao=new UserDaoImpl();
+        User user=new User();
+        user.setId("pangchao");
+        user.setPassword("123");
 //        user.setAddress("hello");
-//        user.setUserLogin("online");
-//        user.setUserState("private");
-//        user.setChecklistPath("src");
-//        userDao.update(user);
+        user.setUserLogin("online");
+        user.setUserState("private");
+        user.setChecklistPath("src");
+        userDao.update(user);
 //        userDao.addUser(user);
-
-        
     }
 }
