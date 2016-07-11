@@ -18,9 +18,10 @@ public interface PersonalreviewDao {
 
     public Personalreview findProject(String userId, String projectId);
 
-    //the attribute of "project"
+    //just need to set the "projectId",the attribute of "project"
     public List findProject(Project project);
 
+    //just need to set the "userId",the attribute of "userId"
     public List findProject(User user);
 
 }
