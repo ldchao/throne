@@ -32,8 +32,8 @@
         <property name="codePath">
             <column name="codePath" sql-type="varchar(255)"/>
         </property>
-        <property name="reviewResultPath">
-            <column name="reviewResultPath" sql-type="varchar(255)"/>
+        <property name="attendReview">
+            <column name="attendReview" sql-type="varchar(20)" length="20"/>
         </property>
         <property name="qualityReview">
             <column name="qualityReview" sql-type="text"/>

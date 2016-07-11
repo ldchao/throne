@@ -19,7 +19,7 @@ public class Project {
     private String startTime;
     private String endTime;
     private String codePath;
-    private String reviewResultPath;
+    private String attendReview;
     private String qualityReview;
 
     @Id
@@ -113,13 +113,13 @@ public class Project {
     }
 
     @Basic
-    @Column(name = "reviewResultPath", nullable = false, length = 255)
-    public String getReviewResultPath() {
-        return reviewResultPath;
+    @Column(name = "attendReview", nullable = false, length = 20)
+    public String getAttendReview() {
+        return attendReview;
     }
 
-    public void setReviewResultPath(String reviewResultPath) {
-        this.reviewResultPath = reviewResultPath;
+    public void setAttendReview(String attendReview) {
+        this.attendReview = attendReview;
     }
 
     @Basic
@@ -149,7 +149,7 @@ public class Project {
         if (startTime != null ? !startTime.equals(project.startTime) : project.startTime != null) return false;
         if (endTime != null ? !endTime.equals(project.endTime) : project.endTime != null) return false;
         if (codePath != null ? !codePath.equals(project.codePath) : project.codePath != null) return false;
-        if (reviewResultPath != null ? !reviewResultPath.equals(project.reviewResultPath) : project.reviewResultPath != null)
+        if (attendReview != null ? !attendReview.equals(project.attendReview) : project.attendReview != null)
             return false;
         if (qualityReview != null ? !qualityReview.equals(project.qualityReview) : project.qualityReview != null)
             return false;
@@ -168,7 +168,7 @@ public class Project {
         result = 31 * result + (startTime != null ? startTime.hashCode() : 0);
         result = 31 * result + (endTime != null ? endTime.hashCode() : 0);
         result = 31 * result + (codePath != null ? codePath.hashCode() : 0);
-        result = 31 * result + (reviewResultPath != null ? reviewResultPath.hashCode() : 0);
+        result = 31 * result + (attendReview != null ? attendReview.hashCode() : 0);
         result = 31 * result + (qualityReview != null ? qualityReview.hashCode() : 0);
         return result;
     }

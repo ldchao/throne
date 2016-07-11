@@ -3,7 +3,6 @@ package DaoImpl;
 import Connection.connection;
 import Dao.UserDao;
 import POJO.User;
-import com.sun.org.apache.regexp.internal.REUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -18,15 +17,15 @@ public class UserDaoImpl implements UserDao {
                 session.save(user);
                 Transaction transaction=session.beginTransaction();
                 transaction.commit();
-                session.close();
+                connection.closeSession(session);
                 return true;
             }else {
-                session.close();
+                connection.closeSession(session);
                 return false;
             }
         }catch (Exception e){
             e.printStackTrace();
-            session.close();
+            connection.closeSession(session);
             return false;
         }
     }
@@ -35,7 +34,7 @@ public class UserDaoImpl implements UserDao {
         Session session= connection.getSession();
         try {
             User user=(User)session.get(User.class,id);
-            session.close();
+            connection.closeSession(session);
             if(user!=null){
                 return user;
             }else {
@@ -43,7 +42,7 @@ public class UserDaoImpl implements UserDao {
             }
         }catch (Exception e){
             e.printStackTrace();
-            session.close();
+            connection.closeSession(session);
             return  null;
         }
     }
@@ -51,13 +50,19 @@ public class UserDaoImpl implements UserDao {
     public boolean update(User user) {
         Session session= connection.getSession();
         try {
-            session.update(user);
-            Transaction transaction=session.beginTransaction();
-            transaction.commit();
-            session.close();
-            return true;
+            if (findUser(user.getId())==null){
+                session.update(user);
+                Transaction transaction=session.beginTransaction();
+                transaction.commit();
+                connection.closeSession(session);
+                return true;
+            }else {
+                connection.closeSession(session);
+                return false;
+            }
         }catch (Exception e){
-            session.close();
+            e.printStackTrace();
+            connection.closeSession(session);
             return false;
         }
     }
@@ -65,15 +70,20 @@ public class UserDaoImpl implements UserDao {
     public boolean delete(String id) {
         Session session= connection.getSession();
         try {
-            User user=new User();
-            user.setId(id);
-            session.delete(user);
-            Transaction transaction=session.beginTransaction();
-            transaction.commit();
-            session.close();
-            return true;
+            if (findUser(id)==null){
+                User user=new User();
+                user.setId(id);
+                session.delete(user);
+                Transaction transaction=session.beginTransaction();
+                transaction.commit();
+                connection.closeSession(session);
+                return true;
+            }else {
+                connection.closeSession(session);
+                return false;
+            }
         }catch (Exception e){
-            session.close();
+            connection.closeSession(session);
             return false;
         }
     }

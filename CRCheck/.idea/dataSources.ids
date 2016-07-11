@@ -61,9 +61,9 @@
         <data-type>varchar(255)</data-type>
         <default-expression>&apos;&apos;</default-expression>
       </column>
-      <column id="19" parent="2" name="reviewResultPath">
+      <column id="19" parent="2" name="attendReview">
         <mandatory>1</mandatory>
-        <data-type>varchar(255)</data-type>
+        <data-type>varchar(20)</data-type>
         <default-expression>&apos;&apos;</default-expression>
       </column>
       <column id="20" parent="2" name="qualityReview">
