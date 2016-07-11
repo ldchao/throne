@@ -1,5 +1,8 @@
 package serviceImpl;
 
+import Dao.InvitementDao;
+import DaoImpl.InvitementDaoImpl;
+import POJO.Invitement;
 import enums.MessageState;
 import enums.UniversalState;
 import model.InvitationMessage;
@@ -12,7 +15,8 @@ import java.util.ArrayList;
 public class InvitationListServiceImpl implements InvitationListService{
 
     public ArrayList<InvitationMessage> getInvitationList(String projectID) {
-
+        ArrayList<InvitationMessage> invitationList=new ArrayList<InvitationMessage>();
+        InvitementDao invitmentDao=new InvitementDaoImpl();
 
 
 
@@ -22,6 +26,14 @@ public class InvitationListServiceImpl implements InvitationListService{
 
     public UniversalState saveInvitationList(ArrayList<InvitationMessage> list) {
 
+        InvitementDao invitmentDao=new InvitementDaoImpl();
+        for (InvitationMessage invitationMesage:list ) {
+            Invitement invitement=new Invitement();
+            invitement.setProjectId(invitationMesage.getProjectID());
+            invitement.setUserId(invitationMesage.getUserID());
+            invitement.setState(invitationMesage.getAccepting_state().toString());
+            return invitmentDao.addInvitement(invitement)?UniversalState.SUCCESS:UniversalState.FAIL;
+        }
 
 
 
@@ -29,6 +41,11 @@ public class InvitationListServiceImpl implements InvitationListService{
     }
 
     public UniversalState changeInvitationState(String userID, String projectID, MessageState state) {
-        return null;
+        InvitementDao invitmentDao=new InvitementDaoImpl();
+        Invitement invitement=new Invitement();
+        invitement.setProjectId(projectID);
+        invitement.setUserId(userID);
+        invitement.setState(state.toString());
+        return invitmentDao.updateInvitement(invitement)?UniversalState.SUCCESS:UniversalState.FAIL;
     }
 }

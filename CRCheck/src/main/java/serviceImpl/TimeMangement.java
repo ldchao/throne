@@ -3,10 +3,10 @@ package serviceImpl;
 /**
  * Created by lvdechao on 2016/7/11.
  */
-public class TimeController implements Runnable{
+public class TimeMangement implements Runnable{
 
 
-    TimeController(){
+    TimeMangement(){
 
         Thread t = new Thread(this);
         t.start();
@@ -17,7 +17,7 @@ public class TimeController implements Runnable{
     public void run() {
 
         while(true){
-            
+
         }
 
     }
