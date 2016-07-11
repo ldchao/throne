@@ -8,7 +8,7 @@ import enums.UniversalState;
  */
 public interface LoginService {
     //注册
-    public UniversalState addUser(String userId, String password, Power power) throws Exception;
+    public UniversalState addUser(String userId, String password, Power power);
     //登录
-    public UniversalState loginUser(String userId, String password) throws Exception;
+    public UniversalState loginUser(String userId, String password);
 }

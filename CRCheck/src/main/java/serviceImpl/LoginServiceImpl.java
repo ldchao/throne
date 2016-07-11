@@ -1,5 +1,7 @@
 package serviceImpl;
 
+import Dao.UserDao;
+import POJO.User;
 import enums.UniversalState;
 import service.LoginService;
 import enums.Power;
@@ -8,24 +10,26 @@ import enums.Power;
  * Created by zs on 2016/7/8.
  */
 public class LoginServiceImpl implements LoginService {
-//    @Override
     //注册
-    public UniversalState addUser(String userId, String password, Power power) throws Exception{
-//        //验证information
-//
+    public UniversalState addUser(String userId, String password, Power power){
+//        UserDao dao = new kk();
+//        }
 //        //创建PO并保存
-//        UserPO po=changeVoToPo(vo);
+//        User user=new User();
+//        user.setId(userId);
+//        user.setPassword(password);
+//        user.setId(userId);
 //        try {
-//            message=data.insert(po);
+//            message=dao.addUser();
 //        } catch (RemoteException e) {
 //            e.printStackTrace();
-//            return UniversalState.FAIL;
+//            return UniversalState.ERROR;
 //        }
         return UniversalState.SUCCESS;
     }
 //    @Override
     //登录
-    public UniversalState loginUser(String userId, String password) throws Exception{
+    public UniversalState loginUser(String userId, String password){
 //        UserPO userPo = null;
 //        try {
 //            userPo = data.find(id);
