@@ -28,6 +28,7 @@
       <configuration>
         <datasource-map>
           <unit-entry name="POJO:hibernate.cfg.xml" />
+          <unit-entry name="hibernate.cfg.xml" value="aa6a8b36-0064-42c2-9aae-665fbcce51e1" />
         </datasource-map>
         <naming-strategy-map />
         <deploymentDescriptor name="hibernate.cfg.xml" url="file://$MODULE_DIR$/src/main/resources/hibernate.cfg.xml" />
@@ -83,6 +84,5 @@
     <orderEntry type="library" name="Maven: org.jboss.spec.javax.interceptor:jboss-interceptors-api_1.1_spec:1.0.0.Beta1" level="project" />
     <orderEntry type="library" name="Maven: org.jboss.logging:jboss-logging:3.3.0.Final" level="project" />
     <orderEntry type="library" name="Maven: javax.annotation:jsr250-api:1.0" level="project" />
-    <orderEntry type="library" name="Maven: org.hibernate:hibernate-core:5.2.1.Final" level="project" />
   </component>
 </module>

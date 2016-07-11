@@ -7,10 +7,26 @@
         <property name="hibernate.bytecode.use_reflection_optimizer">false</property>
         <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
         <property name="hibernate.connection.password">141250089</property>
-        <property name="hibernate.connection.url">jdbc:mysql://115.159.122.196:3306/superquant</property>
+        <property name="hibernate.connection.url">jdbc:mysql://115.159.122.196:3306/throne</property>
         <property name="hibernate.connection.username">root</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
         <property name="hibernate.search.autoregister_listeners">false</property>
+        <mapping resource="Project.hbm.xml"/>
+        <mapping class="POJO.Project"/>
+        <mapping resource="User.hbm.xml"/>
+        <mapping class="POJO.User"/>
+        <mapping class="POJO.Message"/>
+        <mapping resource="Message.hbm.xml"/>
+        <mapping class="POJO.Friends"/>
+        <mapping resource="Friends.hbm.xml"/>
+        <mapping class="POJO.Attention"/>
+        <mapping resource="Attention.hbm.xml"/>
+        <mapping class="POJO.Invitement"/>
+        <mapping resource="Invitement.hbm.xml"/>
+        <mapping resource="Personalreview.hbm.xml"/>
+        <mapping class="POJO.Personalreview"/>
+        <mapping resource="Summary.hbm.xml"/>
+        <mapping class="POJO.Summary"/>
 
     </session-factory>
 </hibernate-configuration>

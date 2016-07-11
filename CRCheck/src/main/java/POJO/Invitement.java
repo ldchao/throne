@@ -9,12 +9,11 @@ import javax.persistence.Id;
  * Created by mm on 2016/7/11.
  */
 @Entity
-public class Message {
+public class Invitement {
     private Integer id;
     private String userId;
-    private String content;
+    private String projectId;
     private String state;
-    private String sendOrReceive;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -37,13 +36,13 @@ public class Message {
     }
 
     @Basic
-    @Column(name = "content", nullable = false, length = 255)
-    public String getContent() {
-        return content;
+    @Column(name = "projectId", nullable = false, length = 20)
+    public String getProjectId() {
+        return projectId;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setProjectId(String projectId) {
+        this.projectId = projectId;
     }
 
     @Basic
@@ -56,29 +55,17 @@ public class Message {
         this.state = state;
     }
 
-    @Basic
-    @Column(name = "sendOrReceive", nullable = false, length = 20)
-    public String getSendOrReceive() {
-        return sendOrReceive;
-    }
-
-    public void setSendOrReceive(String sendOrReceive) {
-        this.sendOrReceive = sendOrReceive;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Message message = (Message) o;
+        Invitement that = (Invitement) o;
 
-        if (id != null ? !id.equals(message.id) : message.id != null) return false;
-        if (userId != null ? !userId.equals(message.userId) : message.userId != null) return false;
-        if (content != null ? !content.equals(message.content) : message.content != null) return false;
-        if (state != null ? !state.equals(message.state) : message.state != null) return false;
-        if (sendOrReceive != null ? !sendOrReceive.equals(message.sendOrReceive) : message.sendOrReceive != null)
-            return false;
+        if (id != null ? !id.equals(that.id) : that.id != null) return false;
+        if (userId != null ? !userId.equals(that.userId) : that.userId != null) return false;
+        if (projectId != null ? !projectId.equals(that.projectId) : that.projectId != null) return false;
+        if (state != null ? !state.equals(that.state) : that.state != null) return false;
 
         return true;
     }
@@ -87,9 +74,8 @@ public class Message {
     public int hashCode() {
         int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (userId != null ? userId.hashCode() : 0);
-        result = 31 * result + (content != null ? content.hashCode() : 0);
+        result = 31 * result + (projectId != null ? projectId.hashCode() : 0);
         result = 31 * result + (state != null ? state.hashCode() : 0);
-        result = 31 * result + (sendOrReceive != null ? sendOrReceive.hashCode() : 0);
         return result;
     }
 }

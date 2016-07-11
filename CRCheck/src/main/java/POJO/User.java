@@ -1,8 +1,14 @@
 package POJO;
 
-import enums.UserLogin;
-import enums.UserState;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
+/**
+ * Created by mm on 2016/7/11.
+ */
+@Entity
 public class User {
     private String id;
     private String password;
@@ -12,21 +18,10 @@ public class User {
     private String address;
     private String userLogin;
     private String userState;
+    private String checklistPath;
 
-    public User() {
-    }
-
-    public User(String id, String password, String email, String sex, String phone, String address, String userLogin, String userState) {
-        this.id = id;
-        this.password = password;
-        this.email = email;
-        this.sex = sex;
-        this.phone = phone;
-        this.address = address;
-        this.userLogin = userLogin;
-        this.userState = userState;
-    }
-
+    @Id
+    @Column(name = "id", nullable = false, length = 20)
     public String getId() {
         return id;
     }
@@ -35,6 +30,8 @@ public class User {
         this.id = id;
     }
 
+    @Basic
+    @Column(name = "password", nullable = false, length = 20)
     public String getPassword() {
         return password;
     }
@@ -43,6 +40,8 @@ public class User {
         this.password = password;
     }
 
+    @Basic
+    @Column(name = "email", nullable = true, length = 50)
     public String getEmail() {
         return email;
     }
@@ -51,6 +50,8 @@ public class User {
         this.email = email;
     }
 
+    @Basic
+    @Column(name = "sex", nullable = true, length = 10)
     public String getSex() {
         return sex;
     }
@@ -59,6 +60,8 @@ public class User {
         this.sex = sex;
     }
 
+    @Basic
+    @Column(name = "phone", nullable = true, length = 20)
     public String getPhone() {
         return phone;
     }
@@ -67,6 +70,8 @@ public class User {
         this.phone = phone;
     }
 
+    @Basic
+    @Column(name = "address", nullable = true, length = 255)
     public String getAddress() {
         return address;
     }
@@ -75,6 +80,8 @@ public class User {
         this.address = address;
     }
 
+    @Basic
+    @Column(name = "userLogin", nullable = false, length = 20)
     public String getUserLogin() {
         return userLogin;
     }
@@ -83,11 +90,58 @@ public class User {
         this.userLogin = userLogin;
     }
 
+    @Basic
+    @Column(name = "userState", nullable = false, length = 20)
     public String getUserState() {
         return userState;
     }
 
     public void setUserState(String userState) {
         this.userState = userState;
+    }
+
+    @Basic
+    @Column(name = "checklistPath", nullable = false, length = 255)
+    public String getChecklistPath() {
+        return checklistPath;
+    }
+
+    public void setChecklistPath(String checklistPath) {
+        this.checklistPath = checklistPath;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        User user = (User) o;
+
+        if (id != null ? !id.equals(user.id) : user.id != null) return false;
+        if (password != null ? !password.equals(user.password) : user.password != null) return false;
+        if (email != null ? !email.equals(user.email) : user.email != null) return false;
+        if (sex != null ? !sex.equals(user.sex) : user.sex != null) return false;
+        if (phone != null ? !phone.equals(user.phone) : user.phone != null) return false;
+        if (address != null ? !address.equals(user.address) : user.address != null) return false;
+        if (userLogin != null ? !userLogin.equals(user.userLogin) : user.userLogin != null) return false;
+        if (userState != null ? !userState.equals(user.userState) : user.userState != null) return false;
+        if (checklistPath != null ? !checklistPath.equals(user.checklistPath) : user.checklistPath != null)
+            return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (password != null ? password.hashCode() : 0);
+        result = 31 * result + (email != null ? email.hashCode() : 0);
+        result = 31 * result + (sex != null ? sex.hashCode() : 0);
+        result = 31 * result + (phone != null ? phone.hashCode() : 0);
+        result = 31 * result + (address != null ? address.hashCode() : 0);
+        result = 31 * result + (userLogin != null ? userLogin.hashCode() : 0);
+        result = 31 * result + (userState != null ? userState.hashCode() : 0);
+        result = 31 * result + (checklistPath != null ? checklistPath.hashCode() : 0);
+        return result;
     }
 }

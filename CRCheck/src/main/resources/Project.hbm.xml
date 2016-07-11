@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="POJO.Project" table="project" schema="throne">
+        <id name="id">
+            <column name="id" sql-type="varchar(20)" length="20"/>
+        </id>
+        <property name="userId">
+            <column name="userId" sql-type="varchar(20)" length="20"/>
+        </property>
+        <property name="type">
+            <column name="type" sql-type="varchar(30)" length="30"/>
+        </property>
+        <property name="description">
+            <column name="description" sql-type="varchar(255)"/>
+        </property>
+        <property name="projectState">
+            <column name="projectState" sql-type="varchar(20)" length="20"/>
+        </property>
+        <property name="power">
+            <column name="power" sql-type="varchar(20)" length="20"/>
+        </property>
+        <property name="startTime">
+            <column name="startTime" sql-type="varchar(20)" length="20"/>
+        </property>
+        <property name="endTime">
+            <column name="endTime" sql-type="varchar(20)" length="20"/>
+        </property>
+        <property name="codePath">
+            <column name="codePath" sql-type="varchar(255)"/>
+        </property>
+        <property name="reviewResultPath">
+            <column name="reviewResultPath" sql-type="varchar(255)"/>
+        </property>
+        <property name="qualityReview">
+            <column name="qualityReview" sql-type="text"/>
+        </property>
+    </class>
+</hibernate-mapping>

@@ -5,6 +5,6 @@ package enums;
  */
 public enum MessageState {
 
-    Agree,Refuse,Ignore,Delete
+    Agree,Refuse,Ignore,Delete,NotHandle
 
 }
