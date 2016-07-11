@@ -21,7 +21,7 @@ public class LoginServiceImpl implements LoginService {
         user.setPassword(password);
         user.setUserState(String.valueOf(power));
         user.setUserLogin("ONLINE");
-        user.setChecklistPath("");
+        user.setChecklistPath("src");
         boolean result=true;
         try {
             result=dao.addUser(user);
@@ -66,7 +66,7 @@ public class LoginServiceImpl implements LoginService {
         user.setPassword("saige");
         user.setUserState(String.valueOf("PUBLIC"));
         user.setUserLogin("ONLINE");
-        user.setChecklistPath("123");
+        user.setChecklistPath("src");
         boolean result = true;
         try {
             result = dao.addUser(user);
