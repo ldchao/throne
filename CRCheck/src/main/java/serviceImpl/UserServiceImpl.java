@@ -17,10 +17,11 @@ public class UserServiceImpl implements UserService {
         User user=new User();
         user=dao.findUser(userid);
         model.setId(user.getId());
-        model.setPassword(user.getPassword());
         model.setPower(Power.valueOf(user.getUserState()));
         return null;
     }
+
     //TODO
     //测试
+
 }
