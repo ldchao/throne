@@ -7,6 +7,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -114,6 +115,25 @@ public class InvitementDaoImpl implements InvitementDao{
         }catch (Exception e){
             e.printStackTrace();
             session.close();
+            return  null;
+        }
+    }
+
+    public ArrayList<Invitement> findAllInvitement(String pid) {
+        Session session= connection.getSession();
+        try {
+            String hql="from Invitement as i where i.projectId="+pid;
+            Query query = session.createQuery(hql);
+            ArrayList<Invitement> aList = (ArrayList<Invitement>) query.list();
+            connection.closeSession(session);
+            if(aList.size()!=0){
+                return aList;
+            }else {
+                return null;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            connection.closeSession(session);
             return  null;
         }
     }
