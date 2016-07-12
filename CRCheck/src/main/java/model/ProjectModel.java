@@ -12,16 +12,20 @@ import java.util.ArrayList;
 public class ProjectModel {
 
     private String UserID;
+    //之后系统递增
     private String ProjectID;
     private String name;
     private Language type;
     private String discription;
+    //一开始默认未开始
     private ProjectState state;
     private Power power;
     private String startDate;
     private String endDate;
+    //后台安排
     private String projectPath;
     private String qualityFeedback;
+    //本人是否参与评审
     private String attendReview;
     private ArrayList<InvitationMessage> invitationList;
 
@@ -120,6 +124,7 @@ public class ProjectModel {
     public void setInvitationList(ArrayList<InvitationMessage> invitationList) {
         this.invitationList = invitationList;
     }
+
     public String getAttendReview() {
         return attendReview;
     }

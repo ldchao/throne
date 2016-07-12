@@ -4,6 +4,7 @@ import Dao.UserDao;
 import DaoImpl.UserDaoImpl;
 import POJO.User;
 import enums.Power;
+import enums.UniversalState;
 import model.UserModel;
 import service.UserService;
 
@@ -21,7 +22,11 @@ public class UserServiceImpl implements UserService {
         return null;
     }
 
-    //TODO
     //测试
+    public static void main(String[] args) {
+        UserService u=new UserServiceImpl();
+        UserModel state=u.getUser("saige");
+        System.out.print(String.valueOf(state));
+    }
 
 }
