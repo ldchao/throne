@@ -1,8 +1,10 @@
 package Connection;
 
+import DaoImpl.PersonalreviewDaoImpl;
 import DaoImpl.ProjectDaoImpl;
 import DaoImpl.SummaryDaoImpl;
 import DaoImpl.UserDaoImpl;
+import POJO.Personalreview;
 import POJO.Project;
 import POJO.Summary;
 import POJO.User;
@@ -38,24 +40,36 @@ public class test {
 //        Summary summary1=(Summary)list.get(0);
 //        System.out.println(list.size());
 
-        ProjectDaoImpl projectDao=new ProjectDaoImpl();
-        Project project=new Project();
-        project.setAttendReview("dd3");
-        project.setCodePath("123");
-        project.setDescription("22");
-        project.setEndTime("22");
-        project.setId("dd3");
-        project.setName("222");
-        project.setPower("ccc");
-        project.setProjectState("aaa");
-        project.setQualityReview("bbbb");
-        project.setStartTime("wwww");
-        project.setType("kdfk");
-        project.setUserId("123");
-        projectDao.deleteProject("dd3");
+//        ProjectDaoImpl projectDao=new ProjectDaoImpl();
+//        Project project=new Project();
+//        project.setAttendReview("dd3");
+//        project.setCodePath("123");
+//        project.setDescription("22");
+//        project.setEndTime("22");
+//        project.setId("dd3");
+//        project.setName("222");
+//        project.setPower("ccc");
+//        project.setProjectState("aaa");
+//        project.setQualityReview("bbbb");
+//        project.setStartTime("wwww");
+//        project.setType("kdfk");
+//        project.setUserId("123");
+//        projectDao.deleteProject("dd3");
 //        Project project1= (Project) projectDao.findProjectByUserId("fatchao").get(0);
 //        System.out.print(project1.getAttendReview()+ "    "+projectDao.findProjectByUserId("fatchao"));
 
 
+        PersonalreviewDaoImpl personalreviewDao=new PersonalreviewDaoImpl();
+        Personalreview personalreview=new Personalreview();
+        personalreview.setCommitTime("2013");
+        personalreview.setDescription("no");
+        personalreview.setId(12);
+        personalreview.setLocation("none");
+        personalreview.setProjectId("22222");
+        personalreview.setResult("none");
+        personalreview.setState("none");
+        personalreview.setType("fat");
+        personalreview.setUserId("123");
+        personalreviewDao.addPersionalreview(personalreview);
     }
 }

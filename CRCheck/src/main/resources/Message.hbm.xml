@@ -11,6 +11,9 @@
         <property name="userId">
             <column name="userId" sql-type="varchar(20)" length="20"/>
         </property>
+        <property name="projectId">
+            <column name="projectId" sql-type="varchar(20)" length="20"/>
+        </property>
         <property name="content">
             <column name="content" sql-type="varchar(255)"/>
         </property>

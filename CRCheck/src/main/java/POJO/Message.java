@@ -6,12 +6,13 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 /**
- * Created by mm on 2016/7/11.
+ * Created by mm on 2016/7/12.
  */
 @Entity
 public class Message {
     private Integer id;
     private String userId;
+    private String projectId;
     private String content;
     private String state;
     private String sendOrReceive;
@@ -34,6 +35,16 @@ public class Message {
 
     public void setUserId(String userId) {
         this.userId = userId;
+    }
+
+    @Basic
+    @Column(name = "projectId", nullable = false, length = 20)
+    public String getProjectId() {
+        return projectId;
+    }
+
+    public void setProjectId(String projectId) {
+        this.projectId = projectId;
     }
 
     @Basic
@@ -75,6 +86,7 @@ public class Message {
 
         if (id != null ? !id.equals(message.id) : message.id != null) return false;
         if (userId != null ? !userId.equals(message.userId) : message.userId != null) return false;
+        if (projectId != null ? !projectId.equals(message.projectId) : message.projectId != null) return false;
         if (content != null ? !content.equals(message.content) : message.content != null) return false;
         if (state != null ? !state.equals(message.state) : message.state != null) return false;
         if (sendOrReceive != null ? !sendOrReceive.equals(message.sendOrReceive) : message.sendOrReceive != null)
@@ -87,6 +99,7 @@ public class Message {
     public int hashCode() {
         int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (userId != null ? userId.hashCode() : 0);
+        result = 31 * result + (projectId != null ? projectId.hashCode() : 0);
         result = 31 * result + (content != null ? content.hashCode() : 0);
         result = 31 * result + (state != null ? state.hashCode() : 0);
         result = 31 * result + (sendOrReceive != null ? sendOrReceive.hashCode() : 0);

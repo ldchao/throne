@@ -15,8 +15,6 @@
         <mapping class="POJO.Project"/>
         <mapping resource="User.hbm.xml"/>
         <mapping class="POJO.User"/>
-        <mapping class="POJO.Message"/>
-        <mapping resource="Message.hbm.xml"/>
         <mapping class="POJO.Friends"/>
         <mapping resource="Friends.hbm.xml"/>
         <mapping class="POJO.Invitement"/>
@@ -27,6 +25,8 @@
         <mapping class="POJO.Summary"/>
         <mapping class="POJO.Attendance"/>
         <mapping resource="Attendance.hbm.xml"/>
+        <mapping resource="Message.hbm.xml"/>
+        <mapping class="POJO.Message"/>
 
     </session-factory>
 </hibernate-configuration>
