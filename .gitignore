@@ -22,6 +22,7 @@ CRCheck/target/throne/WEB-INF/classes/model/ProjectModel.class
 CRCheck/target/throne/pages/HomePage.jsp
 
 CRCheck/target/throne/css/component.css
+
 CRCheck/.idea/dataSources.local.xml
 
 CRCheck/target/throne/WEB-INF/classes/serviceImpl/InvitationListServiceImpl.class
