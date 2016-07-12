@@ -17,27 +17,29 @@ public class InvitationListServiceImpl implements InvitationListService{
     public ArrayList<InvitationMessage> getInvitationList(String projectID) {
         ArrayList<InvitationMessage> invitationList=new ArrayList<InvitationMessage>();
         InvitementDao invitmentDao=new InvitementDaoImpl();
-
-
-
-
-        return null;
+        ArrayList<Invitement> list=invitmentDao.findAllInvitement(projectID);
+        for (Invitement invitement:list) {
+            InvitationMessage invitationMessage=new InvitationMessage();
+            invitationMessage.setProjectID(invitement.getProjectId());
+            invitationMessage.setUserID(invitement.getUserId());
+            invitationMessage.setAccepting_state(MessageState.valueOf(invitement.getState()));
+            invitationList.add(invitationMessage);
+        }
+        return invitationList;
     }
 
     public UniversalState saveInvitationList(ArrayList<InvitationMessage> list) {
 
         InvitementDao invitmentDao=new InvitementDaoImpl();
+        boolean result=true;
         for (InvitationMessage invitationMesage:list ) {
             Invitement invitement=new Invitement();
             invitement.setProjectId(invitationMesage.getProjectID());
             invitement.setUserId(invitationMesage.getUserID());
             invitement.setState(invitationMesage.getAccepting_state().toString());
-            return invitmentDao.addInvitement(invitement)?UniversalState.SUCCESS:UniversalState.FAIL;
+            result=result&invitmentDao.addInvitement(invitement);
         }
-
-
-
-        return null;
+        return result?UniversalState.SUCCESS:UniversalState.FAIL;
     }
 
     public UniversalState changeInvitationState(String userID, String projectID, MessageState state) {

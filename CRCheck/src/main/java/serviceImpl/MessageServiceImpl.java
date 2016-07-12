@@ -10,6 +10,11 @@ import service.MessageService;
  */
 public class MessageServiceImpl implements MessageService {
     public UniversalState setIssueMessage(ProjectModel projectModel) {
+
+        String message="";
+        message+="您的好友"+projectModel.getUserID();
+
+
         return null;
     }
 
