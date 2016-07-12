@@ -6,8 +6,6 @@ CRCheck/target/
 
 CRCheck/target/throne/META-INF/MANIFEST.MF
 
-CRCheck/target/throne/WEB-INF/classes/*/*.class
-
 CRCheck/.gitignore
 
 CRCheck/target/*.class
@@ -16,10 +14,16 @@ CRCheck/target/*.jar
 CRCheck/target/*.war
 CRCheck/target/*.ear
  
+<<<<<<< HEAD
 CRCheck//target/
 
 CRCheck/target/throne/WEB-INF/classes/POJO/Message.class
 
 CRCheck/target/throne/WEB-INF/classes/serviceImpl/UserServiceImpl.class
+
+CRCheck/target/throne/WEB-INF/classes/serviceImpl/UserServiceImpl.class
+=======
+CRCheck/target/
+>>>>>>> origin/master
 
 CRCheck/target/throne/WEB-INF/classes/serviceImpl/UserServiceImpl.class
