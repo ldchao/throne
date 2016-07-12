@@ -11,18 +11,19 @@ import java.util.ArrayList;
  */
 public class ProjectModel {
 
-    String UserID;
-    String ProjectID;
-    String name;
-    Language kind;
-    String discription;
-    ProjectState state;
-    Power power;
-    String startDate;
-    String endDate;
-    String projectPath;
-    String qualityFeedback;
-    ArrayList<InvitationMessage> invitationList;
+    private String UserID;
+    private String ProjectID;
+    private String name;
+    private Language type;
+    private String discription;
+    private ProjectState state;
+    private Power power;
+    private String startDate;
+    private String endDate;
+    private String projectPath;
+    private String qualityFeedback;
+    private String attendReview;
+    private ArrayList<InvitationMessage> invitationList;
 
     public String getUserID() {
         return UserID;
@@ -48,12 +49,12 @@ public class ProjectModel {
         this.name = name;
     }
 
-    public Language getKind() {
-        return kind;
+    public Language getType() {
+        return type;
     }
 
-    public void setKind(Language kind) {
-        this.kind = kind;
+    public void setType(Language type) {
+        this.type = type;
     }
 
     public String getDiscription() {
@@ -118,5 +119,12 @@ public class ProjectModel {
 
     public void setInvitationList(ArrayList<InvitationMessage> invitationList) {
         this.invitationList = invitationList;
+    }
+    public String getAttendReview() {
+        return attendReview;
+    }
+
+    public void setAttendReview(String attendReview) {
+        this.attendReview = attendReview;
     }
 }
