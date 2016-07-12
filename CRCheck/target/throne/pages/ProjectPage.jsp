@@ -87,6 +87,9 @@
 
 </div>
 
+<a href="#" id="back-to-top"><i class="fa fa-angle-up"></i></a>
+
+<footer> © CRCheck 2016</footer>
 
 <%--登录--%>
 <div id="Login" class="modal hide fade in" style="display: none;">
@@ -94,6 +97,8 @@
     <div class="log_reg_div">
         <span class="log_reg">登录CRC平台</span>
     </div>
+
+    <button class="close close_div" data-toggle="modal" data-dismiss="modal">x</button>
 
     <div class="input_field_div">
         <input class="input_field" id="userId_log" type="text" placeholder="键入您的用户名">
@@ -122,6 +127,8 @@
     <div class="log_reg_div">
         <span class="log_reg">立即加入CRC评审</span>
     </div>
+
+    <button class="close close_div" data-toggle="modal" data-dismiss="modal">x</button>
 
     <div class="input_field_div">
         <input class="input_field" id="userId_reg" type="text" placeholder="键入您的用户名">
@@ -157,7 +164,7 @@
 <script src="../js/jquery.js"></script>
 <script src="../js/bootstrap.js"></script>
 <script src="../js/projectpage.js"></script>
-<script src="../js/Log_Reg.js"></script>
+<script src="../js/common.js"></script>
 <script src="../js/toaster.js"></script>
 
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->

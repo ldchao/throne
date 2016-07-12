@@ -109,9 +109,7 @@
     </div>
 </div>
 
-
 <a href="#" id="back-to-top"><i class="fa fa-angle-up"></i></a>
-
 
 <footer> © CRCheck 2016</footer>
 
@@ -122,9 +120,11 @@
         <span class="log_reg">登录CRC平台</span>
     </div>
 
+    <button class="close close_div" data-toggle="modal" data-dismiss="modal">x</button>
+
     <div class="input_field_div">
-        <input class="input_field" type="text" placeholder="键入您的用户名">
-        <input class="input_field" type="password" placeholder="键入您的密码">
+        <input class="input_field" id="userId_log" type="text" placeholder="键入您的用户名">
+        <input class="input_field" id="password_log" type="password" placeholder="键入您的密码">
     </div>
 
     <div class="switchbtn_div">
@@ -138,7 +138,7 @@
     </div>
 
     <div class="logbtn_div">
-        <button class="logbtn">登录</button>
+        <button class="logbtn" onclick="Login()">登录</button>
     </div>
 
 </div>
@@ -150,13 +150,15 @@
         <span class="log_reg">立即加入CRC评审</span>
     </div>
 
+    <button class="close close_div" data-toggle="modal" data-dismiss="modal">x</button>
+
     <div class="input_field_div">
-        <input class="input_field" type="text" placeholder="键入您的用户名">
-        <input class="input_field" type="password" placeholder="键入您的密码">
+        <input class="input_field" id="userId_reg" type="text" placeholder="键入您的用户名">
+        <input class="input_field" id="password_reg" type="password" placeholder="键入您的密码(不少于6位)">
     </div>
 
     <div class="switchbtn_div">
-        <input class="mui-switch mui-switch-animbg" type="checkbox">
+        <input class="mui-switch mui-switch-animbg" id="power_reg" type="checkbox">
         <span class="logtip">是否允许任何人邀请你</span>
     </div>
 
@@ -166,11 +168,15 @@
     </div>
 
     <div class="logbtn_div">
-        <button class="logbtn">注册</button>
+        <button class="logbtn" onclick="Register()">注册</button>
     </div>
 
 </div>
 
+<%-- 无阻塞提示框 --%>
+<div id="toaster_close">
+    <div id="toaster">提示消息</div>
+</div>
 
 <!-- Bootstrap core JavaScript
     ================================================== -->
@@ -178,29 +184,8 @@
 <%--<script src="../js/main.js"></script>--%>
 <script src="../js/jquery.js"></script>
 <script src="../js/bootstrap.js"></script>
-<script type="text/javascript">
-    /**
-     * Created by marioquer on 16/7/11.
-     */
-    function backToTop() {
-        $(window).scroll(function () {
-            if ($(this).scrollTop() > 150) {
-                $("#back-to-top").fadeIn(200);
-            } else {
-                $("#back-to-top").fadeOut(200);
-            }
-        });
-        $("#back-to-top").click(function () {
-            $("html, body").animate({scrollTop: 0}, 500);
-        });
-    }
-    $(document).ready(function () {
-        backToTop();
-    })
-
-</script>
-
-
+<script src="../js/common.js"></script>
+<script src="../js/toaster.js"></script>
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 <script src="../js/ie10-viewport-bug-workaround.js"></script>
 </body>

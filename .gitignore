@@ -17,3 +17,9 @@ CRCheck/target/*.war
 CRCheck/target/*.ear
  
 CRCheck//target/
+
+CRCheck/target/throne/WEB-INF/classes/POJO/Message.class
+
+CRCheck/target/throne/WEB-INF/classes/serviceImpl/UserServiceImpl.class
+
+CRCheck/target/throne/WEB-INF/classes/serviceImpl/UserServiceImpl.class

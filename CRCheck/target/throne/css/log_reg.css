@@ -58,7 +58,7 @@
 .modal .switchtip_div {
     position: absolute;
     right: 50px;
-    bottom: 93px;
+    bottom: 95px;
 }
 
 .switchtip {
@@ -167,25 +167,30 @@
 
 .modal {
     position: fixed;
-    top: 10%;
+    top: 25%;
     left: 53%;
     z-index: 1050;
     width: 471px;
     height: 340px;
     margin-left: -280px;
     background-color: #ffffff;
-    border: 1px solid #999;
-    border: 1px solid rgba(0, 0, 0, 0.3);
-    *border: 1px solid #999;
+    border: none;
     -webkit-border-radius: 6px;
     -moz-border-radius: 6px;
     border-radius: 6px;
     outline: none;
-    -webkit-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
-    -moz-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
-    box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0 0px 10px #2952b0;
+    -moz-box-shadow: 0 0px 10px #2952b0;
+    box-shadow: 0 0px 10px #2952b0;
     -webkit-background-clip: padding-box;
     background-clip: padding-box;
+}
+
+.modal .close_div {
+    position: absolute;
+    font-size: 22px;
+    top: 10px;
+    right: 15px;
 }
 
 .modal.fade {
@@ -197,7 +202,7 @@
 }
 
 .modal.fade.in {
-    top: 10%;
+    top: 20%;
 }
 
 .fade {
