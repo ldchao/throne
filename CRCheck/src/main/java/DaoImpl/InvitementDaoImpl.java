@@ -98,6 +98,7 @@ public class InvitementDaoImpl implements InvitementDao{
     public boolean updateInvitement(Invitement invitemnent) {
         Session session= connection.getSession();
         try {
+            invitemnent.setId(invitemnent.getId());
             session.update(invitemnent);
             Transaction transaction=session.beginTransaction();
             transaction.commit();
