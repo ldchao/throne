@@ -14,6 +14,7 @@ import service.ProjectService;
  * Created by zs on 2016/7/11.
  */
 public class ProjectServiceImpl implements ProjectService{
+    //创建项目
     public UniversalState addProject(ProjectModel projectModel) {
         //初始化对象
         ProjectDao dao = new ProjectDaoImpl();
@@ -42,24 +43,28 @@ public class ProjectServiceImpl implements ProjectService{
             return UniversalState.SUCCESS;
         return UniversalState.FAIL;
     }
-
+    //删除项目
     public UniversalState deleteProject(String projectID) {
-
-        return null;
+        ProjectDao dao = new ProjectDaoImpl();
+        boolean a=dao.deleteProject(projectID);
+        if(a)
+            return UniversalState.SUCCESS;
+        return UniversalState.FAIL;
     }
-
+    //查看项目
     public ProjectModel checkProject(String projectID) {
+
         return null;
     }
-
+    //更新项目状态
     public UniversalState updateProjectState(String projectID, ProjectState projectState) {
         return null;
     }
-
+    //更新项目质量总结报告
     public UniversalState updateQualityFeedback(String projectID, String newQualityFeedback) {
         return null;
     }
-
+    //修改项目信息
     public UniversalState updateProjectMessage(String projectID, ProjectModel projectModel) {
         return null;
     }

@@ -19,14 +19,15 @@ public class UserServiceImpl implements UserService {
         user=dao.findUser(userid);
         model.setId(user.getId());
         model.setPower(Power.valueOf(user.getUserState()));
-        return null;
+        return model;
     }
 
     //测试
     public static void main(String[] args) {
         UserService u=new UserServiceImpl();
         UserModel state=u.getUser("saige");
-        System.out.print(String.valueOf(state));
+        System.out.print(String.valueOf(state.getId()));
+        System.out.print(String.valueOf(state.getPower()));
     }
 
 }
