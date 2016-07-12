@@ -6,8 +6,6 @@ CRCheck/target/
 
 CRCheck/target/throne/META-INF/MANIFEST.MF
 
-CRCheck/target/throne/WEB-INF/classes/*/*.class
-
 CRCheck/.gitignore
 
 CRCheck/target/*.class
@@ -16,4 +14,4 @@ CRCheck/target/*.jar
 CRCheck/target/*.war
 CRCheck/target/*.ear
  
-CRCheck//target/
+CRCheck/target/
