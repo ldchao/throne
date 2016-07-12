@@ -41,8 +41,12 @@ public class InvitementDaoImpl implements InvitementDao{
         Session session= connection.getSession();
         try {
             Invitement invitement = new Invitement();
-            invitement.setProjectId(pid);
-            session.delete(invitement);
+            ArrayList<Invitement> invitements=findAllInvitement(pid);
+            for(int i=0;i<invitements.size();i++) {
+                invitement=invitements.get(i);
+                invitement.setId(invitement.getId());
+                session.delete(invitement);
+            }
             Transaction transaction=session.beginTransaction();
             transaction.commit();
             session.close();
@@ -58,8 +62,12 @@ public class InvitementDaoImpl implements InvitementDao{
         Session session= connection.getSession();
         try {
             Invitement invitement = new Invitement();
-            invitement.setProjectId(uid);
-            session.delete(invitement);
+            ArrayList<Invitement> invitements=findInvitementbyUser(uid);
+            for(int i=0;i<invitements.size();i++) {
+                invitement=invitements.get(i);
+                invitement.setId(invitement.getId());
+                session.delete(invitement);
+            }
             Transaction transaction=session.beginTransaction();
             transaction.commit();
             session.close();
@@ -74,8 +82,8 @@ public class InvitementDaoImpl implements InvitementDao{
         Session session= connection.getSession();
         try {
             Invitement invitement = new Invitement();
-            invitement.setProjectId(pid);
-            invitement.setUserId(uid);
+            invitement=findInvitement(pid,uid);
+            invitement.setId(invitement.getId());
             session.delete(invitement);
             Transaction transaction=session.beginTransaction();
             transaction.commit();
@@ -104,7 +112,7 @@ public class InvitementDaoImpl implements InvitementDao{
     public Invitement findInvitement(String pid, String uid) {
         Session session= connection.getSession();
         try {
-            String hql="from Invitement as i where i.projectId="+pid+" and i.userId="+uid;
+            String hql="from Invitement i where i.projectId='"+pid+"' and i.userId='"+uid+"'";
             Query query = session.createQuery(hql);
             List aList = query.list();
             Invitement invitement = (Invitement) aList.get(0);
@@ -124,7 +132,26 @@ public class InvitementDaoImpl implements InvitementDao{
     public ArrayList<Invitement> findAllInvitement(String pid) {
         Session session= connection.getSession();
         try {
-            String hql="from Invitement as i where i.projectId="+pid;
+            String hql="from Invitement i where i.projectId='"+pid+"'";
+            Query query = session.createQuery(hql);
+            ArrayList<Invitement> aList = (ArrayList<Invitement>) query.list();
+            connection.closeSession(session);
+            if(aList.size()!=0){
+                return aList;
+            }else {
+                return null;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            connection.closeSession(session);
+            return  null;
+        }
+    }
+
+    public ArrayList<Invitement> findInvitementbyUser(String uid){
+        Session session= connection.getSession();
+        try {
+            String hql="from Invitement i where i.userId='"+uid+"'";
             Query query = session.createQuery(hql);
             ArrayList<Invitement> aList = (ArrayList<Invitement>) query.list();
             connection.closeSession(session);
