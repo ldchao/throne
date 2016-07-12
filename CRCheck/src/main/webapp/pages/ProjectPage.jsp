@@ -153,10 +153,13 @@
 
 <%-- 无阻塞提示框 --%>
 <div id="toaster_close">
-    <div id="toaster">提示消息</div>
+    <div id="toaster">
+        <div id="pic_div" class="green_pic"></div>
+        <div id="remind" class="green_word">提示消息</div>
+    </div>
 </div>
 
-<a onclick="slidein()">滑入</a>
+<a onclick="slidein(0, '登录成功')">滑入</a>
 
 <!-- Bootstrap core JavaScript
     ================================================== -->

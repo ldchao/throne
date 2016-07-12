@@ -13,6 +13,9 @@
     <!-- Custom styles for login and register -->
     <link href="../css/log_reg.css" rel="stylesheet">
 
+    <!-- 无阻塞消息提示框 -->
+    <link href="../css/toaster.css" rel="stylesheet">
+
     <!-- checkbox styles -->
     <link href="../css/mycheckbox.css" rel="stylesheet">
 
@@ -175,7 +178,10 @@
 
 <%-- 无阻塞提示框 --%>
 <div id="toaster_close">
-    <div id="toaster">提示消息</div>
+    <div id="toaster">
+        <div id="pic_div" class="green_pic"></div>
+        <div id="remind" class="green_word">提示消息</div>
+    </div>
 </div>
 
 <!-- Bootstrap core JavaScript
