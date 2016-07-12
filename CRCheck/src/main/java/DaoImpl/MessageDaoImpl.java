@@ -3,8 +3,12 @@ package DaoImpl;
 import Connection.connection;
 import Dao.MessageDao;
 import POJO.Message;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by dlydd on 2016/7/11.
@@ -30,11 +34,12 @@ public class MessageDaoImpl implements MessageDao{
         }
     }
 
-    public boolean deleteMessage(String id) {
+    public boolean deleteMessage(String uid) {
         Session session= connection.getSession();
         try {
             Message message = new Message();
-            message.setUserId(id);
+            message=findMessage(uid);
+            message.setId(message.getId());
             session.delete(message);
             Transaction transaction=session.beginTransaction();
             transaction.commit();
@@ -49,6 +54,7 @@ public class MessageDaoImpl implements MessageDao{
     public boolean updateMessage(Message message) {
         Session session= connection.getSession();
         try {
+            message.setId(message.getId());
             session.update(message);
             Transaction transaction=session.beginTransaction();
             transaction.commit();
@@ -63,7 +69,10 @@ public class MessageDaoImpl implements MessageDao{
     public Message findMessage(String uid) {
         Session session= connection.getSession();
         try {
-           Message message=(Message) session.get(Message.class,uid);
+           String hql="from Message m where m.userId='"+uid+"'";
+            Query query = session.createQuery(hql);
+            List list=query.list();
+            Message message=(Message) list.get(0);
             session.close();
             if(message!=null){
                 return message;

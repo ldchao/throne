@@ -9,7 +9,7 @@ public interface MessageDao {
     //id是自增的，不过目前没增加，要手动输入
     public boolean addMessage(Message message);
 
-    public boolean deleteMessage(String id);
+    public boolean deleteMessage(String uid);
 
     public boolean updateMessage(Message message);
 
