@@ -10,9 +10,9 @@
 #toaster {
     position: absolute;
     right: -270px;
-    -webkit-transition: all .3s ease-in;
-    -moz-transition: all .3s ease-in;
-    transition: all .3s ease-in;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
 }
 
 #toaster:target {
