@@ -47,3 +47,13 @@ CRCheck/target/throne/WEB-INF/classes/POJO/Test.class
 CRCheck/target/throne/WEB-INF/classes/POJO/DBconnection.class
 
 CRCheck/target/throne/pages/HomePage.jsp
+
+CRCheck/target/classes/model/ProjectModel.class
+
+*.class
+
+CRCheck/target/throne/WEB-INF/classes/model/ProjectModel.class
+
+CRCheck/target/throne/WEB-INF/classes/serviceImpl/InvitationListServiceImpl.class
+
+CRCheck/target/classes/serviceImpl/InvitationListServiceImpl.class

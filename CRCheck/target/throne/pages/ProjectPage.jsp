@@ -18,6 +18,9 @@
     <!-- checkbox styles -->
     <link href="../css/mycheckbox.css" rel="stylesheet">
 
+    <!-- 无阻塞消息提示框 -->
+    <link href="../css/toaster.css" rel="stylesheet">
+
     <!-- specific styles -->
     <link href="../css/component.css" rel="stylesheet">
 
@@ -141,6 +144,13 @@
 
 </div>
 
+<%-- 无阻塞提示框 --%>
+<div id="toaster_close">
+    <div id="toaster">提示消息</div>
+</div>
+
+<a onclick="slidein()">滑入</a>
+
 <!-- Bootstrap core JavaScript
     ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
@@ -148,6 +158,7 @@
 <script src="../js/bootstrap.js"></script>
 <script src="../js/projectpage.js"></script>
 <script src="../js/Log_Reg.js"></script>
+<script src="../js/toaster.js"></script>
 
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 <script src="../js/ie10-viewport-bug-workaround.js"></script>
