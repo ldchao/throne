@@ -61,15 +61,15 @@ public class test {
 
         PersonalreviewDaoImpl personalreviewDao=new PersonalreviewDaoImpl();
         Personalreview personalreview=new Personalreview();
-        personalreview.setCommitTime("2013");
+        personalreview.setCommitTime("2014");
         personalreview.setDescription("no");
-        personalreview.setId(12);
+        personalreview.setId(132);
         personalreview.setLocation("none");
         personalreview.setProjectId("22222");
         personalreview.setResult("none");
         personalreview.setState("none");
         personalreview.setType("fat");
-        personalreview.setUserId("123");
+        personalreview.setUserId("benchao");
         personalreviewDao.addPersionalreview(personalreview);
     }
 }
