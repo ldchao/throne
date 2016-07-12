@@ -17,4 +17,6 @@ ProjectDao {
     public boolean updateProject(Project project);
 
     public List findProjectByUserId(String userId);
+
+    public Project findProject(String id);
 }

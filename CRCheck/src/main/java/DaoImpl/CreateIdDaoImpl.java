@@ -36,14 +36,22 @@ public class CreateIdDaoImpl implements Dao.CreateIdDaoImpl{
     public String CreateStringId(String Class) {
         Session session=connection.getSession();
         try{
-            String hql="select max(x.id) from "+Class+" x";
+            String hql="select p.id from "+Class+" p" ;
+            System.out.println(hql);
             Query query=session.createQuery(hql);
-            String result=(String)query.uniqueResult();
+            List list=query.list();
             connection.closeSession(session);
-            if (result==null){
+            if (list.size()==0){
                 return "1";
             }else {
-                return ""+(Integer.parseInt(result)+1);
+                int result=0;
+//                for (Object o: list) {
+//                    int temp= Integer.parseInt((String)o);
+//                    if (temp>result){
+//                        temp=result;
+//                    }
+//                }
+                return ""+(result+2);
             }
         }catch (Exception e){
             e.printStackTrace();
