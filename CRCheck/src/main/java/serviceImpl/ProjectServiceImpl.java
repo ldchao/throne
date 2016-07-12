@@ -3,6 +3,8 @@ package serviceImpl;
 import Dao.ProjectDao;
 import DaoImpl.ProjectDaoImpl;
 import POJO.Project;
+import enums.Language;
+import enums.Power;
 import enums.ProjectState;
 import enums.UniversalState;
 import model.ProjectModel;
@@ -53,8 +55,25 @@ public class ProjectServiceImpl implements ProjectService{
     }
     //查看项目
     public ProjectModel checkProject(String projectID) {
-
-        return null;
+        ProjectDao dao = new ProjectDaoImpl();
+        Project pro=dao.findProject(projectID);
+        //project-->projectModel
+        if(pro==null)
+            return null;
+        ProjectModel p=new ProjectModel();
+        p.setUserID(pro.getUserId());
+        p.setName(pro.getName());
+        p.setProjectID(pro.getId());
+        p.setType(Language.valueOf(pro.getType()));
+        p.setDiscription(pro.getDescription());
+        p.setState(ProjectState.valueOf(pro.getProjectState()));
+        p.setPower(Power.valueOf(pro.getPower()));
+        p.setStartDate(pro.getStartTime());
+        p.setEndDate(pro.getEndTime());
+        p.setProjectPath(pro.getCodePath());
+        p.setAttendReview(pro.getAttendReview());
+        p.setQualityFeedback(pro.getQualityReview());
+        return p;
     }
     //更新项目状态
     public UniversalState updateProjectState(String projectID, ProjectState projectState) {

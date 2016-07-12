@@ -15,7 +15,7 @@ public interface ProjectService {
     //删除项目
     public UniversalState deleteProject(String projectID);
 
-    //查看项目
+    //查看项目--没有返回null
     public ProjectModel checkProject(String projectID);
 
     //更新项目状态
