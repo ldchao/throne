@@ -65,14 +65,10 @@ function Register() {
     if (password == "") {
         $("#password_reg").parent().append("<label class='lblerr_2'>" + "请输入密码" + "</label>");
         valid = false;
-    }
-
-    if (password.length < 6) {
+    } else if (password.length < 6) {
         $("#userId_reg").parent().append("<label class='lblerr_2'>" + "密码太短啦" + "</label>");
         valid = false;
-    }
-
-    if (password.length > 20) {
+    } else if (password.length > 20) {
         $("#userId_reg").parent().append("<label class='lblerr_2'>" + "密码超过20位啦" + "</label>");
         valid = false;
     }

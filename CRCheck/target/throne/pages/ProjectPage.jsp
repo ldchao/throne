@@ -98,9 +98,7 @@
         <span class="log_reg">登录CRC平台</span>
     </div>
 
-    <div class="close_div">
-        <button class="close" data-toggle="modal" data-dismiss="modal">x</button>
-    </div>
+    <button class="close close_div" data-toggle="modal" data-dismiss="modal">x</button>
 
     <div class="input_field_div">
         <input class="input_field" id="userId_log" type="text" placeholder="键入您的用户名">
@@ -130,9 +128,7 @@
         <span class="log_reg">立即加入CRC评审</span>
     </div>
 
-    <div class="close_div">
-        <button class="close" data-toggle="modal" data-dismiss="modal">x</button>
-    </div>
+    <button class="close close_div" data-toggle="modal" data-dismiss="modal">x</button>
 
     <div class="input_field_div">
         <input class="input_field" id="userId_reg" type="text" placeholder="键入您的用户名">
