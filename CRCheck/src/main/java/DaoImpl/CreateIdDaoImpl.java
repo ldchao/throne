@@ -45,12 +45,12 @@ public class CreateIdDaoImpl implements Dao.CreateIdDaoImpl{
                 return "1";
             }else {
                 int result=0;
-//                for (Object o: list) {
-//                    int temp= Integer.parseInt((String)o);
-//                    if (temp>result){
-//                        temp=result;
-//                    }
-//                }
+                for (Object o: list) {
+                    int temp= Integer.parseInt((String)o);
+                    if (temp>result){
+                        result =temp;
+                    }
+                }
                 return ""+(result+2);
             }
         }catch (Exception e){
