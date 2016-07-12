@@ -1,0 +1,31 @@
+/* 滑入界面 */
+#toaster {
+    width: 250px;
+    height: 60px;
+    border-radius: 4px;
+    background: white;
+    padding: 20px;
+}
+
+#toaster {
+    position: absolute;
+    right: -270px;
+    -webkit-transition: all .3s ease-in;
+    -moz-transition: all .3s ease-in;
+    transition: all .3s ease-in;
+}
+
+#toaster:target {
+    right: 10px;
+}
+
+#toaster_close:target #toaster {
+    right: -270px;
+}
+
+/* 滑出界面 */
+#toaster_close {
+    position: fixed;
+    top: 60px;
+    right: 0;
+}
