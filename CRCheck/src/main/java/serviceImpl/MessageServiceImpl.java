@@ -25,16 +25,20 @@ public class MessageServiceImpl implements MessageService {
               String invitement="尊敬的用户您好，"+constantMessage;
             Message message=new Message();
             message.setContent(invitement);
+            message.setProjectId(projectModel.getProjectID());
             message.setUserId(invitationMessage.getUserID());
             message.setState(MessageState.NotHandle.toString());
             message.setSendOrReceive("receive");
             result=result&messageDao.addMessage(message);
         }
-
-        return null;
+        return result?UniversalState.SUCCESS:UniversalState.FAIL;
     }
 
     public UniversalState changeMessageState(String messageID, MessageState messageState) {
+
+        MessageDao messageDao=new MessageDaoImpl();
+
+
         return null;
     }
 
