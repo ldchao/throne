@@ -12,11 +12,11 @@ import java.util.List;
 public interface PersonalreviewDao {
     public boolean addPersionalreview(Personalreview personalreview);
 
-    public boolean deletePersonalreview(String id);
+    public boolean deletePersonalreview(int id);
 
     public boolean updatePersonalreview(Personalreview personalreview);
 
-    public Personalreview findProject(String userId, String projectId);
+    public List findProject(String userId, String projectId);
 
     //just need to set the "projectId",the attribute of "project"
     public List findProject(Project project);

@@ -13,8 +13,8 @@ public class Project {
     private String id;
     private String name;
     private String userId;
-    private String type;// the type of error
-    private String description;// the details of the error
+    private String type;// the type of project
+    private String description;// the details of the project
     private String projectState;//three states: NotStart,Starting,Over
     private String power;//two states: PUBLIC , PRIVATE
     private String startTime;
