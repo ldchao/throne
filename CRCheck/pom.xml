@@ -140,7 +140,12 @@
       <version>1.2</version>
     </dependency>
 
-
+    <!--&lt;!&ndash; https://mvnrepository.com/artifact/org.hibernate/hibernate-annotations &ndash;&gt;-->
+    <!--<dependency>-->
+      <!--<groupId>org.hibernate</groupId>-->
+      <!--<artifactId>hibernate-annotations</artifactId>-->
+      <!--<version>3.5.6-Final</version>-->
+    <!--</dependency>-->
 
 
 
