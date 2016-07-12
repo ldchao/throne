@@ -6,7 +6,7 @@ CRCheck/target/
 
 CRCheck/target/throne/META-INF/MANIFEST.MF
 
-CRCheck/target
+CRCheck/target/throne/WEB-INF/classes/*/*.class
 
 CRCheck/.gitignore
 
