@@ -37,3 +37,13 @@ CRCheck/target/throne/WEB-INF/classes/Dao/ProjectDao.class
 CRCheck/target/throne/WEB-INF/classes/Dao/ProjectDao.class
 
 CRCheck/target/throne/WEB-INF/classes/controller/MainController.class
+
+CRCheck/target/throne/WEB-INF/classes/POJOTest/UserEntity.class
+
+CRCheck/target/throne/WEB-INF/classes/POJOTest/ProjectEntity.class
+
+CRCheck/target/throne/WEB-INF/classes/POJO/Test.class
+
+CRCheck/target/throne/WEB-INF/classes/POJO/DBconnection.class
+
+CRCheck/target/throne/pages/HomePage.jsp
