@@ -185,9 +185,9 @@
     function backToTop() {
         $(window).scroll(function () {
             if ($(this).scrollTop() > 150) {
-                $("#back-to-top").fadeIn();
+                $("#back-to-top").fadeIn(200);
             } else {
-                $("#back-to-top").fadeOut();
+                $("#back-to-top").fadeOut(200);
             }
         });
         $("#back-to-top").click(function () {
