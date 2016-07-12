@@ -1,0 +1,60 @@
+.mycombox {
+    display: block;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    background: white;
+    border: none;
+    border-radius: inherit;
+    outline: none;
+    -webkit-appearance: none;
+    line-height: inherit;
+    color: #90949b;
+    cursor: default;
+    font-size: 17px;
+    position: relative;
+    padding-left: 13px;
+}
+
+.mycombox option {
+    color: #90949b;
+}
+
+.mycombox option:hover {
+    color: #90949b;
+}
+
+.mycombox option:checked {
+    background: #535353;
+    color: #90949b;
+}
+
+.selectStyle:before {
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    right: 10px;
+    margin-top: -2.5px;
+    display: block;
+    width: 0;
+    height: 0;
+    border: solid;
+    border-width: 5px 5px 0 5px;
+    border-color: #fff transparent transparent transparent;
+    content: "";
+}
+
+.selectStyle:after {
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    right: 10px;
+    margin-top: -3.5px;
+    display: block;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 5px 5px 0 5px;
+    border-color: #88a7da transparent transparent transparent;
+    content: "";
+}

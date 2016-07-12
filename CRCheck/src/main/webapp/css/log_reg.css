@@ -144,7 +144,7 @@
     cursor: not-allowed
 }
 
-/* 妯℃�佹 */
+/* 模态框 */
 .modal-backdrop {
     position: fixed;
     top: 0;
@@ -167,7 +167,7 @@
 
 .modal {
     position: fixed;
-    top: 25%;
+    top: 150px;
     left: 53%;
     z-index: 1050;
     width: 471px;
@@ -187,7 +187,6 @@
 }
 
 .close_div {
-    /*position: absolute;*/
     font-size: 22px;
     margin-top: -55px;
     margin-right: 15px;

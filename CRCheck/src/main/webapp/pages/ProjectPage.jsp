@@ -18,6 +18,12 @@
     <!-- checkbox styles -->
     <link href="../css/mycheckbox.css" rel="stylesheet">
 
+    <!-- combox styles -->
+    <link href="../css/mycombox.css" rel="stylesheet">
+
+    <!-- datetimepicker styles -->
+    <link href="../css/datetimepicker.css" rel="stylesheet">
+
     <!-- 无阻塞消息提示框 -->
     <link href="../css/toaster.css" rel="stylesheet">
 
@@ -75,7 +81,7 @@
         <span class="text_style_left">定时高效</span>
     </div>
 
-    <div class="circle_div">
+    <div class="circle_div" onclick="showLaunch()">
         <hr class="add_style_1">
         <hr class="add_style_2">
     </div>
@@ -90,6 +96,55 @@
 <a href="#" id="back-to-top"><i class="fa fa-angle-up"></i></a>
 
 <footer> © CRCheck 2016</footer>
+
+<%--发起项目评审--%>
+<div id="launch">
+    <div class="launch_div_left"></div>
+
+    <div class="launch_div_right">
+        <button class="close close_div_launch" onclick="closeLaunch()">x</button>
+
+        <div class="img_div"></div>
+
+        <input id="pro_name" type="text" placeholder="项目名称">
+
+        <textarea id="pro_describe" placeholder="项目描述"></textarea>
+
+        <div class="selectStyle code_language_div">
+            <select id="code_language" class="mycombox">
+                <option>编程语言</option>
+                <option>Java</option>
+                <option>C/C++</option>
+                <option>Python</option>
+                <option>WebApp</option>
+                <option>Android</option>
+                <option>iOS</option>
+            </select>
+        </div>
+
+        <div class="selectStyle start_date_div">
+            <input class="date_style" type="text" id="start_date" placeholder="开始时间">
+        </div>
+
+        <div class="selectStyle end_date_div">
+            <input class="date_style" type="text" id="end_date" placeholder="结束时间">
+        </div>
+
+        <span class="limit_tip">评审项目是否公开可见</span>
+
+        <input class="mui-switch mui-switch-animbg" type="checkbox" id="limit">
+
+        <hr class="hr_decorate">
+
+        <span class="invitation_tip">选择您的项目参与者</span>
+
+        <button class="invitation_list_btn">评审者列表</button>
+
+        <div class="shadow">发起项目评审</div>
+
+    </div>
+
+</div>
 
 <%--登录--%>
 <div id="Login" class="modal hide fade in" style="display: none;">
@@ -169,9 +224,24 @@
 <script src="../js/projectpage.js"></script>
 <script src="../js/common.js"></script>
 <script src="../js/toaster.js"></script>
+<script src="../js/datetimepicker.js"></script>
 
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 <script src="../js/ie10-viewport-bug-workaround.js"></script>
+
+<script>
+    $('#start_date').datetimepicker({
+        lang: 'ch',
+        timepicker: false,
+        format: 'Y-m-d'
+    });
+
+    $('#end_date').datetimepicker({
+        lang: 'ch',
+        timepicker: false,
+        format: 'Y-m-d'
+    });
+</script>
 
 </body>
 </html>
