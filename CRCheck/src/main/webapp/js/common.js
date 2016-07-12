@@ -30,8 +30,8 @@ function Login() {
             },
             success: function (result) {
                 if (result == "SUCCESS") {
-                    window.location.href = "../pages/HomePage.jsp";
                     slidein(0, '登录成功');
+                    setTimeout("window.location.href = '../pages/HomePage.jsp'", 1800);
                 } else if (result == "FAIL") {
                     $("#password_log").parent().append("<label class='lblerr_2'>" + "用户名不存在或密码错误" + "</label>");
                 } else {
@@ -86,8 +86,8 @@ function Register() {
             },
             success: function (result) {
                 if (result == "SUCCESS") {
-                    window.location.href = "../pages/HomePage.jsp";
-                    slidein(0, '注册成功并已登录');
+                    slidein(0, '注册成功,已登录');
+                    setTimeout("window.location.href = '../pages/HomePage.jsp'", 1800);
                 } else if (result == "FAIL") {
                     $("#password_reg").parent().append("<label class='lblerr_1'>" + "用户名已存在" + "</label>");
                 } else {

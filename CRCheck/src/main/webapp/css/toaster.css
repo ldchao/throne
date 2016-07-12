@@ -5,10 +5,6 @@
     border-radius: 4px;
     background: white;
     padding:5px 20px;
-
-}
-
-#toaster {
     position: absolute;
     right: -270px;
     -webkit-transition: all .3s ease-in-out;
@@ -29,6 +25,7 @@
     position: fixed;
     top: 60px;
     right: 0;
+    z-index: 9999;
 }
 
 #pic_div {
@@ -41,7 +38,7 @@
 #remind {
     margin-left: 65px;
     margin-top: -40px;
-    font-size: 20px;
+    font-size: 19px;
     font-family: "PingFang SC";
 }
 
