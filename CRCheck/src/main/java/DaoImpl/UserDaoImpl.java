@@ -70,7 +70,7 @@ public class UserDaoImpl implements UserDao {
     public boolean delete(String id) {
         Session session= connection.getSession();
         try {
-            if (findUser(id)==null){
+            if (findUser(id)!=null){
                 User user=new User();
                 user.setId(id);
                 session.delete(user);
@@ -83,6 +83,7 @@ public class UserDaoImpl implements UserDao {
                 return false;
             }
         }catch (Exception e){
+            e.printStackTrace();
             connection.closeSession(session);
             return false;
         }

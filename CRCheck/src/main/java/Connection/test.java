@@ -1,15 +1,6 @@
 package Connection;
 
-import DaoImpl.PersonalreviewDaoImpl;
-import DaoImpl.ProjectDaoImpl;
-import DaoImpl.SummaryDaoImpl;
-import DaoImpl.UserDaoImpl;
-import POJO.Personalreview;
-import POJO.Project;
-import POJO.Summary;
-import POJO.User;
-
-import java.util.List;
+import DaoImpl.*;
 
 /**
  * Created by mm on 2016/7/11.
@@ -17,8 +8,7 @@ import java.util.List;
 public class test {
     public static void  main(String[]args){
 //        connection connection=new connection();
-//        UserDaoImpl userDao=new UserDaoImpl();
-//        User user=new User();
+        UserDaoImpl userDao=new UserDaoImpl();
 //        user.setId("xichao");
 //        user.setPassword("123");
 //        user.setAddress("hello");
@@ -26,6 +16,7 @@ public class test {
 //        user.setUserState("add");
 //        user.setChecklistPath("cshld");
 //        userDao.update(user);
+//        userDao.delete("fatchao");
 
 
 //        SummaryDaoImpl summaryDao=new SummaryDaoImpl();
@@ -59,17 +50,25 @@ public class test {
 //        System.out.print(project1.getAttendReview()+ "    "+projectDao.findProjectByUserId("fatchao"));
 
 
-        PersonalreviewDaoImpl personalreviewDao=new PersonalreviewDaoImpl();
-        Personalreview personalreview=new Personalreview();
-        personalreview.setCommitTime("2014");
-        personalreview.setDescription("no");
-        personalreview.setId(132);
-        personalreview.setLocation("none");
-        personalreview.setProjectId("22222");
-        personalreview.setResult("none");
-        personalreview.setState("none");
-        personalreview.setType("fat");
-        personalreview.setUserId("benchao");
-        personalreviewDao.addPersionalreview(personalreview);
+//        PersonalreviewDaoImpl personalreviewDao=new PersonalreviewDaoImpl();
+//        Personalreview personalreview=new Personalreview();
+//        personalreview.setCommitTime("2014");
+//        personalreview.setDescription("no");
+//        personalreview.setId(132);
+//        personalreview.setLocation("none");
+//        personalreview.setProjectId("22222");
+//        personalreview.setRes ult("none");
+//        personalreview.setState("none");
+//        personalreview.setType("fat");
+//        personalreview.setUserId("shachao");
+//        Project project=new Project();
+//        project.setId("22222");
+//        User user=new User();
+//        user.setId("shchao");
+//        personalreviewDao.addPersionalreview(personalreview);
+//        System.out.println(personalreviewDao.updatePersonalreview(personalreview));
+//        System.out.println(personalreviewDao.findProject(user.getId(),project.getId()));
+        CreateIdDaoImpl createIdDao=new CreateIdDaoImpl();
+        System.out.print(createIdDao.CreateStringId("Project"));
     }
 }

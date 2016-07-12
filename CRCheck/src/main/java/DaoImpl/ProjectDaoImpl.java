@@ -50,6 +50,7 @@ public class ProjectDaoImpl implements ProjectDao{
                 return false;
             }
         }catch (Exception e){
+            e.printStackTrace();
             connection.closeSession(session);
             return false;
         }
@@ -101,6 +102,7 @@ public class ProjectDaoImpl implements ProjectDao{
                 return null;
             }
         }catch (Exception e){
+            e.printStackTrace();
             connection.closeSession(session);
             return null;
         }

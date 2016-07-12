@@ -19,11 +19,17 @@ public class PersonalreviewDaoImpl implements PersonalreviewDao {
     public boolean addPersionalreview(Personalreview personalreview) {
         Session session= connection.getSession();
         try {
-            session.save(personalreview);
-            Transaction transaction=session.beginTransaction();
-            transaction.commit();
-            connection.closeSession(session);
-            return true;
+            if(findPersonalreviewById(personalreview.getId())==null){
+                session.save(personalreview);
+                Transaction transaction=session.beginTransaction();
+                transaction.commit();
+                connection.closeSession(session);
+                return true;
+            }else{
+                connection.closeSession(session);
+                return false;
+            }
+
         }catch (Exception e){
             e.printStackTrace();
             connection.closeSession(session);
@@ -34,13 +40,18 @@ public class PersonalreviewDaoImpl implements PersonalreviewDao {
     public boolean deletePersonalreview(int id) {
         Session session= connection.getSession();
         try {
-            Personalreview personalreview=new Personalreview();
-            personalreview.setId(id);
-            session.delete(personalreview);
-            Transaction transaction=session.beginTransaction();
-            transaction.commit();
-            connection.closeSession(session);
-            return true;
+            if (findPersonalreviewById(id)!=null) {
+                Personalreview personalreview = new Personalreview();
+                personalreview.setId(id);
+                session.delete(personalreview);
+                Transaction transaction = session.beginTransaction();
+                transaction.commit();
+                connection.closeSession(session);
+                return true;
+            }else{
+                connection.closeSession(session);
+                return false;
+            }
         }catch (Exception e){
             e.printStackTrace();
             connection.closeSession(session);
@@ -51,12 +62,18 @@ public class PersonalreviewDaoImpl implements PersonalreviewDao {
     public boolean updatePersonalreview(Personalreview personalreview) {
         Session session= connection.getSession();
         try {
-            session.update(personalreview);
-            Transaction transaction=session.beginTransaction();
-            transaction.commit();
-            connection.closeSession(session);
-            return true;
+            if(findPersonalreviewById(personalreview.getId())!=null) {
+                session.update(personalreview);
+                Transaction transaction = session.beginTransaction();
+                transaction.commit();
+                connection.closeSession(session);
+                return true;
+            }else{
+                connection.closeSession(session);
+                return false;
+            }
         }catch (Exception e){
+            e.printStackTrace();
             connection.closeSession(session);
             return false;
         }
@@ -100,6 +117,19 @@ public class PersonalreviewDaoImpl implements PersonalreviewDao {
             List list=query.list();
             connection.closeSession(session);
             return list;
+        }catch (Exception e){
+            e.printStackTrace();
+            connection.closeSession(session);
+            return null;
+        }
+    }
+
+    public Personalreview findPersonalreviewById(int id){
+        Session session=connection.getSession();
+        try {
+            Personalreview personalreview=session.get(Personalreview.class,id);
+            connection.closeSession(session);
+            return personalreview;
         }catch (Exception e){
             e.printStackTrace();
             connection.closeSession(session);

@@ -100,6 +100,7 @@ public class SummaryDaoImpl implements SummaryDao {
             connection.closeSession(session);
             return summary;
         }catch (Exception e){
+            e.printStackTrace();
             connection.closeSession(session);
             return null;
         }
