@@ -37,7 +37,7 @@ public class SummaryDaoImpl implements SummaryDao {
     public List findSummary(String projectId) {
         Session session= connection.getSession();
         try {
-            String hql="from Summary s where s.projectId="+projectId;
+            String hql="from Summary s where s.projectId='"+projectId+"'";
             Query query=session.createQuery(hql);
             List list=query.list();
             connection.closeSession(session);

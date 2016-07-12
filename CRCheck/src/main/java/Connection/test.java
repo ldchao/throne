@@ -40,19 +40,22 @@ public class test {
 
         ProjectDaoImpl projectDao=new ProjectDaoImpl();
         Project project=new Project();
-//        project.setAttendReview("dd3");
-//        project.setCodePath("123");
-//        project.setDescription("22");
-//        project.setEndTime("22");
-//        project.setId("dd3");
-//        project.setName("222");
-//        project.setPower("ccc");
-//        project.setProjectState("aaa");
-//        project.setQualityReview("bbbb");
-//        project.setStartTime("wwww");
-//        project.setType("kdfk");
-//        project.setUserId("fatchao");
-        System.out.print(projectDao.findProjectByUserId("fatchao"));
+        project.setAttendReview("dd3");
+        project.setCodePath("123");
+        project.setDescription("22");
+        project.setEndTime("22");
+        project.setId("dd3");
+        project.setName("222");
+        project.setPower("ccc");
+        project.setProjectState("aaa");
+        project.setQualityReview("bbbb");
+        project.setStartTime("wwww");
+        project.setType("kdfk");
+        project.setUserId("123");
+        projectDao.deleteProject("dd3");
+//        Project project1= (Project) projectDao.findProjectByUserId("fatchao").get(0);
+//        System.out.print(project1.getAttendReview()+ "    "+projectDao.findProjectByUserId("fatchao"));
+
 
     }
 }

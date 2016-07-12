@@ -78,7 +78,7 @@ public class ProjectDaoImpl implements ProjectDao{
     public List findProjectByUserId(String userId) {
         Session session=connection.getSession();
         try {
-            String hql="from Project p where userId="+userId;
+            String hql="from Project p where userId='"+userId+"'";
             Query query=session.createQuery(hql);
             List list=query.list();
             connection.closeSession(session);
