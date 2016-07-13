@@ -1,4 +1,4 @@
-package POJO;
+package Connection;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -6,19 +6,19 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 /**
- * Created by mm on 2016/7/13.
+ * Created by mm on 2016/7/11.
  */
 @Entity
 public class Personalreview {
     private Integer id;
     private String userId;
-    private Integer projectId;
+    private String projectId;
     private String commitTime;
-    private String location;
-    private String type;
-    private String description;
-    private String state;
-    private String result;
+    private String location;//the location of the error
+    private String type;//the type of the error
+    private String description;//the detail of the error
+    private String state;//two state:NOT_ENTIRELY_COMMIT, ENTIRELY_COMMIT
+    private String result;//NOT_ADMITED,ADMITTED
 
     @Id
     @Column(name = "id", nullable = false)
@@ -41,12 +41,12 @@ public class Personalreview {
     }
 
     @Basic
-    @Column(name = "projectId", nullable = false)
-    public Integer getProjectId() {
+    @Column(name = "projectId", nullable = false, length = 20)
+    public String getProjectId() {
         return projectId;
     }
 
-    public void setProjectId(Integer projectId) {
+    public void setProjectId(String projectId) {
         this.projectId = projectId;
     }
 

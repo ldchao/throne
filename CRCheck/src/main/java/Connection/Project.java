@@ -1,4 +1,4 @@
-package POJO;
+package Connection;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -6,30 +6,30 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 /**
- * Created by mm on 2016/7/13.
+ * Created by mm on 2016/7/11.
  */
 @Entity
 public class Project {
-    private Integer id;
+    private String id;
     private String name;
     private String userId;
-    private String type;
-    private String description;
-    private String projectState;
-    private String power;
+    private String type;// the type of project
+    private String description;// the details of the project
+    private String projectState;//three states: NotStart,Starting,Over
+    private String power;//two states: PUBLIC , PRIVATE
     private String startTime;
     private String endTime;
-    private String codePath;
-    private String attendReview;
-    private String qualityReview;
+    private String codePath;//automatically set
+    private String attendReview;//two state:YES , NO
+    private String qualityReview;//completed quality report of the review
 
     @Id
-    @Column(name = "id", nullable = false)
-    public Integer getId() {
+    @Column(name = "id", nullable = false, length = 20)
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 

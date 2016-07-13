@@ -2,15 +2,11 @@ package DaoImpl;
 
 import Connection.connection;
 import Dao.PersonalreviewDao;
-import POJO.Personalreview;
-import POJO.Project;
-import POJO.User;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import java.util.List;
-import java.util.Queue;
 
 /**
  * Created by mm on 2016/7/11.

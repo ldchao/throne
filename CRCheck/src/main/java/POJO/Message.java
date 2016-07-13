@@ -6,13 +6,13 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 /**
- * Created by mm on 2016/7/12.
+ * Created by mm on 2016/7/13.
  */
 @Entity
 public class Message {
     private Integer id;
     private String userId;
-    private String projectId;
+    private Integer projectId;
     private String content;
     private String state;
     private String sendOrReceive;
@@ -38,12 +38,12 @@ public class Message {
     }
 
     @Basic
-    @Column(name = "projectId", nullable = false, length = 20)
-    public String getProjectId() {
+    @Column(name = "projectId", nullable = false)
+    public Integer getProjectId() {
         return projectId;
     }
 
-    public void setProjectId(String projectId) {
+    public void setProjectId(Integer projectId) {
         this.projectId = projectId;
     }
 

@@ -1,9 +1,6 @@
 package Connection;
 
 import DaoImpl.InvitementDaoImpl;
-import DaoImpl.SummaryDaoImpl;
-import POJO.Invitement;
-import POJO.Summary;
 
 /**
  * Created by dlydd on 2016/7/12.

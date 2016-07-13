@@ -1,7 +1,6 @@
 package Connection;
 
 import DaoImpl.MessageDaoImpl;
-import POJO.Message;
 
 /**
  * Created by dlydd on 2016/7/12.

@@ -2,11 +2,8 @@ package DaoImpl;
 
 import Connection.connection;
 import Dao.FriendsDao;
-import POJO.Friends;
-import POJO.User;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.Query;
 
 /**
  * Created by dlydd on 2016/7/11.

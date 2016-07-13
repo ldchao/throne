@@ -16,7 +16,7 @@ public interface PersonalreviewDao {
 
     public boolean updatePersonalreview(Personalreview personalreview);
 
-    public List findProject(String userId, String projectId);
+    public List findProject(String userId, int projectId);
 
     //just need to set the "projectId",the attribute of "project"
     public List findProject(Project project);

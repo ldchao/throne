@@ -12,11 +12,11 @@ ProjectDao {
     //all the attributes must be set,id is automatically set(but not realized,so you need to set it manually)
     public boolean addProject(Project project);
 
-    public boolean deleteProject(String id);
+    public boolean deleteProject(int id);
 
     public boolean updateProject(Project project);
 
     public List findProjectByUserId(String userId);
 
-    public Project findProject(String id);
+    public Project findProject(int id);
 }

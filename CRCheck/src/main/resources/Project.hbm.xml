@@ -6,7 +6,7 @@
 
     <class name="POJO.Project" table="project" schema="throne">
         <id name="id">
-            <column name="id" sql-type="varchar(20)" length="20"/>
+            <column name="id" sql-type="int(11)"/>
         </id>
         <property name="name">
             <column name="name" sql-type="varchar(50)" length="50"/>

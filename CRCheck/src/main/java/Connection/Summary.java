@@ -1,4 +1,4 @@
-package POJO;
+package Connection;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -6,16 +6,16 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 /**
- * Created by mm on 2016/7/13.
+ * Created by mm on 2016/7/11.
  */
 @Entity
 public class Summary {
-    private Integer id;
-    private Integer projectId;
-    private String location;
-    private String type;
-    private String description;
-    private String combination;
+    private Integer id;//identity, automatically given by the software
+    private String projectId;
+    private String location;//where the error found
+    private String type;//the error type
+    private String description;//detail of the error
+    private String combination;//combination of the Persionalreviews
 
     @Id
     @Column(name = "id", nullable = false)
@@ -28,12 +28,12 @@ public class Summary {
     }
 
     @Basic
-    @Column(name = "projectId", nullable = false)
-    public Integer getProjectId() {
+    @Column(name = "projectId", nullable = false, length = 20)
+    public String getProjectId() {
         return projectId;
     }
 
-    public void setProjectId(Integer projectId) {
+    public void setProjectId(String projectId) {
         this.projectId = projectId;
     }
 

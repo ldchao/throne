@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 /**
- * Created by mm on 2016/7/11.
+ * Created by mm on 2016/7/13.
  */
 @Entity
 public class Friends {
