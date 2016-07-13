@@ -148,7 +148,7 @@
 
             <%-- 上半部分 --%>
             <div class="above_part">
-                <div class="imgs_div">
+                <div id="above_div" class="imgs_div">
                     <%
                         for (int i = 0; i < 8; i++) {
                             String imgId = "img" + (i + "");
@@ -274,6 +274,8 @@
 <script src="../js/ie10-viewport-bug-workaround.js"></script>
 
 <script>
+    setIds();
+
     $('#start_date').datetimepicker({
         lang: 'ch',
         timepicker: false,

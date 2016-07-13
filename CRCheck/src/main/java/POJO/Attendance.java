@@ -14,7 +14,7 @@ public class Attendance {
     private String userId;
     private Integer projectId;
     private String state;
-    private String qualityReviewPath;
+    private String qualityReview;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -58,12 +58,12 @@ public class Attendance {
 
     @Basic
     @Column(name = "qualityReviewPath", nullable = false, length = -1)
-    public String getQualityReviewPath() {
-        return qualityReviewPath;
+    public String getQualityReview() {
+        return qualityReview;
     }
 
-    public void setQualityReviewPath(String qualityReviewPath) {
-        this.qualityReviewPath = qualityReviewPath;
+    public void setQualityReview(String qualityReview) {
+        this.qualityReview = qualityReview;
     }
 
     @Override
@@ -77,7 +77,7 @@ public class Attendance {
         if (userId != null ? !userId.equals(that.userId) : that.userId != null) return false;
         if (projectId != null ? !projectId.equals(that.projectId) : that.projectId != null) return false;
         if (state != null ? !state.equals(that.state) : that.state != null) return false;
-        if (qualityReviewPath != null ? !qualityReviewPath.equals(that.qualityReviewPath) : that.qualityReviewPath != null)
+        if (qualityReview != null ? !qualityReview.equals(that.qualityReview) : that.qualityReview != null)
             return false;
 
         return true;
@@ -89,7 +89,7 @@ public class Attendance {
         result = 31 * result + (userId != null ? userId.hashCode() : 0);
         result = 31 * result + (projectId != null ? projectId.hashCode() : 0);
         result = 31 * result + (state != null ? state.hashCode() : 0);
-        result = 31 * result + (qualityReviewPath != null ? qualityReviewPath.hashCode() : 0);
+        result = 31 * result + (qualityReview != null ? qualityReview.hashCode() : 0);
         return result;
     }
 }
