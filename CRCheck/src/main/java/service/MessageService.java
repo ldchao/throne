@@ -18,10 +18,10 @@ public interface MessageService {
     // TODO: 更改消息处理状态
     public UniversalState changeMessageState(int messageID, MessageState messageState);
 
-    // TODO: 2016/7/11 删除消息
+    // TODO: 2016/7/11 删除消息（若成功，将session中user对象中的messageNum减1）
     public UniversalState deleteMessage(int messageID);
 
-    // TODO: 2016/7/12 一键清空消息
+    // TODO: 2016/7/12 一键清空消息（若成功，将session中user对象中的messageNum清0）
     public UniversalState deleteAllMessage(String userID);
 
     // TODO: 2016/7/12 查看所有消息

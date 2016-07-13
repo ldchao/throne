@@ -2,7 +2,7 @@ package service;
 
 import enums.ApproveState;
 import enums.UniversalState;
-import model.ReviewRecord;
+import model.PersonalReviewRecord;
 
 import java.util.ArrayList;
 
@@ -12,19 +12,19 @@ import java.util.ArrayList;
 public interface ReviewRecordService {
 
      //提交评审记录
-    public UniversalState submitReviewRecord(ArrayList<ReviewRecord> recordList);
+    public UniversalState submitReviewRecord(ArrayList<PersonalReviewRecord> recordList);
 
     //完成评审
-    public UniversalState finishReviewRecord(ArrayList<ReviewRecord> recordList);
+    public UniversalState finishReviewRecord(ArrayList<PersonalReviewRecord> recordList);
 
     //查看评审记录
-    public ArrayList<ReviewRecord> checkReviewRecord(String projectID);
+    public ArrayList<PersonalReviewRecord> checkReviewRecord(String projectID);
 
     //合并评审记录（前面为待合并项ID（个人表中），后面会合并后结果）
-    public UniversalState mergeReviewRecord(ArrayList<String> recordIDList,ReviewRecord result);
+    public UniversalState mergeReviewRecord(ArrayList<String> recordIDList, PersonalReviewRecord result);
 
     //分解评审记录
-    public UniversalState disassembleReviewRecord(ReviewRecord result);
+    public UniversalState disassembleReviewRecord(PersonalReviewRecord result);
 
     //审批评审记录（审批个人的评审记录，reviewRecordID为个人评审记录表格中ID）
     public UniversalState approveReviewRecord(String reviewRecordID, ApproveState approveState);
