@@ -49,6 +49,18 @@ function closeLaunch(elem_id) {
 
 // 随机八个用户
 function setIds() {
+    
+    $.ajax({
+        type: "get",
+        async: false,
+        url: "/getUserList",
+        success: function (result) {
+            alert(result);
+        },
+        error: function () {
+            alert("失败")
+        }
+    })
 
     for (var i = 0; i < 8; i++) {
         var ids = "id" + (i + "");
@@ -63,7 +75,7 @@ function addIds(index) {
     var selectImg = "img" + (index + "");
 
     var elem_img = document.getElementById(selectImg)
-    if(elem_img.getAttribute("class") == "img_each_after"){
+    if (elem_img.getAttribute("class") == "img_each_after") {
         removeIds(index);
         return;
     }

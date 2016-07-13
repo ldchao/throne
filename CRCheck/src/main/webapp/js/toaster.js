@@ -29,11 +29,7 @@ function getNews() {
         success: function (result) {
             if (result == "Changed") {
                 slidein(2, '您有一条新消息');
-
             }
         },
-        error: function () {
-            alert("获取数据失败啦")
-        }
     })
 }

@@ -1,5 +1,6 @@
 package controller;
 
+import model.UserListForm;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,8 +18,10 @@ public class UserController {
     //获取随机的8个用户
     @RequestMapping(value = "/getUserList", method = RequestMethod.GET)
     @ResponseBody
-    public List<String> getUserList() {
+    public UserListForm getUserList() {
         UserService user=new UserServiceImpl();
-        return user.getUserList();
+        UserListForm userListForm=new UserListForm();
+        userListForm.setUserList(user.getUserList());
+        return userListForm;
     }
 }
