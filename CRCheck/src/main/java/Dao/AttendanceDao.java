@@ -2,6 +2,8 @@ package Dao;
 
 import POJO.Attendance;
 
+import java.util.ArrayList;
+
 /**
  * Created by dd on 2016/7/11.
  */
@@ -19,4 +21,8 @@ public interface AttendanceDao {
 
 
       public Attendance findAttendance(int pid,String uid);
+
+      public ArrayList<Attendance> findAttendancebyProject(int pid);
+
+      public ArrayList<Attendance> findAttendancebyUser(String uid);
 }

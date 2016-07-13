@@ -7,6 +7,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.Query;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -41,9 +42,11 @@ public class AttendanceDaoImpl  implements AttendanceDao {
     public boolean deleteAttendancebyProject(int pid) {
         Session session = connection.getSession();
         try{
-            Attendance attendance=new Attendance();
-            attendance.setProjectId(pid);
-            session.delete(attendance);
+            ArrayList<Attendance> attendance=findAttendancebyProject(pid);
+            for(int i=0;i<attendance.size();i++) {
+                attendance.get(i).setId(attendance.get(i).getId());
+                session.delete(attendance.get(i));
+            }
             Transaction transaction=session.beginTransaction();
             transaction.commit();
             connection.closeSession(session);
@@ -59,9 +62,11 @@ public class AttendanceDaoImpl  implements AttendanceDao {
     public boolean deleteAttendacebyUser(String uid) {
         Session session = connection.getSession();
         try{
-            Attendance attendance=new Attendance();
-            attendance.setUserId(uid);
-            session.delete(attendance);
+            ArrayList<Attendance> attendance=findAttendancebyUser(uid);
+            for(int i=0;i<attendance.size();i++) {
+                attendance.get(i).setId(attendance.get(i).getId());
+                session.delete(attendance.get(i));
+            }
             Transaction transaction=session.beginTransaction();
             transaction.commit();
             connection.closeSession(session);
@@ -76,9 +81,8 @@ public class AttendanceDaoImpl  implements AttendanceDao {
     public boolean deleteAttendance(int pid, String uid) {
         Session session = connection.getSession();
         try{
-            Attendance attendance=new Attendance();
-            attendance.setProjectId(pid);
-            attendance.setUserId(uid);
+            Attendance attendance=findAttendance(pid,uid);
+            attendance.setId(attendance.getId());
             session.delete(attendance);
             Transaction transaction=session.beginTransaction();
             transaction.commit();
@@ -119,6 +123,44 @@ public class AttendanceDaoImpl  implements AttendanceDao {
                 return attendance;
             }
 
+        }catch (Exception e){
+            e.printStackTrace();
+            connection.closeSession(session);
+            return  null;
+        }
+    }
+
+    public ArrayList<Attendance> findAttendancebyProject(int pid){
+        Session session = connection.getSession();
+        try {
+            String hql="from Attendance a where a.projectId="+pid;
+            Query query = session.createQuery(hql);
+            ArrayList<Attendance> aList =(ArrayList<Attendance>) query.list();
+            connection.closeSession(session);
+            if(aList.size()==0){
+                return null;
+            }else{
+                return aList;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            connection.closeSession(session);
+            return  null;
+        }
+    }
+
+    public ArrayList<Attendance> findAttendancebyUser(String uid){
+        Session session = connection.getSession();
+        try {
+            String hql="from Attendance a where a.userId='"+uid+"'";
+            Query query = session.createQuery(hql);
+            ArrayList<Attendance> aList =(ArrayList<Attendance>) query.list();
+            connection.closeSession(session);
+            if(aList.size()==0){
+                return null;
+            }else{
+                return aList;
+            }
         }catch (Exception e){
             e.printStackTrace();
             connection.closeSession(session);
