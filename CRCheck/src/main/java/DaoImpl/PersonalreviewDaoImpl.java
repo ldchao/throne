@@ -2,6 +2,9 @@ package DaoImpl;
 
 import Connection.connection;
 import Dao.PersonalreviewDao;
+import POJO.Personalreview;
+import POJO.Project;
+import POJO.User;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -75,7 +78,7 @@ public class PersonalreviewDaoImpl implements PersonalreviewDao {
         }
     }
 
-    public List findProject(String userId, String projectId) {
+    public List findProject(String userId, int projectId) {
         Session session= connection.getSession();
         try {
             String hql="from Personalreview p where p.userId='"+userId+"' and projectId='"+projectId+"'";

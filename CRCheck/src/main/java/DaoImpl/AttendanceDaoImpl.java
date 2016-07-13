@@ -2,6 +2,7 @@ package DaoImpl;
 
 import Connection.connection;
 import Dao.AttendanceDao;
+import POJO.Attendance;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.Query;
@@ -37,7 +38,7 @@ public class AttendanceDaoImpl  implements AttendanceDao {
      * @param pid
      * @return
      */
-    public boolean deleteAttendancebyProject(String pid) {
+    public boolean deleteAttendancebyProject(int pid) {
         Session session = connection.getSession();
         try{
             Attendance attendance=new Attendance();
@@ -72,7 +73,7 @@ public class AttendanceDaoImpl  implements AttendanceDao {
         }
     }
 
-    public boolean deleteAttendance(String pid, String uid) {
+    public boolean deleteAttendance(int pid, String uid) {
         Session session = connection.getSession();
         try{
             Attendance attendance=new Attendance();
@@ -104,7 +105,7 @@ public class AttendanceDaoImpl  implements AttendanceDao {
         }
     }
 
-    public Attendance findAttendance(String pid, String uid) {
+    public Attendance findAttendance(int pid, String uid) {
         Session session= connection.getSession();
         try {
             String hql="from Attendance as a where a.projectId="+pid+" and a.userId="+uid;

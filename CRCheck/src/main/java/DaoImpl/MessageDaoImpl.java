@@ -2,10 +2,12 @@ package DaoImpl;
 
 import Connection.connection;
 import Dao.MessageDao;
+import POJO.Message;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**

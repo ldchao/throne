@@ -1,6 +1,7 @@
 package Connection;
 
 import DaoImpl.MessageDaoImpl;
+import POJO.Message;
 
 /**
  * Created by dlydd on 2016/7/12.
@@ -13,7 +14,7 @@ public class TestMessage {
         message.setState("NotHandle");
        message.setUserId("shachao");
         message.setContent("get check");
-        message.setProjectId("23");
+//        message.setProjectId("23");
         message.setSendOrReceive("send");
 //        messageDao.addMessage(message);
 //        message=messageDao.findMessage("shachao");

@@ -2,6 +2,7 @@ package DaoImpl;
 
 import Connection.connection;
 import Dao.FriendsDao;
+import POJO.Friends;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 

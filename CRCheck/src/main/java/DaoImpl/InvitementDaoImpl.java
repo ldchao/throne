@@ -2,6 +2,7 @@ package DaoImpl;
 
 import Connection.connection;
 import Dao.InvitementDao;
+import POJO.Invitement;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.Query;
@@ -36,7 +37,7 @@ public class InvitementDaoImpl implements InvitementDao{
         }
     }
 
-    public boolean deleteInvitementbyProject(String pid) {
+    public boolean deleteInvitementbyProject(int pid) {
         Session session= connection.getSession();
         try {
             Invitement invitement = new Invitement();
@@ -77,7 +78,7 @@ public class InvitementDaoImpl implements InvitementDao{
         }
     }
 
-    public boolean deleteInvitement(String pid, String uid) {
+    public boolean deleteInvitement(int pid, String uid) {
         Session session= connection.getSession();
         try {
             Invitement invitement = new Invitement();
@@ -109,7 +110,7 @@ public class InvitementDaoImpl implements InvitementDao{
         }
     }
 
-    public Invitement findInvitement(String pid, String uid) {
+    public Invitement findInvitement(int pid, String uid) {
         Session session= connection.getSession();
         try {
             String hql="from Invitement i where i.projectId='"+pid+"' and i.userId='"+uid+"'";
@@ -129,7 +130,7 @@ public class InvitementDaoImpl implements InvitementDao{
         }
     }
 
-    public ArrayList<Invitement> findAllInvitement(String pid) {
+    public ArrayList<Invitement> findAllInvitement(int pid) {
         Session session= connection.getSession();
         try {
             String hql="from Invitement i where i.projectId='"+pid+"'";

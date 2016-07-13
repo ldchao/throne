@@ -69,6 +69,6 @@ public class test {
 //        System.out.println(personalreviewDao.updatePersonalreview(personalreview));
 //        System.out.println(personalreviewDao.findProject(user.getId(),project.getId()));
         CreateIdDaoImpl createIdDao=new CreateIdDaoImpl();
-        System.out.print(createIdDao.CreateStringId("Project"));
+        System.out.print(createIdDao.CreateIntId("Project"));
     }
 }

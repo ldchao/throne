@@ -2,6 +2,7 @@ package DaoImpl;
 
 import Connection.connection;
 import Dao.UserDao;
+import POJO.User;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 

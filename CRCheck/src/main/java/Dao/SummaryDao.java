@@ -12,7 +12,7 @@ public interface SummaryDao {
     public boolean addSummary(Summary summary);
 
     //tip: get all the Summary of a project
-    public List findSummary(String projectId);
+    public List findSummary(int projectId);
 
     //tip: if update succeed ,it will return true .And all the attributes must be set
     public boolean update(Summary summary);

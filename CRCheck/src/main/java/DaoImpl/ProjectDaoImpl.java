@@ -2,6 +2,7 @@ package DaoImpl;
 
 import Connection.connection;
 import Dao.ProjectDao;
+import POJO.Project;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -32,7 +33,7 @@ public class ProjectDaoImpl implements ProjectDao{
         }
     }
 
-    public boolean deleteProject(String id) {
+    public boolean deleteProject(int id) {
         Session session= connection.getSession();
         try {
             if (findProject(id)!=null){
@@ -89,7 +90,7 @@ public class ProjectDaoImpl implements ProjectDao{
         }
     }
 
-    public Project findProject(String id) {
+    public Project findProject(int id) {
         Session session= connection.getSession();
         try {
             Project project=session.get(Project.class,id);

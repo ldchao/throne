@@ -1,6 +1,7 @@
 package Connection;
 
 import DaoImpl.InvitementDaoImpl;
+import POJO.Invitement;
 
 /**
  * Created by dlydd on 2016/7/12.

@@ -2,6 +2,7 @@ package DaoImpl;
 
 import Connection.connection;
 import Dao.SummaryDao;
+import POJO.Summary;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -33,7 +34,7 @@ public class SummaryDaoImpl implements SummaryDao {
         }
     }
 
-    public List findSummary(String projectId) {
+    public List findSummary(int projectId) {
         Session session= connection.getSession();
         try {
             String hql="from Summary s where s.projectId='"+projectId+"'";

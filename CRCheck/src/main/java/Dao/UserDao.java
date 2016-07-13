@@ -1,5 +1,7 @@
 package Dao;
 
+import POJO.User;
+
 /**
  * Created by mm on 2016/7/10.
  */
