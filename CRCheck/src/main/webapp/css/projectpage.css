@@ -313,7 +313,7 @@
 }
 
 .id_each {
-    font-size: 16px;
+    font-size: 14px;
     color: #737474;
     margin-top: 1px;
     text-align: center;
@@ -371,7 +371,7 @@
     font-weight: inherit;
 }
 
-#selectedIds_div {
+.selected_divs {
     margin-left: 14px;
     margin-top: 10px;
 }
@@ -389,4 +389,34 @@
 
 .img_each_after:hover {
     background-color: #f5ab0c;
+}
+
+/* 分页 */
+.pages_depart {
+    height: 20px;
+    text-align: center;
+    margin-top: 142px;
+    font-size: 13px;
+}
+
+.pages_depart .previous {
+    color: #6093e2;
+    cursor: pointer;
+    content: "\e079";
+    display: inline-block;
+}
+
+.pages_depart #pages {
+    color: #6093e2;
+    font-size: 32px;
+    line-height: 12px;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.pages_depart .next {
+    color: #6093e2;
+    cursor: pointer;
+    content: "\e080";
+    display: inline-block;
 }

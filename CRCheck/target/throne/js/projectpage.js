@@ -4,6 +4,7 @@
 var idlist = new Array();  // 记录已经添加的用户
 var idcount = 0;  // 下标
 var currentids = new Array();  // 记录当前的8个随机用户
+var depart_flag = 0;  // 分页标志
 
 function showIntroduce() {
     $("#introduce_child").slideToggle();
@@ -61,7 +62,7 @@ function setIds() {
             currentids = result.userList;
         },
         error: function () {
-            alert("失败")
+            alert("获取评审者数据失败啦")
         }
     });
 
@@ -85,6 +86,7 @@ function setIds() {
 
 // 添加选择的用户
 function addIds(index) {
+
     var selectId = "id" + (index + "");
     var selectImg = "img" + (index + "");
     var elem_id = document.getElementById(selectId);
@@ -95,6 +97,19 @@ function addIds(index) {
         return;
     }
 
+    // if (idlist.length > 7) {
+    //     hideId();
+    // }
+    //
+    // depart_flag++;
+    // if(depart_flag > 8) {
+    //     depart_flag = 0;
+    //     var pagesdiv = document.getElementById("pages");
+    //     var span = document.createElement("span");
+    //     span.innerHTML = ".";
+    //     pagesdiv.appendChild(span);
+    // }
+
     elem_img.setAttribute("class", "img_each_after");
 
     // 添加至已添加用户的列表
@@ -103,7 +118,7 @@ function addIds(index) {
 
     var eachdiv = document.createElement("div");
     eachdiv.setAttribute("class", "div_each");
-    $(eachdiv).live('click',function(){
+    $(eachdiv).live('click', function () {
         removeIds(this.getElementsByClassName("id_each")[0].innerHTML);
     });
 
@@ -125,20 +140,36 @@ function addIds(index) {
 // 删除已选用户
 function removeIds(id_remove) {
 
-    var listpos = hasInList(id_remove);
-    idlist.splice(listpos, 1);
+    idlist.splice(hasInList(id_remove), 1);
     idcount--;
 
     var selected_div = document.getElementById("selectedIds_div");
     var divs = selected_div.getElementsByClassName("div_each");
 
-    selected_div.removeChild(divs[divs.length - 1 - listpos]);
+    for (var i = 0; i < divs.length; i++) {
+        if (divs[i].getElementsByClassName("id_each")[0].innerHTML == id_remove) {
+            selected_div.removeChild(divs[i]);
+            break;
+        }
+    }
 
     var currentpos = isIncurrent(id_remove);
     if (currentpos > -1) {
         var imgs = document.getElementById("above_div").getElementsByClassName("div_each");
         imgs[currentpos].getElementsByClassName("img_each_after")[0].setAttribute("class", "img_each");
     }
+}
+
+// 增加时,隐藏第九个元素
+function hideId() {
+    var selected_div = document.getElementById("selectedIds_div");
+    var divs = selected_div.getElementsByClassName("div_each");
+    selected_div.removeChild(divs[divs.length - 1]);
+}
+
+// 删除时,显示第九个元素, 传入被删除元素的位置
+function showId() {
+
 }
 
 // 返回已添加的id列表中的位置

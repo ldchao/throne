@@ -173,8 +173,17 @@
             <%-- 下半部分 --%>
             <div class="below_part">
                 <%-- 选择的用户 --%>
-                <div id="selectedIds_div">
+                <div id="selectedIds_div" class="selected_divs"></div>
 
+                <%-- 分页 --%>
+                <div class="pages_depart">
+
+                    <span class="previous"> < </span>
+
+                    <div id="pages">
+                    </div>
+
+                    <span class="next"> > </span>
                 </div>
 
             </div>
@@ -183,7 +192,6 @@
                 <input id="self_in" type="checkbox">
                 <label class="tip_1" for="self_in">自己参与评审</label>
             </div>
-
 
         </div>
 
