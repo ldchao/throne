@@ -24,7 +24,6 @@ public class ProjectServiceImpl implements ProjectService{
         InvitationListService invite=new InvitationListServiceImpl();
         MessageService message=new MessageServiceImpl();
         //projectModel转project
-        p.setId(projectModel.getProjectID());
         p.setUserId(projectModel.getUserID());
         p.setName(projectModel.getName());
         p.setType(String.valueOf(projectModel.getType()));
@@ -46,7 +45,7 @@ public class ProjectServiceImpl implements ProjectService{
         return UniversalState.FAIL;
     }
     //删除项目
-    public UniversalState deleteProject(String projectID) {
+    public UniversalState deleteProject(int projectID) {
         ProjectDao dao = new ProjectDaoImpl();
         boolean a=dao.deleteProject(projectID);
         if(a)
@@ -54,7 +53,7 @@ public class ProjectServiceImpl implements ProjectService{
         return UniversalState.FAIL;
     }
     //查看项目
-    public ProjectModel checkProject(String projectID) {
+    public ProjectModel checkProject(int projectID) {
         ProjectDao dao = new ProjectDaoImpl();
         Project pro=dao.findProject(projectID);
         //project-->projectModel
@@ -76,15 +75,32 @@ public class ProjectServiceImpl implements ProjectService{
         return p;
     }
     //更新项目状态
-    public UniversalState updateProjectState(String projectID, ProjectState projectState) {
-        return null;
+    public UniversalState updateProjectState(int projectID, ProjectState projectState) {
+        //初始化找到对应项目
+        ProjectDao dao = new ProjectDaoImpl();
+        Project pro=dao.findProject(projectID);
+        //项目未找到
+        if(pro==null)
+            return UniversalState.FAIL;
+        pro.setProjectState(String.valueOf(projectState));
+        dao.updateProject(pro);
+        return UniversalState.SUCCESS;
     }
     //更新项目质量总结报告
-    public UniversalState updateQualityFeedback(String projectID, String newQualityFeedback) {
-        return null;
+    public UniversalState updateQualityFeedback(int projectID, String newQualityFeedback) {
+        //初始化找到对应项目
+        ProjectDao dao = new ProjectDaoImpl();
+        Project pro=dao.findProject(projectID);
+        //项目未找到
+        if(pro==null)
+            return UniversalState.FAIL;
+        pro.setQualityReview(newQualityFeedback);
+        dao.updateProject(pro);
+        return UniversalState.SUCCESS;
     }
     //修改项目信息
-    public UniversalState updateProjectMessage(String projectID, ProjectModel projectModel) {
+    public UniversalState updateProjectMessage(int projectID, ProjectModel projectModel) {
+
         return null;
     }
     //TODO 测试
