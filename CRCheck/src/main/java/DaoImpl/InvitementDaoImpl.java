@@ -116,13 +116,16 @@ public class InvitementDaoImpl implements InvitementDao{
             String hql="from Invitement i where i.projectId="+pid+" and i.userId='"+uid+"'";
             Query query = session.createQuery(hql);
             List aList = query.list();
-            Invitement invitement = (Invitement) aList.get(0);
             session.close();
-            if(invitement!=null){
-                return invitement;
-            }else {
+           // System.out.print("sdfdsaf"+aList.size());
+            if(aList.size()==0){
                 return null;
+            }else {
+                Invitement invitement = (Invitement) aList.get(0);
+                return invitement;
             }
+
+
         }catch (Exception e){
             e.printStackTrace();
             session.close();
