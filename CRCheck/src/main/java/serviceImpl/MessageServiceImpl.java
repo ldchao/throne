@@ -49,17 +49,27 @@ public class MessageServiceImpl implements MessageService {
     }
 
     public UniversalState deleteMessage(String messageID) {
-        return null;
+
+        int id=Integer.parseInt(messageID);
+        MessageDao messageDao=new MessageDaoImpl();
+        return messageDao.deleteMessage(id)?UniversalState.SUCCESS:UniversalState.FAIL;
     }
 
     public UniversalState deleteAllMessage(String userID) {
         MessageDao messageDao=new MessageDaoImpl();
-        return messageDao.deleteMessage(userID)?UniversalState.SUCCESS:UniversalState.FAIL;
+        return messageDao.deleteAllMessage(userID)?UniversalState.SUCCESS:UniversalState.FAIL;
     }
 
     public ArrayList<InvitationMessage> checkAllMessage(String userID) {
         ArrayList<InvitationMessage> messages=new ArrayList<InvitationMessage>();
         MessageDao messageDao=new MessageDaoImpl();
+        ArrayList<Message> list=messageDao.findAllMessage(userID);
+        for (Message message:list) {
+            InvitationMessage invitation=new InvitationMessage();
+            invitation.setMessageID(message.getId());
+            invitation.setUserID(message.getUserId());
+            invitation.setProjectID(message.getProjectId());
+        }
 
         return null;
     }

@@ -14,7 +14,7 @@ import java.util.ArrayList;
  */
 public class InvitationListServiceImpl implements InvitationListService{
 
-    public ArrayList<InvitationMessage> getInvitationList(String projectID) {
+    public ArrayList<InvitationMessage> getInvitationList(int projectID) {
         ArrayList<InvitationMessage> invitationList=new ArrayList<InvitationMessage>();
         InvitementDao invitmentDao=new InvitementDaoImpl();
         ArrayList<Invitement> list=invitmentDao.findAllInvitement(projectID);
@@ -42,7 +42,7 @@ public class InvitationListServiceImpl implements InvitationListService{
         return result?UniversalState.SUCCESS:UniversalState.FAIL;
     }
 
-    public UniversalState changeInvitationState(String userID, String projectID, MessageState state) {
+    public UniversalState changeInvitationState(String userID, int projectID, MessageState state) {
         InvitementDao invitmentDao=new InvitementDaoImpl();
         Invitement invitement=new Invitement();
         invitement.setProjectId(projectID);
