@@ -7,6 +7,7 @@ import POJO.Summary;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.stat.SessionStatistics;
 
 import java.util.List;
 
@@ -91,6 +92,22 @@ public class SummaryDaoImpl implements SummaryDao {
             connection.closeSession(session);
             return false;
         }
+    }
+
+    public boolean updateFlag(Summary po) {
+        Session session=connection.getSession();
+//        try {
+//            String hql="update Summary s set s.flag=? s."
+//        }
+        return false;
+    }
+
+    public List getValidSummary(Summary po) {
+        return null;
+    }
+
+    public boolean deleteInvalidSummary(Summary po) {
+        return false;
     }
 
 

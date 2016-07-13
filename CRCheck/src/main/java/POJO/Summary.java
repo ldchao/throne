@@ -10,12 +10,13 @@ import javax.persistence.Id;
  */
 @Entity
 public class Summary {
-    private Integer id;//identity, automatically given by the software
+    private Integer id;
     private Integer projectId;
-    private String location;//where the error found
-    private String type;//the error type
-    private String description;//detail of the error
-    private String combination;//combination of the Persionalreviews
+    private String location;
+    private String type;
+    private String description;
+    private String combination;
+    private Integer flag;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -77,6 +78,16 @@ public class Summary {
         this.combination = combination;
     }
 
+    @Basic
+    @Column(name = "flag", nullable = false)
+    public Integer getFlag() {
+        return flag;
+    }
+
+    public void setFlag(Integer flag) {
+        this.flag = flag;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -90,6 +101,7 @@ public class Summary {
         if (type != null ? !type.equals(summary.type) : summary.type != null) return false;
         if (description != null ? !description.equals(summary.description) : summary.description != null) return false;
         if (combination != null ? !combination.equals(summary.combination) : summary.combination != null) return false;
+        if (flag != null ? !flag.equals(summary.flag) : summary.flag != null) return false;
 
         return true;
     }
@@ -102,6 +114,7 @@ public class Summary {
         result = 31 * result + (type != null ? type.hashCode() : 0);
         result = 31 * result + (description != null ? description.hashCode() : 0);
         result = 31 * result + (combination != null ? combination.hashCode() : 0);
+        result = 31 * result + (flag != null ? flag.hashCode() : 0);
         return result;
     }
 }

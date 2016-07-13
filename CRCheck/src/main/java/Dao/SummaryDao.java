@@ -20,4 +20,13 @@ public interface SummaryDao {
 
     //need the "id" of "Summary",if delete succeed ,it will return true
     public boolean delete(Summary po);
+
+    //need the "id" and "flag",just need the "id" and "flag" of "Summary"
+    public boolean updateFlag(Summary po);
+
+    //need the "projectId"
+    public List getValidSummary(Summary po);
+
+    //delete the inValid Summary,just need the "id" of "Summary"
+    public boolean deleteInvalidSummary(Summary po);
 }

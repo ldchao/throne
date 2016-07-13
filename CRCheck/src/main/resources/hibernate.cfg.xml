@@ -23,10 +23,10 @@
         <mapping class="POJO.Invitement"/>
         <mapping resource="Personalreview.hbm.xml"/>
         <mapping class="POJO.Personalreview"/>
-        <mapping resource="Summary.hbm.xml"/>
-        <mapping class="POJO.Summary"/>
         <mapping resource="Attendance.hbm.xml"/>
         <mapping class="POJO.Attendance"/>
+        <mapping class="POJO.Summary"/>
+        <mapping resource="Summary.hbm.xml"/>
 
     </session-factory>
 </hibernate-configuration>

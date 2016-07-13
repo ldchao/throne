@@ -1,6 +1,7 @@
 package DaoTest;
 
 import DaoImpl.*;
+import POJO.Summary;
 import POJO.User;
 
 import java.util.List;
@@ -76,10 +77,23 @@ public class test {
 //        System.out.print(createIdDao.CreateIntId("Project"));
 
 
-        UserDaoImpl userDao=new UserDaoImpl();
-        List list=userDao.getAllUserId();
-        for (Object object:list ) {
-            System.out.println((String)object);
-        }
+//        UserDaoImpl userDao=new UserDaoImpl();
+//        List list=userDao.getAllUserId();
+//        for (Object object:list ) {
+//            System.out.println((String)object);
+//        }
+
+        SummaryDaoImpl summaryDao=new SummaryDaoImpl();
+        CreateIdDaoImpl createIdDao=new CreateIdDaoImpl();
+        Summary summary=new Summary();
+        int id=createIdDao.CreateIntId("Summary");
+        summary.setCombination("123");
+        summary.setDescription("222");
+        summary.setFlag(22);
+        summary.setId(id);
+        summary.setLocation("dfsd");
+        summary.setProjectId(12);
+        summary.setType("shachao");
+        summaryDao.addSummary(summary);
     }
 }

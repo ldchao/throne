@@ -18,8 +18,7 @@
       <table id="9" parent="1" name="attendance"/>
       <column id="10" parent="2" name="id">
         <mandatory>1</mandatory>
-        <data-type>varchar(20)</data-type>
-        <default-expression>&apos;&apos;</default-expression>
+        <data-type>int(11)</data-type>
       </column>
       <column id="11" parent="2" name="name">
         <mandatory>1</mandatory>
@@ -141,8 +140,8 @@
       </column>
       <column id="37" parent="4" name="projectId">
         <mandatory>1</mandatory>
-        <data-type>varchar(20)</data-type>
-        <default-expression>&apos;&apos;</default-expression>
+        <data-type>int(11)</data-type>
+        <default-expression>&apos;0&apos;</default-expression>
       </column>
       <column id="38" parent="4" name="content">
         <mandatory>1</mandatory>
@@ -159,7 +158,7 @@
         <data-type>varchar(20)</data-type>
         <default-expression>&apos;&apos;</default-expression>
       </column>
-      <index id="41" parent="4" name="message_projectId">
+      <index id="41" parent="4" name="message_project">
         <columns>projectId</columns>
         <desc-columns></desc-columns>
       </index>
@@ -171,7 +170,7 @@
         <columns>id</columns>
         <primary>1</primary>
       </key>
-      <foreign-key id="44" parent="4" name="message_projectId">
+      <foreign-key id="44" parent="4" name="message_project">
         <columns>projectId</columns>
         <ref-key>~.project.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
@@ -232,8 +231,8 @@
       </column>
       <column id="56" parent="6" name="projectId">
         <mandatory>1</mandatory>
-        <data-type>varchar(20)</data-type>
-        <default-expression>&apos;&apos;</default-expression>
+        <data-type>int(11)</data-type>
+        <default-expression>&apos;0&apos;</default-expression>
       </column>
       <column id="57" parent="6" name="state">
         <mandatory>1</mandatory>
@@ -275,8 +274,8 @@
       </column>
       <column id="65" parent="7" name="projectId">
         <mandatory>1</mandatory>
-        <data-type>varchar(20)</data-type>
-        <default-expression>&apos;&apos;</default-expression>
+        <data-type>int(11)</data-type>
+        <default-expression>&apos;0&apos;</default-expression>
       </column>
       <column id="66" parent="7" name="commitTime">
         <mandatory>1</mandatory>
@@ -308,7 +307,7 @@
         <data-type>varchar(20)</data-type>
         <default-expression>&apos;ADMITTED&apos;</default-expression>
       </column>
-      <index id="72" parent="7" name="review_project">
+      <index id="72" parent="7" name="personalreview_project">
         <columns>projectId</columns>
         <desc-columns></desc-columns>
       </index>
@@ -320,7 +319,7 @@
         <columns>id</columns>
         <primary>1</primary>
       </key>
-      <foreign-key id="75" parent="7" name="review_project">
+      <foreign-key id="75" parent="7" name="personalreview_project">
         <columns>projectId</columns>
         <ref-key>~.project.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
@@ -338,8 +337,8 @@
       </column>
       <column id="78" parent="8" name="projectId">
         <mandatory>1</mandatory>
-        <data-type>varchar(20)</data-type>
-        <default-expression>&apos;&apos;</default-expression>
+        <data-type>int(11)</data-type>
+        <default-expression>&apos;0&apos;</default-expression>
       </column>
       <column id="79" parent="8" name="location">
         <mandatory>1</mandatory>
@@ -361,62 +360,67 @@
         <data-type>varchar(255)</data-type>
         <default-expression>&apos;&apos;</default-expression>
       </column>
-      <index id="83" parent="8" name="summary_project">
+      <column id="83" parent="8" name="flag">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+        <default-expression>&apos;0&apos;</default-expression>
+      </column>
+      <index id="84" parent="8" name="summary_project">
         <columns>projectId</columns>
         <desc-columns></desc-columns>
       </index>
-      <key id="84" parent="8" name="PRIMARY">
+      <key id="85" parent="8" name="PRIMARY">
         <columns>id</columns>
         <primary>1</primary>
       </key>
-      <foreign-key id="85" parent="8" name="summary_project">
+      <foreign-key id="86" parent="8" name="summary_project">
         <columns>projectId</columns>
         <ref-key>~.project.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>
-      <column id="86" parent="9" name="id">
+      <column id="87" parent="9" name="id">
         <mandatory>1</mandatory>
         <data-type>int(11)</data-type>
       </column>
-      <column id="87" parent="9" name="state">
+      <column id="88" parent="9" name="userId">
+        <mandatory>1</mandatory>
+        <data-type>varchar(20)</data-type>
+        <default-expression>&apos;&apos;</default-expression>
+      </column>
+      <column id="89" parent="9" name="projectId">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+        <default-expression>&apos;0&apos;</default-expression>
+      </column>
+      <column id="90" parent="9" name="state">
         <mandatory>1</mandatory>
         <data-type>varchar(20)</data-type>
         <default-expression>&apos;NOT_ENTIRELY_COMMIT&apos;</default-expression>
       </column>
-      <column id="88" parent="9" name="qualityReviewPath">
+      <column id="91" parent="9" name="qualityReviewPath">
         <mandatory>1</mandatory>
         <data-type>text</data-type>
       </column>
-      <column id="89" parent="9" name="userId">
-        <mandatory>1</mandatory>
-        <data-type>varchar(20)</data-type>
-        <default-expression>&apos;&apos;</default-expression>
-      </column>
-      <column id="90" parent="9" name="projectId">
-        <mandatory>1</mandatory>
-        <data-type>varchar(20)</data-type>
-        <default-expression>&apos;&apos;</default-expression>
-      </column>
-      <index id="91" parent="9" name="attention_project">
+      <index id="92" parent="9" name="attendance_project">
         <columns>projectId</columns>
         <desc-columns></desc-columns>
       </index>
-      <index id="92" parent="9" name="attention_user">
+      <index id="93" parent="9" name="attention_user">
         <columns>userId</columns>
         <desc-columns></desc-columns>
       </index>
-      <key id="93" parent="9" name="PRIMARY">
+      <key id="94" parent="9" name="PRIMARY">
         <columns>id</columns>
         <primary>1</primary>
       </key>
-      <foreign-key id="94" parent="9" name="attention_project">
+      <foreign-key id="95" parent="9" name="attendance_project">
         <columns>projectId</columns>
         <ref-key>~.project.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>
-      <foreign-key id="95" parent="9" name="attention_user">
+      <foreign-key id="96" parent="9" name="attention_user">
         <columns>userId</columns>
         <ref-key>~.user.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
