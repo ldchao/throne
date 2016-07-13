@@ -2,6 +2,8 @@ package Dao;
 
 import POJO.User;
 
+import java.util.List;
+
 /**
  * Created by mm on 2016/7/10.
  */
@@ -18,4 +20,6 @@ public interface UserDao {
 
     //just need the "id" of "User",if delete succeed ,it will return true
     public boolean delete(User po);
+
+    public List getAllUserId();
 }

@@ -3,21 +3,23 @@ package DaoTest;
 import DaoImpl.*;
 import POJO.User;
 
+import java.util.List;
+
 /**
  * Created by mm on 2016/7/11.
  */
 public class test {
     public static void  main(String[]args){
 //        connection connection=new connection();
-        UserDaoImpl userDao=new UserDaoImpl();
-        User user=new User();
-        user.setId("ruochao");
-        user.setPassword("123");
-        user.setAddress("hello");
-        user.setUserLogin("online");
-        user.setUserState("add");
-        user.setChecklistPath("cshld");
-        userDao.addUser(user);
+//        UserDaoImpl userDao=new UserDaoImpl();
+//        User user=new User();
+//        user.setId("ruochao");
+//        user.setPassword("123");
+//        user.setAddress("hello");
+//        user.setUserLogin("online");
+//        user.setUserState("add");
+//        user.setChecklistPath("cshld");
+//        userDao.addUser(user);
 //        userDao.delete("fatchao");
 
 
@@ -72,5 +74,12 @@ public class test {
 //        System.out.println(personalreviewDao.findProject(user.getId(),project.getId()));
 //        CreateIdDaoImpl createIdDao=new CreateIdDaoImpl();
 //        System.out.print(createIdDao.CreateIntId("Project"));
+
+
+        UserDaoImpl userDao=new UserDaoImpl();
+        List list=userDao.getAllUserId();
+        for (Object object:list ) {
+            System.out.println((String)object);
+        }
     }
 }

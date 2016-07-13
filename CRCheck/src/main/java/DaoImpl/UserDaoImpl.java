@@ -3,8 +3,11 @@ package DaoImpl;
 import Connection.connection;
 import Dao.UserDao;
 import POJO.User;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+
+import java.util.List;
 
 /**
  * Created by mm on 2016/7/11.
@@ -86,6 +89,20 @@ public class UserDaoImpl implements UserDao {
             e.printStackTrace();
             connection.closeSession(session);
             return false;
+        }
+    }
+
+    public List getAllUserId(){
+        Session session=connection.getSession();
+        try {
+            String hql="select id from User";
+            Query query=session.createQuery(hql);
+            List list=query.list();
+            connection.closeSession(session);
+            return list;
+        }catch (Exception e){
+            connection.closeSession(session);
+            return null;
         }
     }
 }
