@@ -146,16 +146,42 @@
         <div id="reviewer_div">
             <button class="close_div_launch close" onclick="closeLaunch('reviewer_div')">x</button>
 
-            <div class="imgs_div">
-                <%for (int i = 0; i < 8; i++) { %>
+            <%-- 上半部分 --%>
+            <div class="above_part">
+                <div class="imgs_div">
+                    <%
+                        for (int i = 0; i < 8; i++) {
+                            String imgId = "img" + (i + "");
+                            String idId = "id" + (i + "");
+                    %>
 
-                <div class="div_each">
-                    <div class="img_each"></div>
-                    <div class="id_each">name</div>
+                    <div class="div_each" onclick="addIds(<%= i%>)">
+                        <div class="img_each" id="<%= imgId%>"></div>
+                        <div class="id_each" id="<%= idId%>">name</div>
+                    </div>
+
+                    <% } %>
                 </div>
 
-                <% } %>
+                <div class="refresh" onclick="setIds()">随机更换一批</div>
+
+                <hr class="hr_decorate_2">
             </div>
+
+            <%-- 下半部分 --%>
+            <div class="below_part">
+                <%-- 选择的用户 --%>
+                <div id="selectedIds_div">
+
+                </div>
+
+            </div>
+
+            <div class="checkbox_div">
+                <input id="self_in" type="checkbox">
+                <label class="tip_1" for="self_in">自己参与评审</label>
+            </div>
+
 
         </div>
 

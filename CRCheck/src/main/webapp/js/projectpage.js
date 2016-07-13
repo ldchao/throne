@@ -46,3 +46,50 @@ function closeLaunch(elem_id) {
         }
     })();
 }
+
+// 随机八个用户
+function setIds() {
+
+    for (var i = 0; i < 8; i++) {
+        var ids = "id" + (i + "");
+        document.getElementById(ids).innerHTML = ids;
+    }
+}
+
+// 添加选择的用户
+function addIds(index) {
+
+    var selectId = "id" + (index + "");
+    var selectImg = "img" + (index + "");
+
+    if(document.getElementById(selectImg).getAttribute("class") == "img_each_after")
+        return;
+
+    document.getElementById(selectImg).setAttribute("class", "img_each_after");
+
+    var eachdiv = document.createElement("div");
+    eachdiv.setAttribute("class", "div_each");
+    eachdiv.setAttribute("onclick", "removeIds(this, " + index + ")");
+
+    var eachimg = document.createElement("div");
+    eachimg.setAttribute("class", "img_each");
+
+    var eachid = document.createElement("div");
+    eachid.setAttribute("class", "id_each");
+    eachid.innerHTML = selectId;
+
+    eachdiv.appendChild(eachimg);
+    eachdiv.appendChild(eachid);
+
+    var refnode = document.getElementById("selectedIds_div").getElementsByTagName("div");
+    document.getElementById("selectedIds_div").insertBefore(eachdiv, refnode[0]);
+
+}
+
+// 删除已选用户
+function removeIds(divid, index) {
+    document.getElementById("selectedIds_div").removeChild(divid);
+    var selectImg = "img" + (index + "");
+    document.getElementById(selectImg).setAttribute("class", "img_each");
+}
+

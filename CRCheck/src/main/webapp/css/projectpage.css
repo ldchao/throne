@@ -277,11 +277,19 @@
     display: block;
 }
 
+#reviewer_div .above_part {
+    width: 292px;
+    height: 200px;
+    positon: aboslute;
+    top: 0;
+}
+
 .imgs_div {
     margin-left: 14px;
     margin-top: 32px;
 }
 
+/* 每个用户 */
 .div_each {
     width: 43px;
     height: 60px;
@@ -297,8 +305,64 @@
     background-color: #d8d8d8;
 }
 
+.img_each_after {
+    width: 40px;
+    height: 40px;
+    border-radius: 60px;
+    background-color: #88a7da;
+}
+
 .id_each {
     font-size: 16px;
     color: #737474;
     margin-top: 1px;
+    text-align: center;
+}
+
+.above_part .refresh {
+    font-size: 13px;
+    font-family: "PingFang SC";
+    color: #858689;
+    cursor: pointer;
+    position: absolute;
+    top: 170px;
+    right: 107px;
+}
+
+.refresh:hover {
+    color: #4cc1fc;
+    text-decoration: underline;
+}
+
+.hr_decorate_2 {
+    width: 220px;
+    border: 1px solid #d4d5db;
+    position: absolute;
+    top: 175px;
+    right: 32px;
+}
+
+#reviewer_div .below_part {
+    width: 292px;
+    height: 185px;
+    position: absolute;
+    top: 195px;
+}
+
+.checkbox_div {
+    margin-top: 150px;
+    text-align: center;
+}
+
+.tip_1 {
+    font-size: 13px;
+    color: #486eaa;
+    font-family: "PingFang SC";
+    margin-left: 5px;
+    font-weight: inherit;
+}
+
+#selectedIds_div {
+    margin-left: 14px;
+    margin-top: 10px;
 }
