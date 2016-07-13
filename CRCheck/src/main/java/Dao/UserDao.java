@@ -8,13 +8,13 @@ import POJO.User;
 public interface UserDao {
 
     //tip: the "id" ,"password" ,"userLogin" ,"userState" could not be null, if add succeed ,it will return true
-    public boolean addUser(User user);
+    public boolean addUser(User po);
 
-    public User findUser(String id);
+    public User findUser(User po);
 
     //tip: the "id" ,"password" ,"userLogin" ,"userState" could not be null,  if update succeed ,it will return true
-    public boolean update(User user);
+    public boolean update(User po);
 
     //tip:  if delete succeed ,it will return true
-    public boolean delete(String id);
+    public boolean delete(User po);
 }

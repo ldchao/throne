@@ -10,12 +10,12 @@ import javax.persistence.Id;
  */
 @Entity
 public class Summary {
-    private Integer id;
+    private Integer id;//identity, automatically given by the software
     private Integer projectId;
-    private String location;
-    private String type;
-    private String description;
-    private String combination;
+    private String location;//where the error found
+    private String type;//the error type
+    private String description;//detail of the error
+    private String combination;//combination of the Persionalreviews
 
     @Id
     @Column(name = "id", nullable = false)

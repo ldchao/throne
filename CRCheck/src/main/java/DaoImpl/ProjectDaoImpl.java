@@ -3,6 +3,7 @@ package DaoImpl;
 import Connection.connection;
 import Dao.ProjectDao;
 import POJO.Project;
+import POJO.User;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -13,11 +14,11 @@ import java.util.List;
  * Created by mm on 2016/7/11.
  */
 public class ProjectDaoImpl implements ProjectDao{
-    public boolean addProject(Project project) {
+    public boolean addProject(Project po) {
         Session session= connection.getSession();
         try {
-            if (findProject(project.getId())==null){
-                session.save(project);
+            if (findProject(po)==null){
+                session.save(po);
                 Transaction transaction=session.beginTransaction();
                 transaction.commit();
                 connection.closeSession(session);
@@ -33,12 +34,12 @@ public class ProjectDaoImpl implements ProjectDao{
         }
     }
 
-    public boolean deleteProject(int id) {
+    public boolean deleteProject(Project po) {
         Session session= connection.getSession();
         try {
-            if (findProject(id)!=null){
+            if (findProject(po)!=null){
                 Project project=new Project();
-                project.setId(id);
+                project.setId(po.getId());
                 session.delete(project);
                 Transaction transaction=session.beginTransaction();
                 transaction.commit();
@@ -55,11 +56,11 @@ public class ProjectDaoImpl implements ProjectDao{
         }
     }
 
-    public boolean updateProject(Project project) {
+    public boolean updateProject(Project po) {
         Session session= connection.getSession();
         try {
-            if (findProject(project.getId())!=null){
-                session.update(project);
+            if (findProject(po)!=null){
+                session.update(po);
                 Transaction transaction=session.beginTransaction();
                 transaction.commit();
                 connection.closeSession(session);
@@ -75,10 +76,10 @@ public class ProjectDaoImpl implements ProjectDao{
         }
     }
 
-    public List findProjectByUserId(String userId) {
+    public List findProjectByUserId(User po) {
         Session session=connection.getSession();
         try {
-            String hql="from Project p where userId='"+userId+"'";
+            String hql="from Project p where userId='"+po.getId()+"'";
             Query query=session.createQuery(hql);
             List list=query.list();
             connection.closeSession(session);
@@ -90,10 +91,10 @@ public class ProjectDaoImpl implements ProjectDao{
         }
     }
 
-    public Project findProject(int id) {
+    public Project findProject(Project po) {
         Session session= connection.getSession();
         try {
-            Project project=session.get(Project.class,id);
+            Project project=session.get(Project.class,po.getId());
             connection.closeSession(session);
             if (project!=null){
                 return project;

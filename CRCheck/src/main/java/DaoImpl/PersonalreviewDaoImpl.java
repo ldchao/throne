@@ -15,11 +15,11 @@ import java.util.List;
  * Created by mm on 2016/7/11.
  */
 public class PersonalreviewDaoImpl implements PersonalreviewDao {
-    public boolean addPersionalreview(Personalreview personalreview) {
+    public boolean addPersionalreview(Personalreview po) {
         Session session= connection.getSession();
         try {
-            if(findPersonalreviewById(personalreview.getId())==null){
-                session.save(personalreview);
+            if(findPersonalreviewById(po)==null){
+                session.save(po);
                 Transaction transaction=session.beginTransaction();
                 transaction.commit();
                 connection.closeSession(session);
@@ -36,12 +36,12 @@ public class PersonalreviewDaoImpl implements PersonalreviewDao {
         }
     }
 
-    public boolean deletePersonalreview(int id) {
+    public boolean deletePersonalreview(Personalreview po) {
         Session session= connection.getSession();
         try {
-            if (findPersonalreviewById(id)!=null) {
+            if (findPersonalreviewById(po)!=null) {
                 Personalreview personalreview = new Personalreview();
-                personalreview.setId(id);
+                personalreview.setId(po.getId());
                 session.delete(personalreview);
                 Transaction transaction = session.beginTransaction();
                 transaction.commit();
@@ -58,11 +58,11 @@ public class PersonalreviewDaoImpl implements PersonalreviewDao {
         }
     }
 
-    public boolean updatePersonalreview(Personalreview personalreview) {
+    public boolean updatePersonalreview(Personalreview po) {
         Session session= connection.getSession();
         try {
-            if(findPersonalreviewById(personalreview.getId())!=null) {
-                session.update(personalreview);
+            if(findPersonalreviewById(po)!=null) {
+                session.update(po);
                 Transaction transaction = session.beginTransaction();
                 transaction.commit();
                 connection.closeSession(session);
@@ -78,10 +78,10 @@ public class PersonalreviewDaoImpl implements PersonalreviewDao {
         }
     }
 
-    public List findProject(String userId, int projectId) {
+    public List findProject(User user, Project project) {
         Session session= connection.getSession();
         try {
-            String hql="from Personalreview p where p.userId='"+userId+"' and projectId='"+projectId+"'";
+            String hql="from Personalreview p where p.userId='"+user.getId()+"' and projectId='"+project.getId()+"'";
             Query query=session.createQuery(hql);
             List list=query.list();
             connection.closeSession(session);
@@ -93,10 +93,10 @@ public class PersonalreviewDaoImpl implements PersonalreviewDao {
         }
     }
 
-    public List findProject(Project project) {
+    public List findProject(Project po) {
         Session session= connection.getSession();
         try{
-            String hql="from Personalreview p where p.projectId='"+project.getId()+"'";
+            String hql="from Personalreview p where p.projectId='"+po.getId()+"'";
             Query query=session.createQuery(hql);
             List list=query.list();
             connection.closeSession(session);
@@ -108,10 +108,10 @@ public class PersonalreviewDaoImpl implements PersonalreviewDao {
         }
     }
 
-    public List findProject(User user) {
+    public List findProject(User po) {
         Session session= connection.getSession();
         try{
-            String hql="from Personalreview p where p.userId='"+user.getId()+"'";
+            String hql="from Personalreview p where p.userId='"+po.getId()+"'";
             Query query=session.createQuery(hql);
             List list=query.list();
             connection.closeSession(session);
@@ -123,10 +123,10 @@ public class PersonalreviewDaoImpl implements PersonalreviewDao {
         }
     }
 
-    public Personalreview findPersonalreviewById(int id){
+    public Personalreview findPersonalreviewById(Personalreview po){
         Session session=connection.getSession();
         try {
-            Personalreview personalreview=session.get(Personalreview.class,id);
+            Personalreview personalreview=session.get(Personalreview.class,po.getId());
             connection.closeSession(session);
             return personalreview;
         }catch (Exception e){

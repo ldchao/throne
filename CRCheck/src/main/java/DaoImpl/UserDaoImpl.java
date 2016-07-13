@@ -10,11 +10,11 @@ import org.hibernate.Transaction;
  * Created by mm on 2016/7/11.
  */
 public class UserDaoImpl implements UserDao {
-    public boolean addUser(User user) {
+    public boolean addUser(User po) {
         Session session= connection.getSession();
         try {
-            if (findUser(user.getId())==null){
-                session.save(user);
+            if (findUser(po)==null){
+                session.save(po);
                 Transaction transaction=session.beginTransaction();
                 transaction.commit();
                 connection.closeSession(session);
@@ -30,10 +30,10 @@ public class UserDaoImpl implements UserDao {
         }
     }
 
-    public User findUser(String id) {
+    public User findUser(User po) {
         Session session= connection.getSession();
         try {
-            User user=(User)session.get(User.class,id);
+            User user=(User)session.get(User.class,po.getId());
             connection.closeSession(session);
             if(user!=null){
                 return user;
@@ -47,11 +47,11 @@ public class UserDaoImpl implements UserDao {
         }
     }
 
-    public boolean update(User user) {
+    public boolean update(User po) {
         Session session= connection.getSession();
         try {
-            if (findUser(user.getId())!=null){
-                session.update(user);
+            if (findUser(po)!=null){
+                session.update(po);
                 Transaction transaction=session.beginTransaction();
                 transaction.commit();
                 connection.closeSession(session);
@@ -67,12 +67,12 @@ public class UserDaoImpl implements UserDao {
         }
     }
 
-    public boolean delete(String id) {
+    public boolean delete(User po) {
         Session session= connection.getSession();
         try {
-            if (findUser(id)!=null){
+            if (findUser(po)!=null){
                 User user=new User();
-                user.setId(id);
+                user.setId(po.getId());
                 session.delete(user);
                 Transaction transaction=session.beginTransaction();
                 transaction.commit();

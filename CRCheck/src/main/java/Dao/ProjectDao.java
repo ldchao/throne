@@ -1,6 +1,7 @@
 package Dao;
 
 import POJO.Project;
+import POJO.User;
 
 import java.util.List;
 
@@ -10,13 +11,13 @@ import java.util.List;
 public interface
 ProjectDao {
     //all the attributes must be set,id is automatically set(but not realized,so you need to set it manually)
-    public boolean addProject(Project project);
+    public boolean addProject(Project po);
 
-    public boolean deleteProject(int id);
+    public boolean deleteProject(Project po);
 
-    public boolean updateProject(Project project);
+    public boolean updateProject(Project po);
 
-    public List findProjectByUserId(String userId);
+    public List findProjectByUserId(User po);
 
-    public Project findProject(int id);
+    public Project findProject(Project po);
 }

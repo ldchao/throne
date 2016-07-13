@@ -1,6 +1,7 @@
-package Connection;
+package DaoTest;
 
 import DaoImpl.*;
+import POJO.User;
 
 /**
  * Created by mm on 2016/7/11.
@@ -9,13 +10,14 @@ public class test {
     public static void  main(String[]args){
 //        connection connection=new connection();
         UserDaoImpl userDao=new UserDaoImpl();
-//        user.setId("xichao");
-//        user.setPassword("123");
-//        user.setAddress("hello");
-//        user.setUserLogin("online");
-//        user.setUserState("add");
-//        user.setChecklistPath("cshld");
-//        userDao.update(user);
+        User user=new User();
+        user.setId("xichao");
+        user.setPassword("123");
+        user.setAddress("hello");
+        user.setUserLogin("online");
+        user.setUserState("add");
+        user.setChecklistPath("cshld");
+        userDao.update(user);
 //        userDao.delete("fatchao");
 
 
@@ -57,7 +59,7 @@ public class test {
 //        personalreview.setId(132);
 //        personalreview.setLocation("none");
 //        personalreview.setProjectId("22222");
-//        personalreview.setRes ult("none");
+//        personalreview.setResult("none");
 //        personalreview.setState("none");
 //        personalreview.setType("fat");
 //        personalreview.setUserId("shachao");
@@ -68,7 +70,7 @@ public class test {
 //        personalreviewDao.addPersionalreview(personalreview);
 //        System.out.println(personalreviewDao.updatePersonalreview(personalreview));
 //        System.out.println(personalreviewDao.findProject(user.getId(),project.getId()));
-        CreateIdDaoImpl createIdDao=new CreateIdDaoImpl();
-        System.out.print(createIdDao.CreateIntId("Project"));
+//        CreateIdDaoImpl createIdDao=new CreateIdDaoImpl();
+//        System.out.print(createIdDao.CreateIntId("Project"));
     }
 }

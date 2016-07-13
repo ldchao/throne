@@ -10,15 +10,15 @@ import javax.persistence.Id;
  */
 @Entity
 public class User {
-    private String id;
+    private String id;//identity when user log in
     private String password;
     private String email;
     private String sex;
     private String phone;
     private String address;
-    private String userLogin;
-    private String userState;
-    private String checklistPath;
+    private String userLogin;//two state: ONLINE,OFFLINE
+    private String userState;//two state: PUBLIC,PRIVATE
+    private String checklistPath;//automatically given by the software
 
     @Id
     @Column(name = "id", nullable = false, length = 20)
