@@ -10,14 +10,18 @@ import java.util.List;
  */
 public interface
 ProjectDao {
-    //all the attributes must be set,id is automatically set(but not realized,so you need to set it manually)
+    //need all the attributes ,you can get "id" by using another Interface
     public boolean addProject(Project po);
 
+    //just need the "id" of "Project"
     public boolean deleteProject(Project po);
 
+    //need all the attributes
     public boolean updateProject(Project po);
 
+    //just need the "id" of "User"
     public List findProjectByUserId(User po);
 
+    //need the "id" of "Project"
     public Project findProject(Project po);
 }

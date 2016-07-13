@@ -11,13 +11,13 @@ public class test {
 //        connection connection=new connection();
         UserDaoImpl userDao=new UserDaoImpl();
         User user=new User();
-        user.setId("xichao");
+        user.setId("ruochao");
         user.setPassword("123");
         user.setAddress("hello");
         user.setUserLogin("online");
         user.setUserState("add");
         user.setChecklistPath("cshld");
-        userDao.update(user);
+        userDao.addUser(user);
 //        userDao.delete("fatchao");
 
 
