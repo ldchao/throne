@@ -8,6 +8,8 @@ import enums.Power;
 public class UserModel {
     private String id;
     private Power power;
+//    private
+
     public UserModel() {
     }
 

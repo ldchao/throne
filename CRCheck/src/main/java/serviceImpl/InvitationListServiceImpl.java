@@ -1,6 +1,8 @@
 package serviceImpl;
 
+import Dao.CreateIdDao;
 import Dao.InvitementDao;
+import DaoImpl.CreateIdDaoImpl;
 import DaoImpl.InvitementDaoImpl;
 import POJO.Invitement;
 import enums.MessageState;
@@ -31,12 +33,14 @@ public class InvitationListServiceImpl implements InvitationListService{
     public UniversalState saveInvitationList(ArrayList<InvitationMessage> list) {
 
         InvitementDao invitmentDao=new InvitementDaoImpl();
+        CreateIdDao createIdDao=new CreateIdDaoImpl();
         boolean result=true;
         for (InvitationMessage invitationMesage:list ) {
             Invitement invitement=new Invitement();
+            invitement.setId(createIdDao.CreateIntId("Invitement"));
             invitement.setProjectId(invitationMesage.getProjectID());
             invitement.setUserId(invitationMesage.getUserID());
-            invitement.setState(invitationMesage.getAccepting_state().toString());
+            invitement.setState(MessageState.NotHandle.toString());
             result=result&invitmentDao.addInvitement(invitement);
         }
         return result?UniversalState.SUCCESS:UniversalState.FAIL;

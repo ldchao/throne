@@ -16,10 +16,10 @@ public interface MessageService {
     public UniversalState setIssueMessage(ProjectModel projectModel);
 
     // TODO: 更改消息处理状态
-    public UniversalState changeMessageState(String messageID, MessageState messageState);
+    public UniversalState changeMessageState(int messageID, MessageState messageState);
 
     // TODO: 2016/7/11 删除消息
-    public UniversalState deleteMessage(String messageID);
+    public UniversalState deleteMessage(int messageID);
 
     // TODO: 2016/7/12 一键清空消息
     public UniversalState deleteAllMessage(String userID);

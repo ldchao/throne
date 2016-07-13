@@ -40,19 +40,18 @@ public class MessageServiceImpl implements MessageService {
         return result?UniversalState.SUCCESS:UniversalState.FAIL;
     }
 
-    public UniversalState changeMessageState(String messageID, MessageState messageState) {
+    public UniversalState changeMessageState(int messageID, MessageState messageState) {
 
         MessageDao messageDao=new MessageDaoImpl();
-
-
-        return null;
+        Message message=new Message();
+        message.setId(messageID);
+        message.setState(messageState.toString());
+        return messageDao.updateMessage(message)?UniversalState.SUCCESS:UniversalState.FAIL;
     }
 
-    public UniversalState deleteMessage(String messageID) {
-
-        int id=Integer.parseInt(messageID);
+    public UniversalState deleteMessage(int messageID) {
         MessageDao messageDao=new MessageDaoImpl();
-        return messageDao.deleteMessage(id)?UniversalState.SUCCESS:UniversalState.FAIL;
+        return messageDao.deleteMessage(messageID)?UniversalState.SUCCESS:UniversalState.FAIL;
     }
 
     public UniversalState deleteAllMessage(String userID) {
@@ -69,8 +68,9 @@ public class MessageServiceImpl implements MessageService {
             invitation.setMessageID(message.getId());
             invitation.setUserID(message.getUserId());
             invitation.setProjectID(message.getProjectId());
+            invitation.setAccepting_state(MessageState.valueOf(message.getState()));
+            messages.add(invitation);
         }
-
-        return null;
+        return messages;
     }
 }
