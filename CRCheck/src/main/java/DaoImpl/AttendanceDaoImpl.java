@@ -111,13 +111,14 @@ public class AttendanceDaoImpl  implements AttendanceDao {
             String hql="from Attendance as a where a.projectId="+pid+" and a.userId="+uid;
             Query query = session.createQuery(hql);
             List aList = query.list();
-            Attendance attendance = (Attendance) aList.get(0);
             connection.closeSession(session);
-            if(attendance!=null){
-                return attendance;
-            }else {
+            if(aList.size()==0){
                 return null;
+            }else {
+                Attendance attendance = (Attendance) aList.get(0);
+                return attendance;
             }
+
         }catch (Exception e){
             e.printStackTrace();
             connection.closeSession(session);
