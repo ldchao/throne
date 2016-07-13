@@ -13,7 +13,7 @@ public class ProjectModel {
 
     private String UserID;
     //之后系统递增
-    private String ProjectID;
+    private int ProjectID;
     private String name;
     private Language type;
     private String discription;
@@ -37,11 +37,11 @@ public class ProjectModel {
         UserID = userID;
     }
 
-    public String getProjectID() {
+    public int getProjectID() {
         return ProjectID;
     }
 
-    public void setProjectID(String projectID) {
+    public void setProjectID(int projectID) {
         ProjectID = projectID;
     }
 

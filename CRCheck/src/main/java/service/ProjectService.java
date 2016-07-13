@@ -13,18 +13,18 @@ public interface ProjectService {
     public UniversalState addProject(ProjectModel projectModel);
 
     //删除项目
-    public UniversalState deleteProject(String projectID);
+    public UniversalState deleteProject(int projectID);
 
     //查看项目--没有返回null
-    public ProjectModel checkProject(String projectID);
+    public ProjectModel checkProject(int projectID);
 
     //更新项目状态
-    public UniversalState updateProjectState(String projectID, ProjectState projectState);
+    public UniversalState updateProjectState(int projectID, ProjectState projectState);
 
     //更新项目质量总结报告
-    public UniversalState updateQualityFeedback(String projectID,String newQualityFeedback);
+    public UniversalState updateQualityFeedback(int projectID,String newQualityFeedback);
 
     //修改项目信息
-    public UniversalState updateProjectMessage(String projectID,ProjectModel projectModel);
+    public UniversalState updateProjectMessage(int projectID,ProjectModel projectModel);
 
 }
