@@ -38,8 +38,10 @@ public class LoginServiceImpl implements LoginService {
     public UniversalState loginUser(String userId, String password) {
         UserDao dao = new UserDaoImpl();
         User user = null;
+        User po=new User();
+        po.setId(userId);
         try {
-            user = dao.findUser(userId);
+            user = dao.findUser(po);
         } catch (Exception e) {
             e.printStackTrace();
             return UniversalState.ERROR;

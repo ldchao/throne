@@ -1,6 +1,8 @@
 package serviceImpl;
 
+import Dao.CreateIdDao;
 import Dao.ProjectDao;
+import DaoImpl.CreateIdDaoImpl;
 import DaoImpl.ProjectDaoImpl;
 import POJO.Project;
 import enums.Language;
@@ -23,7 +25,12 @@ public class ProjectServiceImpl implements ProjectService{
         Project p=new Project();
         InvitationListService invite=new InvitationListServiceImpl();
         MessageService message=new MessageServiceImpl();
+        //生成项目id
+        CreateIdDao iddao=new CreateIdDaoImpl();
+        int id=iddao.CreateIntId("Project");
+        projectModel.setProjectID(id);
         //projectModel转project
+        p.setId(id);
         p.setUserId(projectModel.getUserID());
         p.setName(projectModel.getName());
         p.setType(String.valueOf(projectModel.getType()));
@@ -47,7 +54,9 @@ public class ProjectServiceImpl implements ProjectService{
     //删除项目
     public UniversalState deleteProject(int projectID) {
         ProjectDao dao = new ProjectDaoImpl();
-        boolean a=dao.deleteProject(projectID);
+        Project po=new Project();
+        po.setId(projectID);
+        boolean a=dao.deleteProject(po);
         if(a)
             return UniversalState.SUCCESS;
         return UniversalState.FAIL;
@@ -55,7 +64,9 @@ public class ProjectServiceImpl implements ProjectService{
     //查看项目
     public ProjectModel checkProject(int projectID) {
         ProjectDao dao = new ProjectDaoImpl();
-        Project pro=dao.findProject(projectID);
+        Project po=new Project();
+        po.setId(projectID);
+        Project pro=dao.findProject(po);
         //project-->projectModel
         if(pro==null)
             return null;
@@ -78,7 +89,9 @@ public class ProjectServiceImpl implements ProjectService{
     public UniversalState updateProjectState(int projectID, ProjectState projectState) {
         //初始化找到对应项目
         ProjectDao dao = new ProjectDaoImpl();
-        Project pro=dao.findProject(projectID);
+        Project po=new Project();
+        po.setId(projectID);
+        Project pro=dao.findProject(po);
         //项目未找到
         if(pro==null)
             return UniversalState.FAIL;
@@ -90,7 +103,9 @@ public class ProjectServiceImpl implements ProjectService{
     public UniversalState updateQualityFeedback(int projectID, String newQualityFeedback) {
         //初始化找到对应项目
         ProjectDao dao = new ProjectDaoImpl();
-        Project pro=dao.findProject(projectID);
+        Project po=new Project();
+        po.setId(projectID);
+        Project pro=dao.findProject(po);
         //项目未找到
         if(pro==null)
             return UniversalState.FAIL;
@@ -100,11 +115,49 @@ public class ProjectServiceImpl implements ProjectService{
     }
     //修改项目信息
     public UniversalState updateProjectMessage(int projectID, ProjectModel projectModel) {
+        //初始化对象
+        ProjectDao dao = new ProjectDaoImpl();
+        Project p=new Project();
+//        InvitationListService invite=new InvitationListServiceImpl();
+//        MessageService message=new MessageServiceImpl();
 
-        return null;
+        //projectModel转project
+        p.setId(projectID);
+        p.setUserId(projectModel.getUserID());
+        p.setName(projectModel.getName());
+        p.setType(String.valueOf(projectModel.getType()));
+        p.setDescription(projectModel.getDiscription());
+        p.setProjectState(String.valueOf(projectModel.getState()));
+        p.setPower(String.valueOf(projectModel.getPower()));
+        p.setStartTime(projectModel.getStartDate());
+        p.setEndTime(projectModel.getEndDate());
+        p.setCodePath(projectModel.getProjectPath());
+        p.setAttendReview(projectModel.getAttendReview());
+        p.setQualityReview(projectModel.getQualityFeedback());
+        //更新数据库
+        boolean a=dao.updateProject(p);
+        //UniversalState b = invite.saveInvitationList(projectModel.getInvitationList());
+        //发送消息
+//        UniversalState c = message.setIssueMessage(projectModel);
+//        if(a&&b.equals(UniversalState.SUCCESS)&&c.equals(UniversalState.SUCCESS))
+//            return UniversalState.SUCCESS;
+//        return UniversalState.FAIL;
     }
     //TODO 测试
     public static void main(String[] args){
-
+        Project p=new Project();
+//        p.setUserId(projectModel.getUserID());
+//        p.setName(projectModel.getName());
+//        p.setType(String.valueOf(projectModel.getType()));
+//        p.setDescription(projectModel.getDiscription());
+//        p.setProjectState(String.valueOf(projectModel.getState()));
+//        p.setPower(String.valueOf(projectModel.getPower()));
+//        p.setStartTime(projectModel.getStartDate());
+//        p.setEndTime(projectModel.getEndDate());
+//        p.setCodePath(projectModel.getProjectPath());
+//        p.setAttendReview(projectModel.getAttendReview());
+//        p.setQualityReview(projectModel.getQualityFeedback());
+//        ProjectService ps=new ProjectServiceImpl();
+        ps.addProject(p);
     }
 }
