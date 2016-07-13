@@ -2,6 +2,8 @@ package Dao;
 
 import POJO.Message;
 
+import java.util.ArrayList;
+
 /**
  * Created by dlydd on 2016/7/11.
  */
@@ -13,5 +15,8 @@ public interface MessageDao {
 
     public boolean updateMessage(Message message);
 
-    public Message findMessage(String uid);
+    public ArrayList<Message> findAllMessage(String uid);
+
+    public Message findMessage(int id);
+    
 }
