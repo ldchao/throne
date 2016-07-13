@@ -6,11 +6,20 @@ import enums.MessageState;
  * Created by lvdechao on 2016/7/10.
  */
 public class InvitationMessage {
+    private String MessageID;
     private String userID;
     private String projectID;
     private MessageState accepting_state;
 
     public InvitationMessage() {
+    }
+
+    public String getMessageID() {
+        return MessageID;
+    }
+
+    public void setMessageID(String messageID) {
+        MessageID = messageID;
     }
 
     public MessageState getAccepting_state() {

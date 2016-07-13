@@ -1,6 +1,8 @@
 package serviceImpl;
 
+import Dao.CreateIdDao;
 import Dao.MessageDao;
+import DaoImpl.CreateIdDaoImpl;
 import DaoImpl.MessageDaoImpl;
 import POJO.Message;
 import enums.MessageState;
@@ -9,6 +11,8 @@ import model.InvitationMessage;
 import model.ProjectModel;
 import service.MessageService;
 
+import java.util.ArrayList;
+
 /**
  * Created by zs on 2016/7/11.
  */
@@ -16,6 +20,7 @@ public class MessageServiceImpl implements MessageService {
     public UniversalState setIssueMessage(ProjectModel projectModel) {
 
         MessageDao messageDao=new MessageDaoImpl();
+        CreateIdDao createIdDao=new CreateIdDaoImpl();
         String constantMessage="";
         constantMessage+=projectModel.getUserID()+"邀请您于"+projectModel.getStartDate()+"至"
                 +projectModel.getEndDate()+"参加他发起的"+"“"+projectModel.getName()
@@ -23,6 +28,7 @@ public class MessageServiceImpl implements MessageService {
         boolean result=true;
         for (InvitationMessage invitationMessage:projectModel.getInvitationList()) {
               String invitement="尊敬的用户您好，"+constantMessage;
+            Integer id=createIdDao.CreateIntId("Message");
             Message message=new Message();
             message.setContent(invitement);
             message.setProjectId(projectModel.getProjectID());
@@ -42,7 +48,19 @@ public class MessageServiceImpl implements MessageService {
         return null;
     }
 
-    public UniversalState deleteMessageState(String messageID) {
+    public UniversalState deleteMessage(String messageID) {
+        return null;
+    }
+
+    public UniversalState deleteAllMessage(String userID) {
+        MessageDao messageDao=new MessageDaoImpl();
+        return messageDao.deleteMessage(userID)?UniversalState.SUCCESS:UniversalState.FAIL;
+    }
+
+    public ArrayList<InvitationMessage> checkAllMessage(String userID) {
+        ArrayList<InvitationMessage> messages=new ArrayList<InvitationMessage>();
+        MessageDao messageDao=new MessageDaoImpl();
+
         return null;
     }
 }

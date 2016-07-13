@@ -3,7 +3,7 @@ package Dao;
 /**
  * Created by mm on 2016/7/12.
  */
-public interface CreateIdDaoImpl {
+public interface CreateIdDao {
     //if creating failed,it will return 0
     public int CreateIntId(String Class);
 

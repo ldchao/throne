@@ -1,18 +1,16 @@
 package DaoImpl;
 
 import Connection.connection;
-import POJO.*;
+import Dao.CreateIdDao;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by mm on 2016/7/12.
  */
-public class CreateIdDaoImpl implements Dao.CreateIdDaoImpl{
+public class CreateIdDaoImpl implements CreateIdDao {
     public int CreateIntId(String Class) {
         Session session= connection.getSession();
         try {
