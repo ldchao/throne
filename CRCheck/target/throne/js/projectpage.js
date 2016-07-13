@@ -103,10 +103,6 @@ function addIds(index) {
 
     var eachdiv = document.createElement("div");
     eachdiv.setAttribute("class", "div_each");
-    // eachdiv.onclick = function () {
-    //     removeIds(elem_id.innerHTML);
-    // };
-
     $(eachdiv).live('click',function(){
         removeIds(this.getElementsByClassName("id_each")[0].innerHTML);
     });

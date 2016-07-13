@@ -17,7 +17,7 @@
         <property name="state">
             <column name="state" sql-type="varchar(20)" length="20"/>
         </property>
-        <property name="getQualityReview">
+        <property name="qualityReview">
             <column name="qualityReviewPath" sql-type="text"/>
         </property>
     </class>
