@@ -4,7 +4,6 @@
 var idlist = new Array();  // 记录已经添加的用户
 var idcount = 0;  // 下标
 var currentids = new Array();  // 记录当前的8个随机用户
-var depart_flag = 0;  // 分页标志
 
 function showIntroduce() {
     $("#introduce_child").slideToggle();
@@ -97,24 +96,28 @@ function addIds(index) {
         return;
     }
 
-    // if (idlist.length > 7) {
-    //     hideId();
-    // }
-    //
-    // depart_flag++;
-    // if(depart_flag > 8) {
-    //     depart_flag = 0;
-    //     var pagesdiv = document.getElementById("pages");
-    //     var span = document.createElement("span");
-    //     span.innerHTML = ".";
-    //     pagesdiv.appendChild(span);
-    // }
-
     elem_img.setAttribute("class", "img_each_after");
 
     // 添加至已添加用户的列表
     idlist[idcount] = elem_id.innerHTML;
     idcount++;
+
+    // 隐藏最后一个
+    if (idlist.length > 8) {
+        hideId();
+    }
+
+    var spanum = document.getElementById("pages").getElementsByTagName("span").length;
+    if (spanum * 8 < idlist.length) {
+        var pagesdiv = document.getElementById("pages");
+        var span = document.createElement("span");
+        span.innerHTML = "o";
+        pagesdiv.appendChild(span);
+
+        $(span).live('click', function () {
+            gotoPage(this);
+        });
+    }
 
     var eachdiv = document.createElement("div");
     eachdiv.setAttribute("class", "div_each");
@@ -140,11 +143,13 @@ function addIds(index) {
 // 删除已选用户
 function removeIds(id_remove) {
 
-    idlist.splice(hasInList(id_remove), 1);
-    idcount--;
-
     var selected_div = document.getElementById("selectedIds_div");
     var divs = selected_div.getElementsByClassName("div_each");
+    var lastpos = hasInList(divs[divs.length - 1].getElementsByClassName("id_each")[0].innerHTML);
+
+    var listpos = hasInList(id_remove);
+    idlist.splice(listpos, 1);
+    idcount--;
 
     for (var i = 0; i < divs.length; i++) {
         if (divs[i].getElementsByClassName("id_each")[0].innerHTML == id_remove) {
@@ -158,6 +163,11 @@ function removeIds(id_remove) {
         var imgs = document.getElementById("above_div").getElementsByClassName("div_each");
         imgs[currentpos].getElementsByClassName("img_each_after")[0].setAttribute("class", "img_each");
     }
+
+    // 如果大于8个,需要补空位
+    if (idlist.length > 7 && listpos > 0) {
+        showId(lastpos - 1, true);
+    }
 }
 
 // 增加时,隐藏第九个元素
@@ -167,9 +177,33 @@ function hideId() {
     selected_div.removeChild(divs[divs.length - 1]);
 }
 
-// 删除时,显示第九个元素, 传入被删除元素的位置
-function showId() {
+// 删除时,显示第九个元素, 传入被删除元素的前一个位置,即显示的元素的位置
+// isDelete = true 删除时用, false 普通显示用
+function showId(index, isDelete) {
+    var eachdiv = document.createElement("div");
+    eachdiv.setAttribute("class", "div_each");
+    $(eachdiv).live('click', function () {
+        removeIds(this.getElementsByClassName("id_each")[0].innerHTML);
+    });
 
+    var eachimg = document.createElement("div");
+    eachimg.setAttribute("class", "img_each_selected");
+
+    var eachid = document.createElement("div");
+    eachid.setAttribute("class", "id_each");
+    eachid.innerHTML = idlist[index];
+
+    eachdiv.appendChild(eachimg);
+    eachdiv.appendChild(eachid);
+
+    document.getElementById("selectedIds_div").appendChild(eachdiv);
+
+    // 去除一个分页节点
+    if (isDelete == true && idlist.length % 8 == 0 && idlist.length >= 8) {
+        var pagesdiv = document.getElementById("pages");
+        var spans = pagesdiv.getElementsByTagName("span");
+        pagesdiv.removeChild(spans[spans.length - 1]);
+    }
 }
 
 // 返回已添加的id列表中的位置
@@ -197,3 +231,24 @@ function isIncurrent(str) {
     return pos;
 }
 
+// 翻页
+function gotoPage(node) {
+
+    var spans = document.getElementById("pages").getElementsByTagName("span");
+
+    if (spans.length > 1) {
+        var index = ($(node).parents("#pages").find("span").index($(node))) * 8;
+        document.getElementById("selectedIds_div").innerHTML = '';
+
+        var max = idlist.length - index - 1;
+
+        var min = max - 8;
+        if (min < 0) {
+            min = -1;
+        }
+
+        for (var i = max; i > min; i--) {
+            showId(i, false);
+        }
+    }
+}

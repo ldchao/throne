@@ -408,8 +408,9 @@
 
 .pages_depart #pages {
     color: #6093e2;
-    font-size: 32px;
+    font-size: 12px;
     line-height: 12px;
+    text-align: center;
     cursor: pointer;
     display: inline-block;
 }

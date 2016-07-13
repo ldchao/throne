@@ -181,6 +181,7 @@
                     <span class="previous"> < </span>
 
                     <div id="pages">
+                        <span onclick="gotoPage(this)">o</span>
                     </div>
 
                     <span class="next"> > </span>
