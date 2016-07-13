@@ -88,25 +88,27 @@ public class MessageDaoImpl implements MessageDao{
 
 
     public Message findMessage(int id) {
-        Session session= connection.getSession();
-        try{
-            String hql="from Message m where m.id="+id;
+        Session session = connection.getSession();
+        try {
+            String hql = "from Message m where m.id=" + id;
             Query query = session.createQuery(hql);
-            List list=query.list();
-            Message message=(Message) list.get(0);
+            List list = query.list();
             session.close();
-            if(message!=null){
-               return message;
-            }else{
+            if (list.size() == 0) {
                 return null;
+            } else {
+                Message message = (Message) list.get(0);
+                return message;
             }
-        }catch(Exception e){
+
+        } catch (Exception e) {
             e.printStackTrace();
             connection.closeSession(session);
-            return  null;
+            return null;
         }
-
     }
+
+
 
     public int getMessageNum(String uid) {
         Session session= connection.getSession();
