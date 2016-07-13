@@ -156,25 +156,26 @@ public class ProjectServiceImpl implements ProjectService{
     }
     //TODO 测试
     public static void main(String[] args){
-        ProjectModel p=new ProjectModel();
-        p.setUserID("saige");
-        p.setName("test");
-        p.setType(Language.C);
-        p.setDiscription("这是一个测试项目");
-        p.setState(ProjectState.NotStart);
-        p.setPower(Power.PUBLIC);
-        p.setStartDate("2015-02-22");
-        p.setEndDate("2015-06-30");
-        p.setProjectPath("");
-        p.setAttendReview("12");
-        p.setQualityFeedback("34");
-        ArrayList<InvitationMessage> list=new ArrayList<InvitationMessage>();
-        InvitationMessage m=new InvitationMessage();
-        m.setUserID("saisai");
-        list.add(m);
-        p.setInvitationList(list);
+//        ProjectModel p=new ProjectModel();
+//        p.setUserID("saige");
+//        p.setName("test");
+//        p.setType(Language.C);
+//        p.setDiscription("这是一个测试项目");
+//        p.setState(ProjectState.NotStart);
+//        p.setPower(Power.PUBLIC);
+//        p.setStartDate("2015-02-22");
+//        p.setEndDate("2015-06-30");
+//        p.setProjectPath("");
+//        p.setAttendReview("12");
+//        p.setQualityFeedback("34");
+//        ArrayList<InvitationMessage> list=new ArrayList<InvitationMessage>();
+//        InvitationMessage m=new InvitationMessage();
+//        m.setUserID("saisai");
+//        list.add(m);
+//        p.setInvitationList(list);
         ProjectService ps=new ProjectServiceImpl();
-        UniversalState i=ps.addProject(p);
+//        UniversalState i=ps.addProject(p);
+        UniversalState i=ps.deleteProject(19);
         System.out.print(String.valueOf(i));
     }
 }
