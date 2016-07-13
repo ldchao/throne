@@ -137,7 +137,7 @@
     background-color: #88a7da;
     border-radius: 60px;
     position: absolute;
-    top: 44px;
+    top: 35px;
     right: 275px;
 }
 
@@ -146,7 +146,7 @@
     height: 36px;
     border: none;
     position: absolute;
-    top: 122px;
+    top: 112px;
     right: 156px;
     padding-left: 13px;
 }
@@ -156,7 +156,7 @@
     height: 80px;
     border: none;
     position: absolute;
-    top: 168px;
+    top: 156px;
     right: 156px;
     resize: none;
     padding-left: 13px;
@@ -166,7 +166,7 @@
     width: 292px;
     height: 36px;
     position: absolute;
-    top: 257px;
+    top: 245px;
     right: 156px;
 }
 
@@ -174,7 +174,7 @@
     width: 141px;
     height: 36px;
     position: absolute;
-    top: 304px;
+    top: 292px;
     right: 307px;
 }
 
@@ -182,7 +182,7 @@
     width: 141px;
     height: 36px;
     position: absolute;
-    top: 304px;
+    top: 292px;
     right: 156px;
 }
 
@@ -195,7 +195,7 @@
 
 .limit_tip {
     position: absolute;
-    top: 360px;
+    top: 346px;
     right: 287px;
     color: #737474;
     font-size: 16px;
@@ -203,7 +203,7 @@
 
 #limit {
     position: absolute;
-    top: 353px;
+    top: 338px;
     right: 157px;
 }
 
@@ -211,14 +211,14 @@
     width: 292px;
     border: 1px solid #d4d5db;
     position: absolute;
-    top: 380px;
+    top: 365px;
     right: 156px;
 }
 
 .invitation_tip {
     position: absolute;
-    top: 415px;
-    right: 304px;
+    top: 403px;
+    right: 299px;
     color: #737474;
     font-size: 16px;
 }
@@ -233,21 +233,9 @@
     font-family: "PingFang SC";
     border: 1px solid #587cd3;
     position: absolute;
-    top: 412px;
+    top: 398px;
     right: 158px;
 }
-
-/*.pro_commit {*/
-    /*width: 296px;*/
-    /*height: 36px;*/
-
-    /*color: white;*/
-    /*border-radius: 25px;*/
-    /*position: absolute;*/
-    /*top: 455px;*/
-    /*right: 154px;*/
-    /*z-index: 10;*/
-/*}*/
 
 .shadow {
     width: 298px;
@@ -256,7 +244,7 @@
     color: white;
     border-radius: 25px;
     position: absolute;
-    top: 454px;
+    top: 442px;
     right: 153px;
     box-shadow: 0 4px 13px #6093e2;
     text-align: center;
