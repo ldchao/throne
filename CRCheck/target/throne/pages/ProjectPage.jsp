@@ -81,7 +81,7 @@
         <span class="text_style_left">定时高效</span>
     </div>
 
-    <div class="circle_div" onclick="showLaunch()">
+    <div class="circle_div" onclick="showLaunch('launch')">
         <hr class="add_style_1">
         <hr class="add_style_2">
     </div>
@@ -102,7 +102,7 @@
     <div class="launch_div_left"></div>
 
     <div class="launch_div_right">
-        <button class="close close_div_launch" onclick="closeLaunch()">x</button>
+        <button class="close close_div_launch" onclick="closeLaunch('launch')">x</button>
 
         <div class="img_div"></div>
 
@@ -138,12 +138,28 @@
 
         <span class="invitation_tip">选择您的项目参与者</span>
 
-        <button class="invitation_list_btn">评审者列表</button>
+        <button class="invitation_list_btn" onclick="showLaunch('reviewer_div')">评审者列表</button>
 
         <div class="shadow">发起项目评审</div>
 
-    </div>
+        <%-- 邀请 --%>
+        <div id="reviewer_div">
+            <button class="close_div_launch close" onclick="closeLaunch('reviewer_div')">x</button>
 
+            <div class="imgs_div">
+                <%for (int i = 0; i < 8; i++) { %>
+
+                <div class="div_each">
+                    <div class="img_each"></div>
+                    <div class="id_each">name</div>
+                </div>
+
+                <% } %>
+            </div>
+
+        </div>
+
+    </div>
 </div>
 
 <%--登录--%>

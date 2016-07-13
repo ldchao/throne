@@ -12,8 +12,8 @@ var iBase = {
     }
 }
 
-function showLaunch() {
-    var elem = document.getElementById("launch");
+function showLaunch(elem_id) {
+    var elem = document.getElementById(elem_id);
     var speed = 12;
     var opacity = 100;
 
@@ -30,8 +30,8 @@ function showLaunch() {
 
 }
 
-function closeLaunch() {
-    var elem = document.getElementById("launch");
+function closeLaunch(elem_id) {
+    var elem = document.getElementById(elem_id);
     var speed = 15;
     var opacity = 0;
 

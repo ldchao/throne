@@ -6699,18 +6699,18 @@ a.list-group-item-danger.active, a.list-group-item-danger.active:focus,
 	font-size: 21px;
 	font-weight: 700;
 	line-height: 1;
-	color: #000;
+	color: #7595e0;
 	text-shadow: 0 1px 0 #fff;
 	filter: alpha(opacity = 20);
-	opacity: .2
+	opacity: .5
 }
 
 .close:focus, .close:hover {
-	color: #000;
+	color: #7595e0;
 	text-decoration: none;
 	cursor: pointer;
 	filter: alpha(opacity = 50);
-	opacity: .5
+	opacity: 1
 }
 
 button.close {
