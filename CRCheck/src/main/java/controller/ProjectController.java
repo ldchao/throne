@@ -28,7 +28,7 @@ import java.util.ArrayList;
 public class ProjectController {
     //发布新项目
     @RequestMapping(value = "/launch", method = RequestMethod.GET)
-    public ModelAndView publish(String[] str1,String[] str2) {
+    public ModelAndView launch(String[] str1,String[] str2) {
         //表单内容转存成ProjectModel
         ProjectModel p=new ProjectModel();
         //str1第一项 用户id
