@@ -8,7 +8,7 @@ import enums.Power;
 public class UserModel {
     private String id;
     private Power power;
-//    private
+    private int messageNum;
 
     public UserModel() {
     }
@@ -29,4 +29,11 @@ public class UserModel {
         this.power = power;
     }
 
+    public int getMessageNum() {
+        return messageNum;
+    }
+
+    public void setMessageNum(int messageNum) {
+        this.messageNum = messageNum;
+    }
 }

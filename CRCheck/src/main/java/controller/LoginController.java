@@ -49,6 +49,7 @@ public class LoginController {
         if (state == UniversalState.SUCCESS) {
             UserModel userModel = new UserModel();
             userModel.setId(userId);
+            userModel.setMessageNum(0);
             userModel.setPower(Power.valueOf(power));
             request.getSession().setAttribute("User", userModel);
         }

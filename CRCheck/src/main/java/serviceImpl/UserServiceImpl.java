@@ -5,6 +5,7 @@ import DaoImpl.UserDaoImpl;
 import POJO.User;
 import enums.Power;
 import model.UserModel;
+import service.MessageService;
 import service.UserService;
 
 /**
@@ -20,6 +21,9 @@ public class UserServiceImpl implements UserService {
         user=dao.findUser(po);
         model.setId(user.getId());
         model.setPower(Power.valueOf(user.getUserState()));
+        MessageService messageService=new MessageServiceImpl();
+        int messageNum=messageService.checkMessageCount(userid);
+        model.setMessageNum(messageNum);
         return model;
     }
 

@@ -30,6 +30,7 @@ public class MessageServiceImpl implements MessageService {
               String invitement="尊敬的用户您好，"+constantMessage;
             Integer id=createIdDao.CreateIntId("Message");
             Message message=new Message();
+            message.setId(id);
             message.setContent(invitement);
             message.setProjectId(projectModel.getProjectID());
             message.setUserId(invitationMessage.getUserID());
@@ -72,5 +73,10 @@ public class MessageServiceImpl implements MessageService {
             messages.add(invitation);
         }
         return messages;
+    }
+
+    public int checkMessageCount(String userID) {
+        MessageDao messageDao=new MessageDaoImpl();
+        return messageDao.getMessageNum(userID);
     }
 }
