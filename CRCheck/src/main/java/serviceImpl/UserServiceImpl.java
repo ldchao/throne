@@ -4,7 +4,6 @@ import Dao.UserDao;
 import DaoImpl.UserDaoImpl;
 import POJO.User;
 import enums.Power;
-import enums.UniversalState;
 import model.UserModel;
 import service.UserService;
 
@@ -16,7 +15,9 @@ public class UserServiceImpl implements UserService {
         UserModel model=new UserModel();
         UserDao dao=new UserDaoImpl();
         User user=new User();
-        user=dao.findUser(userid);
+        User po = new User();
+        po.setId(userid);
+        user=dao.findUser(po);
         model.setId(user.getId());
         model.setPower(Power.valueOf(user.getUserState()));
         return model;

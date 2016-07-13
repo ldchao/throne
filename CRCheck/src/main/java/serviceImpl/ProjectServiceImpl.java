@@ -142,6 +142,7 @@ public class ProjectServiceImpl implements ProjectService{
 //        if(a&&b.equals(UniversalState.SUCCESS)&&c.equals(UniversalState.SUCCESS))
 //            return UniversalState.SUCCESS;
 //        return UniversalState.FAIL;
+        return UniversalState.SUCCESS;
     }
     //TODO 测试
     public static void main(String[] args){
@@ -158,6 +159,6 @@ public class ProjectServiceImpl implements ProjectService{
 //        p.setAttendReview(projectModel.getAttendReview());
 //        p.setQualityReview(projectModel.getQualityFeedback());
 //        ProjectService ps=new ProjectServiceImpl();
-        ps.addProject(p);
+//        ps.addProject(p);
     }
 }
