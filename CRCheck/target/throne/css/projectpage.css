@@ -375,3 +375,14 @@
     margin-left: 14px;
     margin-top: 10px;
 }
+
+.img_each_selected {
+    width: 40px;
+    height: 40px;
+    border-radius: 60px;
+    background-color: #d8d8d8;
+}
+
+.img_each_selected:hover {
+    background-color: #f5ab0c;
+}

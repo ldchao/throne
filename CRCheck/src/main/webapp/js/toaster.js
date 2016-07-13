@@ -12,6 +12,28 @@ function slidein(index, remindness) {
     document.getElementById("remind").setAttribute("class", words[index]);
     document.getElementById("remind").innerHTML = remindness;
 
-    window.location.href='#toaster';
+    window.location.href = '#toaster';
     setTimeout("window.location.href='#toaster_close'", 1500);
+}
+
+// 每10秒遍历一次消息提醒
+$(function () {
+    setInterval("getNews()", 10000);
+});
+
+function getNews() {
+    $.ajax({
+        type: "get",
+        async: false,
+        url: "/MessageRemind",
+        success: function (result) {
+            if (result == "Changed") {
+                slidein(2, '您有一条新消息');
+
+            }
+        },
+        error: function () {
+            alert("获取数据失败啦")
+        }
+    })
 }

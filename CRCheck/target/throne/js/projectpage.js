@@ -77,7 +77,7 @@ function addIds(index) {
     eachdiv.setAttribute("onclick", "removeIds(" + index + ")");
 
     var eachimg = document.createElement("div");
-    eachimg.setAttribute("class", "img_each");
+    eachimg.setAttribute("class", "img_each_selected");
 
     var eachid = document.createElement("div");
     eachid.setAttribute("class", "id_each");

@@ -49,6 +49,7 @@ function closeLaunch(elem_id) {
 
 // 随机八个用户
 function setIds() {
+    
 
     for (var i = 0; i < 8; i++) {
         var ids = "id" + (i + "");
@@ -77,7 +78,7 @@ function addIds(index) {
     eachdiv.setAttribute("onclick", "removeIds(" + index + ")");
 
     var eachimg = document.createElement("div");
-    eachimg.setAttribute("class", "img_each");
+    eachimg.setAttribute("class", "img_each_selected");
 
     var eachid = document.createElement("div");
     eachid.setAttribute("class", "id_each");
