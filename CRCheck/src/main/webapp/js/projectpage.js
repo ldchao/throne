@@ -62,14 +62,19 @@ function addIds(index) {
     var selectId = "id" + (index + "");
     var selectImg = "img" + (index + "");
 
-    if(document.getElementById(selectImg).getAttribute("class") == "img_each_after")
+    var elem_img = document.getElementById(selectImg)
+    if(elem_img.getAttribute("class") == "img_each_after"){
+        removeIds(index);
         return;
+    }
 
-    document.getElementById(selectImg).setAttribute("class", "img_each_after");
+    elem_img.setAttribute("class", "img_each_after");
 
     var eachdiv = document.createElement("div");
+    var eachdiv_id = "div" + (index + "");
+    eachdiv.setAttribute("id", eachdiv_id);
     eachdiv.setAttribute("class", "div_each");
-    eachdiv.setAttribute("onclick", "removeIds(this, " + index + ")");
+    eachdiv.setAttribute("onclick", "removeIds(" + index + ")");
 
     var eachimg = document.createElement("div");
     eachimg.setAttribute("class", "img_each");
@@ -87,8 +92,10 @@ function addIds(index) {
 }
 
 // 删除已选用户
-function removeIds(divid, index) {
-    document.getElementById("selectedIds_div").removeChild(divid);
+function removeIds(index) {
+    var divid = "div" + (index + "");
+    var elem = document.getElementById(divid);
+    document.getElementById("selectedIds_div").removeChild(elem);
     var selectImg = "img" + (index + "");
     document.getElementById(selectImg).setAttribute("class", "img_each");
 }

@@ -168,6 +168,8 @@
                 <hr class="hr_decorate_2">
             </div>
 
+            <span class="selected_tip">已选评审者</span>
+
             <%-- 下半部分 --%>
             <div class="below_part">
                 <%-- 选择的用户 --%>
