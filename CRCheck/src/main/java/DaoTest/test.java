@@ -86,14 +86,21 @@ public class test {
         SummaryDaoImpl summaryDao=new SummaryDaoImpl();
         CreateIdDaoImpl createIdDao=new CreateIdDaoImpl();
         Summary summary=new Summary();
-        int id=createIdDao.CreateIntId("Summary");
-        summary.setCombination("123");
-        summary.setDescription("222");
-        summary.setFlag(22);
-        summary.setId(id);
-        summary.setLocation("dfsd");
-        summary.setProjectId(12);
-        summary.setType("shachao");
-        summaryDao.addSummary(summary);
+//        int id=createIdDao.CreateIntId("Summary");
+//        summary.setCombination("123");
+//        summary.setDescription("222");
+//        summary.setFlag(22);
+//        summary.setId(id);
+//        summary.setLocation("dfsd");
+//        summary.setProjectId(12);
+//        summary.setType("shachao");
+//        summaryDao.addSummary(summary);
+
+        summary.setProjectId(16);
+//        summary.setFlag(22);
+//        System.out.println(summaryDao.updateFlag(summary));
+
+//        List list=summaryDao.getValidSummary(summary);
+        System.out.println(summaryDao.deleteInvalidSummary(summary));
     }
 }
