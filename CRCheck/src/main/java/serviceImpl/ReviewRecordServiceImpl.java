@@ -13,6 +13,11 @@ import java.util.ArrayList;
 public class ReviewRecordServiceImpl implements ReviewRecordService {
     //提交评审记录
     public UniversalState submitReviewRecord(ArrayList<PersonalReviewRecord> recordList){
+
+        for(PersonalReviewRecord personalReviewRecord:recordList){
+
+        }
+
         return null;
     }
 

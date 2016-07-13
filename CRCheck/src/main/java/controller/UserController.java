@@ -17,8 +17,7 @@ import java.util.List;
 public class UserController {
     //获取随机的8个用户
     @RequestMapping(value = "/getUserList", method = RequestMethod.GET)
-    @ResponseBody
-    public UserListForm getUserList() {
+    public @ResponseBody UserListForm getUserList() {
         UserService user=new UserServiceImpl();
         UserListForm userListForm=new UserListForm();
         userListForm.setUserList(user.getUserList());
