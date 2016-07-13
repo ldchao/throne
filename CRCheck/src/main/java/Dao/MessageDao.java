@@ -11,12 +11,14 @@ public interface MessageDao {
     //id是自增的，不过目前没增加，要手动输入
     public boolean addMessage(Message message);
 
-    public boolean deleteMessage(String uid);
+    public boolean deleteAllMessage(String uid);
+
+    public boolean deleteMessage(int id);
 
     public boolean updateMessage(Message message);
 
     public ArrayList<Message> findAllMessage(String uid);
 
     public Message findMessage(int id);
-    
+
 }
