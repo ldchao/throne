@@ -113,7 +113,7 @@ public class InvitementDaoImpl implements InvitementDao{
     public Invitement findInvitement(int pid, String uid) {
         Session session= connection.getSession();
         try {
-            String hql="from Invitement i where i.projectId='"+pid+"' and i.userId='"+uid+"'";
+            String hql="from Invitement i where i.projectId="+pid+" and i.userId='"+uid+"'";
             Query query = session.createQuery(hql);
             List aList = query.list();
             Invitement invitement = (Invitement) aList.get(0);
@@ -133,7 +133,7 @@ public class InvitementDaoImpl implements InvitementDao{
     public ArrayList<Invitement> findAllInvitement(int pid) {
         Session session= connection.getSession();
         try {
-            String hql="from Invitement i where i.projectId='"+pid+"'";
+            String hql="from Invitement i where i.projectId="+pid+"";
             Query query = session.createQuery(hql);
             ArrayList<Invitement> aList = (ArrayList<Invitement>) query.list();
             connection.closeSession(session);

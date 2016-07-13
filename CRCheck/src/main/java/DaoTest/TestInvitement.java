@@ -1,4 +1,4 @@
-package Connection;
+package DaoTest;
 
 import DaoImpl.InvitementDaoImpl;
 import POJO.Invitement;

@@ -1,4 +1,4 @@
-package Connection;
+package DaoTest;
 
 import DaoImpl.MessageDaoImpl;
 import POJO.Message;
@@ -10,17 +10,18 @@ public class TestMessage {
     public static void main(String args[]){
         MessageDaoImpl messageDao = new MessageDaoImpl();
         Message message = new Message();
-        message.setId(1);
-        message.setState("NotHandle");
-       message.setUserId("shachao");
-        message.setContent("get check");
+       // message.setId(1);
+       // message.setState("NotHandle");
+      // message.setUserId("shachao");
+       // message.setContent("get check");
 //        message.setProjectId("23");
-        message.setSendOrReceive("send");
+       // message.setSendOrReceive("send");
 //        messageDao.addMessage(message);
 //        message=messageDao.findMessage("shachao");
 //       System.out.print(message.getId());
        // messageDao.deleteMessage("shachao");
         //message.setState("Handle");
-        messageDao.updateMessage(message);
+       // messageDao.updateMessage(message);
+       System.out.print( messageDao.getMessageNum("123"));
     }
 }

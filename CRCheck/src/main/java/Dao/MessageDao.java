@@ -21,4 +21,6 @@ public interface MessageDao {
 
     public Message findMessage(int id);
 
+    public int getMessageNum(String uid);
+
 }

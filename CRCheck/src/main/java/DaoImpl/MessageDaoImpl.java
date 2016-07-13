@@ -17,7 +17,7 @@ public class MessageDaoImpl implements MessageDao{
     public boolean addMessage(Message message) {
         Session session= connection.getSession();
         try {
-            if (findMessage(message.getUserId())==null){
+            if (findMessage(message.getId())==null){
                 session.save(message);
                 Transaction transaction=session.beginTransaction();
                 transaction.commit();
@@ -37,16 +37,29 @@ public class MessageDaoImpl implements MessageDao{
 
 
     public boolean deleteMessage(int id) {
-        return false;
+        Session session= connection.getSession();
+        try {
+        Message message=findMessage(id);
+        message.setId(message.getId());
+        session.delete(message);
+        Transaction transaction=session.beginTransaction();
+        transaction.commit();
+        connection.closeSession(session);
+        return true;
+        }catch (Exception e){
+            connection.closeSession(session);
+            return false;
+        }
     }
 
     public boolean deleteAllMessage(String uid) {
         Session session= connection.getSession();
         try {
-            Message message = new Message();
-            message=findMessage(uid);
-            message.setId(message.getId());
-            session.delete(message);
+            ArrayList<Message> message=findAllMessage(uid);
+            for(int i=0;i<message.size();i++) {
+                message.get(i).setId(message.get(i).getId());
+                session.delete(message.get(i));
+            }
             Transaction transaction=session.beginTransaction();
             transaction.commit();
             connection.closeSession(session);
@@ -72,24 +85,54 @@ public class MessageDaoImpl implements MessageDao{
         }
     }
 
-    public ArrayList<Message> findAllMessage(String uid) {
-        return null;
-    }
+
 
     public Message findMessage(int id) {
-        return null;
-    }
-
-    public Message findMessage(String uid) {
         Session session= connection.getSession();
-        try {
-           String hql="from Message m where m.userId='"+uid+"'";
+        try{
+            String hql="from Message m where m.id="+id;
             Query query = session.createQuery(hql);
             List list=query.list();
             Message message=(Message) list.get(0);
             session.close();
             if(message!=null){
-                return message;
+               return message;
+            }else{
+                return null;
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+            connection.closeSession(session);
+            return  null;
+        }
+
+    }
+
+    public int getMessageNum(String uid) {
+        Session session= connection.getSession();
+        try {
+            String hql="from Message m where m.userId='"+uid+"'";
+            Query query = session.createQuery(hql);
+            ArrayList<Message> list=(ArrayList<Message>) query.list();
+            session.close();
+            return list.size();
+        }catch (Exception e) {
+            e.printStackTrace();
+            connection.closeSession(session);
+            return 0;
+        }
+
+    }
+
+    public ArrayList<Message> findAllMessage(String uid) {
+        Session session= connection.getSession();
+        try {
+           String hql="from Message m where m.userId='"+uid+"'";
+            Query query = session.createQuery(hql);
+            ArrayList<Message> list=(ArrayList<Message>) query.list();
+            session.close();
+            if(list.size()!=0){
+                return list;
             }else {
                 return null;
             }
