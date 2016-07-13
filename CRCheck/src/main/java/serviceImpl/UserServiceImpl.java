@@ -37,10 +37,14 @@ public class UserServiceImpl implements UserService {
         if(list.size()<=8)
             return list;
         Random rand = new Random();
-        int randNum = rand.nextInt(list.size()-8);
+        int i=list.size()/8;
+        if(list.size()%8!=0)
+            i++;
+        int randNum = rand.nextInt(i);
         List<String> result=new ArrayList<String>();
-        for(int i=randNum;i<randNum+8;i++){
-            result.add(list.get(i)+"");
+        for(int j=0;j<8;j++){
+            int k=(8*randNum+j)%list.size();
+            result.add(list.get(k)+"");
         }
         return result;
     }
