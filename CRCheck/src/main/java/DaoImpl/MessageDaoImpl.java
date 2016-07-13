@@ -32,7 +32,13 @@ public class MessageDaoImpl implements MessageDao{
         }
     }
 
-    public boolean deleteMessage(String uid) {
+
+
+    public boolean deleteMessage(int id) {
+        return false;
+    }
+
+    public boolean deleteAllMessage(String uid) {
         Session session= connection.getSession();
         try {
             Message message = new Message();
@@ -62,6 +68,14 @@ public class MessageDaoImpl implements MessageDao{
             connection.closeSession(session);
             return false;
         }
+    }
+
+    public ArrayList<Message> findAllMessage(String uid) {
+        return null;
+    }
+
+    public Message findMessage(int id) {
+        return null;
     }
 
     public Message findMessage(String uid) {
