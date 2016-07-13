@@ -1,6 +1,9 @@
 /**
  * Created by L.H.S on 16/7/8.
  */
+var idlist = new Array();  // 记录已经添加的用户
+var idcount = 0;  // 下标
+var currentids = new Array();  // 记录当前的8个随机用户
 
 function showIntroduce() {
     $("#introduce_child").slideToggle();
@@ -49,51 +52,71 @@ function closeLaunch(elem_id) {
 
 // 随机八个用户
 function setIds() {
-    
+
     $.ajax({
         type: "get",
         async: false,
         url: "/getUserList",
         success: function (result) {
-            alert(result);
+            currentids = result.userList;
         },
         error: function () {
             alert("失败")
         }
-    })
+    });
 
     for (var i = 0; i < 8; i++) {
+
         var ids = "id" + (i + "");
-        document.getElementById(ids).innerHTML = ids;
+        document.getElementById(ids).innerHTML = currentids[i];
+
+        var pos = hasInList(currentids[i]);
+
+        var selectImg = "img" + (i + "");
+        var elem_img = document.getElementById(selectImg);
+
+        if (pos > -1) {
+            elem_img.setAttribute("class", "img_each_after");
+        } else {
+            elem_img.setAttribute("class", "img_each");
+        }
     }
 }
 
 // 添加选择的用户
 function addIds(index) {
-
     var selectId = "id" + (index + "");
     var selectImg = "img" + (index + "");
+    var elem_id = document.getElementById(selectId);
+    var elem_img = document.getElementById(selectImg);
 
-    var elem_img = document.getElementById(selectImg)
     if (elem_img.getAttribute("class") == "img_each_after") {
-        removeIds(index);
+        removeIds(elem_id.innerHTML);
         return;
     }
 
     elem_img.setAttribute("class", "img_each_after");
 
+    // 添加至已添加用户的列表
+    idlist[idcount] = elem_id.innerHTML;
+    idcount++;
+
     var eachdiv = document.createElement("div");
-    var eachdiv_id = "div" + (index + "");
-    eachdiv.setAttribute("id", eachdiv_id);
     eachdiv.setAttribute("class", "div_each");
-    eachdiv.setAttribute("onclick", "removeIds(" + index + ")");
+    // eachdiv.onclick = function () {
+    //     removeIds(elem_id.innerHTML);
+    // };
+
+    $(eachdiv).live('click',function(){
+        removeIds(this.getElementsByClassName("id_each")[0].innerHTML);
+    });
 
     var eachimg = document.createElement("div");
     eachimg.setAttribute("class", "img_each_selected");
 
     var eachid = document.createElement("div");
     eachid.setAttribute("class", "id_each");
-    eachid.innerHTML = selectId;
+    eachid.innerHTML = elem_id.innerHTML;
 
     eachdiv.appendChild(eachimg);
     eachdiv.appendChild(eachid);
@@ -104,11 +127,46 @@ function addIds(index) {
 }
 
 // 删除已选用户
-function removeIds(index) {
-    var divid = "div" + (index + "");
-    var elem = document.getElementById(divid);
-    document.getElementById("selectedIds_div").removeChild(elem);
-    var selectImg = "img" + (index + "");
-    document.getElementById(selectImg).setAttribute("class", "img_each");
+function removeIds(id_remove) {
+
+    var listpos = hasInList(id_remove);
+    idlist.splice(listpos, 1);
+    idcount--;
+
+    var selected_div = document.getElementById("selectedIds_div");
+    var divs = selected_div.getElementsByClassName("div_each");
+
+    selected_div.removeChild(divs[divs.length - 1 - listpos]);
+
+    var currentpos = isIncurrent(id_remove);
+    if (currentpos > -1) {
+        var imgs = document.getElementById("above_div").getElementsByClassName("div_each");
+        imgs[currentpos].getElementsByClassName("img_each_after")[0].setAttribute("class", "img_each");
+    }
+}
+
+// 返回已添加的id列表中的位置
+function hasInList(str) {
+    var pos = -1;
+    for (var i = 0; i < idlist.length; i++) {
+        if (idlist[i] == str) {
+            pos = i;
+            break;
+        }
+    }
+    return pos;
+}
+
+// 返回当前8个随机用户列表中的位置
+function isIncurrent(str) {
+    var pos = -1;
+    for (var i = 0; i < currentids.length; i++) {
+        if (currentids[i] == str) {
+            pos = i;
+            break;
+        }
+    }
+
+    return pos;
 }
 
