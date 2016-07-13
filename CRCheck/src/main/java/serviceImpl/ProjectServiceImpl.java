@@ -4,15 +4,20 @@ import Dao.CreateIdDao;
 import Dao.ProjectDao;
 import DaoImpl.CreateIdDaoImpl;
 import DaoImpl.ProjectDaoImpl;
+import POJO.Invitement;
 import POJO.Project;
 import enums.Language;
 import enums.Power;
 import enums.ProjectState;
 import enums.UniversalState;
+import model.InvitationMessage;
 import model.ProjectModel;
 import service.InvitationListService;
 import service.MessageService;
 import service.ProjectService;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by zs on 2016/7/11.
@@ -42,9 +47,14 @@ public class ProjectServiceImpl implements ProjectService{
         p.setCodePath("");
         p.setAttendReview(projectModel.getAttendReview());
         p.setQualityReview("");
+        //邀请列表处理
+        ArrayList<InvitationMessage> list=projectModel.getInvitationList();
+        for (InvitationMessage invitationMesage:list ) {
+            invitationMesage.setProjectID(id);
+        }
         //加入数据库
         boolean a=dao.addProject(p);
-        UniversalState b = invite.saveInvitationList(projectModel.getInvitationList());
+        UniversalState b = invite.saveInvitationList(list);
         //发送消息
         UniversalState c = message.setIssueMessage(projectModel);
         if(a&&b.equals(UniversalState.SUCCESS)&&c.equals(UniversalState.SUCCESS))
@@ -146,19 +156,25 @@ public class ProjectServiceImpl implements ProjectService{
     }
     //TODO 测试
     public static void main(String[] args){
-        Project p=new Project();
-//        p.setUserId(projectModel.getUserID());
-//        p.setName(projectModel.getName());
-//        p.setType(String.valueOf(projectModel.getType()));
-//        p.setDescription(projectModel.getDiscription());
-//        p.setProjectState(String.valueOf(projectModel.getState()));
-//        p.setPower(String.valueOf(projectModel.getPower()));
-//        p.setStartTime(projectModel.getStartDate());
-//        p.setEndTime(projectModel.getEndDate());
-//        p.setCodePath(projectModel.getProjectPath());
-//        p.setAttendReview(projectModel.getAttendReview());
-//        p.setQualityReview(projectModel.getQualityFeedback());
-//        ProjectService ps=new ProjectServiceImpl();
-//        ps.addProject(p);
+        ProjectModel p=new ProjectModel();
+        p.setUserID("saige");
+        p.setName("test");
+        p.setType(Language.C);
+        p.setDiscription("这是一个测试项目");
+        p.setState(ProjectState.NotStart);
+        p.setPower(Power.PUBLIC);
+        p.setStartDate("2015-02-22");
+        p.setEndDate("2015-06-30");
+        p.setProjectPath("");
+        p.setAttendReview("12");
+        p.setQualityFeedback("34");
+        ArrayList<InvitationMessage> list=new ArrayList<InvitationMessage>();
+        InvitationMessage m=new InvitationMessage();
+        m.setUserID("saisai");
+        list.add(m);
+        p.setInvitationList(list);
+        ProjectService ps=new ProjectServiceImpl();
+        UniversalState i=ps.addProject(p);
+        System.out.print(String.valueOf(i));
     }
 }
