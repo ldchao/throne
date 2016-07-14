@@ -130,7 +130,7 @@
             <select id="code_language" class="mycombox">
                 <option>编程语言</option>
                 <option>Java</option>
-                <option>C/C++</option>
+                <option>Cpp</option>
                 <option>Python</option>
                 <option>WebApp</option>
                 <option>Android</option>

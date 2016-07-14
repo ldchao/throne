@@ -1,6 +1,7 @@
 package DaoTest;
 
 import DaoImpl.*;
+import POJO.Summary;
 
 import java.util.List;
 
