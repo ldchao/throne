@@ -49,22 +49,26 @@ public class DateHelper{
     }
     //测试
     public static void main(String[] args){
-        int day=0;
-        int day2=0;
-        int day3=0;
-        int day4=0;
-        try {
-            day=DateHelper.daysBetween("2015-02-23","2015-02-23");
-            day2=DateHelper.daysBetween("2015-02-23","2015-02-24");
-            day3=DateHelper.daysBetween("2016-02-23","2016-03-23");
-            day4=DateHelper.daysBetween("2015-02-23","2016-02-24");
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        System.out.println(day);
-        System.out.println(day2);
-        System.out.println(day3);
-        System.out.println(day4);
+//        int day=0;
+//        int day2=0;
+//        int day3=0;
+//        int day4=0;
+//        try {
+//            day=DateHelper.daysBetween("2015-02-23","2015-02-23");
+//            day2=DateHelper.daysBetween("2015-02-23","2015-02-24");
+//            day3=DateHelper.daysBetween("2016-02-23","2016-03-23");
+//            day4=DateHelper.daysBetween("2015-02-23","2016-02-24");
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
+//        System.out.println(day);
+//        System.out.println(day2);
+//        System.out.println(day3);
+//        System.out.println(day4);
+        System.out.println(DateHelper.daysAnalyse("2016-07-02","2016-07-13"));
+        System.out.println(DateHelper.daysAnalyse("2016-07-03","2016-07-14"));
+        System.out.println(DateHelper.daysAnalyse("2016-07-14","2016-08-09"));
+        System.out.println(DateHelper.daysAnalyse("2016-07-24","2016-07-16"));
     }
 
 }
