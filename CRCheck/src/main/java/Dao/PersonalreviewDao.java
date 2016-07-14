@@ -19,13 +19,13 @@ public interface PersonalreviewDao {
     //need all the attributes
     public boolean updatePersonalreview(Personalreview po);
 
-    //just need the "id" of "User",and the "id" of project
+    //just need the "id" of "User",and the "id" of project,return "Personalreview"
     public List findProject(User user, Project project);
 
-    //just need the "id" of "Project"
+    //just need the "id" of "Project",return "Personalreview"
     public List findProject(Project po);
 
-    //just need the "id" of "User"
+    //just need the "id" of "User",return "Personalreview"
     public List findProject(User po);
 
 }
