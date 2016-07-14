@@ -5,6 +5,7 @@ var idlist = new Array();  // 记录已经添加的用户
 var idcount = 0;  // 下标
 var currentids = new Array();  // 记录当前的8个随机用户
 var pageNum = 0;  // 页码
+var CRCpro;
 
 function showIntroduce() {
     $("#introduce_child").slideToggle();
@@ -103,6 +104,12 @@ function setIds() {
 
 // 添加选择的用户
 function addIds(index) {
+
+    if (pageNum > 0) {
+        var pagesdiv = document.getElementById("pages");
+        var spans = pagesdiv.getElementsByTagName("span");
+        gotoPage(spans[0]);
+    }
 
     var selectId = "id" + (index + "");
     var selectImg = "img" + (index + "");
@@ -386,5 +393,16 @@ function publishPro() {
             slidein(1, "出故障了请稍候再试");
         }
     });
+}
 
+// 参与的项目
+$(function(){
+    CRCpro = document.getElementById("partin").innerHTML
+});
+
+function addCRCpro() {
+    var div = document.createElement("div");
+    div.setAttribute("class", "projects_div");
+    div.innerHTML = CRCpro;
+    document.getElementById("parent_div").appendChild(div);
 }

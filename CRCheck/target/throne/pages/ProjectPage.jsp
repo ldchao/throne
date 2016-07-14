@@ -85,9 +85,44 @@
     </div><!-- /.container -->
 </nav><!-- /.navbar -->
 
-<div id="introduce_parent" onclick="showIntroduce()"></div>
-<div id="introduce_child">
-    <h1>介绍部分</h1>
+<div id="parent_div">
+
+    <div id="introduce_parent" onclick="showIntroduce()"></div>
+    <div id="introduce_child">
+        <h1>介绍部分</h1>
+    </div>
+
+    <%-- 参与的项目 --%>
+    <div id="partin" class="projects_div">
+
+        <div class="title_div">
+            <div class="title">CRC评审项目</div>
+
+            <div class="kind_div">
+                <div class="kind_img"></div>
+                <span>Java</span>
+            </div>
+        </div>
+
+        <div class="content_describe">
+            这个缺陷好傻好傻好傻好傻好傻好傻好傻
+            好傻好傻好傻好傻好傻好傻好傻好傻好傻好傻好傻好傻好好傻好傻好傻好傻
+            好傻好傻好傻好傻好傻好傻傻好傻好傻好傻好傻好傻好傻
+        </div>
+
+        <div class="bottom_div">
+            <div class="date_info">评审日期: 2016.7.14 - 2016.7.31</div>
+
+            <div class="launcher_info">项目发起者: sure</div>
+
+            <div class="right_corner">
+                <div class="ddl_tip">XX天后结束</div>
+
+                <button class="continue_btn" onclick="addCRCpro()">继续评审</button>
+            </div>
+        </div>
+
+    </div>
 </div>
 
 <div class="invite_div">

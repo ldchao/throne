@@ -131,7 +131,7 @@
     font-size: 17px;
 }
 
-.end_date_div  .img_div {
+.end_date_div .img_div {
     width: 53px;
     height: 53px;
     background-color: #88a7da;
@@ -237,14 +237,14 @@
     position: absolute;
     top: 398px;
     right: 22.5%;
-    -webkit-transition:  0.3s;
-    -moz-transition:  0.3s;
-    -ms-transition:  0.3s;
-    -o-transition:  0.3s;
-    transition:  0.3s;
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+    -ms-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s;
 }
 
-.invitation_list_btn:hover{
+.invitation_list_btn:hover {
     background-color: #587cd3;
     color: #fff;
 }
@@ -264,11 +264,11 @@
     font-size: 16px;
     font-family: "PingFang SC";
     cursor: pointer;
-    -webkit-transition:  0.3s;
-    -moz-transition:  0.3s;
-    -ms-transition:  0.3s;
-    -o-transition:  0.3s;
-    transition:  0.3s;
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+    -ms-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s;
 }
 
 .shadow:hover {
@@ -452,3 +452,93 @@
     content: "\e080";
     display: inline-block;
 }
+
+/* 参与的项目 */
+.projects_div {
+    width: 73%;
+    background-color: #f3f5f9;
+    margin: 40px auto;
+}
+
+.title_div {
+    width: 100%;
+    margin-top: 13px;
+}
+
+.title {
+    font-size: 24px;
+    color: #7490d3;
+    float: left;
+    margin-left: 27px;
+    margin-top: 5px;
+}
+
+.kind_div {
+    float: right;
+    margin-right: 27px;
+    margin-top: 5px;
+    font-size: 22px;
+    color: #778294;
+}
+
+.kind_img {
+    height: 18px;
+    width: 37px;
+    display: inline-block;
+    background-image: url("../image/code.svg");
+    margin-right: 10px;
+}
+
+.content_describe {
+    width: 100%;
+    padding-top: 45px;
+    padding-left: 27px;
+    padding-right: 27px;
+    font-size: 18px;
+    color: #5c6170;
+}
+
+.bottom_div {
+    margin-top: 17px;
+    margin-left: 27px;
+}
+
+.date_info {
+    font-size: 18px;
+    color: #7591d5;
+    display: inline-block;
+}
+
+.launcher_info {
+    font-size: 18px;
+    color: #778294;
+    display: inline-block;
+    margin-left: 16px;
+}
+
+.ddl_tip {
+    font-size: 18px;
+    line-height: 34px;
+    color: #7591d5;
+    display: inline-block;
+    margin-right: 18px;
+}
+
+.continue_btn {
+    color: #fff;
+    background-color: #5ad4a6;
+    font-size: 18px;
+    width: 112px;
+    height: 34px;
+    border: none;
+    display: inline-block;
+    margin-right: 27px;
+    margin-bottom: 20px;
+}
+
+.right_corner{
+    width: 265px;
+    display: inline-block;
+    margin-left: 160px;
+}
+
