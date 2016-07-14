@@ -20,6 +20,7 @@ import serviceImpl.UserServiceImpl;
 import tool.DateHelper;
 
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 
@@ -62,12 +63,8 @@ public class ProjectController {
         int id=ps.addProject(p);
         ProjectModel project=ps.checkProject(id);
         //计算项目剩余时间
-        int day=0;
-        try {
-            day = DateHelper.daysBetween(str1[4], str1[5]);
-        }catch (ParseException e){
-            e.printStackTrace();
-        }
+        String day=DateHelper.daysAnalyse(str1[4],str1[5]);
+
         ModelAndView modelAndView=new ModelAndView("ProjectDetailPage");
         modelAndView.addObject("p",project);
         modelAndView.addObject("day",day);
