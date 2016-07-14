@@ -8,20 +8,20 @@ import DaoImpl.AttendanceDaoImpl;
 import DaoImpl.CreateIdDaoImpl;
 import DaoImpl.PersonalreviewDaoImpl;
 import DaoImpl.SummaryDaoImpl;
-import POJO.Attendance;
-import POJO.Personalreview;
-import POJO.Summary;
+import POJO.*;
 import enums.ApproveState;
 import enums.FinishState;
 import enums.UniversalState;
 import model.PersonalReviewRecord;
 import model.SummaryReviewRecord;
 import service.ReviewRecordService;
+import sun.font.TrueTypeFont;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by zs on 2016/7/11.
@@ -81,23 +81,79 @@ public class ReviewRecordServiceImpl implements ReviewRecordService {
         Attendance attendance=attendanceDao.findAttendance(projectID,userID);
         attendance.setState(FinishState.Done.toString());
 
+        /**
+         * 待插入与矩阵交互部分，个人评审结果塞入   attendance.setQualityReview();
+         */
+
+
+        /**
+         * 待插入整个项目评审记录与矩阵交互部分，项目总的质量报告放入 project中的qualityReview
+         */
 
         return null;
     }
 
-    //查看参评所有用户名单
-    public ArrayList<String> checkProjectUserList(String projectID) {
-        return null;
+    //查看参评所有完成评审用户名单
+    public ArrayList<String> checkProjectUserList(int projectID) {
+
+        AttendanceDao attendanceDao=new AttendanceDaoImpl();
+        ArrayList<String> userlist=attendanceDao.finduserDone(projectID);
+        return userlist;
     }
 
     //按用户查看个人评审记录
     public ArrayList<PersonalReviewRecord> checkPersonalReviewRecord(String userID, int projectID) {
-        return null;
+        PersonalreviewDao personalreviewDao=new PersonalreviewDaoImpl();
+
+        User user=new User();
+        user.setId(userID);
+        Project project=new Project();
+        project.setId(projectID);
+        List<Personalreview> list=personalreviewDao.findProject(user,project);
+        ArrayList<PersonalReviewRecord> result=new ArrayList<PersonalReviewRecord>();
+
+        for (Personalreview p:list) {
+            PersonalReviewRecord r=new PersonalReviewRecord();
+            r.setId(p.getId());
+            r.setUserId(p.getUserId());
+            r.setProjectId(p.getProjectId());
+            r.setCommitTime(p.getCommitTime());
+            String[] location=p.getLocation().split(" ");
+            r.setPath(location[0]);
+            r.setLineNum(location[1]);
+            r.setType(p.getType());
+            r.setDescription(p.getDescription());
+            FinishState finishState=FinishState.valueOf(p.getState());
+            String state=finishState==FinishState.Done?"后续提交":"正常提交";
+            r.setState(state);
+            r.setResult(ApproveState.valueOf(p.getResult()));
+            result.add(r);
+        }
+        return result;
     }
 
     //查看评审记录
-    public ArrayList<SummaryReviewRecord> checkSummaryReviewRecord(String projectID) {
-        return null;
+    public ArrayList<SummaryReviewRecord> checkSummaryReviewRecord(int projectID) {
+        SummaryDao summaryDao=new SummaryDaoImpl();
+        ArrayList<SummaryReviewRecord> result=new ArrayList<SummaryReviewRecord>();
+        Summary summary=new Summary();
+        summary.setProjectId(projectID);
+        List<Summary> list=summaryDao.getValidSummary(summary);
+        for (Summary s:list) {
+            SummaryReviewRecord r=new SummaryReviewRecord();
+            r.setId(s.getId());
+            r.setProjectId(s.getProjectId());
+            String[] location=s.getLocation().split(" ");
+            r.setPath(location[0]);
+            r.setLineNum(location[1]);
+            r.setType(s.getType());
+            r.setDescription(s.getDescription());
+            String combination=s.getCombination();
+            r.setCombination(combination);
+            r.setCombinated(combination.equals("")?false:true);
+            result.add(r);
+        }
+        return result;
     }
 
     //合并评审记录（前面为待合并项ID（个人表中），后面会合并后结果）
