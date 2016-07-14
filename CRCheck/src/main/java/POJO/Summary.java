@@ -6,11 +6,12 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 /**
- * Created by mm on 2016/7/13.
+ * Created by mm on 2016/7/14.
  */
 @Entity
 public class Summary {
     private Integer id;
+    private String userId;
     private Integer projectId;
     private String location;
     private String type;
@@ -26,6 +27,16 @@ public class Summary {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    @Basic
+    @Column(name = "userId", nullable = false, length = 20)
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     @Basic
@@ -96,6 +107,7 @@ public class Summary {
         Summary summary = (Summary) o;
 
         if (id != null ? !id.equals(summary.id) : summary.id != null) return false;
+        if (userId != null ? !userId.equals(summary.userId) : summary.userId != null) return false;
         if (projectId != null ? !projectId.equals(summary.projectId) : summary.projectId != null) return false;
         if (location != null ? !location.equals(summary.location) : summary.location != null) return false;
         if (type != null ? !type.equals(summary.type) : summary.type != null) return false;
@@ -109,6 +121,7 @@ public class Summary {
     @Override
     public int hashCode() {
         int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (userId != null ? userId.hashCode() : 0);
         result = 31 * result + (projectId != null ? projectId.hashCode() : 0);
         result = 31 * result + (location != null ? location.hashCode() : 0);
         result = 31 * result + (type != null ? type.hashCode() : 0);

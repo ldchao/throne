@@ -1,8 +1,6 @@
 package DaoTest;
 
 import DaoImpl.*;
-import POJO.Summary;
-import POJO.User;
 
 import java.util.List;
 
