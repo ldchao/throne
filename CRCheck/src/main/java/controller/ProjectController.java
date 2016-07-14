@@ -2,25 +2,17 @@ package controller;
 
 import enums.Language;
 import enums.Power;
-import enums.UniversalState;
 import model.InvitationMessage;
 import model.ProjectModel;
-import model.UserModel;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
-import service.LoginService;
 import service.ProjectService;
-import service.UserService;
-import serviceImpl.LoginServiceImpl;
 import serviceImpl.ProjectServiceImpl;
-import serviceImpl.UserServiceImpl;
 import tool.DateHelper;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 
 
@@ -30,10 +22,15 @@ import java.util.ArrayList;
 @Controller
 public class ProjectController {
     //发布新项目
-    @RequestMapping(value = "/Launch", method = RequestMethod.GET)
-    public ModelAndView launch(String[] str1,String[] str2) {
+    @RequestMapping(value = "/Launch", method = RequestMethod.POST)
+    @ResponseBody
+    public String launch(HttpServletRequest request, String info1, String info2) {
+
+        String[] str1 = info1.split("[&]");
+        String[] str2 = info2.split("[&]");
+
         //表单内容转存成ProjectModel
-        ProjectModel p=new ProjectModel();
+        ProjectModel p = new ProjectModel();
         //str1第一项 用户id
         p.setUserID(str1[0]);
         //str1第二项，名称-String
@@ -51,23 +48,26 @@ public class ProjectController {
         //str2第一项-自己是否参与(YES,NO)
         p.setAttendReview(str2[0]);
         //str2其他项-邀请用户id
-        ArrayList<InvitationMessage> list=new ArrayList<InvitationMessage>();
-        for(int i=1;i<str2.length;i++){
-            InvitationMessage m=new InvitationMessage();
+        ArrayList<InvitationMessage> list = new ArrayList<InvitationMessage>();
+        for (int i = 1; i < str2.length; i++) {
+            InvitationMessage m = new InvitationMessage();
             m.setUserID(str2[i]);
             list.add(m);
         }
         p.setInvitationList(list);
         //新增项目
-        ProjectService ps=new ProjectServiceImpl();
-        int id=ps.addProject(p);
-        ProjectModel project=ps.checkProject(id);
+        ProjectService ps = new ProjectServiceImpl();
+        int id = ps.addProject(p);
+        ProjectModel project = ps.checkProject(id);
         //计算项目剩余时间
-        String day=DateHelper.daysAnalyse(str1[4],str1[5]);
+        String day = DateHelper.daysAnalyse(str1[4], str1[5]);
 
-        ModelAndView modelAndView=new ModelAndView("ProjectDetailPage");
-        modelAndView.addObject("p",project);
-        modelAndView.addObject("day",day);
-        return modelAndView;
+        if (project != null) {
+            request.getSession().setAttribute("project", project);
+            request.getSession().setAttribute("day", day);
+            return "SUCCESS";
+        } else {
+            return "FAIL";
+        }
     }
 }
