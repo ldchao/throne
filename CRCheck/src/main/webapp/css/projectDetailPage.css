@@ -1,0 +1,69 @@
+.project-title {
+    font-size: 25px;
+    height: 53px;
+    padding: 8px 35px;
+    color: #fff;
+    text-align: center;
+    background-color: rgb(76, 100, 157);
+    border-radius: 2px;
+    display: inline-block;
+}
+
+.project-char {
+    height: 28px;
+    display: block;
+    margin-top: 16px;
+}
+
+.project-owner {
+    /*vertical-align: middle;*/
+    display: inline-block;
+    margin-right: 18px;
+}
+
+.type-image {
+    height: 18px;
+    width: 37px;
+    display: inline-block;
+    background-image: url("../image/code.svg");
+    margin-right: 12px;
+}
+
+.project-time, .project-detail, .member, .left-time, .submit-button {
+    margin-top: 20px;
+}
+
+.member-list {
+    display: block;
+    height: 40px;
+    margin-top: 8px;
+    text-align: center;
+}
+
+#init-form{
+    margin-top: 20px;
+    display: block;
+}
+
+.form-empty {
+    margin-top: 10px;
+    background-color: #BEC4D2;
+    display: block;
+    padding-top: 11px;
+    padding-bottom: 21px;
+}
+
+.form-line {
+    display: block;
+    margin-left: 25px;
+    margin-right: 25px;
+}
+
+
+
+
+
+
+
+
+
