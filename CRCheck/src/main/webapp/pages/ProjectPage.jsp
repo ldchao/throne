@@ -178,13 +178,13 @@
                 <%-- 分页 --%>
                 <div class="pages_depart">
 
-                    <span class="previous"> < </span>
+                    <span class="previous" onclick="prevPage()"> < </span>
 
                     <div id="pages">
                         <span onclick="gotoPage(this)">o</span>
                     </div>
 
-                    <span class="next"> > </span>
+                    <span class="next" onclick="nextPage()"> > </span>
                 </div>
 
             </div>

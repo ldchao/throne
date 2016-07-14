@@ -4,6 +4,7 @@
 var idlist = new Array();  // 记录已经添加的用户
 var idcount = 0;  // 下标
 var currentids = new Array();  // 记录当前的8个随机用户
+var pageNum = 0;  // 页码
 
 function showIntroduce() {
     $("#introduce_child").slideToggle();
@@ -165,7 +166,7 @@ function removeIds(id_remove) {
     }
 
     // 如果大于8个,需要补空位
-    if (idlist.length > 7 && listpos > 0) {
+    if (idlist.length > 7 && listpos > 0 && selected_div.getElementsByClassName("div_each").length < 8) {
         showId(lastpos - 1, true);
     }
 }
@@ -237,7 +238,9 @@ function gotoPage(node) {
     var spans = document.getElementById("pages").getElementsByTagName("span");
 
     if (spans.length > 1) {
-        var index = ($(node).parents("#pages").find("span").index($(node))) * 8;
+        var index = ($(node).parents("#pages").find("span").index($(node)));
+        pageNum = index;
+        var index = index * 8;
         document.getElementById("selectedIds_div").innerHTML = '';
 
         var max = idlist.length - index - 1;
@@ -250,5 +253,21 @@ function gotoPage(node) {
         for (var i = max; i > min; i--) {
             showId(i, false);
         }
+    }
+}
+
+function nextPage() {
+    var spans = document.getElementById("pages").getElementsByTagName("span");
+    if (pageNum < spans.length - 1) {
+        pageNum++;
+        gotoPage(spans[pageNum]);
+    }
+}
+
+function prevPage() {
+    var spans = document.getElementById("pages").getElementsByTagName("span");
+    if (pageNum > 0) {
+        pageNum--;
+        gotoPage(spans[pageNum]);
     }
 }
