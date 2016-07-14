@@ -29,4 +29,7 @@ public interface SummaryDao {
 
     //delete the inValid Summary,just need the "id" of "Summary"
     public boolean deleteInvalidSummary(Summary po);
+
+    //need the "id" of "Summary",return "Summary"
+    public Summary findSummaryById(Summary po);
 }

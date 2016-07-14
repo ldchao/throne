@@ -152,6 +152,7 @@ public class SummaryDaoImpl implements SummaryDao {
     }
 
 
+
     public Summary findSummaryById(Summary po) {
         Session session=connection.getSession();
         try {
