@@ -112,7 +112,7 @@ public class AttendanceDaoImpl  implements AttendanceDao {
     public Attendance findAttendance(int pid, String uid) {
         Session session= connection.getSession();
         try {
-            String hql="from Attendance as a where a.projectId="+pid+" and a.userId="+uid;
+            String hql="from Attendance as a where a.projectId="+pid+" and a.userId='"+uid+"'";
             Query query = session.createQuery(hql);
             List aList = query.list();
             connection.closeSession(session);
@@ -161,6 +161,49 @@ public class AttendanceDaoImpl  implements AttendanceDao {
             }else{
                 return aList;
             }
+        }catch (Exception e){
+            e.printStackTrace();
+            connection.closeSession(session);
+            return  null;
+        }
+    }
+
+    public ArrayList<String> finduserDone(int pid) {
+        Session session = connection.getSession();
+        try{
+            String hql="from Attendance a where a.projectId="+pid;
+            Query query = session.createQuery(hql);
+            ArrayList<String> uids = new ArrayList<String>();
+            ArrayList<Attendance> aList =(ArrayList<Attendance>) query.list();
+            for(int i=0;i<aList.size();i++){
+                //System.out.print(aList.get(i).getState());
+                if(aList.get(i).getState().equals("Done")){
+                    //System.out.print("122122121");
+                    uids.add(aList.get(i).getUserId());
+                }
+            }
+            return uids;
+        }catch (Exception e){
+            e.printStackTrace();
+            connection.closeSession(session);
+            return  null;
+        }
+
+    }
+
+    public ArrayList<String> finduserNotDone(int pid) {
+        Session session = connection.getSession();
+        try{
+            String hql="from Attendance a where a.projectId="+pid;
+            Query query = session.createQuery(hql);
+            ArrayList<String> uids = new ArrayList<String>();
+            ArrayList<Attendance> aList =(ArrayList<Attendance>) query.list();
+            for(int i=0;i<aList.size();i++){
+                if(aList.get(i).getState().equals("NotDone")){
+                    uids.add(aList.get(i).getUserId());
+                }
+            }
+            return uids;
         }catch (Exception e){
             e.printStackTrace();
             connection.closeSession(session);
