@@ -4,6 +4,8 @@ import enums.ProjectState;
 import enums.UniversalState;
 import model.ProjectModel;
 
+import java.util.List;
+
 /**
  * Created by lvdechao on 2016/7/10.
  */
@@ -17,6 +19,9 @@ public interface ProjectService {
 
     //查看项目--没有返回null
     public ProjectModel checkProject(int projectID);
+
+    //查看发起的所有项目
+    public List<ProjectModel> checkLaubchProjects(String userID);
 
     //更新项目状态
     public UniversalState updateProjectState(int projectID, ProjectState projectState);
