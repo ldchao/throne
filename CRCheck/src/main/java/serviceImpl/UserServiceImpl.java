@@ -46,7 +46,7 @@ public class UserServiceImpl implements UserService {
         for(int j=0;j<8;j++){
             int k=(8*randNum+z)%list.size();
             if(list.get(k).equals(userid)){
-                z--;
+                j--;
                 continue;
             }
             result.add(list.get(k)+"");
