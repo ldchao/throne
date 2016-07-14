@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 import service.ProjectService;
 import serviceImpl.ProjectServiceImpl;
 import tool.DateHelper;
@@ -71,21 +72,21 @@ public class ProjectController {
         }
     }
     //进入项目
-    @RequestMapping(value = "/projects", method = RequestMethod.POST)
-    @ResponseBody
-    public String getProject(HttpServletRequest request, int projectId) {
+    @RequestMapping(value = "/projects", method = RequestMethod.GET)
+    public ModelAndView getProject(int projectId) {
         //新增项目
         ProjectService ps = new ProjectServiceImpl();
         ProjectModel project = ps.checkProject(projectId);
+        //项目不存在
+        if (project == null) {
+            return null;
+        }
         //计算项目剩余时间
         String day = DateHelper.daysAnalyse(project.getStartDate(),project.getEndDate());
 
-        if (project == null) {
-            return "FAIL";
-        } else {
-            request.getSession().setAttribute("project", project);
-            request.getSession().setAttribute("day", day);
-            return "SUCCESS";
-        }
+        ModelAndView modelAndView=new ModelAndView("ProjectDetailPage");
+        modelAndView.addObject("project", project);
+        modelAndView.addObject("day", day);
+        return modelAndView;
     }
 }
