@@ -78,7 +78,9 @@
                 <li><a data-toggle="modal" href="#Login">登录</a></li>
                 <li><a data-toggle="modal" href="#Register">注册</a></li>
             </ul>
-            <button class="nav common-button navbar-right" style="margin-top:10px; margin-right:15px;">发起评审</button>
+            <button class="nav common-button navbar-right" style="margin-top:10px; margin-right:15px;"
+                    onclick="showLaunch('launch')">发起评审
+            </button>
         </div><!-- /.nav-collapse -->
     </div><!-- /.container -->
 </nav><!-- /.navbar -->
@@ -90,7 +92,7 @@
 
 <div class="invite_div">
 
-    <div class="left_div">
+    <div class="left_div visible-lg">
         <span class="text_style_left">邀请你的项目伙伴</span>
         <span class="text_style_left">定时高效</span>
     </div>
@@ -100,7 +102,7 @@
         <hr class="add_style_2">
     </div>
 
-    <div class="right_div">
+    <div class="right_div visible-lg">
         <span class="text_style_right">从这里开始添加你的</span>
         <span class="text_style_right">评审项目</span>
     </div>
@@ -113,7 +115,7 @@
 
 <%--发起项目评审--%>
 <div id="launch">
-    <div class="launch_div_left"></div>
+    <div class="launch_div_left visible-lg"></div>
 
     <div class="launch_div_right">
         <button class="close close_div_launch" onclick="closeLaunch('launch')">
@@ -122,11 +124,11 @@
 
         <div class="img_div"></div>
 
-        <input id="pro_name" type="text" placeholder="项目名称">
+        <input class="textfield" id="pro_name" type="text" placeholder="项目名称">
 
-        <textarea id="pro_describe" placeholder="项目描述"></textarea>
+        <textarea class="textfield" id="pro_describe" placeholder="项目描述"></textarea>
 
-        <div class="selectStyle code_language_div">
+        <div class="selectStyle code_language_div textfield">
             <select id="code_language" class="mycombox">
                 <option>编程语言</option>
                 <option>Java</option>
@@ -138,12 +140,12 @@
             </select>
         </div>
 
-        <div class="selectStyle start_date_div">
-            <input class="date_style" type="text" id="start_date" placeholder="开始时间">
+        <div class="selectStyle start_date_div ">
+            <input class="date_style textfield" type="text" id="start_date" placeholder="开始时间" readonly>
         </div>
 
         <div class="selectStyle end_date_div">
-            <input class="date_style" type="text" id="end_date" placeholder="结束时间">
+            <input class="date_style textfield" type="text" id="end_date" placeholder="结束时间" readonly>
         </div>
 
         <span class="limit_tip">评审项目是否公开可见</span>

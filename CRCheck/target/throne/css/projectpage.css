@@ -15,11 +15,12 @@
 }
 
 .invite_div {
-    width: 735px;
+    width: 60%;
     height: 210px;
     background-color: #f0f4fd;
     margin: 60px auto;
     text-align: center;
+    padding-top: 53px;
 }
 
 .circle_div {
@@ -28,7 +29,6 @@
     border-radius: 60px;
     border: 8px solid #7595e0;
     display: inline-block;
-    margin-top: 53px;
     cursor: pointer;
 }
 
@@ -58,7 +58,7 @@
     height: 60px;
     float: left;
     display: inline-block;
-    margin-top: 73px;
+    margin-top: 20px;
     margin-left: 8%;
 }
 
@@ -67,7 +67,7 @@
     height: 60px;
     float: right;
     display: inline-block;
-    margin-top: 73px;
+    margin-top: 20px;
     margin-right: 8%;
 }
 
@@ -235,6 +235,16 @@
     position: absolute;
     top: 398px;
     right: 158px;
+    -webkit-transition:  0.3s;
+    -moz-transition:  0.3s;
+    -ms-transition:  0.3s;
+    -o-transition:  0.3s;
+    transition:  0.3s;
+}
+
+.invitation_list_btn:hover{
+    background-color: #587cd3;
+    color: #fff;
 }
 
 .shadow {
@@ -252,6 +262,15 @@
     font-size: 16px;
     font-family: "PingFang SC";
     cursor: pointer;
+    -webkit-transition:  0.3s;
+    -moz-transition:  0.3s;
+    -ms-transition:  0.3s;
+    -o-transition:  0.3s;
+    transition:  0.3s;
+}
+
+.shadow:hover {
+    background-color: #7Caaf2;
 }
 
 /* 评审者列表 */
