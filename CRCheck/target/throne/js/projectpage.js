@@ -17,6 +17,14 @@ var iBase = {
 }
 
 function showLaunch(elem_id) {
+
+    var userId = document.getElementById("storage").innerHTML;
+    userId = userId.trim();
+    if (userId == "") {
+        slidein("2", "您还没登录");
+        return;
+    }
+
     var elem = document.getElementById(elem_id);
     var speed = 12;
     var opacity = 100;
@@ -54,10 +62,18 @@ function closeLaunch(elem_id) {
 // 随机八个用户
 function setIds() {
 
+    var userId = document.getElementById("storage").innerHTML;
+    userId = userId.trim();
+    if (userId == "") {
+        slidein("2", "您还没登录");
+        return;
+    }
+
     $.ajax({
         type: "get",
         async: false,
         url: "/getUserList",
+        data: {"userid": userId},
         success: function (result) {
             currentids = result.userList;
         },
@@ -346,14 +362,15 @@ function publishPro() {
         self = "YES";
 
     idlist.splice(0, 0, self);
-    alert([userId, proname, prodescribe, codelang, startdate, enddate, limit])
+    var list2 = [userId, proname, prodescribe, codelang, startdate, enddate, limit];
+    alert(list2);
 
     $.ajax({
         type: "get",
         async: false,
         url: "/Launch",
         data: {
-            "str1": [userId, proname, prodescribe, codelang, startdate, enddate, limit],
+            "str1": list2,
             "str2": idlist
         },
         success: function (result) {
