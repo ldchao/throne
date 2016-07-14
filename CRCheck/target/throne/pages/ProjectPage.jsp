@@ -130,7 +130,7 @@
             <select id="code_language" class="mycombox">
                 <option>编程语言</option>
                 <option>Java</option>
-                <option>C/C++</option>
+                <option>Cpp</option>
                 <option>Python</option>
                 <option>WebApp</option>
                 <option>Android</option>
@@ -290,8 +290,6 @@
         <div id="remind" class="green_word">提示消息</div>
     </div>
 </div>
-
-<a onclick="slidein(0, '登录成功')">滑入</a>
 
 <%-- 用来存放userId --%>
 <a id="storage" style="display: none;"><%=userId%>

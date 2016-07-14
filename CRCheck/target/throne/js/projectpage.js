@@ -81,9 +81,9 @@ function setIds() {
             for (var i = 0; i < 8; i++) {
 
                 var ids = "id" + (i + "");
-                document.getElementById(ids).innerHTML = result[i];
+                document.getElementById(ids).innerHTML = currentids[i];
 
-                var pos = hasInList(result[i]);
+                var pos = hasInList(currentids[i]);
 
                 var selectImg = "img" + (i + "");
                 var elem_img = document.getElementById(selectImg);
@@ -362,20 +362,25 @@ function publishPro() {
     if (selfin == true)
         self = "YES";
 
+    var list_info = [userId, proname, prodescribe, codelang, startdate, enddate, limit].join("&");
     idlist.splice(0, 0, self);
-    var list2 = [userId, proname, prodescribe, codelang, startdate, enddate, limit];
-    alert(list2);
+    var id_info = idlist.join("&");
 
     $.ajax({
-        type: "get",
+        type: "post",
         async: false,
         url: "/Launch",
         data: {
-            "str1": list2,
-            "str2": idlist
+            "info1": list_info,
+            "info2": id_info
         },
         success: function (result) {
-
+            if (result == "SUCCESS") {
+                slidein(0, "提交成功");
+                setTimeout("window.location.href='ProjectDetailPage.jsp'", 1800);
+            } else {
+                slidein(1, "提交失败请稍候再试");
+            }
         },
         error: function () {
             slidein(1, "出故障了请稍候再试");

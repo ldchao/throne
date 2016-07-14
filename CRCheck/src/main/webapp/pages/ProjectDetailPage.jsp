@@ -1,4 +1,5 @@
 <%@ page import="POJO.Project" %>
+<%@ page import="model.ProjectModel" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" isELIgnored="false" %>
 <html>
@@ -64,14 +65,19 @@
 </nav><!-- /.navbar -->
 
 <%
-    Project p = session.getAttribute("project");
-    String day = session.getAttribute("day");
+    ProjectModel p = null;
+    String day = null;
+    try {
+        p = (ProjectModel) session.getAttribute("project");
+        day = (String) session.getAttribute("day");
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
 %>
-
 
 <div id="auto-container" class="container text-center">
     <div class="row">
-        <div class="project-title"><%=p.name%>
+        <div class="project-title"><%=p.getName()%>
         </div>
     </div>
     <div class="project-char text-center">
@@ -79,15 +85,19 @@
             <div class="image-small"
                  style="margin-right:12px;">
             </div>
-            <div class="sub-title"><%=p.userID%></div>
+            <div class="sub-title"><%=p.getUserID()%>
+            </div>
         </div>
         <div class="project-type" style="display: inline-block;">
             <div class="type-image"></div>
-            <div class="sub-title"><%=p.type%></div>
+            <div class="sub-title"><%=p.getType()%>
+            </div>
         </div>
     </div>
-    <div class="project-time time-text"><%=p.startDate%> - <%=p.endDate%></div>
-    <p class="project-detail main-text text-left"><%=p.discription%></p>
+    <div class="project-time time-text"><%=p.getStartDate()%> - <%=p.getEndDate()%>
+    </div>
+    <p class="project-detail main-text text-left"><%=p.getDiscription()%>
+    </p>
     <div class="member">
         <div class="middle-title">参与者</div>
         <div class="member-list">
@@ -96,7 +106,8 @@
             <div class="image-middle" style=""></div>
         </div>
     </div>
-    <div class="left-time main-text"><%=day%></div>
+    <div class="left-time main-text"><%=day%>
+    </div>
 
     <div id="begin" class="submit-button">立即开始评审</div>
 

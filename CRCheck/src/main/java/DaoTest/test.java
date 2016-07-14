@@ -1,11 +1,7 @@
 package DaoTest;
 
-<<<<<<< HEAD
 import DaoImpl.CreateIdDaoImpl;
 import DaoImpl.SummaryDaoImpl;
-=======
-import DaoImpl.*;
->>>>>>> origin/master
 import POJO.Summary;
 
 import java.util.List;
