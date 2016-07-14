@@ -15,11 +15,12 @@
 }
 
 .invite_div {
-    width: 735px;
+    width: 60%;
     height: 210px;
     background-color: #f0f4fd;
     margin: 60px auto;
     text-align: center;
+    padding-top: 53px;
 }
 
 .circle_div {
@@ -28,7 +29,6 @@
     border-radius: 60px;
     border: 8px solid #7595e0;
     display: inline-block;
-    margin-top: 53px;
     cursor: pointer;
 }
 
@@ -58,7 +58,7 @@
     height: 60px;
     float: left;
     display: inline-block;
-    margin-top: 73px;
+    margin-top: 20px;
     margin-left: 8%;
 }
 
@@ -67,7 +67,7 @@
     height: 60px;
     float: right;
     display: inline-block;
-    margin-top: 73px;
+    margin-top: 20px;
     margin-right: 8%;
 }
 
