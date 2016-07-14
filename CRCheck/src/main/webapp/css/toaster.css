@@ -29,7 +29,6 @@
 }
 
 #pic_div {
-    background-color: green;
     width: 50px;
     height: 50px;
     border-radius: 60px;
@@ -39,25 +38,27 @@
     margin-left: 65px;
     margin-top: -40px;
     font-size: 19px;
+    line-height: 20px;
+    vertical-align: middle;
     font-family: "PingFang SC";
 }
 
 .green_pic {
-
+    background-color: green;
 }
 .green_word {
     color: green;
 }
 
 .red_pic {
-
+    background-color: darkred;
 }
 .red_word {
-    color: red;
+    color: darkred;
 }
 
 .yellow_pic {
-
+    background-color: orange;
 }
 .yellow_word {
     color: orange;

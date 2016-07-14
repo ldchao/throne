@@ -274,7 +274,7 @@
     box-shadow: 0 0 7px #88a7da;
     -webkit-background-clip: padding-box;
     background-clip: padding-box;
-    display: block;
+    display: none;
 }
 
 #reviewer_div .above_part {

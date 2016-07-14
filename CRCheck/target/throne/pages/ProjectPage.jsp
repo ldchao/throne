@@ -1,3 +1,4 @@
+<%@ page import="model.UserModel" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <html>
@@ -43,6 +44,17 @@
 
 </head>
 <body>
+
+<%
+    UserModel user = (UserModel) request.getSession().getAttribute("User");
+    String userId = "";
+    if (user != null) {
+        userId = user.getId();
+    }
+    System.out.println(user);
+    System.out.println(userId);
+%>
+
 <nav class="navbar navbar-fixed-top navbar-inverse">
     <div class="container">
         <div class="navbar-header">
@@ -140,7 +152,9 @@
 
         <button class="invitation_list_btn" onclick="showLaunch('reviewer_div')">评审者列表</button>
 
-        <div class="shadow">发起项目评审</div>
+        <div class="shadow" onclick="publishPro()">
+            发起项目评审
+        </div>
 
         <%-- 邀请 --%>
         <div id="reviewer_div">
@@ -268,6 +282,10 @@
 </div>
 
 <a onclick="slidein(0, '登录成功')">滑入</a>
+
+<%-- 用来存放userId --%>
+<a id="storage" style="display: none;"><%=userId%>
+</a>
 
 <!-- Bootstrap core JavaScript
     ================================================== -->
