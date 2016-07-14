@@ -20,9 +20,6 @@ public interface ProjectService {
     //查看项目--没有返回null
     public ProjectModel checkProject(int projectID);
 
-    //查看发起的所有项目
-    public List<ProjectModel> checkLaubchProjects(String userID);
-
     //更新项目状态
     public UniversalState updateProjectState(int projectID, ProjectState projectState);
 

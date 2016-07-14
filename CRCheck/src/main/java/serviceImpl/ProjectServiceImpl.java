@@ -103,10 +103,6 @@ public class ProjectServiceImpl implements ProjectService {
         p.setInvitationList(list);
         return p;
     }
-    //查看发起的所有项目
-    public List<ProjectModel> checkLaubchProjects(String userID){
-        return null;
-    }
     //更新项目状态
     public UniversalState updateProjectState(int projectID, ProjectState projectState) {
         //初始化找到对应项目

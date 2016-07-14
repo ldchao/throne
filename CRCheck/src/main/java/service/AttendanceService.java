@@ -1,5 +1,7 @@
 package service;
 
+import model.ProjectModel;
+
 import java.util.ArrayList;
 
 /**
@@ -8,10 +10,10 @@ import java.util.ArrayList;
 public interface AttendanceService {
 
     // TODO: 2016/7/14 查看我发起的项目列表
-    public ArrayList<String> getOwnProjectID(String userID);
+    public ArrayList<ProjectModel> getOwnProjectID(String userID);
 
 
     // TODO: 2016/7/14 查看我参与的项目列表
-    public ArrayList<String> getAttendProjectID(String userID);
+    public ArrayList<ProjectModel> getAttendProjectID(String userID);
 
 }
