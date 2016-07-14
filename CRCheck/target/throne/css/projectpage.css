@@ -91,7 +91,7 @@
     top: 80px;
     left: 22%;
     z-index: 1050;
-    width: 896px;
+    width: 70%;
     height: 520px;
     margin-left: -80px;
     background-color: #f4f5f9;
@@ -115,7 +115,7 @@
 }
 
 .launch_div_left {
-    width: 293px;
+    width: 30%;
     height: 520px;
     background-color: #d8d8d8;
     float: left;
@@ -123,7 +123,7 @@
 }
 
 .launch_div_right {
-    width: 603px;
+    width: 70%;
     height: 520px;
     background-color: transparent;
     float: right;
@@ -131,14 +131,14 @@
     font-size: 17px;
 }
 
-.launch_div_right .img_div {
+.end_date_div  .img_div {
     width: 53px;
     height: 53px;
     background-color: #88a7da;
     border-radius: 60px;
     position: absolute;
-    top: 35px;
-    right: 275px;
+    bottom: 250px;
+    right: 115px;
 }
 
 .launch_div_right #pro_name {
@@ -147,7 +147,7 @@
     border: none;
     position: absolute;
     top: 112px;
-    right: 156px;
+    right: 22%;
     padding-left: 13px;
 }
 
@@ -157,7 +157,7 @@
     border: none;
     position: absolute;
     top: 156px;
-    right: 156px;
+    right: 22%;
     resize: none;
     padding-left: 13px;
 }
@@ -167,15 +167,7 @@
     height: 36px;
     position: absolute;
     top: 245px;
-    right: 156px;
-}
-
-.launch_div_right .start_date_div {
-    width: 141px;
-    height: 36px;
-    position: absolute;
-    top: 292px;
-    right: 307px;
+    right: 22%;
 }
 
 .launch_div_right .end_date_div {
@@ -183,7 +175,15 @@
     height: 36px;
     position: absolute;
     top: 292px;
-    right: 156px;
+    right: 22%;
+}
+
+.end_date_div .start_date_div {
+    width: 141px;
+    height: 36px;
+    position: absolute;
+    top: 0px;
+    right: 151px;
 }
 
 .date_style {
@@ -193,10 +193,11 @@
     padding-left: 13px;
 }
 
-.limit_tip {
+.end_date_div .limit_tip {
+    width: 160px;
     position: absolute;
-    top: 346px;
-    right: 287px;
+    top: 56px;
+    right: 133px;
     color: #737474;
     font-size: 16px;
 }
@@ -204,7 +205,7 @@
 #limit {
     position: absolute;
     top: 338px;
-    right: 157px;
+    right: 22%;
 }
 
 .hr_decorate {
@@ -212,13 +213,14 @@
     border: 1px solid #d4d5db;
     position: absolute;
     top: 365px;
-    right: 156px;
+    right: 22%;
 }
 
-.invitation_tip {
+.end_date_div .invitation_tip {
+    width: 160px;
     position: absolute;
-    top: 403px;
-    right: 299px;
+    top: 112px;
+    right: 133px;
     color: #737474;
     font-size: 16px;
 }
@@ -234,7 +236,7 @@
     border: 1px solid #587cd3;
     position: absolute;
     top: 398px;
-    right: 158px;
+    right: 22.5%;
     -webkit-transition:  0.3s;
     -moz-transition:  0.3s;
     -ms-transition:  0.3s;
@@ -255,7 +257,7 @@
     border-radius: 25px;
     position: absolute;
     top: 442px;
-    right: 153px;
+    right: 21%;
     box-shadow: 0 4px 13px #6093e2;
     text-align: center;
     padding-top: 6px;
@@ -277,7 +279,7 @@
 .launch_div_right #reviewer_div {
     position: absolute;
     top: 12px;
-    right: 156px;
+    right: 22%;
     z-index: 2050;
     width: 292px;
     height: 420px;

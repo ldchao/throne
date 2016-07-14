@@ -122,9 +122,7 @@
             <i class="fa fa-times"></i>
         </button>
 
-        <div class="img_div"></div>
-
-        <input class="textfield" id="pro_name" type="text" placeholder="项目名称">
+        <input class="textfield row-fluid" id="pro_name" type="text" placeholder="项目名称">
 
         <textarea class="textfield" id="pro_describe" placeholder="项目描述"></textarea>
 
@@ -140,21 +138,24 @@
             </select>
         </div>
 
-        <div class="selectStyle start_date_div ">
-            <input class="date_style textfield" type="text" id="start_date" placeholder="开始时间" readonly>
-        </div>
-
         <div class="selectStyle end_date_div">
-            <input class="date_style textfield" type="text" id="end_date" placeholder="结束时间" readonly>
-        </div>
 
-        <span class="limit_tip">评审项目是否公开可见</span>
+            <div class="selectStyle start_date_div">
+                <input class="date_style textfield" type="text" id="start_date" placeholder="开始时间" readonly>
+            </div>
+
+            <input class="date_style textfield" type="text" id="end_date" placeholder="结束时间" readonly>
+
+            <span class="limit_tip">评审项目是否公开可见</span>
+
+            <span class="invitation_tip">选择您的项目参与者</span>
+
+            <div class="img_div"></div>
+        </div>
 
         <input class="mui-switch mui-switch-animbg" type="checkbox" id="limit">
 
         <hr class="hr_decorate">
-
-        <span class="invitation_tip">选择您的项目参与者</span>
 
         <button class="invitation_list_btn" onclick="showLaunch('reviewer_div')">评审者列表</button>
 
