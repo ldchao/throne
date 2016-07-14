@@ -235,6 +235,16 @@
     position: absolute;
     top: 398px;
     right: 158px;
+    -webkit-transition:  0.3s;
+    -moz-transition:  0.3s;
+    -ms-transition:  0.3s;
+    -o-transition:  0.3s;
+    transition:  0.3s;
+}
+
+.invitation_list_btn:hover{
+    background-color: #587cd3;
+    color: #fff;
 }
 
 .shadow {
@@ -252,6 +262,15 @@
     font-size: 16px;
     font-family: "PingFang SC";
     cursor: pointer;
+    -webkit-transition:  0.3s;
+    -moz-transition:  0.3s;
+    -ms-transition:  0.3s;
+    -o-transition:  0.3s;
+    transition:  0.3s;
+}
+
+.shadow:hover {
+    background-color: #7Caaf2;
 }
 
 /* 评审者列表 */
