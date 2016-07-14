@@ -33,25 +33,21 @@ public class UserServiceImpl implements UserService {
 
     public List<String> getUserList(String userid){
         UserDao dao=new UserDaoImpl();
-        List list=dao.getAllUserId();
+        List<String> list=dao.getAllUserId();
+        list.remove(userid);
         if(list.size()<=8)
             return list;
         Random rand = new Random();
-        int i=list.size()/8;
-        if(list.size()%8!=0)
-            i++;
+        int i=(list.size()+7)/8;
         int randNum = rand.nextInt(i);
         List<String> result=new ArrayList<String>();
-        int z=0;
+
         for(int j=0;j<8;j++){
-            int k=(8*randNum+z)%list.size();
-            if(list.get(k).equals(userid)){
-                j--;
-                continue;
-            }
-            result.add(list.get(k)+"");
-            z++;
+            int k=(8*randNum+j)%list.size();
+            String name=list.get(k);
+            result.add(name);
         }
+        System.out.println(result);
         return result;
     }
 
