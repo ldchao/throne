@@ -6,6 +6,7 @@ package model;
 public class SummaryReviewRecord {
 
     private Integer id;//系统区分id
+    private String userId;
     private Integer projectId;
     private String path;//所在路径名
     private String lineNum;//所在行数
@@ -23,6 +24,14 @@ public class SummaryReviewRecord {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public Integer getProjectId() {

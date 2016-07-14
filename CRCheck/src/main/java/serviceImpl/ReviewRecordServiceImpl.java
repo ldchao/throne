@@ -116,6 +116,7 @@ public class ReviewRecordServiceImpl implements ReviewRecordService {
             PersonalReviewRecord r=new PersonalReviewRecord();
             r.setId(p.getId());
             r.setUserId(p.getUserId());
+            r.setUserId(p.getUserId());
             r.setProjectId(p.getProjectId());
             r.setCommitTime(p.getCommitTime());
             String[] location=p.getLocation().split(" ");
@@ -142,6 +143,7 @@ public class ReviewRecordServiceImpl implements ReviewRecordService {
         for (Summary s:list) {
             SummaryReviewRecord r=new SummaryReviewRecord();
             r.setId(s.getId());
+            r.setUserId(s.getUserId());
             r.setProjectId(s.getProjectId());
             String[] location=s.getLocation().split(" ");
             r.setPath(location[0]);
@@ -157,23 +159,103 @@ public class ReviewRecordServiceImpl implements ReviewRecordService {
     }
 
     //合并评审记录（前面为待合并项ID（个人表中），后面会合并后结果）
-    public UniversalState mergeReviewRecord(ArrayList<String> recordIDList, PersonalReviewRecord result){
-        return null;
+    public UniversalState mergeReviewRecord(ArrayList<String> recordIDList, SummaryReviewRecord result){
+
+        SummaryDao summaryDao=new SummaryDaoImpl();
+        CreateIdDao createIdDao=new CreateIdDaoImpl();
+        Summary summary=new Summary();
+        summary.setFlag(0);
+        boolean state=true;
+        String combination="";
+        for (String id:recordIDList) {
+            combination+=id+";";
+            summary.setId(Integer.parseInt(id));
+            state=state&summaryDao.updateFlag(summary);
+        }
+        Summary r=new Summary();
+        r.setId(createIdDao.CreateIntId("Summary"));
+        r.setUserId(result.getUserId());
+        r.setProjectId(result.getProjectId());
+        String location=result.getPath()+" "+result.getLineNum();
+        r.setLocation(location);
+        r.setType(result.getType());
+        r.setDescription(result.getDescription());
+        r.setCombination(combination);
+        state=state&summaryDao.addSummary(r);
+        return state?UniversalState.SUCCESS:UniversalState.FAIL;
     }
 
     //分解评审记录
-    public UniversalState disassembleReviewRecord(PersonalReviewRecord result){
-        return null;
+    public ArrayList<SummaryReviewRecord> disassembleReviewRecord(SummaryReviewRecord result){
+
+        ArrayList<SummaryReviewRecord> subRecordList=new ArrayList<SummaryReviewRecord>();
+
+        SummaryDao summaryDao=new SummaryDaoImpl();
+        Summary summary=new Summary();
+        summary.setFlag(1);
+        Summary s;
+
+        String combinations=result.getCombination();
+        String idList[]=combinations.split(";");
+        for (String id:idList) {
+            summary.setId(Integer.parseInt(id));
+            summaryDao.updateFlag(summary);
+
+            s=summaryDao.findSummaryById(summary);
+            SummaryReviewRecord r=new SummaryReviewRecord();
+            r.setId(s.getId());
+            r.setUserId(s.getUserId());
+            r.setProjectId(s.getProjectId());
+            String[] location=s.getLocation().split(" ");
+            r.setPath(location[0]);
+            r.setLineNum(location[1]);
+            r.setType(s.getType());
+            r.setDescription(s.getDescription());
+            String combination=s.getCombination();
+            r.setCombination(combination);
+            r.setCombinated(combination.equals("")?false:true);
+            subRecordList.add(r);
+        }
+        summary.setId(result.getId());
+        summaryDao.delete(summary);
+
+        return subRecordList;
     }
 
     //审批评审记录（审批个人的评审记录，reviewRecordID为个人评审记录表格中ID）
-    public UniversalState approveReviewRecord(String reviewRecordID, ApproveState approveState){
-        return null;
+    public UniversalState approveReviewRecord(PersonalReviewRecord personalReviewRecord){
+
+        boolean result=true;
+        PersonalreviewDao personalreviewDao=new PersonalreviewDaoImpl();
+
+        Personalreview personalreview=new Personalreview();
+        personalreview.setId(personalReviewRecord.getId());
+        personalreview.setUserId(personalReviewRecord.getUserId());
+        personalreview.setProjectId(personalReviewRecord.getProjectId());
+        personalreview.setCommitTime(personalReviewRecord.getCommitTime());
+        String path=personalReviewRecord.getPath()+" "+personalReviewRecord.getLineNum();
+        personalreview.setLocation(path);
+        personalreview.setType(personalReviewRecord.getType());
+        personalreview.setDescription(personalReviewRecord.getDescription());
+        personalreview.setState(personalReviewRecord.getState());
+        personalreview.setResult(personalReviewRecord.getResult().toString());
+        result=result&personalreviewDao.addPersionalreview(personalreview);
+
+        return result?UniversalState.SUCCESS:UniversalState.FAIL;
     }
 
     //删除评审(只删除汇总表格，reviewRecordID为汇总评审记录表格中ID)
     public UniversalState deleteReviewRecord(String reviewRecordID){
-        return null;
+        SummaryDao summaryDao=new SummaryDaoImpl();
+        Summary summary=new Summary();
+        summary.setId(Integer.parseInt(reviewRecordID));
+        return summaryDao.delete(summary)?UniversalState.SUCCESS:UniversalState.FAIL;
     }
 
+    public UniversalState confirmReviewRecord(int projectID) {
+        SummaryDao summaryDao=new SummaryDaoImpl();
+        Summary summary=new Summary();
+        summary.setProjectId(projectID);
+        return summaryDao.deleteInvalidSummary(summary)?UniversalState.SUCCESS:UniversalState.FAIL;
+    }
 }

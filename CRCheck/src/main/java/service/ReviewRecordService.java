@@ -28,14 +28,17 @@ public interface ReviewRecordService {
     public ArrayList<SummaryReviewRecord> checkSummaryReviewRecord(int projectID);
 
     //合并评审记录（前面为待合并项ID（个人表中），后面会合并后结果）
-    public UniversalState mergeReviewRecord(ArrayList<String> recordIDList, PersonalReviewRecord result);
+    public UniversalState mergeReviewRecord(ArrayList<String> recordIDList, SummaryReviewRecord result);
 
     //分解评审记录
-    public UniversalState disassembleReviewRecord(PersonalReviewRecord result);
+    public ArrayList<SummaryReviewRecord> disassembleReviewRecord(SummaryReviewRecord result);
 
     //审批评审记录（审批个人的评审记录，reviewRecordID为个人评审记录表格中ID）
-    public UniversalState approveReviewRecord(String reviewRecordID, ApproveState approveState);
+    public UniversalState approveReviewRecord(PersonalReviewRecord personalReviewRecord);
 
     //删除评审(只删除汇总表格，reviewRecordID为汇总评审记录表格中ID)
     public UniversalState deleteReviewRecord(String reviewRecordID);
+
+    //确定评审结果，确定后将不能再回退（发起者特有权利）
+    public UniversalState confirmReviewRecord(int projectID);
 }

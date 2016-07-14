@@ -27,7 +27,7 @@ public interface SummaryDao {
     //need the "projectId",return "Summary"
     public List getValidSummary(Summary po);
 
-    //delete the inValid Summary,just need the "id" of "Summary"
+    //delete the inValid Summary,just need the "projectId" of "Summary"
     public boolean deleteInvalidSummary(Summary po);
 
     //need the "id" of "Summary",return "Summary"
