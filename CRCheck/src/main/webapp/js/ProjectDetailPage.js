@@ -6,7 +6,7 @@ var detail = {
 
 
     judge: function () {
-        var state = $(p.p);
+        var state;
         var button = document.getElementById("begin");
         switch (state) {
             case NotStart:

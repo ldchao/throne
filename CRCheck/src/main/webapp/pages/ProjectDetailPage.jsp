@@ -65,21 +65,21 @@
 
 <div class="container text-center" style="width:65%;margin:100px auto;">
     <div class="row">
-        <div class="project-title">CRC评审项目</div>
+        <div class="project-title">${p.name}</div>
     </div>
     <div class="project-char text-center">
         <div class="project-owner">
             <div class="image-small"
                  style="margin-right:12px;">
             </div>
-            <div class="sub-title">marioquer</div>
+            <div class="sub-title">${p.userID}</div>
         </div>
         <div class="project-type" style="display: inline-block;">
-            <div class="type-image" style=""></div>
-            <div class="sub-title">Java</div>
+            <div class="type-image"></div>
+            <div class="sub-title">${p.type}</div>
         </div>
     </div>
-    <div class="project-time time-text">2016.7.7-2016.8.1</div>
+    <div class="project-time time-text">${p.startDate} - ${p.endDate}</div>
     <p class="project-detail main-text text-left">${p.discription}</p>
     <div class="member">
         <div class="middle-title">参与者</div>
@@ -89,7 +89,7 @@
             <div class="image-middle" style=""></div>
         </div>
     </div>
-    <div class="left-time main-text">XX天后结束</div>
+    <div class="left-time main-text">${p.day}</div>
 
     <div id="begin" class="submit-button">立即开始评审</div>
 
@@ -103,8 +103,8 @@
                      style="padding-left: 5px;padding-right: 5px;margin-top:10px;">缺陷详细描述
                 </div>
                 <div class="col-xs-2 text-right close"
-                     style="padding-left: 5px;padding-right: 5px;margin-top:10px; " onclick="deleteForm(this)"><span
-                        class="fa fa-times"></span>
+                     style="padding-left: 5px;padding-right: 5px;margin-top:10px; " onclick="deleteForm(this)"><i
+                        class="fa fa-times"></i>
                 </div>
             </div>
             <div class="form-line row" style="margin-left: 20px;margin-right: 20px;">
@@ -131,6 +131,11 @@
     </div>
 
     <div class="addItem-button" onclick="addForm()">添加新的缺陷</div>
+
+    <div class="control text-center">
+        <div class="submit-button" style="margin-right: 20px; margin-top:10px;">保存此次评审</div>
+        <div class="cancel-button" style="margin-top:10px;">结束此项目评审</div>
+    </div>
 </div>
 
 
@@ -145,7 +150,8 @@
         <span class="log_reg">登录CRC平台</span>
     </div>
 
-    <button class="close close_div" data-toggle="modal" data-dismiss="modal">x</button>
+    <button class="close close_div" data-toggle="modal" data-dismiss="modal"><i
+            class="fa fa-times"></i></button>
 
     <div class="input_field_div">
         <input class="input_field" id="userId_log" type="text" placeholder="键入您的用户名">
@@ -175,7 +181,8 @@
         <span class="log_reg">立即加入CRC评审</span>
     </div>
 
-    <button class="close close_div" data-toggle="modal" data-dismiss="modal">x</button>
+    <button class="close close_div" data-toggle="modal" data-dismiss="modal"><i
+            class="fa fa-times"></i></button>
 
     <div class="input_field_div">
         <input class="input_field" id="userId_reg" type="text" placeholder="键入您的用户名">

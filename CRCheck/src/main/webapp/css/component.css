@@ -82,7 +82,7 @@ footer {
     height: 53px;
     color: #fff;
     text-align: center;
-    padding: 8px 35px;
+    padding-top: 12px;
     background-color: rgb(107, 111, 120);
     border-radius: 2px;
     display: inline-block;
@@ -95,7 +95,7 @@ footer {
 }
 
 .cancel-button:hover {
-    background-color: rgba(107, 111, 120, 60);
+    background-color: #8D9096;
 }
 
 .addItem-button {
