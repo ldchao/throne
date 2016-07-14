@@ -19,9 +19,9 @@ ProjectDao {
     //need all the attributes
     public boolean updateProject(Project po);
 
-    //just need the "id" of "User"
+    //just need the "id" of "User",return "Project"
     public List findProjectByUserId(User po);
 
-    //need the "id" of "Project"
+    //need the "id" of "Project",return "Project"
     public Project findProject(Project po);
 }

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8" %>
+         pageEncoding="UTF-8" isELIgnored="false" %>
 <html>
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -21,6 +21,7 @@
 
     <!-- specific styles -->
     <link href="../css/component.css" rel="stylesheet">
+    <link href="../css/projectDetailPage.css" rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]>
@@ -61,56 +62,77 @@
     </div><!-- /.container -->
 </nav><!-- /.navbar -->
 
-<div class="jumbotron" style="height: 720px;background-color: #8a6d3b;">
-    <div class="container" style="margin-top: 0">
-        <div class="row">
-            <div class="col-sm-6" style="background-color: #7595e0; height: 672px;">
 
+<div class="container text-center" style="width:65%;margin:100px auto;">
+    <div class="row">
+        <div class="project-title">CRC评审项目</div>
+    </div>
+    <div class="project-char text-center">
+        <div class="project-owner">
+            <div class="image-small"
+                 style="margin-right:12px;">
             </div>
-            <div class="col-sm-6" style="background-color: #5e5e5e; height: 672px;">
+            <div class="sub-title">marioquer</div>
+        </div>
+        <div class="project-type" style="display: inline-block;">
+            <div class="type-image" style=""></div>
+            <div class="sub-title">Java</div>
+        </div>
+    </div>
+    <div class="project-time time-text">2016.7.7-2016.8.1</div>
+    <p class="project-detail main-text text-left">${p.discription}</p>
+    <div class="member">
+        <div class="middle-title">参与者</div>
+        <div class="member-list">
+            <div class="image-middle" style="margin-right: 15px;"></div>
+            <div class="image-middle" style="margin-right: 15px;"></div>
+            <div class="image-middle" style=""></div>
+        </div>
+    </div>
+    <div class="left-time main-text">XX天后结束</div>
 
+    <div id="begin" class="submit-button">立即开始评审</div>
+
+    <div id="init-form">
+        <div class="form-empty">
+            <div class="form-line row form-title" style="margin-left: 20px;margin-right: 20px;">
+                <div class="col-xs-2 text-left num"
+                     style="padding-left: 5px;padding-right: 5px;margin-top:10px;">1
+                </div>
+                <div class="col-xs-8 text-center"
+                     style="padding-left: 5px;padding-right: 5px;margin-top:10px;">缺陷详细描述
+                </div>
+                <div class="col-xs-2 text-right close"
+                     style="padding-left: 5px;padding-right: 5px;margin-top:10px; " onclick="deleteForm(this)"><span
+                        class="fa fa-times"></span>
+                </div>
+            </div>
+            <div class="form-line row" style="margin-left: 20px;margin-right: 20px;">
+                <div class="col-sm-7"
+                     style="padding-left: 5px;padding-right: 5px;margin-top:10px;">
+                    <input type="text" placeholder="缺陷代码目录, 用‘/’分开" class="textfield"
+                           style="height: 35px; width: 100%;">
+                </div>
+                <div class="col-sm-2"
+                     style="padding-left: 5px;padding-right: 5px;margin-top:10px;">
+                    <input type="text" placeholder="开始行数" class="textfield" style="height: 35px; width: 100%;">
+                </div>
+                <div class="col-sm-3"
+                     style="padding-left: 5px;padding-right: 5px;margin-top:10px;">
+                    <input type="text" placeholder="选取缺陷类型" class="textfield"
+                           style="height: 35px; width: 100%;">
+                </div>
+            </div>
+            <div class="form-line row" style="margin-top: 10px;height: 69px;">
+            <textarea class="textfield" placeholder="缺陷详细描述"
+                      style="height: 69px;display: block;width: 100%;"></textarea>
             </div>
         </div>
     </div>
+
+    <div class="addItem-button" onclick="addForm()">添加新的缺陷</div>
 </div>
 
-<div class="container">
-    <div class="row">
-        <div class="col-sm-6" style="background-color: #5e5e5e; height: 300px;">
-
-        </div>
-        <div class="col-sm-6 hidden-sm" style="background-color: #7595e0; height:300px;">
-
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-sm-6 hidden-sm" style="background-color: #5e5e5e; height: 300px;">
-
-        </div>
-        <div class="col-sm-6" style="background-color: #7595e0; height:300px;">
-
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-sm-6" style="background-color: #5e5e5e; height: 300px;">
-
-        </div>
-        <div class="col-sm-6 hidden-sm" style="background-color: #7595e0; height:300px;">
-
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-sm-6 hidden-sm" style="background-color: #5e5e5e; height: 300px;">
-
-        </div>
-        <div class="col-sm-6" style="background-color: #7595e0; height:300px;">
-
-        </div>
-    </div>
-</div>
 
 <a href="#" id="back-to-top"><i class="fa fa-angle-up"></i></a>
 
@@ -123,7 +145,7 @@
         <span class="log_reg">登录CRC平台</span>
     </div>
 
-    <button class="close close_div" data-toggle="modal" data-dismiss="modal"><i class="fa fa-times"></i></button>
+    <button class="close close_div" data-toggle="modal" data-dismiss="modal">x</button>
 
     <div class="input_field_div">
         <input class="input_field" id="userId_log" type="text" placeholder="键入您的用户名">
@@ -153,7 +175,7 @@
         <span class="log_reg">立即加入CRC评审</span>
     </div>
 
-    <button class="close close_div" data-toggle="modal" data-dismiss="modal"><i class="fa fa-times"></i></button>
+    <button class="close close_div" data-toggle="modal" data-dismiss="modal">x</button>
 
     <div class="input_field_div">
         <input class="input_field" id="userId_reg" type="text" placeholder="键入您的用户名">
@@ -192,6 +214,7 @@
 <script src="../js/bootstrap.js"></script>
 <script src="../js/common.js"></script>
 <script src="../js/toaster.js"></script>
+<script src="../js/ProjectDetailPage.js"></script>
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 <script src="../js/ie10-viewport-bug-workaround.js"></script>
 </body>

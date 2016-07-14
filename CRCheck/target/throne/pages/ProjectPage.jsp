@@ -1,3 +1,4 @@
+<%@ page import="model.UserModel" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <html>
@@ -14,6 +15,8 @@
 
     <!-- Custom styles for login and register -->
     <link href="../css/log_reg.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="http://cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
     <!-- checkbox styles -->
     <link href="../css/mycheckbox.css" rel="stylesheet">
@@ -43,6 +46,17 @@
 
 </head>
 <body>
+
+<%
+    UserModel user = (UserModel) request.getSession().getAttribute("User");
+    String userId = "";
+    if (user != null) {
+        userId = user.getId();
+    }
+    System.out.println(user);
+    System.out.println(userId);
+%>
+
 <nav class="navbar navbar-fixed-top navbar-inverse">
     <div class="container">
         <div class="navbar-header">
@@ -102,7 +116,9 @@
     <div class="launch_div_left"></div>
 
     <div class="launch_div_right">
-        <button class="close close_div_launch" onclick="closeLaunch('launch')">x</button>
+        <button class="close close_div_launch" onclick="closeLaunch('launch')">
+            <i class="fa fa-times"></i>
+        </button>
 
         <div class="img_div"></div>
 
@@ -140,11 +156,15 @@
 
         <button class="invitation_list_btn" onclick="showLaunch('reviewer_div')">评审者列表</button>
 
-        <div class="shadow">发起项目评审</div>
+        <div class="shadow" onclick="publishPro()">
+            发起项目评审
+        </div>
 
         <%-- 邀请 --%>
         <div id="reviewer_div">
-            <button class="close_div_launch close" onclick="closeLaunch('reviewer_div')">x</button>
+            <button class="close_div_launch close" onclick="closeLaunch('reviewer_div')">
+                <i class="fa fa-times"></i>
+            </button>
 
             <%-- 上半部分 --%>
             <div class="above_part">
@@ -178,13 +198,17 @@
                 <%-- 分页 --%>
                 <div class="pages_depart">
 
-                    <span class="previous" onclick="prevPage()"> < </span>
+                    <span class="previous" onclick="prevPage()">
+                        <i class="fa fa-angle-double-left"></i>
+                    </span>
 
                     <div id="pages">
                         <span class="dot" onclick="gotoPage(this)"></span>
                     </div>
 
-                    <span class="next" onclick="nextPage()"> > </span>
+                    <span class="next" onclick="nextPage()">
+                        <i class="fa fa-angle-double-right"></i>
+                    </span>
                 </div>
 
             </div>
@@ -206,7 +230,7 @@
         <span class="log_reg">登录CRC平台</span>
     </div>
 
-    <button class="close close_div" data-toggle="modal" data-dismiss="modal">x</button>
+    <button class="close close_div" data-toggle="modal" data-dismiss="modal"><i class="fa fa-times"></i></button>
 
     <div class="input_field_div">
         <input class="input_field" id="userId_log" type="text" placeholder="键入您的用户名">
@@ -236,7 +260,7 @@
         <span class="log_reg">立即加入CRC评审</span>
     </div>
 
-    <button class="close close_div" data-toggle="modal" data-dismiss="modal">x</button>
+    <button class="close close_div" data-toggle="modal" data-dismiss="modal"><i class="fa fa-times"></i></button>
 
     <div class="input_field_div">
         <input class="input_field" id="userId_reg" type="text" placeholder="键入您的用户名">
@@ -268,6 +292,10 @@
 </div>
 
 <a onclick="slidein(0, '登录成功')">滑入</a>
+
+<%-- 用来存放userId --%>
+<a id="storage" style="display: none;"><%=userId%>
+</a>
 
 <!-- Bootstrap core JavaScript
     ================================================== -->

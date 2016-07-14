@@ -62,7 +62,7 @@ function setIds() {
             currentids = result.userList;
         },
         error: function () {
-            alert("获取评审者数据失败啦")
+            slidein(1, "获取评审者数据失败啦");
         }
     });
 
@@ -168,8 +168,18 @@ function removeIds(id_remove) {
     }
 
     // 如果大于8个,需要补空位
-    if (idlist.length > 7 && listpos > 0 && selected_div.getElementsByClassName("div_each").length < 8) {
-        showId(lastpos - 1, true);
+    if (idlist.length > 7
+        && selected_div.getElementsByClassName("div_each").length < 8) {
+
+        if (pageNum * 8 + 7 < idlist.length && listpos > 0) {
+            showId(lastpos - 1, true);
+        } else if (selected_div.getElementsByClassName("div_each").length == 0) {
+            var pagesdiv = document.getElementById("pages");
+            var spans = pagesdiv.getElementsByTagName("span");
+            pagesdiv.removeChild(spans[pageNum]);
+            pageNum--;
+            gotoPage(spans[pageNum]);
+        }
     }
 }
 
@@ -257,6 +267,10 @@ function gotoPage(node) {
         for (var i = max; i > min; i--) {
             showId(i, false);
         }
+    } else {
+        for (var i = idlist.length - 1; i > -1; i--) {
+            showId(i, false);
+        }
     }
 }
 
@@ -286,4 +300,68 @@ function adjustDot() {
             spans[i].style.backgroundColor = "#e7ecf5";
         }
     }
+}
+
+// 发布项目, 传入用户id
+function publishPro() {
+
+    var userId = document.getElementById("storage").innerHTML;
+    userId = userId.trim();
+    if (userId == "") {
+        slidein("2", "您还没登录");
+        return;
+    }
+
+    var proname = document.getElementById("pro_name").value;
+    var prodescribe = document.getElementById("pro_describe").value;
+    var codelang = document.getElementById("code_language").value;
+    var startdate = document.getElementById("start_date").value;
+    var enddate = document.getElementById("end_date").value;
+    var publimit = document.getElementById("limit").checked;
+    var selfin = document.getElementById("self_in").checked;
+
+    var date = new Date();
+    var today = date.getFullYear() + '-'
+        + (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-'
+        + date.getDate();
+
+    if (proname == "" || prodescribe == "" || codelang == "编程语言"
+        || startdate == "" || enddate == "") {
+        slidein(1, "请填写完整信息");
+        return;
+    } else if (startdate >= enddate) {
+        slidein(1, "结束时间应大于开始时间");
+        return;
+    } else if (enddate <= today) {
+        slidein(1, "结束时间应大于今天");
+        return;
+    }
+
+    var limit = "PRIVATE";
+    if (publimit == true)
+        limit = "PUBLIC";
+
+    var self = "NO";
+    if (selfin == true)
+        self = "YES";
+
+    idlist.splice(0, 0, self);
+    alert([userId, proname, prodescribe, codelang, startdate, enddate, limit])
+
+    $.ajax({
+        type: "get",
+        async: false,
+        url: "/Launch",
+        data: {
+            "str1": [userId, proname, prodescribe, codelang, startdate, enddate, limit],
+            "str2": idlist
+        },
+        success: function (result) {
+
+        },
+        error: function () {
+            slidein(1, "出故障了请稍候再试");
+        }
+    });
+
 }

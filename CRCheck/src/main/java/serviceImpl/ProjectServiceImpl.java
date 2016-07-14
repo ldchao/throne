@@ -24,7 +24,7 @@ import java.util.List;
  */
 public class ProjectServiceImpl implements ProjectService{
     //创建项目
-    public UniversalState addProject(ProjectModel projectModel) {
+    public int addProject(ProjectModel projectModel) {
         //初始化对象
         ProjectDao dao = new ProjectDaoImpl();
         Project p=new Project();
@@ -58,8 +58,8 @@ public class ProjectServiceImpl implements ProjectService{
         //发送消息
         UniversalState c = message.setIssueMessage(projectModel);
         if(a&&b.equals(UniversalState.SUCCESS)&&c.equals(UniversalState.SUCCESS))
-            return UniversalState.SUCCESS;
-        return UniversalState.FAIL;
+            return id;
+        return -1;
     }
     //删除项目
     public UniversalState deleteProject(int projectID) {
@@ -93,6 +93,10 @@ public class ProjectServiceImpl implements ProjectService{
         p.setProjectPath(pro.getCodePath());
         p.setAttendReview(pro.getAttendReview());
         p.setQualityFeedback(pro.getQualityReview());
+        //获取邀请列表
+        InvitationListService service=new InvitationListServiceImpl();
+        ArrayList<InvitationMessage> list=service.getInvitationList(projectID);
+        p.setInvitationList(list);
         return p;
     }
     //更新项目状态
@@ -174,7 +178,7 @@ public class ProjectServiceImpl implements ProjectService{
 //        list.add(m);
 //        p.setInvitationList(list);
         ProjectService ps=new ProjectServiceImpl();
-//        UniversalState i=ps.addProject(p);
+//        int i=ps.addProject(p);
         UniversalState i=ps.deleteProject(19);
         System.out.print(String.valueOf(i));
     }

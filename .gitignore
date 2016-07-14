@@ -17,6 +17,7 @@ CRCheck/target/*.ear
 <<<<<<< HEAD
 CRCheck//target/
 
+<<<<<<< Updated upstream
 CRCheck/target/throne/WEB-INF/classes/POJO/Message.class
 
 CRCheck/target/throne/WEB-INF/classes/serviceImpl/UserServiceImpl.class
@@ -27,6 +28,7 @@ CRCheck/target/
 >>>>>>> origin/master
 
 CRCheck/target/throne/WEB-INF/classes/serviceImpl/UserServiceImpl.class
+<<<<<<< Updated upstream
 
 CRCheck/target/throne/WEB-INF/classes/model/InvitationMessage.class
 
@@ -39,3 +41,14 @@ CRCheck/target/throne/WEB-INF/classes/POJO/Test.class
 CRCheck/target/throne/WEB-INF/classes/serviceImpl/LoginServiceImpl.class
 
 CRCheck/target/throne/WEB-INF/classes/service/UserService.class
+=======
+=======
+CRCheck/.idea/dataSources.local.xml
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
+
+CRCheck/target/throne/css/component.css
+
+CRCheck/target/throne/WEB-INF/classes/POJO/Test.class
+
+CRCheck/target/throne/css/component.css

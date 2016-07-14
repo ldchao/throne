@@ -17,7 +17,9 @@ import service.UserService;
 import serviceImpl.LoginServiceImpl;
 import serviceImpl.ProjectServiceImpl;
 import serviceImpl.UserServiceImpl;
+import tool.DateHelper;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 
 
@@ -27,7 +29,7 @@ import java.util.ArrayList;
 @Controller
 public class ProjectController {
     //发布新项目
-    @RequestMapping(value = "/launch", method = RequestMethod.GET)
+    @RequestMapping(value = "/Launch", method = RequestMethod.GET)
     public ModelAndView launch(String[] str1,String[] str2) {
         //表单内容转存成ProjectModel
         ProjectModel p=new ProjectModel();
@@ -57,10 +59,18 @@ public class ProjectController {
         p.setInvitationList(list);
         //新增项目
         ProjectService ps=new ProjectServiceImpl();
-        ps.addProject(p);
+        int id=ps.addProject(p);
+        ProjectModel project=ps.checkProject(id);
+        //计算项目剩余时间
+        int day=0;
+        try {
+            day = DateHelper.daysBetween(str1[4], str1[5]);
+        }catch (ParseException e){
+            e.printStackTrace();
+        }
         ModelAndView modelAndView=new ModelAndView("ProjectDetailPage");
-        modelAndView.addObject("p",p);
-
+        modelAndView.addObject("p",project);
+        modelAndView.addObject("day",day);
         return modelAndView;
     }
 }

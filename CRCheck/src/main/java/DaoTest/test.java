@@ -100,7 +100,12 @@ public class test {
 //        summary.setFlag(22);
 //        System.out.println(summaryDao.updateFlag(summary));
 
-//        List list=summaryDao.getValidSummary(summary);
-        System.out.println(summaryDao.deleteInvalidSummary(summary));
+        List list=summaryDao.getValidSummary(summary);
+        for (Object object:list
+             ) {
+           Summary po= (Summary)object;
+            System.out.println(po.getId());
+        }
+//        System.out.println(summaryDao.deleteInvalidSummary(summary));
     }
 }

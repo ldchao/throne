@@ -121,7 +121,7 @@ public class SummaryDaoImpl implements SummaryDao {
     public List getValidSummary(Summary po) {
         Session session=connection.getSession();
         try {
-            String hql="from Summary s where s.projectId=? and s.flag=1";
+            String hql="from Summary s where s.projectId=? and s.flag=1 order by s.location asc ";
             Query query=session.createQuery(hql);
             query.setInteger(0,po.getProjectId());
             List list=query.list();

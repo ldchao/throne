@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserService {
         return model;
     }
 
-    public List<String> getUserList(){
+    public List<String> getUserList(String userid){
         UserDao dao=new UserDaoImpl();
         List list=dao.getAllUserId();
         if(list.size()<=8)
@@ -42,9 +42,15 @@ public class UserServiceImpl implements UserService {
             i++;
         int randNum = rand.nextInt(i);
         List<String> result=new ArrayList<String>();
+        int z=0;
         for(int j=0;j<8;j++){
-            int k=(8*randNum+j)%list.size();
+            int k=(8*randNum+z)%list.size();
+            if(list.get(k).equals(userid)){
+                z--;
+                continue;
+            }
             result.add(list.get(k)+"");
+            z++;
         }
         return result;
     }
@@ -53,7 +59,7 @@ public class UserServiceImpl implements UserService {
     public static void main(String[] args) {
         UserService u=new UserServiceImpl();
         //UserModel state=u.getUser("saige");
-        List<String> list=u.getUserList();
+        List<String> list=u.getUserList("saisai");
         for(String s:list)
             System.out.print(s+" ");
 //        System.out.print(String.valueOf(state.getId()));

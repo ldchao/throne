@@ -34,7 +34,7 @@ footer {
     position: fixed;
     right: 10px;
     bottom: 10px;
-    background-color: rgba(139, 164, 239, 0.7);
+    background-color: rgba(120, 148, 212, 70);
     color: #ffffff;
     text-align: center;
     border-radius: 2px;
@@ -45,7 +45,7 @@ footer {
 }
 
 #back-to-top:hover {
-    background-color: rgb(139, 164, 239);
+    background-color: #5678C4;
 }
 
 #back-to-top i {
@@ -53,3 +53,149 @@ footer {
     height: 30px;
     line-height: 30px;
 }
+
+.submit-button {
+    font-size: 20px;
+    width: 188px;
+    height: 53px;
+    color: #fff;
+    text-align: center;
+    padding-top: 12px;
+    background-color: rgb(90, 212, 166);
+    border-radius: 2px;
+    display: inline-block;
+    cursor: pointer;
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+    -ms-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s;
+}
+
+.submit-button:hover {
+    background-color: #7BE8BF;
+}
+
+.cancel-button {
+    font-size: 20px;
+    width: 188px;
+    height: 53px;
+    color: #fff;
+    text-align: center;
+    padding: 8px 35px;
+    background-color: rgb(107, 111, 120);
+    border-radius: 2px;
+    display: inline-block;
+    cursor: pointer;
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+    -ms-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s;
+}
+
+.cancel-button:hover {
+    background-color: rgba(107, 111, 120, 60);
+}
+
+.addItem-button {
+    font-size: 20px;
+    width: auto;
+    height: 40px;
+    color: #fff;
+    text-align: center;
+    margin-top: 12px;
+    padding-top: 6px;
+    background-color: #5678C4;
+    border-radius: 2px;
+    display: block;
+    cursor: pointer;
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+    -ms-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s;
+}
+
+.addItem-button:hover {
+    background-color: rgb(120, 148, 212);
+}
+
+.main-text {
+    color: #9A9C9E;
+    font-size: 20px;
+    line-height: 28px;
+    font-weight: 400;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.image-small {
+    height: 28px;
+    width: 28px;
+    display: inline-block;
+    background-image: url("../image/portrait.svg");
+}
+
+.image-middle {
+    height: 40px;
+    width: 40px;
+    display: inline-block;
+    background-image: url("../image/portrait.svg");
+}
+
+.sub-title {
+    display: inline-block;
+    color: #778294;
+    font-size: 25px;
+}
+
+.time-text {
+    color: #7490D3;
+    font-size: 18px;
+}
+
+.middle-title {
+    color: #6B6F78;
+    font-size: 20px;
+}
+
+.textfield {
+    background-color: #fff;
+    border: none;
+    border-radius: 2px;
+    color: #B3B4B7;
+    font-size: 18px;
+    padding: 6px 9px;
+    display: block;
+    text-align: left;
+    resize: none;
+    -webkit-transition:  0.3s;
+    -moz-transition:  0.3s;
+    -ms-transition:  0.3s;
+    -o-transition:  0.3s;
+    transition:  0.3s;
+}
+
+.textfield:hover{
+    box-shadow: 0 0px 11px #7498EC;
+}
+
+
+.form-title{
+    color: #fff;
+    font-size: 22px;
+}
+
+
+
