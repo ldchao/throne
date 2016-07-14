@@ -112,12 +112,14 @@ function addIds(index) {
     if (spanum * 8 < idlist.length) {
         var pagesdiv = document.getElementById("pages");
         var span = document.createElement("span");
-        span.innerHTML = "o";
+        span.setAttribute("class", "dot");
         pagesdiv.appendChild(span);
 
         $(span).live('click', function () {
             gotoPage(this);
         });
+
+        adjustDot();
     }
 
     var eachdiv = document.createElement("div");
@@ -200,11 +202,13 @@ function showId(index, isDelete) {
     document.getElementById("selectedIds_div").appendChild(eachdiv);
 
     // 去除一个分页节点
-    if (isDelete == true && idlist.length % 8 == 0 && idlist.length >= 8) {
-        var pagesdiv = document.getElementById("pages");
-        var spans = pagesdiv.getElementsByTagName("span");
+    var pagesdiv = document.getElementById("pages");
+    var spans = pagesdiv.getElementsByTagName("span");
+    if (isDelete == true && idlist.length % 8 == 0 && idlist.length >= 8 && spans.length * 8 > idlist.length) {
         pagesdiv.removeChild(spans[spans.length - 1]);
     }
+
+    adjustDot();
 }
 
 // 返回已添加的id列表中的位置
@@ -269,5 +273,17 @@ function prevPage() {
     if (pageNum > 0) {
         pageNum--;
         gotoPage(spans[pageNum]);
+    }
+}
+
+// 调整当前选定点的颜色
+function adjustDot() {
+    var spans = document.getElementById("pages").getElementsByTagName("span");
+    for (var i = 0; i < spans.length; i++) {
+        if (i == pageNum) {
+            spans[i].style.backgroundColor = "#6093e2";
+        } else {
+            spans[i].style.backgroundColor = "#e7ecf5";
+        }
     }
 }

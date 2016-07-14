@@ -181,7 +181,7 @@
                     <span class="previous" onclick="prevPage()"> < </span>
 
                     <div id="pages">
-                        <span onclick="gotoPage(this)">o</span>
+                        <span class="dot" onclick="gotoPage(this)"></span>
                     </div>
 
                     <span class="next" onclick="nextPage()"> > </span>
