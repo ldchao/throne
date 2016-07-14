@@ -1,6 +1,8 @@
 package DaoTest;
 
-import DaoImpl.*;
+import DaoImpl.CreateIdDaoImpl;
+import DaoImpl.SummaryDaoImpl;
+import POJO.Summary;
 
 import java.util.List;
 
@@ -8,7 +10,7 @@ import java.util.List;
  * Created by mm on 2016/7/11.
  */
 public class test {
-    public static void  main(String[]args){
+    public static void main(String[] args) {
 //        connection connection=new connection();
 //        UserDaoImpl userDao=new UserDaoImpl();
 //        User user=new User();
@@ -81,9 +83,9 @@ public class test {
 //            System.out.println((String)object);
 //        }
 
-        SummaryDaoImpl summaryDao=new SummaryDaoImpl();
-        CreateIdDaoImpl createIdDao=new CreateIdDaoImpl();
-        Summary summary=new Summary();
+        SummaryDaoImpl summaryDao = new SummaryDaoImpl();
+        CreateIdDaoImpl createIdDao = new CreateIdDaoImpl();
+        Summary summary = new Summary();
 //        int id=createIdDao.CreateIntId("Summary");
 //        summary.setCombination("123");
 //        summary.setDescription("222");
@@ -98,10 +100,10 @@ public class test {
 //        summary.setFlag(22);
 //        System.out.println(summaryDao.updateFlag(summary));
 
-        List list=summaryDao.getValidSummary(summary);
-        for (Object object:list
-             ) {
-           Summary po= (Summary)object;
+        List list = summaryDao.getValidSummary(summary);
+        for (Object object : list
+                ) {
+            Summary po = (Summary) object;
             System.out.println(po.getId());
         }
 //        System.out.println(summaryDao.deleteInvalidSummary(summary));

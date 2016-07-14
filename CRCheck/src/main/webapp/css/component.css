@@ -78,7 +78,8 @@ footer {
 
 @media (max-width: 768px) {
     .submit-button {
-        width: 90%;
+        width: 100%;
+        margin-right: 0;
     }
 }
 
@@ -106,7 +107,8 @@ footer {
 
 @media (max-width: 768px) {
     .cancel-button {
-        width: 90%;
+        width: 100%;
+        margin-right: 0;
     }
 }
 
@@ -208,6 +210,11 @@ footer {
     color: #fff;
     font-size: 22px;
 }
+
+.left-button{
+    margin-right: 20px;
+}
+
 
 
 
