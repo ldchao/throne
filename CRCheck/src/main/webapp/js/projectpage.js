@@ -40,6 +40,7 @@ function showLaunch(elem_id) {
         }
     })();
 
+    setIds();
 }
 
 function closeLaunch(elem_id) {
@@ -75,29 +76,29 @@ function setIds() {
         url: "/getUserList",
         data: {"userid": userId},
         success: function (result) {
-            currentids = result.userList;
+            currentids = result;
+
+            for (var i = 0; i < 8; i++) {
+
+                var ids = "id" + (i + "");
+                document.getElementById(ids).innerHTML = currentids[i];
+
+                var pos = hasInList(currentids[i]);
+
+                var selectImg = "img" + (i + "");
+                var elem_img = document.getElementById(selectImg);
+
+                if (pos > -1) {
+                    elem_img.setAttribute("class", "img_each_after");
+                } else {
+                    elem_img.setAttribute("class", "img_each");
+                }
+            }
         },
         error: function () {
             slidein(1, "获取评审者数据失败啦");
         }
     });
-
-    for (var i = 0; i < 8; i++) {
-
-        var ids = "id" + (i + "");
-        document.getElementById(ids).innerHTML = currentids[i];
-
-        var pos = hasInList(currentids[i]);
-
-        var selectImg = "img" + (i + "");
-        var elem_img = document.getElementById(selectImg);
-
-        if (pos > -1) {
-            elem_img.setAttribute("class", "img_each_after");
-        } else {
-            elem_img.setAttribute("class", "img_each");
-        }
-    }
 }
 
 // 添加选择的用户
