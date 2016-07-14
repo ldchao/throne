@@ -35,11 +35,11 @@ function Login() {
                 } else if (result == "FAIL") {
                     $("#password_log").parent().append("<label class='lblerr_2'>" + "用户名不存在或密码错误" + "</label>");
                 } else {
-                    alert("数据库连接失败啦");
+                    slidein("数据库连接失败啦");
                 }
             },
             error: function () {
-                alert("获取数据失败啦")
+                slidein(1, "出故障了请稍候再试");
             }
         })
     } else {
@@ -91,11 +91,11 @@ function Register() {
                 } else if (result == "FAIL") {
                     $("#password_reg").parent().append("<label class='lblerr_1'>" + "用户名已存在" + "</label>");
                 } else {
-                    alert("数据库连接失败啦");
+                    slidein(1, "数据库连接失败啦");
                 }
             },
             error: function () {
-                alert("获取数据失败啦")
+                slidein(1, "出故障了请稍候再试");
             }
         })
     } else {

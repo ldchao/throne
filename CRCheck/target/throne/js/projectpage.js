@@ -62,7 +62,7 @@ function setIds() {
             currentids = result.userList;
         },
         error: function () {
-            alert("获取评审者数据失败啦")
+            slidein(1, "获取评审者数据失败啦");
         }
     });
 
@@ -176,7 +176,6 @@ function removeIds(id_remove) {
         } else if (selected_div.getElementsByClassName("div_each").length == 0) {
             var pagesdiv = document.getElementById("pages");
             var spans = pagesdiv.getElementsByTagName("span");
-            alert(pageNum + "below")
             pagesdiv.removeChild(spans[pageNum]);
             pageNum--;
             gotoPage(spans[pageNum]);
@@ -361,7 +360,7 @@ function publishPro() {
 
         },
         error: function () {
-            alert("失败");
+            slidein(1, "出故障了请稍候再试");
         }
     });
 
