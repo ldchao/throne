@@ -16,7 +16,7 @@ public interface ReviewRecordService {
     public UniversalState submitReviewRecord(ArrayList<PersonalReviewRecord> recordList);
 
     //完成评审
-    public UniversalState finishReviewRecord(ArrayList<PersonalReviewRecord> recordList);
+    public UniversalState finishReviewRecord(String userID,int projectID);
 
     //查看参评所有用户名单
     public ArrayList<String> checkProjectUserList(String projectID);

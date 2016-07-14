@@ -12,8 +12,10 @@ import POJO.Attendance;
 import POJO.Personalreview;
 import POJO.Summary;
 import enums.ApproveState;
+import enums.FinishState;
 import enums.UniversalState;
 import model.PersonalReviewRecord;
+import model.SummaryReviewRecord;
 import service.ReviewRecordService;
 
 import java.text.DateFormat;
@@ -74,14 +76,27 @@ public class ReviewRecordServiceImpl implements ReviewRecordService {
     }
 
     //完成评审
-    public UniversalState finishReviewRecord(ArrayList<PersonalReviewRecord> recordList){
+    public UniversalState finishReviewRecord(String userID,int projectID){
+        AttendanceDao attendanceDao=new AttendanceDaoImpl();
+        Attendance attendance=attendanceDao.findAttendance(projectID,userID);
+        attendance.setState(FinishState.Done.toString());
 
 
         return null;
     }
 
+    //查看参评所有用户名单
+    public ArrayList<String> checkProjectUserList(String projectID) {
+        return null;
+    }
+
+    //按用户查看个人评审记录
+    public ArrayList<PersonalReviewRecord> checkPersonalReviewRecord(String userID, int projectID) {
+        return null;
+    }
+
     //查看评审记录
-    public ArrayList<PersonalReviewRecord> checkReviewRecord(String projectID){
+    public ArrayList<SummaryReviewRecord> checkSummaryReviewRecord(String projectID) {
         return null;
     }
 

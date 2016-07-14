@@ -1,10 +1,14 @@
 package serviceImpl;
 
+import Dao.AttendanceDao;
 import Dao.CreateIdDao;
 import Dao.InvitementDao;
+import DaoImpl.AttendanceDaoImpl;
 import DaoImpl.CreateIdDaoImpl;
 import DaoImpl.InvitementDaoImpl;
+import POJO.Attendance;
 import POJO.Invitement;
+import enums.FinishState;
 import enums.MessageState;
 import enums.UniversalState;
 import model.InvitationMessage;
@@ -34,6 +38,7 @@ public class InvitationListServiceImpl implements InvitationListService{
 
         InvitementDao invitmentDao=new InvitementDaoImpl();
         CreateIdDao createIdDao=new CreateIdDaoImpl();
+        AttendanceDao attendanceDao=new AttendanceDaoImpl();
         boolean result=true;
         for (InvitationMessage invitationMesage:list ) {
             Invitement invitement=new Invitement();
@@ -42,6 +47,14 @@ public class InvitationListServiceImpl implements InvitationListService{
             invitement.setUserId(invitationMesage.getUserID());
             invitement.setState(MessageState.NotHandle.toString());
             result=result&invitmentDao.addInvitement(invitement);
+
+            Attendance attendance=new Attendance();
+            attendance.setId(createIdDao.CreateIntId("Attendance"));
+            attendance.setProjectId(invitationMesage.getProjectID());
+            attendance.setUserId(invitationMesage.getUserID());
+            attendance.setState(FinishState.NotDone.toString());
+            attendance.setQualityReview("");
+            result=result&attendanceDao.addAttendance(attendance);
         }
         return result?UniversalState.SUCCESS:UniversalState.FAIL;
     }
