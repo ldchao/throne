@@ -19,10 +19,13 @@ public interface AttendanceDao {
 
       public boolean updateAttendance(Attendance attendance);
 
-
       public Attendance findAttendance(int pid,String uid);
 
       public ArrayList<Attendance> findAttendancebyProject(int pid);
 
       public ArrayList<Attendance> findAttendancebyUser(String uid);
+
+      public ArrayList<String> finduserDone(int pid);
+
+      public ArrayList<String> finduserNotDone(int pid);
 }
