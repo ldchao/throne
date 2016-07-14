@@ -70,4 +70,22 @@ public class ProjectController {
             return "FAIL";
         }
     }
+    //进入项目
+    @RequestMapping(value = "/projects", method = RequestMethod.POST)
+    @ResponseBody
+    public String getProject(HttpServletRequest request, int projectId) {
+        //新增项目
+        ProjectService ps = new ProjectServiceImpl();
+        ProjectModel project = ps.checkProject(projectId);
+        //计算项目剩余时间
+        String day = DateHelper.daysAnalyse(project.getStartDate(),project.getEndDate());
+
+        if (project == null) {
+            return "FAIL";
+        } else {
+            request.getSession().setAttribute("project", project);
+            request.getSession().setAttribute("day", day);
+            return "SUCCESS";
+        }
+    }
 }
