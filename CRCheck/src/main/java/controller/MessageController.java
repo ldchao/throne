@@ -1,5 +1,7 @@
 package controller;
 
+import POJO.Message;
+import model.InvitationMessage;
 import model.UserModel;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,6 +11,7 @@ import service.MessageService;
 import serviceImpl.MessageServiceImpl;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * Created by lvdechao on 2016/7/13.
@@ -36,5 +39,24 @@ public class MessageController {
         }
         return "Unchanged";
     }
+    //查看全部新消息
+    @RequestMapping(value = "/AllNewMessage", method = RequestMethod.GET)
+    @ResponseBody
+    public List<InvitationMessage> getAllNewMessage(String userId) {
 
+        MessageService messageService = new MessageServiceImpl();
+        //TODO
+        return messageService.checkAllMessage(userId);
+
+    }
+    //查看全部历史消息
+    @RequestMapping(value = "/AllOldMessage", method = RequestMethod.GET)
+    @ResponseBody
+    public List<InvitationMessage> getAllOldMessage(String userId) {
+
+        MessageService messageService = new MessageServiceImpl();
+        //TODO
+        return messageService.checkAllMessage(userId);
+
+    }
 }
