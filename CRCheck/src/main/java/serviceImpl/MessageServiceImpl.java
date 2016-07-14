@@ -75,6 +75,40 @@ public class MessageServiceImpl implements MessageService {
         return messages;
     }
 
+    public ArrayList<InvitationMessage> checkhandledMessage(String userID) {
+        ArrayList<InvitationMessage> messages=new ArrayList<InvitationMessage>();
+        MessageDao messageDao=new MessageDaoImpl();
+        ArrayList<Message> list=messageDao.findAllMessage(userID);
+        for (Message message:list) {
+            if(MessageState.valueOf(message.getState())==MessageState.NotHandle)
+                continue;
+            InvitationMessage invitation=new InvitationMessage();
+            invitation.setMessageID(message.getId());
+            invitation.setUserID(message.getUserId());
+            invitation.setProjectID(message.getProjectId());
+            invitation.setAccepting_state(MessageState.valueOf(message.getState()));
+            messages.add(invitation);
+        }
+        return messages;
+    }
+
+    public ArrayList<InvitationMessage> checkUnhandledMessage(String userID) {
+        ArrayList<InvitationMessage> messages=new ArrayList<InvitationMessage>();
+        MessageDao messageDao=new MessageDaoImpl();
+        ArrayList<Message> list=messageDao.findAllMessage(userID);
+        for (Message message:list) {
+            if(MessageState.valueOf(message.getState())!=MessageState.NotHandle)
+                continue;
+            InvitationMessage invitation=new InvitationMessage();
+            invitation.setMessageID(message.getId());
+            invitation.setUserID(message.getUserId());
+            invitation.setProjectID(message.getProjectId());
+            invitation.setAccepting_state(MessageState.valueOf(message.getState()));
+            messages.add(invitation);
+        }
+        return messages;
+    }
+
     public int checkMessageCount(String userID) {
         MessageDao messageDao=new MessageDaoImpl();
         return messageDao.getMessageNum(userID);

@@ -27,6 +27,12 @@ public interface MessageService {
     // TODO: 2016/7/12 查看所有消息
     public ArrayList<InvitationMessage> checkAllMessage(String userID);
 
+    // TODO: 2016/7/14 查看处理过的消息
+    public ArrayList<InvitationMessage> checkhandledMessage(String userID);
+
+    // TODO: 2016/7/14 查看未处理的消息
+    public ArrayList<InvitationMessage> checkUnhandledMessage(String userID);
+
     // TODO: 2016/7/13 查看消息数目，用来在有新消息时进行提醒
     public int checkMessageCount(String userID);
 }
