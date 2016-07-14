@@ -12,6 +12,7 @@ public class SummaryReviewRecord {
     private String type;//错误类型
     private String description;//错误细节
     private String combination;//合并记录
+    private boolean isCombinated;//是否属于合并项
 
     public SummaryReviewRecord() {
     }
@@ -70,5 +71,13 @@ public class SummaryReviewRecord {
 
     public void setCombination(String combination) {
         this.combination = combination;
+    }
+
+    public boolean isCombinated() {
+        return isCombinated;
+    }
+
+    public void setCombinated(boolean combinated) {
+        isCombinated = combinated;
     }
 }
