@@ -63,7 +63,7 @@
 </nav><!-- /.navbar -->
 
 
-<div class="container text-center" style="width:65%;margin:100px auto;">
+<div id="auto-container" class="container text-center">
     <div class="row">
         <div class="project-title">${p.name}</div>
     </div>
@@ -89,7 +89,7 @@
             <div class="image-middle" style=""></div>
         </div>
     </div>
-    <div class="left-time main-text">${p.day}</div>
+    <div class="left-time main-text"></div>
 
     <div id="begin" class="submit-button">立即开始评审</div>
 
