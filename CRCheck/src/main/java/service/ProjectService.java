@@ -10,7 +10,7 @@ import model.ProjectModel;
 public interface ProjectService {
 
     //创建项目
-    public UniversalState addProject(ProjectModel projectModel);
+    public int addProject(ProjectModel projectModel);
 
     //删除项目
     public UniversalState deleteProject(int projectID);
