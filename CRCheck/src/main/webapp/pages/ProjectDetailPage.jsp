@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8" %>
+         pageEncoding="UTF-8" isELIgnored="false" %>
 <html>
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -80,9 +80,7 @@
         </div>
     </div>
     <div class="project-time time-text">2016.7.7-2016.8.1</div>
-    <p class="project-detail main-text text-left">
-        这是个很帅很帅的项目这是个很帅很帅的项目这是个很帅很帅的项目这是个很帅很帅的项目这是个很帅很帅的项目这是个很帅很帅的项目这是个很帅很帅的项目这是个很帅很帅的项目这是个很帅很帅的项目这是个很帅很帅的项目这是个很帅很帅的项目
-    </p>
+    <p class="project-detail main-text text-left">${p.discription}</p>
     <div class="member">
         <div class="middle-title">参与者</div>
         <div class="member-list">
@@ -97,6 +95,18 @@
 
     <div id="init-form">
         <div class="form-empty">
+            <div class="form-line row form-title" style="margin-left: 20px;margin-right: 20px;">
+                <div class="col-xs-2 text-left num"
+                     style="padding-left: 5px;padding-right: 5px;margin-top:10px;">1
+                </div>
+                <div class="col-xs-8 text-center"
+                     style="padding-left: 5px;padding-right: 5px;margin-top:10px;">缺陷详细描述
+                </div>
+                <div class="col-xs-2 text-right close"
+                     style="padding-left: 5px;padding-right: 5px;margin-top:10px; " onclick="deleteForm(this)"><span
+                        class="fa fa-times"></span>
+                </div>
+            </div>
             <div class="form-line row" style="margin-left: 20px;margin-right: 20px;">
                 <div class="col-sm-7"
                      style="padding-left: 5px;padding-right: 5px;margin-top:10px;">
