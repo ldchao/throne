@@ -64,20 +64,9 @@
     </div><!-- /.container -->
 </nav><!-- /.navbar -->
 
-<%
-    ProjectModel p = null;
-    String day = null;
-    try {
-        p = (ProjectModel) session.getAttribute("project");
-        day = (String) session.getAttribute("day");
-    } catch (Exception e) {
-        e.printStackTrace();
-    }
-%>
-
 <div id="auto-container" class="container text-center">
     <div class="row">
-        <div class="project-title"><%=p.getName()%>
+        <div class="project-title">${project.name}
         </div>
     </div>
     <div class="project-char text-center">
@@ -85,18 +74,18 @@
             <div class="image-small"
                  style="margin-right:12px;">
             </div>
-            <div class="sub-title"><%=p.getUserID()%>
+            <div class="sub-title">${project.userID}
             </div>
         </div>
         <div class="project-type" style="display: inline-block;">
             <div class="type-image"></div>
-            <div class="sub-title"><%=p.getType()%>
+            <div class="sub-title">${project.type}
             </div>
         </div>
     </div>
-    <div class="project-time time-text"><%=p.getStartDate()%> - <%=p.getEndDate()%>
+    <div class="project-time time-text">${project.startDate} - ${project.endDate}
     </div>
-    <p class="project-detail main-text text-left"><%=p.getDiscription()%>
+    <p class="project-detail main-text text-left">${project.discription}
     </p>
     <div class="member">
         <div class="middle-title">参与者</div>
@@ -106,7 +95,18 @@
             <div class="image-middle" style=""></div>
         </div>
     </div>
-    <div class="left-time main-text"><%=day%>
+    <div class="left-time main-text">${day}
+    </div>
+
+    <div class="exist-form">
+        <div class="class-form">
+            <div class="class-head">
+
+            </div>
+            <div class="class-intent">
+
+            </div>
+        </div>
     </div>
 
     <div id="begin" class="submit-button">立即开始评审</div>
