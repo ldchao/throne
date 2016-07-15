@@ -93,7 +93,7 @@
     </div>
 
     <%-- 参与的项目 --%>
-    <div id="partin" class="projects_div">
+    <div id="partin" class="projects_div" style="display: none">
 
         <div class="title_div">
             <div class="title">CRC评审项目</div>

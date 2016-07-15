@@ -412,10 +412,8 @@ $(function () {
             url: "/AllAttendProjects",
             data: {"userId": userId},
             success: function (result) {
-                alert(result);
                 for (var i = 0; i < result.length; i++) {
-                    var data = JSON.parse(result[i]);
-                    alert(data);
+                    addCRCpro(result[i]);
                 }
             },
             error: function () {
@@ -425,7 +423,8 @@ $(function () {
     }
 });
 
-function addCRCpro() {
+function addCRCpro(jsondata) {
+
     var div = document.createElement("div");
     div.setAttribute("class", "projects_div");
     div.innerHTML = CRCpro;
@@ -436,6 +435,13 @@ function addCRCpro() {
     var dateinfo = div.getElementsByClassName("date_info")[0];
     var launcherinfo = div.getElementsByClassName("launcher_info")[0];
     var ddl = div.getElementsByClassName("ddl_tip")[0];
+
+    proname.innerHTML = jsondata.name;
+    kind.innerHTML = jsondata.type;
+    content.innerHTML = jsondata.discription;
+    dateinfo.innerHTML = "评审日期: " + jsondata.startDate + " - " + jsondata.endDate;
+    launcherinfo.innerHTML = "项目发起者: " + jsondata.userID;
+    ddl.innerHTML = jsondata.day;
 
     document.getElementById("parent_div").appendChild(div);
 }
