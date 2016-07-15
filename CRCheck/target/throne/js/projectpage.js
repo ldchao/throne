@@ -436,12 +436,22 @@ function addCRCpro(jsondata) {
     var launcherinfo = div.getElementsByClassName("launcher_info")[0];
     var ddl = div.getElementsByClassName("ddl_tip")[0];
 
+    var proID = jsondata.projectID;
     proname.innerHTML = jsondata.name;
     kind.innerHTML = jsondata.type;
     content.innerHTML = jsondata.discription;
     dateinfo.innerHTML = "评审日期: " + jsondata.startDate + " - " + jsondata.endDate;
     launcherinfo.innerHTML = "项目发起者: " + jsondata.userID;
     ddl.innerHTML = jsondata.day;
+
+    var button = div.getElementsByClassName("continue_btn")[0];
+    if(jsondata.state == "Over"){
+        button.innerHTML = "项目已结束";
+        button.setAttribute("class", "finish_btn");
+    }
+    button.onclick = function () {
+        goTo(proID);
+    }
 
     document.getElementById("parent_div").appendChild(div);
 }

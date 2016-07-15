@@ -104,11 +104,7 @@
             </div>
         </div>
 
-        <div class="content_describe">
-            这个缺陷好傻好傻好傻好傻好傻好傻好傻
-            好傻好傻好傻好傻好傻好傻好傻好傻好傻好傻好傻好傻好好傻好傻好傻好傻
-            好傻好傻好傻好傻好傻好傻傻好傻好傻好傻好傻好傻好傻
-        </div>
+        <div class="content_describe"></div>
 
         <div class="bottom_div">
             <div class="date_info">评审日期: 2016.7.14 - 2016.7.31</div>
@@ -118,7 +114,7 @@
             <div class="right_corner">
                 <div class="ddl_tip">XX天后结束</div>
 
-                <button class="continue_btn" onclick="addCRCpro()">继续评审</button>
+                <button class="continue_btn" onclick="addCRCpro()">查看项目</button>
             </div>
         </div>
 

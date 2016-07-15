@@ -459,6 +459,7 @@
     background-color: #f3f5f9;
     margin: 40px auto;
     padding-bottom: 20px;
+    padding-top: 7px;
 }
 
 .title_div {
@@ -510,12 +511,14 @@
     font-size: 18px;
     color: #7591d5;
     display: inline-block;
+    margin-top: 3px;
 }
 
 .launcher_info {
     font-size: 18px;
     color: #778294;
     display: inline-block;
+    margin-top: 3px;
 }
 
 .ddl_tip {
@@ -533,10 +536,41 @@
     width: 112px;
     height: 34px;
     border: none;
+    border-radius: 2px;
     display: inline-block;
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+    -ms-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s;
 }
 
-.right_corner{
+.continue_btn:hover {
+    background-color: #7BE8BF;
+}
+
+.finish_btn {
+    color: #fff;
+    background-color: rgb(107, 111, 120);
+    font-size: 18px;
+    width: 112px;
+    height: 34px;
+    border: none;
+    border-radius: 2px;
+    display: inline-block;
+    cursor: pointer;
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+    -ms-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s;
+}
+
+.finish_btn:hover {
+    background-color: #8D9096;
+}
+
+.right_corner {
     display: inline-block;
     float: right;
     margin-right: 27px;
