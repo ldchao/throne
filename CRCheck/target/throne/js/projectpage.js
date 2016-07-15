@@ -275,7 +275,7 @@ function gotoPage(node) {
 
     var spans = document.getElementById("pages").getElementsByTagName("span");
 
-    if (spans.length > 1) {
+    if (spans.length > 0) {
         var index = ($(node).parents("#pages").find("span").index($(node)));
         pageNum = index;
         var index = index * 8;
@@ -401,12 +401,41 @@ function goTo(proId) {
 
 // 参与的项目
 $(function () {
-    CRCpro = document.getElementById("partin").innerHTML
+    CRCpro = document.getElementById("partin").innerHTML;
+
+    var userId = document.getElementById("storage").innerHTML;
+    userId = userId.trim();
+    if (userId != "") {
+        $.ajax({
+            type: "get",
+            async: false,
+            url: "/AllAttendProjects",
+            data: {"userId": userId},
+            success: function (result) {
+                alert(result);
+                for (var i = 0; i < result.length; i++) {
+                    var data = JSON.parse(result[i]);
+                    alert(data);
+                }
+            },
+            error: function () {
+                slidein(1, "参与的项目加载失败");
+            }
+        });
+    }
 });
 
 function addCRCpro() {
     var div = document.createElement("div");
     div.setAttribute("class", "projects_div");
     div.innerHTML = CRCpro;
+
+    var proname = div.getElementsByClassName("title")[0];
+    var kind = div.getElementsByClassName("kind_div")[0].getElementsByTagName("span")[0];
+    var content = div.getElementsByClassName("content_describe")[0];
+    var dateinfo = div.getElementsByClassName("date_info")[0];
+    var launcherinfo = div.getElementsByClassName("launcher_info")[0];
+    var ddl = div.getElementsByClassName("ddl_tip")[0];
+
     document.getElementById("parent_div").appendChild(div);
 }
