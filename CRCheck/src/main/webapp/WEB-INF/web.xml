@@ -9,12 +9,13 @@
 
   <display-name>CRCheck</display-name>
 
-  <content-param>
+  <context-param>
     <param-name>contextConfigLocation</param-name>
     <param-value>/WEB-INF/applicationContext.xml</param-value>
-  </content-param>
+  </context-param>
+  
   <listener>
-    <listener-class>org.springframework.web.content.ContextLoaderListener</listener-class>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>
   <servlet>
     <servlet-name>dispatcher</servlet-name>
