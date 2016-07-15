@@ -47,14 +47,6 @@ public class InvitationListServiceImpl implements InvitationListService{
             invitement.setUserId(invitationMesage.getUserID());
             invitement.setState(MessageState.NotHandle.toString());
             result=result&invitmentDao.addInvitement(invitement);
-
-            Attendance attendance=new Attendance();
-            attendance.setId(createIdDao.CreateIntId("Attendance"));
-            attendance.setProjectId(invitationMesage.getProjectID());
-            attendance.setUserId(invitationMesage.getUserID());
-            attendance.setState(FinishState.NotDone.toString());
-            attendance.setQualityReview("");
-            result=result&attendanceDao.addAttendance(attendance);
         }
         return result?UniversalState.SUCCESS:UniversalState.FAIL;
     }

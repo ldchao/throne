@@ -1,14 +1,19 @@
 package serviceImpl;
 
+import Dao.AttendanceDao;
 import Dao.CreateIdDao;
 import Dao.MessageDao;
+import DaoImpl.AttendanceDaoImpl;
 import DaoImpl.CreateIdDaoImpl;
 import DaoImpl.MessageDaoImpl;
+import POJO.Attendance;
 import POJO.Message;
+import enums.FinishState;
 import enums.MessageState;
 import enums.UniversalState;
 import model.InvitationMessage;
 import model.ProjectModel;
+import service.InvitationListService;
 import service.MessageService;
 
 import java.util.ArrayList;
@@ -43,11 +48,31 @@ public class MessageServiceImpl implements MessageService {
 
     public UniversalState changeMessageState(int messageID, MessageState messageState) {
 
+        boolean result=true;
+
         MessageDao messageDao=new MessageDaoImpl();
         Message message=new Message();
         message.setId(messageID);
         message.setState(messageState.toString());
-        return messageDao.updateMessage(message)?UniversalState.SUCCESS:UniversalState.FAIL;
+        result=result&messageDao.updateMessage(message);
+        message=messageDao.findMessage(messageID);
+
+        if(messageState==MessageState.Agree||messageState==MessageState.Delete) {
+            InvitationListService invitationListService = new InvitationListServiceImpl();
+            invitationListService.changeInvitationState(message.getUserId(), message.getProjectId(), messageState);
+        }
+        if(messageState==MessageState.Agree ){
+            CreateIdDao createIdDao = new CreateIdDaoImpl();
+            AttendanceDao attendanceDao = new AttendanceDaoImpl();
+            Attendance attendance = new Attendance();
+            attendance.setId(createIdDao.CreateIntId("Attendance"));
+            attendance.setProjectId(message.getProjectId());
+            attendance.setUserId(message.getUserId());
+            attendance.setState(FinishState.NotDone.toString());
+            attendance.setQualityReview("");
+            result = result & attendanceDao.addAttendance(attendance);
+        }
+        return result?UniversalState.SUCCESS:UniversalState.FAIL;
     }
 
     public UniversalState deleteMessage(int messageID) {
