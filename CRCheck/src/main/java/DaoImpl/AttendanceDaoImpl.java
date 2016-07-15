@@ -137,11 +137,8 @@ public class AttendanceDaoImpl  implements AttendanceDao {
             Query query = session.createQuery(hql);
             ArrayList<Attendance> aList =(ArrayList<Attendance>) query.list();
             connection.closeSession(session);
-            if(aList.size()==0){
-                return null;
-            }else{
                 return aList;
-            }
+
         }catch (Exception e){
             e.printStackTrace();
             connection.closeSession(session);
@@ -156,11 +153,8 @@ public class AttendanceDaoImpl  implements AttendanceDao {
             Query query = session.createQuery(hql);
             ArrayList<Attendance> aList =(ArrayList<Attendance>) query.list();
             connection.closeSession(session);
-            if(aList.size()==0){
-                return null;
-            }else{
                 return aList;
-            }
+
         }catch (Exception e){
             e.printStackTrace();
             connection.closeSession(session);
