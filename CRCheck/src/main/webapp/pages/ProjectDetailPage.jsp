@@ -187,7 +187,7 @@
 
 <footer> © CRCheck 2016</footer>
 
-%--发起项目评审--%>
+<%--发起项目评审--%>
 <div id="launch">
     <div class="launch_div_left visible-lg"></div>
 
