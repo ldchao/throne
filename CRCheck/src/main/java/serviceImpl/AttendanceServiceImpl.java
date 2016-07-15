@@ -43,6 +43,18 @@ public class AttendanceServiceImpl implements AttendanceService{
             ProjectModel projectModel=projectService.checkProject(a.getId());
             result.add(projectModel);
         }
+
+        ProjectDao projectDao=new ProjectDaoImpl();
+        User user=new User();
+        user.setId(userID);
+        List<Project> list2=projectDao.findProjectByUserId(user);
+        for (Project p:list2) {
+            ProjectModel projectModel=projectService.checkProject(p.getId());
+            if(p.getAttendReview().equals("YES"))
+                result.add(projectModel);
+        }
         return result;
+
+
     }
 }
