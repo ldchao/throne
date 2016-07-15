@@ -14,6 +14,8 @@ import model.ProjectModel;
 import service.InvitationListService;
 import service.MessageService;
 import service.ProjectService;
+import tool.DateHelper;
+
 import java.util.ArrayList;
 
 /**
@@ -85,13 +87,20 @@ public class ProjectServiceImpl implements ProjectService {
         p.setProjectID(pro.getId());
         p.setType(Language.valueOf(pro.getType()));
         p.setDiscription(pro.getDescription());
-        p.setState(ProjectState.valueOf(pro.getProjectState()));
         p.setPower(Power.valueOf(pro.getPower()));
         p.setStartDate(pro.getStartTime());
         p.setEndDate(pro.getEndTime());
         p.setProjectPath(pro.getCodePath());
         p.setAttendReview(pro.getAttendReview());
         p.setQualityFeedback(pro.getQualityReview());
+
+        ProjectState nowProjectState= DateHelper.stateAnalyse(pro.getStartTime(),pro.getEndTime());
+        p.setState(nowProjectState);
+        ProjectState oldProjectState=ProjectState.valueOf(pro.getProjectState());
+        if(nowProjectState!=oldProjectState){
+            updateProjectState(pro.getId(),nowProjectState);
+        }
+
         //获取邀请列表
         InvitationListService service = new InvitationListServiceImpl();
         ArrayList<InvitationMessage> list = service.getInvitationList(projectID);
