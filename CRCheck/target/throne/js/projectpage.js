@@ -445,7 +445,7 @@ function addCRCpro(jsondata) {
     ddl.innerHTML = jsondata.day;
 
     var button = div.getElementsByClassName("continue_btn")[0];
-    if(jsondata.day == "项目已结束"){
+    if(jsondata.state == "Over"){
         button.innerHTML = "项目已结束";
         button.setAttribute("class", "finish_btn");
     }

@@ -1,3 +1,10 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: L.H.S
+  Date: 16/7/15
+  Time: 下午3:49
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page import="model.UserModel" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
@@ -6,15 +13,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- this page's styles -->
+    <!-- 发起项目 styles -->
     <link href="../css/projectpage.css" rel="stylesheet">
+
+    <!-- this page's styles -->
+    <link href="../css/newspage.css" rel="stylesheet">
 
     <!-- Bootstrap core CSS -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
-    <%--<link href="../css/bootstrap.css" rel="stylesheet">--%>
-
-    <!-- Custom styles for login and register -->
-    <link href="../css/log_reg.css" rel="stylesheet">
 
     <link rel="stylesheet" href="http://cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
@@ -43,7 +49,6 @@
     <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
 </head>
 <body>
 
@@ -70,7 +75,7 @@
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li><a href="HomePage.jsp">首页</a></li>
-                <li class="active"><a href="ProjectPage.jsp">项目</a></li>
+                <li><a href="ProjectPage.jsp">项目</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a data-toggle="modal" href="#Login">登录</a></li>
@@ -83,20 +88,20 @@
     </div><!-- /.container -->
 </nav><!-- /.navbar -->
 
-<div id="parent_div">
+<div class="tab_lbl">
+    <span id="news_last" onclick="switchTab(1)">新的消息</span>
+    <span id="news_history" onclick="switchTab(0)">历史消息</span>
+</div>
 
-    <div id="introduce_parent" onclick="showIntroduce()"></div>
-    <div id="introduce_child">
-        <h1>介绍部分</h1>
-    </div>
+<div id="last_div">
 
-    <%-- 参与的项目 --%>
-    <div id="partin" class="projects_div" style="display: none">
+    <div id="news" class="projects_div" style="display: none;">
 
         <div class="title_div">
             <div class="title">CRC评审项目</div>
 
             <div class="kind_div">
+                <div class="invitor">邀请人: marioquer</div>
                 <div class="kind_img"></div>
                 <span>Java</span>
             </div>
@@ -107,39 +112,23 @@
         <div class="bottom_div">
             <div class="date_info">评审日期: 2016.7.14 - 2016.7.31</div>
 
-            <div class="launcher_info">项目发起者: sure</div>
-
             <div class="right_corner">
-                <div class="ddl_tip">XX天后结束</div>
 
-                <button class="continue_btn" onclick="addCRCpro()">查看项目</button>
+                <button class="continue_btn" style="width:102px; height: 31px; font-size: 16px;">接受邀请</button>
+
+                <button class="refuse_btn">拒绝邀请</button>
+
+                <button class="ignore_btn">忽略</button>
+
+                <button class="delete_btn">删除</button>
+
             </div>
         </div>
     </div>
-</div>
-
-<div class="invite_div">
-
-    <div class="left_div visible-lg">
-        <span class="text_style_left">邀请你的项目伙伴</span>
-        <span class="text_style_left">定时高效</span>
-    </div>
-
-    <div class="circle_div" onclick="showLaunch('launch')">
-        <hr class="add_style_1">
-        <hr class="add_style_2">
-    </div>
-
-    <div class="right_div visible-lg">
-        <span class="text_style_right">从这里开始添加你的</span>
-        <span class="text_style_right">评审项目</span>
-    </div>
 
 </div>
 
-<a href="#" id="back-to-top"><i class="fa fa-angle-up"></i></a>
-
-<footer> © CRCheck 2016</footer>
+<div id="history_div"></div>
 
 <%--发起项目评审--%>
 <div id="launch">
@@ -254,66 +243,6 @@
     </div>
 </div>
 
-<%--登录--%>
-<div id="Login" class="modal hide fade in" style="display: none;">
-
-    <div class="log_reg_div">
-        <span class="log_reg">登录CRC平台</span>
-    </div>
-
-    <button class="close close_div" data-toggle="modal" data-dismiss="modal"><i class="fa fa-times"></i></button>
-
-    <div class="input_field_div">
-        <input class="input_field" id="userId_log" type="text" placeholder="键入您的用户名">
-        <input class="input_field" id="password_log" type="password" placeholder="键入您的密码">
-    </div>
-
-    <div class="switchbtn_div">
-        <input class="mui-switch mui-switch-animbg" type="checkbox">
-        <span class="logtip">记住密码</span>
-    </div>
-
-    <div class="switchtip_div">
-        <a class="switchtip" data-toggle="modal" href="#Register"
-           data-dismiss="modal">注册新帐号</a>
-    </div>
-
-    <div class="logbtn_div">
-        <button class="logbtn" onclick="Login()">登录</button>
-    </div>
-
-</div>
-
-<%--注册--%>
-<div id="Register" class="modal hide fade in" style="display: none;">
-
-    <div class="log_reg_div">
-        <span class="log_reg">立即加入CRC评审</span>
-    </div>
-
-    <button class="close close_div" data-toggle="modal" data-dismiss="modal"><i class="fa fa-times"></i></button>
-
-    <div class="input_field_div">
-        <input class="input_field" id="userId_reg" type="text" placeholder="键入您的用户名">
-        <input class="input_field" id="password_reg" type="password" placeholder="键入您的密码(不少于6位)">
-    </div>
-
-    <div class="switchbtn_div">
-        <input class="mui-switch mui-switch-animbg" id="power_reg" type="checkbox">
-        <span class="logtip">是否允许任何人邀请你</span>
-    </div>
-
-    <div class="switchtip_div">
-        <a class="switchtip" data-toggle="modal" href="#Login"
-           data-dismiss="modal">登录已有帐号</a>
-    </div>
-
-    <div class="logbtn_div">
-        <button class="logbtn" onclick="Register()">注册</button>
-    </div>
-
-</div>
-
 <%-- 无阻塞提示框 --%>
 <div id="toaster_close">
     <div id="toaster">
@@ -326,13 +255,10 @@
 <a id="storage" style="display: none;"><%=userId%>
 </a>
 
-<!-- Bootstrap core JavaScript
-    ================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
 <script src="../js/jquery.js"></script>
 <script src="../js/bootstrap.js"></script>
 <script src="../js/projectpage.js"></script>
-<script src="../js/common.js"></script>
+<script src="../js/newspage.js"></script>
 <script src="../js/toaster.js"></script>
 <script src="../js/datetimepicker.js"></script>
 
@@ -353,6 +279,5 @@
         format: 'Y-m-d'
     });
 </script>
-
 </body>
 </html>
