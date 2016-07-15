@@ -1,5 +1,6 @@
 package tool;
 
+import enums.ProjectState;
 import javafx.scene.chart.PieChart;
 import org.hibernate.type.descriptor.java.DataHelper;
 
@@ -47,6 +48,17 @@ public class DateHelper{
             return "项目已结束";
         return "项目将于今晚结束";
     }
+    //状态分析
+    public static ProjectState stateAnalyse(String sdate, String bdate){
+        String result=DateHelper.daysAnalyse(sdate,bdate);
+
+        if(result.endsWith("开始"))
+            return ProjectState.NotStart;
+        else if(result.endsWith("已结束"))
+            return ProjectState.Over;
+        else
+            return ProjectState.Starting;
+    }
     //测试
     public static void main(String[] args){
 //        int day=0;
@@ -65,10 +77,14 @@ public class DateHelper{
 //        System.out.println(day2);
 //        System.out.println(day3);
 //        System.out.println(day4);
-        System.out.println(DateHelper.daysAnalyse("2016-07-02","2016-07-13"));
-        System.out.println(DateHelper.daysAnalyse("2016-07-03","2016-07-14"));
-        System.out.println(DateHelper.daysAnalyse("2016-07-14","2016-08-09"));
-        System.out.println(DateHelper.daysAnalyse("2016-07-24","2016-07-16"));
+//        System.out.println(DateHelper.daysAnalyse("2016-07-02","2016-07-13"));
+//        System.out.println(DateHelper.daysAnalyse("2016-07-03","2016-07-14"));
+//        System.out.println(DateHelper.daysAnalyse("2016-07-14","2016-08-09"));
+//        System.out.println(DateHelper.daysAnalyse("2016-07-24","2016-07-16"));
+        System.out.println(DateHelper.stateAnalyse("2016-07-02","2016-07-13"));
+        System.out.println(DateHelper.stateAnalyse("2016-07-03","2016-07-15"));
+        System.out.println(DateHelper.stateAnalyse("2016-07-15","2016-08-09"));
+        System.out.println(DateHelper.stateAnalyse("2016-07-24","2016-07-16"));
     }
 
 }

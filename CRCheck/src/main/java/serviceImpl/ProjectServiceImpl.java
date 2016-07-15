@@ -181,7 +181,10 @@ public class ProjectServiceImpl implements ProjectService {
 //        p.setInvitationList(list);
         ProjectService ps = new ProjectServiceImpl();
 //        int i=ps.addProject(p);
-        UniversalState i = ps.deleteProject(19);
-        System.out.print(String.valueOf(i));
+//        UniversalState i = ps.deleteProject(19);
+//        System.out.print(String.valueOf(i));
+        for(int i=1;i<8;i++){
+            ps.deleteProject(i);
+        }
     }
 }
