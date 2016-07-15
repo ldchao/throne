@@ -12,8 +12,11 @@ import POJO.*;
 import enums.ApproveState;
 import enums.FinishState;
 import enums.UniversalState;
+import model.CrcCalculation;
 import model.PersonalReviewRecord;
 import model.SummaryReviewRecord;
+import service.CRCService;
+import service.ProjectService;
 import service.ReviewRecordService;
 import sun.font.TrueTypeFont;
 
@@ -60,26 +63,48 @@ public class ReviewRecordServiceImpl implements ReviewRecordService {
             personalreview.setResult(ApproveState.Unapprove.toString());
             result=result&personalreviewDao.addPersionalreview(personalreview);
 
-            //汇总表格数据添加
-            Summary summary=new Summary();
-            int summaryID=createIdDao.CreateIntId("Summary");
-            summary.setId(summaryID);
-            summary.setProjectId(personalReviewRecord.getProjectId());
-            summary.setLocation(path);
-            summary.setType(personalReviewRecord.getType());
-            summary.setDescription(personalReviewRecord.getDescription());
-            summary.setFlag(1);
-            summary.setCombination("");
-            result=result&summaryDao.addSummary(summary);
         }
         return result?UniversalState.SUCCESS:UniversalState.FAIL;
     }
 
     //完成评审
     public UniversalState finishReviewRecord(String userID,int projectID){
+        boolean result=true;
+
         AttendanceDao attendanceDao=new AttendanceDaoImpl();
         Attendance attendance=attendanceDao.findAttendance(projectID,userID);
         attendance.setState(FinishState.Done.toString());
+
+        /**
+         *  将个人正常评审记录插入汇总表格
+         */
+        User user=new User();
+        user.setId(userID);
+        PersonalreviewDao personalreviewDao=new PersonalreviewDaoImpl();
+        List<Personalreview> list=personalreviewDao.findProject(user);
+        CreateIdDao createIdDao=new CreateIdDaoImpl();
+        SummaryDao summaryDao=new SummaryDaoImpl();
+
+        for (Personalreview personalreview:list) {
+            //汇总表格数据添加
+            if(personalreview.getState().equals("Done")){
+                continue;
+            }
+
+            Summary summary=new Summary();
+            int summaryID=createIdDao.CreateIntId("Summary");
+            summary.setId(summaryID);
+            summary.setProjectId(personalreview.getProjectId());
+            summary.setLocation(personalreview.getLocation());
+            summary.setType(personalreview.getType());
+            summary.setDescription(personalreview.getDescription());
+            summary.setFlag(1);
+            summary.setCombination("");
+            result=result&summaryDao.addSummary(summary);
+        }
+        if(result=false){
+            return UniversalState.FAIL;
+        }
 
         /**
          * 待插入与矩阵交互部分，个人评审结果塞入   attendance.setQualityReview();
@@ -89,8 +114,14 @@ public class ReviewRecordServiceImpl implements ReviewRecordService {
         /**
          * 待插入整个项目评审记录与矩阵交互部分，项目总的质量报告放入 project中的qualityReview
          */
+        CRCService crcService=new CRCServiceImpl();
+        int[][] matrix=crcService.getMatrix(projectID);
+        CrcCalculation crcCalculation=new CrcCalculation(matrix);
 
-        return null;
+        String qualityReview="通过算法一预测项目缺陷数为"+crcCalculation.getMhCH()
+                +";通过算法二预测项目缺陷数为"+crcCalculation.getMtCH()+"。";
+        ProjectService projectService=new ProjectServiceImpl();
+        return projectService.updateQualityFeedback(projectID,qualityReview);
     }
 
     //查看参评所有完成评审用户名单
@@ -252,6 +283,7 @@ public class ReviewRecordServiceImpl implements ReviewRecordService {
         return summaryDao.delete(summary)?UniversalState.SUCCESS:UniversalState.FAIL;
     }
 
+    //确定评审，确定以后将不能修改该项目任何评审
     public UniversalState confirmReviewRecord(int projectID) {
         SummaryDao summaryDao=new SummaryDaoImpl();
         Summary summary=new Summary();
