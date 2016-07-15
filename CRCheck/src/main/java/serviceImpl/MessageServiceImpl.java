@@ -35,11 +35,11 @@ public class MessageServiceImpl implements MessageService {
 //                +"”项目的评审，请查收消息。";
         boolean result=true;
         for (InvitationMessage invitationMessage:projectModel.getInvitationList()) {
-              String invitement="尊敬的用户您好，"+constantMessage;
+//              String invitement="尊敬的用户您好，"+constantMessage;
             Integer id=createIdDao.CreateIntId("Message");
             Message message=new Message();
             message.setId(id);
-            message.setContent(invitement);
+            message.setContent(constantMessage);
             message.setProjectId(projectModel.getProjectID());
             message.setUserId(invitationMessage.getUserID());
             message.setState(MessageState.NotHandle.toString());
