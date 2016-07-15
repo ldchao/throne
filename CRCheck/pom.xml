@@ -30,7 +30,7 @@
 
     <dependency>
       <groupId>org.springframework</groupId>
-      <artifactId>spring-content</artifactId>
+      <artifactId>spring-context</artifactId>
       <version>${spring.version}</version>
     </dependency>
 
