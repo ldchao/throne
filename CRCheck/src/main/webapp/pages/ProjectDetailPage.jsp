@@ -247,6 +247,11 @@
 <script src="../js/common.js"></script>
 <script src="../js/toaster.js"></script>
 <script src="../js/ProjectDetailPage.js"></script>
+<script>
+    $(document).ready(function () {
+        detail.init();
+    });
+</script>
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 <script src="../js/ie10-viewport-bug-workaround.js"></script>
 </body>
