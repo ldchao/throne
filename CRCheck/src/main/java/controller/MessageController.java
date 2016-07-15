@@ -1,6 +1,5 @@
 package controller;
 
-import POJO.Message;
 import model.InvitationMessage;
 import model.UserModel;
 import org.springframework.stereotype.Controller;

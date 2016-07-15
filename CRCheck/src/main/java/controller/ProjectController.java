@@ -14,8 +14,6 @@ import service.ProjectService;
 import serviceImpl.AttendanceServiceImpl;
 import serviceImpl.ProjectServiceImpl;
 import tool.DateHelper;
-
-import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -82,6 +80,7 @@ public class ProjectController {
         modelAndView.addObject("day", day);
         return modelAndView;
     }
+
     //查看全部发起项目
     @RequestMapping(value = "/AllLaunchProjects", method = RequestMethod.GET)
     @ResponseBody
@@ -89,6 +88,7 @@ public class ProjectController {
         AttendanceService attendanceService = new AttendanceServiceImpl();
         return attendanceService.getOwnProjectID(userId);
     }
+
     //查看全部参与项目
     @RequestMapping(value = "/AllAttendProjects", method = RequestMethod.GET)
     @ResponseBody
