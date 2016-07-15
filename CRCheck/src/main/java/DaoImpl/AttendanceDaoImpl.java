@@ -182,6 +182,7 @@ public class AttendanceDaoImpl  implements AttendanceDao {
                     uids.add(aList.get(i).getUserId());
                 }
             }
+            connection.closeSession(session);
             return uids;
         }catch (Exception e){
             e.printStackTrace();
@@ -203,6 +204,7 @@ public class AttendanceDaoImpl  implements AttendanceDao {
                     uids.add(aList.get(i).getUserId());
                 }
             }
+            connection.closeSession(session);
             return uids;
         }catch (Exception e){
             e.printStackTrace();
