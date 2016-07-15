@@ -1,5 +1,7 @@
 package controller;
 
+import enums.MessageState;
+import enums.UniversalState;
 import model.InvitationMessage;
 import model.UserModel;
 import org.springframework.stereotype.Controller;
@@ -53,5 +55,46 @@ public class MessageController {
     public List<InvitationMessage> getAllOldMessage(String userId) {
         MessageService messageService = new MessageServiceImpl();
         return messageService.checkhandledMessage(userId);
+    }
+
+    //接受邀请
+    @RequestMapping(value = "/ApproveMessage", method = RequestMethod.GET)
+    @ResponseBody
+    public String approveMessage(int messageId) {
+        MessageService messageService = new MessageServiceImpl();
+        UniversalState state=messageService.changeMessageState(messageId, MessageState.Agree);
+        if(state==UniversalState.SUCCESS)
+            return "SUCCESS";
+        return "FAIL";
+    }
+    //拒绝邀请
+    @RequestMapping(value = "/RefuseMessage", method = RequestMethod.GET)
+    @ResponseBody
+    public String refuseMessage(int messageId) {
+        MessageService messageService = new MessageServiceImpl();
+        UniversalState state=messageService.changeMessageState(messageId, MessageState.Refuse);
+        if(state==UniversalState.SUCCESS)
+            return "SUCCESS";
+        return "FAIL";
+    }
+    //忽略消息
+    @RequestMapping(value = "/IgnoreMessage", method = RequestMethod.GET)
+    @ResponseBody
+    public String ignoreMessage(int messageId) {
+        MessageService messageService = new MessageServiceImpl();
+        UniversalState state=messageService.changeMessageState(messageId, MessageState.Ignore);
+        if(state==UniversalState.SUCCESS)
+            return "SUCCESS";
+        return "FAIL";
+    }
+    //删除消息
+    @RequestMapping(value = "/DeleteMessage", method = RequestMethod.GET)
+    @ResponseBody
+    public String deleteMessage(int messageId) {
+        MessageService messageService = new MessageServiceImpl();
+        UniversalState state=messageService.deleteMessage(messageId);
+        if(state==UniversalState.SUCCESS)
+            return "SUCCESS";
+        return "FAIL";
     }
 }
