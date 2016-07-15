@@ -11,15 +11,10 @@ import enums.ProjectState;
 import enums.UniversalState;
 import model.InvitationMessage;
 import model.ProjectModel;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import service.InvitationListService;
 import service.MessageService;
 import service.ProjectService;
-
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by zs on 2016/7/11.

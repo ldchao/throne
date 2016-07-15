@@ -458,6 +458,7 @@
     width: 73%;
     background-color: #f3f5f9;
     margin: 40px auto;
+    padding-bottom: 20px;
 }
 
 .title_div {
@@ -501,6 +502,8 @@
 .bottom_div {
     margin-top: 17px;
     margin-left: 27px;
+    margin-bottom: 20px;
+    display: block;
 }
 
 .date_info {
@@ -513,7 +516,6 @@
     font-size: 18px;
     color: #778294;
     display: inline-block;
-    margin-left: 16px;
 }
 
 .ddl_tip {
@@ -532,13 +534,11 @@
     height: 34px;
     border: none;
     display: inline-block;
-    margin-right: 27px;
-    margin-bottom: 20px;
 }
 
 .right_corner{
-    width: 265px;
     display: inline-block;
-    margin-left: 160px;
+    float: right;
+    margin-right: 27px;
 }
 

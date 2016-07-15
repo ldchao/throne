@@ -9,12 +9,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import service.AttendanceService;
 import service.ProjectService;
+import serviceImpl.AttendanceServiceImpl;
 import serviceImpl.ProjectServiceImpl;
 import tool.DateHelper;
-
-import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -25,7 +26,7 @@ public class ProjectController {
     //发布新项目
     @RequestMapping(value = "/Launch", method = RequestMethod.POST)
     @ResponseBody
-    public String launch(HttpServletRequest request, String info1, String info2) {
+    public int launch(String info1, String info2) {
 
         String[] str1 = info1.split("[&]");
         String[] str2 = info2.split("[&]");
@@ -59,17 +60,7 @@ public class ProjectController {
         //新增项目
         ProjectService ps = new ProjectServiceImpl();
         int id = ps.addProject(p);
-        ProjectModel project = ps.checkProject(id);
-        //计算项目剩余时间
-        String day = DateHelper.daysAnalyse(str1[4], str1[5]);
-
-        if (project != null) {
-            request.getSession().setAttribute("project", project);
-            request.getSession().setAttribute("day", day);
-            return "SUCCESS";
-        } else {
-            return "FAIL";
-        }
+        return id;
     }
     //进入项目
     @RequestMapping(value = "/projects", method = RequestMethod.GET)
@@ -88,5 +79,31 @@ public class ProjectController {
         modelAndView.addObject("project", project);
         modelAndView.addObject("day", day);
         return modelAndView;
+    }
+
+    //查看全部发起项目
+    @RequestMapping(value = "/AllLaunchProjects", method = RequestMethod.GET)
+    @ResponseBody
+    public List<ProjectModel> getAllNewMessage(String userId) {
+        AttendanceService attendanceService = new AttendanceServiceImpl();
+        List<ProjectModel> list = attendanceService.getOwnProjectID(userId);
+        for(ProjectModel model:list){
+            String day=DateHelper.daysAnalyse(model.getStartDate(),model.getEndDate());
+            model.setDay(day);
+        }
+        return list;
+    }
+
+    //查看全部参与项目
+    @RequestMapping(value = "/AllAttendProjects", method = RequestMethod.GET)
+    @ResponseBody
+    public List<ProjectModel> getAllOldMessage(String userId) {
+        AttendanceService attendanceService = new AttendanceServiceImpl();
+        List<ProjectModel> list = attendanceService.getAttendProjectID(userId);
+        for(ProjectModel model:list){
+            String day=DateHelper.daysAnalyse(model.getStartDate(),model.getEndDate());
+            model.setDay(day);
+        }
+        return list;
     }
 }

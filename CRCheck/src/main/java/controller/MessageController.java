@@ -1,6 +1,5 @@
 package controller;
 
-import POJO.Message;
 import model.InvitationMessage;
 import model.UserModel;
 import org.springframework.stereotype.Controller;
@@ -39,24 +38,20 @@ public class MessageController {
         }
         return "Unchanged";
     }
+
     //查看全部新消息
     @RequestMapping(value = "/AllNewMessage", method = RequestMethod.GET)
     @ResponseBody
     public List<InvitationMessage> getAllNewMessage(String userId) {
-
         MessageService messageService = new MessageServiceImpl();
-        //TODO
-        return messageService.checkAllMessage(userId);
-
+        return messageService.checkUnhandledMessage(userId);
     }
+
     //查看全部历史消息
     @RequestMapping(value = "/AllOldMessage", method = RequestMethod.GET)
     @ResponseBody
     public List<InvitationMessage> getAllOldMessage(String userId) {
-
         MessageService messageService = new MessageServiceImpl();
-        //TODO
-        return messageService.checkAllMessage(userId);
-
+        return messageService.checkhandledMessage(userId);
     }
 }

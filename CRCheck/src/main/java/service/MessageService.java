@@ -4,7 +4,6 @@ import enums.MessageState;
 import enums.UniversalState;
 import model.InvitationMessage;
 import model.ProjectModel;
-
 import java.util.ArrayList;
 
 /**

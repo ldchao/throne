@@ -382,9 +382,9 @@ function publishPro() {
             "info2": id_info
         },
         success: function (result) {
-            if (result == "SUCCESS") {
+            if (result > -1) {
                 slidein(0, "提交成功");
-                setTimeout("window.location.href='ProjectDetailPage.jsp'", 1800);
+                setTimeout("goTo(" + result + ")", 1800);
             } else {
                 slidein(1, "提交失败请稍候再试");
             }
@@ -395,8 +395,12 @@ function publishPro() {
     });
 }
 
+function goTo(proId) {
+    window.location.href = 'ProjectDetailPage.jsp?projectId=' + proId;
+}
+
 // 参与的项目
-$(function(){
+$(function () {
     CRCpro = document.getElementById("partin").innerHTML
 });
 
