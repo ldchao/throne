@@ -194,31 +194,44 @@ footer {
     display: block;
     text-align: left;
     resize: none;
-    -webkit-transition:  0.3s;
-    -moz-transition:  0.3s;
-    -ms-transition:  0.3s;
-    -o-transition:  0.3s;
-    transition:  0.3s;
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+    -ms-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s;
 }
 
-.textfield:hover{
+.textfield:hover {
     box-shadow: 0 0px 11px #7498EC;
 }
 
-
-.form-title{
+.form-title {
     color: #fff;
     font-size: 22px;
 }
 
-.left-button{
+.left-button {
     margin-right: 20px;
 }
 
-
-.inner-infoText{
-    color:#5C6170;
+.inner-infoText {
+    color: #5C6170;
     font-size: 18px;
+}
+
+.inline {
+    display: inline-block;
+}
+
+.user-block {
+    width: 200px;
+    height: 50px;
+    padding: 5px 8px;
+    background-color: #5C6170;
+}
+
+.user-block:hover {
+    background-color: #fff;
 }
 
 

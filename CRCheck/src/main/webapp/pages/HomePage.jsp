@@ -52,8 +52,6 @@
     if (user != null) {
         userId = user.getId();
     }
-    System.out.println(user);
-    System.out.println(userId);
 %>
 
 <nav class="navbar navbar-fixed-top navbar-inverse">
@@ -346,7 +344,6 @@
 <script src="../js/ie10-viewport-bug-workaround.js"></script>
 
 <script>
-
     $('#start_date').datetimepicker({
         lang: 'ch',
         timepicker: false,

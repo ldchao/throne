@@ -53,8 +53,6 @@
     if (user != null) {
         userId = user.getId();
     }
-    System.out.println(user);
-    System.out.println(userId);
 %>
 
 <nav class="navbar navbar-fixed-top navbar-inverse">

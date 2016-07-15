@@ -1,5 +1,4 @@
-<%@ page import="POJO.Project" %>
-<%@ page import="model.ProjectModel" %>
+<%@ page import="model.UserModel" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" isELIgnored="false" %>
 <html>
@@ -21,6 +20,15 @@
     <!-- checkbox styles -->
     <link href="../css/mycheckbox.css" rel="stylesheet">
 
+    <!-- combox styles -->
+    <link href="../css/mycombox.css" rel="stylesheet">
+
+    <!-- datetimepicker styles -->
+    <link href="../css/datetimepicker.css" rel="stylesheet">
+
+    <!-- 发起项目评审 styles -->
+    <link href="../css/projectpage.css" rel="stylesheet">
+
     <!-- specific styles -->
     <link href="../css/component.css" rel="stylesheet">
     <link href="../css/projectDetailPage.css" rel="stylesheet">
@@ -38,6 +46,15 @@
 
 </head>
 <body>
+
+<%
+    UserModel user = (UserModel) request.getSession().getAttribute("User");
+    String userId = "";
+    if (user != null) {
+        userId = user.getId();
+    }
+%>
+
 <nav class="navbar navbar-fixed-top navbar-inverse">
     <div class="container">
         <div class="navbar-header">
@@ -59,7 +76,9 @@
                 <li><a data-toggle="modal" href="#Login">登录</a></li>
                 <li><a data-toggle="modal" href="#Register">注册</a></li>
             </ul>
-            <button class="nav common-button navbar-right" style="margin-top:10px; margin-right:15px;">发起评审</button>
+            <button class="nav common-button navbar-right" style="margin-top:10px; margin-right:15px;"
+                    onclick="showLaunch('launch')">发起评审
+            </button>
         </div><!-- /.nav-collapse -->
     </div><!-- /.container -->
 </nav><!-- /.navbar -->
@@ -168,6 +187,118 @@
 
 <footer> © CRCheck 2016</footer>
 
+%--发起项目评审--%>
+<div id="launch">
+    <div class="launch_div_left visible-lg"></div>
+
+    <div class="launch_div_right">
+        <button class="close close_div_launch" onclick="closeLaunch('launch')">
+            <i class="fa fa-times"></i>
+        </button>
+
+        <input class="textfield" id="pro_name" type="text" placeholder="项目名称">
+
+        <textarea class="textfield" id="pro_describe" placeholder="项目描述"></textarea>
+
+        <div class="selectStyle code_language_div textfield">
+            <select id="code_language" class="mycombox">
+                <option>编程语言</option>
+                <option>Java</option>
+                <option>Cpp</option>
+                <option>Python</option>
+                <option>WebApp</option>
+                <option>Android</option>
+                <option>iOS</option>
+            </select>
+        </div>
+
+        <div class="selectStyle end_date_div">
+            <input class="date_style textfield" type="text" id="end_date" placeholder="结束时间" readonly>
+
+            <div class="selectStyle start_date_div ">
+                <input class="date_style textfield" type="text" id="start_date" placeholder="开始时间" readonly>
+            </div>
+
+            <div class="img_div"></div>
+
+            <span class="limit_tip">评审项目是否公开可见</span>
+
+            <span class="invitation_tip">选择您的项目参与者</span>
+        </div>
+
+        <input class="mui-switch mui-switch-animbg" type="checkbox" id="limit">
+
+        <hr class="hr_decorate">
+
+        <button class="invitation_list_btn" onclick="showLaunch('reviewer_div')">评审者列表</button>
+
+        <div class="shadow" onclick="publishPro()">
+            发起项目评审
+        </div>
+
+        <%-- 邀请 --%>
+        <div id="reviewer_div">
+            <button class="close_div_launch close" onclick="closeLaunch('reviewer_div')">
+                <i class="fa fa-times"></i>
+            </button>
+
+            <%-- 上半部分 --%>
+            <div class="above_part">
+                <div id="above_div" class="imgs_div">
+                    <%
+                        for (int i = 0; i < 8; i++) {
+                            String imgId = "img" + (i + "");
+                            String idId = "id" + (i + "");
+                    %>
+
+                    <div class="div_each" onclick="addIds(<%= i%>)">
+                        <div class="img_each" id="<%= imgId%>"></div>
+                        <div class="id_each" id="<%= idId%>">name</div>
+                    </div>
+
+                    <% } %>
+                </div>
+
+                <div class="refresh" onclick="setIds()">随机更换一批</div>
+
+                <hr class="hr_decorate_2">
+            </div>
+
+            <span class="selected_tip">已选评审者</span>
+
+            <%-- 下半部分 --%>
+            <div class="below_part">
+                <%-- 选择的用户 --%>
+                <div id="selectedIds_div" class="selected_divs"></div>
+
+                <%-- 分页 --%>
+                <div class="pages_depart">
+
+                    <span class="previous" onclick="prevPage()">
+                        <i class="fa fa-angle-double-left"></i>
+                    </span>
+
+                    <div id="pages">
+                        <span class="dot" onclick="gotoPage(this)"></span>
+                    </div>
+
+                    <span class="next" onclick="nextPage()">
+                        <i class="fa fa-angle-double-right"></i>
+                    </span>
+                </div>
+
+            </div>
+
+            <div class="checkbox_div">
+                <input id="self_in" type="checkbox">
+                <label class="tip_1" for="self_in">自己参与评审</label>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
 <%--登录--%>
 <div id="Login" class="modal hide fade in" style="display: none;">
 
@@ -238,6 +369,10 @@
     </div>
 </div>
 
+<%-- 用来存放userId --%>
+<a id="storage" style="display: none;"><%=userId%>
+</a>
+
 <!-- Bootstrap core JavaScript
     ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
@@ -247,12 +382,26 @@
 <script src="../js/common.js"></script>
 <script src="../js/toaster.js"></script>
 <script src="../js/ProjectDetailPage.js"></script>
+<script src="../js/projectpage.js"></script>
+<script src="../js/datetimepicker.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../js/ie10-viewport-bug-workaround.js"></script>
 <script>
     $(document).ready(function () {
         detail.init();
     });
+
+    $('#start_date').datetimepicker({
+        lang: 'ch',
+        timepicker: false,
+        format: 'Y-m-d'
+    });
+
+    $('#end_date').datetimepicker({
+        lang: 'ch',
+        timepicker: false,
+        format: 'Y-m-d'
+    });
 </script>
-<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-<script src="../js/ie10-viewport-bug-workaround.js"></script>
 </body>
 </html>

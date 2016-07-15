@@ -52,8 +52,6 @@
     if (user != null) {
         userId = user.getId();
     }
-    System.out.println(user);
-    System.out.println(userId);
 %>
 
 <nav class="navbar navbar-fixed-top navbar-inverse">
@@ -74,8 +72,15 @@
                 <li><a href="ProjectPage.jsp">项目</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
+                <%if (user == null) {%>
                 <li><a data-toggle="modal" href="#Login">登录</a></li>
                 <li><a data-toggle="modal" href="#Register">注册</a></li>
+                <%} else {%>
+                <div class="user-block"><a href="#">
+                    <div class="image-middle inline" style="background-color: red;"></div>
+                    <span class="inline"
+                          style="font-size: 18px;color:#838D9E;background-color: #1b6d85;"><%=userId%></span></a></div>
+                <%}%>
             </ul>
             <button class="nav common-button navbar-right" style="margin-top:10px; margin-right:15px;"
                     onclick="showLaunch('launch')">发起评审
@@ -339,7 +344,6 @@
 <script src="../js/ie10-viewport-bug-workaround.js"></script>
 
 <script>
-
     $('#start_date').datetimepicker({
         lang: 'ch',
         timepicker: false,
