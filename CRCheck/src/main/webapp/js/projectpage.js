@@ -396,7 +396,7 @@ function publishPro() {
 }
 
 function goTo(proId) {
-    window.location.href = 'ProjectDetailPage.jsp?projectId=' + proId;
+    window.location.href = 'projects.action?projectId=' + proId;
 }
 
 // 参与的项目
