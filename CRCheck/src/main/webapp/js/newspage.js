@@ -37,7 +37,7 @@ window.onload = function () {
             success: function (result) {
                 if (result.length > 0){
                     for (var i = 0; i < result.length; i++) {
-                        addNews(result[i].content);
+                        addNews(result[i]);
                     }
                 } else {
                     var div = document.createElement("div");
@@ -55,7 +55,7 @@ window.onload = function () {
 
 function addNews(jsondata) {
 
-    var data = jsondata.split("&");
+    var data = jsondata.content.split("&");
 
     var div = document.createElement("div");
     div.setAttribute("class", "projects_div");
@@ -67,20 +67,18 @@ function addNews(jsondata) {
     var content = div.getElementsByClassName("content_describe")[0];
     var dateinfo = div.getElementsByClassName("date_info")[0];
 
+    var proId = jsondata.projectID;
+    var messId = jsondata.messageID;
     proname.innerHTML = data[0];
     kind.innerHTML = data[1];
     content.innerHTML = data[2];
     dateinfo.innerHTML = "评审日期: " + data[4] + " - " + data[5];
     invitor.innerHTML = "邀请人: " + data[3];
 
-    // var button = div.getElementsByClassName("continue_btn")[0];
-    // if (jsondata.state == "Over") {
-    //     button.innerHTML = "项目已结束";
-    //     button.setAttribute("class", "finish_btn");
-    // }
-    // button.onclick = function () {
-    //     goTo(proID);
-    // }
+    var acceptbtn = document.getElementsByClassName("continuebtn")[0];
+    acceptbtn.onclick = function () {
+        
+    }
 
     document.getElementById("last_div").appendChild(div);
 }
