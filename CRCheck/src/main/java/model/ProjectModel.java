@@ -28,6 +28,16 @@ public class ProjectModel {
     //本人是否参与评审
     private String attendReview;
     private ArrayList<InvitationMessage> invitationList;
+    //项目开始结束天数
+    private String day;
+
+    public String getDay() {
+        return day;
+    }
+
+    public void setDay(String day) {
+        this.day = day;
+    }
 
     public String getUserID() {
         return UserID;

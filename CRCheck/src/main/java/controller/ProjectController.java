@@ -86,7 +86,12 @@ public class ProjectController {
     @ResponseBody
     public List<ProjectModel> getAllNewMessage(String userId) {
         AttendanceService attendanceService = new AttendanceServiceImpl();
-        return attendanceService.getOwnProjectID(userId);
+        List<ProjectModel> list = attendanceService.getOwnProjectID(userId);
+        for(ProjectModel model:list){
+            String day=DateHelper.daysAnalyse(model.getStartDate(),model.getEndDate());
+            model.setDay(day);
+        }
+        return list;
     }
 
     //查看全部参与项目
@@ -94,6 +99,11 @@ public class ProjectController {
     @ResponseBody
     public List<ProjectModel> getAllOldMessage(String userId) {
         AttendanceService attendanceService = new AttendanceServiceImpl();
-        return attendanceService.getAttendProjectID(userId);
+        List<ProjectModel> list = attendanceService.getAttendProjectID(userId);
+        for(ProjectModel model:list){
+            String day=DateHelper.daysAnalyse(model.getStartDate(),model.getEndDate());
+            model.setDay(day);
+        }
+        return list;
     }
 }
