@@ -52,7 +52,7 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="HomePage.jsp">首页</a></li>
+                <li><a href="HomePage.jsp">首页</a></li>
                 <li><a href="ProjectPage.jsp">项目</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
@@ -85,7 +85,7 @@
     </div>
     <div class="project-time time-text">${project.startDate} - ${project.endDate}
     </div>
-    <p class="project-detail main-text text-left">${project.discription}
+    <p class="project-detail main-text text-center">${project.discription}
     </p>
     <div class="member">
         <div class="middle-title">参与者</div>
@@ -104,7 +104,14 @@
 
             </div>
             <div class="class-intent">
-
+                <div class="info-head text-left">
+                    <p class="head-text">CRC/src/java/a.java</p>
+                    <p class="head-text">111行</p>
+                    <p class="head-text">语法错误</p>
+                </div>
+                <div class="info-bottom inner-infoText text-left">
+                    语法错误语法错误语法错误语法错误语法错误语法错误语法错误语法错误语法错误语法错误语法错误语法错误语法错误语法错误语法错误
+                </div>
             </div>
         </div>
     </div>
