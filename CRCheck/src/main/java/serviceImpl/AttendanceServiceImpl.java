@@ -40,7 +40,7 @@ public class AttendanceServiceImpl implements AttendanceService{
         ProjectService projectService=new ProjectServiceImpl();
         List<Attendance> list=attendanceDao.findAttendancebyUser(userID);
         for (Attendance a:list) {
-            ProjectModel projectModel=projectService.checkProject(a.getId());
+            ProjectModel projectModel=projectService.checkProject(a.getProjectId());
             result.add(projectModel);
         }
 
