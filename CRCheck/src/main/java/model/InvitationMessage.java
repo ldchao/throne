@@ -9,7 +9,17 @@ public class InvitationMessage {
     private int MessageID;
     private String userID;
     private int projectID;
+    private String content;//项目名、项目类型、项目描述、项目发起人、开始时间、结束时间
+
     private MessageState accepting_state;
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
 
     public InvitationMessage() {
     }

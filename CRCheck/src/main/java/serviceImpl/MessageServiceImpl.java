@@ -26,10 +26,13 @@ public class MessageServiceImpl implements MessageService {
 
         MessageDao messageDao=new MessageDaoImpl();
         CreateIdDao createIdDao=new CreateIdDaoImpl();
-        String constantMessage="";
-        constantMessage+=projectModel.getUserID()+"邀请您于"+projectModel.getStartDate()+"至"
-                +projectModel.getEndDate()+"参加他发起的"+"“"+projectModel.getName()
-                +"”项目的评审，请查收消息。";
+        String constantMessage=projectModel.getName()+"&"+projectModel.getType()
+                +"&"+projectModel.getDiscription()+"&"+projectModel.getUserID()
+                +"&"+projectModel.getStartDate()+"&"+projectModel.getEndDate();
+//        String constantMessage="";
+//        constantMessage+=projectModel.getUserID()+"邀请您于"+projectModel.getStartDate()+"至"
+//                +projectModel.getEndDate()+"参加他发起的"+"“"+projectModel.getName()
+//                +"”项目的评审，请查收消息。";
         boolean result=true;
         for (InvitationMessage invitationMessage:projectModel.getInvitationList()) {
               String invitement="尊敬的用户您好，"+constantMessage;
@@ -94,6 +97,7 @@ public class MessageServiceImpl implements MessageService {
             invitation.setMessageID(message.getId());
             invitation.setUserID(message.getUserId());
             invitation.setProjectID(message.getProjectId());
+            invitation.setContent(message.getContent());
             invitation.setAccepting_state(MessageState.valueOf(message.getState()));
             messages.add(invitation);
         }
@@ -110,6 +114,7 @@ public class MessageServiceImpl implements MessageService {
             InvitationMessage invitation=new InvitationMessage();
             invitation.setMessageID(message.getId());
             invitation.setUserID(message.getUserId());
+            invitation.setContent(message.getContent());
             invitation.setProjectID(message.getProjectId());
             invitation.setAccepting_state(MessageState.valueOf(message.getState()));
             messages.add(invitation);
@@ -128,6 +133,7 @@ public class MessageServiceImpl implements MessageService {
             invitation.setMessageID(message.getId());
             invitation.setUserID(message.getUserId());
             invitation.setProjectID(message.getProjectId());
+            invitation.setContent(message.getContent());
             invitation.setAccepting_state(MessageState.valueOf(message.getState()));
             messages.add(invitation);
         }
