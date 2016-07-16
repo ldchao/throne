@@ -296,6 +296,7 @@
 <script src="../js/ie10-viewport-bug-workaround.js"></script>
 
 <script>
+    backToTop();
 
     $('#start_date').datetimepicker({
         lang: 'ch',
