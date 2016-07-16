@@ -122,6 +122,7 @@ function newsDeal(link, messId) {
         success: function (result) {
             if (result == "SUCCESS") {
                 slidein(0, "操作成功");
+                switchTab(1);
             } else {
                 slidein(1, "操作失败请稍候再试")
             }
@@ -164,8 +165,8 @@ function getHistory() {
 
 function addHistory(jsondata) {
 
-
     var data = jsondata.content.split("&");
+
     var state = jsondata.accepting_state;
     var statedescribe = "已忽略";
     if(state == "Agree") {
@@ -183,7 +184,7 @@ function addHistory(jsondata) {
     var kind = div.getElementsByClassName("kind_div")[0].getElementsByTagName("span")[0];
     var content = div.getElementsByClassName("content_describe")[0];
     var dateinfo = div.getElementsByClassName("date_info")[0];
-    var stateinfo = div.getElementsByClassName("statestyle")[0];
+    var stateinfo = div.getElementsByClassName("state_style")[0];
 
     var messId = jsondata.messageID;
     proname.innerHTML = data[0];
