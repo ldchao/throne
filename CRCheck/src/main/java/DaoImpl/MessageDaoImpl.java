@@ -76,7 +76,7 @@ public class MessageDaoImpl implements MessageDao{
             String hql="update Message m set m.state=? where m.id=?";
             Query query=session.createQuery(hql);
             query.setString(0, message.getState());
-            query.setString(1,message.getUserId());
+            query.setInteger(1,message.getId());
             query.executeUpdate();
             Transaction transaction=session.beginTransaction();
             transaction.commit();
