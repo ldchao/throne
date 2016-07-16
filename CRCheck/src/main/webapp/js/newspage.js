@@ -32,6 +32,17 @@ function switchTab(index) {
     }
 }
 
+function refreshTab() {
+    var lastdiv = document.getElementById("last_div");
+    var histdiv2 = document.getElementById("history_div");
+
+    if (lastdiv.style.display == "block") {
+        switchTab(1);
+    } else {
+        switchTab(0);
+    }
+}
+
 // 收到的消息
 window.onload = function () {
     newsRec = document.getElementById("news").innerHTML;
@@ -122,7 +133,7 @@ function newsDeal(link, messId) {
         success: function (result) {
             if (result == "SUCCESS") {
                 slidein(0, "操作成功");
-                switchTab(1);
+                refreshTab();
             } else {
                 slidein(1, "操作失败请稍候再试")
             }
@@ -131,7 +142,6 @@ function newsDeal(link, messId) {
             slidein(1, "出故障了请稍候再试");
         }
     });
-
 }
 
 function getHistory() {
@@ -169,7 +179,7 @@ function addHistory(jsondata) {
 
     var state = jsondata.accepting_state;
     var statedescribe = "已忽略";
-    if(state == "Agree") {
+    if (state == "Agree") {
         statedescribe = "已接受";
     } else if (state == "Refuse") {
         statedescribe = "已拒绝";
@@ -193,6 +203,11 @@ function addHistory(jsondata) {
     dateinfo.innerHTML = "评审日期: " + data[4] + " - " + data[5];
     invitor.innerHTML = "邀请人: " + data[3];
     stateinfo.innerHTML = "处理状态: " + statedescribe;
+
+    var delbtn = div.getElementsByClassName("del_xbtn")[0];
+    delbtn.onclick = function () {
+        newsDeal("/DeleteMessage", messId);
+    }
 
     document.getElementById("history_div").appendChild(div);
 }
