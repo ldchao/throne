@@ -137,11 +137,7 @@ public class MessageDaoImpl implements MessageDao{
             Query query = session.createQuery(hql);
             ArrayList<Message> list=(ArrayList<Message>) query.list();
             session.close();
-            if(list.size()!=0){
-                return list;
-            }else {
-                return null;
-            }
+            return list;
         }catch (Exception e){
             e.printStackTrace();
             connection.closeSession(session);
