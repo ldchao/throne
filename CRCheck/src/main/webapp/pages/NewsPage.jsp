@@ -128,7 +128,34 @@
 
 </div>
 
-<div id="history_div"></div>
+<div id="history_div">
+
+    <div id="history" class="projects_div" style="display: block;">
+
+        <div class="title_div">
+            <div class="title">CRC评审项目</div>
+
+            <div class="kind_div">
+                <div class="invitor">邀请人: marioquer</div>
+                <div class="kind_img"></div>
+                <span>Java</span>
+            </div>
+        </div>
+
+        <div class="content_describe">这是一个消息</div>
+
+        <div class="bottom_div">
+            <div class="date_info">评审日期: 2016.7.14 - 2016.7.31</div>
+
+            <div class="right_corner">
+
+               <span class="state_style">处理状态: 已处理</span>
+
+            </div>
+        </div>
+    </div>
+
+</div>
 
 <%--发起项目评审--%>
 <div id="launch">
@@ -251,6 +278,8 @@
     </div>
 </div>
 
+<a href="#" id="back-to-top"><i class="fa fa-angle-up"></i></a>
+
 <%-- 用来存放userId --%>
 <a id="storage" style="display: none;"><%=userId%>
 </a>
@@ -259,6 +288,7 @@
 <script src="../js/bootstrap.js"></script>
 <script src="../js/projectpage.js"></script>
 <script src="../js/newspage.js"></script>
+<script src="../js/common.js"></script>
 <script src="../js/toaster.js"></script>
 <script src="../js/datetimepicker.js"></script>
 
