@@ -98,13 +98,18 @@ public class InvitementDaoImpl implements InvitementDao{
     public boolean updateInvitement(Invitement invitemnent) {
         Session session= connection.getSession();
         try {
-            invitemnent.setId(invitemnent.getId());
-            session.update(invitemnent);
-            Transaction transaction=session.beginTransaction();
-            transaction.commit();
-            session.close();
-            return true;
+                String hql="update Invitement i set i.state=? where i.userId=? and i.projectId=?";
+                Query query=session.createQuery(hql);
+                query.setString(0, invitemnent.getState());
+                query.setString(1,invitemnent.getUserId());
+                query.setInteger(2,invitemnent.getProjectId());
+                query.executeUpdate();
+                Transaction transaction=session.beginTransaction();
+                transaction.commit();
+                connection.closeSession(session);
+                return true;
         }catch (Exception e){
+            e.printStackTrace();
             connection.closeSession(session);
             return false;
         }

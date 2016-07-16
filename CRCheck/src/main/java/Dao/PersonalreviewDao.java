@@ -16,7 +16,7 @@ public interface PersonalreviewDao {
     //you just need to set "id"
     public boolean deletePersonalreview(Personalreview po);
 
-    //need all the attributes
+    //need all the attributes,just update a "Personalreview" one time
     public boolean updatePersonalreview(Personalreview po);
 
     //just need the "id" of "User",and the "id" of project,return "Personalreview"

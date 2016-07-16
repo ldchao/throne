@@ -17,6 +17,7 @@ public interface InvitementDao {
 
     public boolean deleteInvitement(int pid, String uid);
 
+    //need the "projectId" and "userId" to change the "state",update a list of "Invitement" one time
     public boolean updateInvitement(Invitement invitemnent);
 
     public Invitement findInvitement(int pid, String uid);

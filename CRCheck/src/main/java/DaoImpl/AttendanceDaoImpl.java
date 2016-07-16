@@ -95,15 +95,41 @@ public class AttendanceDaoImpl  implements AttendanceDao {
         }
     }
 
-    public boolean updateAttendance(Attendance attendance) {
+    public boolean updateAttendanceState(Attendance attendance) {
         Session session= connection.getSession();
         try {
-            session.update(attendance);
-            Transaction transaction=session.beginTransaction();
-            transaction.commit();
-            connection.closeSession(session);
-            return true;
+                String hql="update Attendance a set a.state=? where a.userId=? and a.projectId=?";
+                Query query=session.createQuery(hql);
+                query.setString(0,attendance.getState());
+                query.setString(1,attendance.getUserId());
+                query.setInteger(2,attendance.getProjectId());
+                query.executeUpdate();
+                Transaction transaction=session.beginTransaction();
+                transaction.commit();
+                connection.closeSession(session);
+                return true;
         }catch (Exception e){
+            e.printStackTrace();
+            connection.closeSession(session);
+            return false;
+        }
+    }
+
+    public boolean updateAttendanceQualityreview(Attendance attendance) {
+        Session session= connection.getSession();
+        try {
+                String hql="update Attendance a set a.qualityReview=? where a.userId=? and a.projectId=?";
+                Query query=session.createQuery(hql);
+                query.setString(0,attendance.getQualityReview());
+                query.setString(1,attendance.getUserId());
+                query.setInteger(2,attendance.getProjectId());
+                query.executeUpdate();
+                Transaction transaction=session.beginTransaction();
+                transaction.commit();
+                connection.closeSession(session);
+                return true;
+        }catch (Exception e){
+            e.printStackTrace();
             connection.closeSession(session);
             return false;
         }
@@ -206,4 +232,6 @@ public class AttendanceDaoImpl  implements AttendanceDao {
             return  null;
         }
     }
+
+
 }

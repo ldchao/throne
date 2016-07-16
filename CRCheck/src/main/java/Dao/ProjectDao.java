@@ -16,7 +16,7 @@ ProjectDao {
     //just need the "id" of "Project"
     public boolean deleteProject(Project po);
 
-    //need all the attributes
+    //need all the attributes,update a "Project" one time
     public boolean updateProject(Project po);
 
     //just need the "id" of "User",return "Project"

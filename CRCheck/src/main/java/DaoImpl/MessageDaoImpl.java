@@ -73,13 +73,17 @@ public class MessageDaoImpl implements MessageDao{
     public boolean updateMessage(Message message) {
         Session session= connection.getSession();
         try {
-            message.setId(message.getId());
-            session.update(message);
+            String hql="update Message m set m.state=? where m.id=?";
+            Query query=session.createQuery(hql);
+            query.setString(0, message.getState());
+            query.setString(1,message.getUserId());
+            query.executeUpdate();
             Transaction transaction=session.beginTransaction();
             transaction.commit();
             connection.closeSession(session);
             return true;
         }catch (Exception e){
+            e.printStackTrace();
             connection.closeSession(session);
             return false;
         }

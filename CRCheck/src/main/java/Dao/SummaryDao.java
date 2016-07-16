@@ -15,13 +15,13 @@ public interface SummaryDao {
     //need the "id" of "Project",get all the "Summary" of a project
     public List findSummary(Project po);
 
-    //need all the attributes,if update succeed ,it will return true .And all the attributes must be set
+    //need all the attributes,if update succeed ,it will return true.update a "Summary" one time
     public boolean update(Summary po);
 
     //need the "id" of "Summary",if delete succeed ,it will return true
     public boolean delete(Summary po);
 
-    //need the "id" and "flag",just need the "id" and "flag" of "Summary"
+    //just need the "id" and "flag" of "Summary",update a "Summary" one time
     public boolean updateFlag(Summary po);
 
     //need the "projectId",return "Summary"

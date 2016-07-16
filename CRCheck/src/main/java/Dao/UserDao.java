@@ -15,7 +15,7 @@ public interface UserDao {
     //just need the "id" of "User",return "User"
     public User findUser(User po);
 
-    //the "id" ,"password" ,"userLogin" ,"userState" could not be null,  if update succeed ,it will return true
+    //the "id" ,"password" ,"userLogin" ,"userState" could not be null,  if update succeed ,it will return true,update a "User" one time
     public boolean update(User po);
 
     //just need the "id" of "User",if delete succeed ,it will return true

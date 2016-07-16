@@ -1,7 +1,10 @@
 package DaoTest;
 
+import Dao.MessageDao;
 import DaoImpl.CreateIdDaoImpl;
+import DaoImpl.MessageDaoImpl;
 import DaoImpl.SummaryDaoImpl;
+import POJO.Message;
 import POJO.Summary;
 
 import java.util.List;
@@ -83,9 +86,9 @@ public class test {
 //            System.out.println((String)object);
 //        }
 
-        SummaryDaoImpl summaryDao = new SummaryDaoImpl();
-        CreateIdDaoImpl createIdDao = new CreateIdDaoImpl();
-        Summary summary = new Summary();
+//        SummaryDaoImpl summaryDao = new SummaryDaoImpl();
+//        CreateIdDaoImpl createIdDao = new CreateIdDaoImpl();
+//        Summary summary = new Summary();
 //        int id=createIdDao.CreateIntId("Summary");
 //        summary.setCombination("123");
 //        summary.setDescription("222");
@@ -96,16 +99,22 @@ public class test {
 //        summary.setType("shachao");
 //        summaryDao.addSummary(summary);
 
-        summary.setProjectId(16);
+//        summary.setProjectId(16);
 //        summary.setFlag(22);
 //        System.out.println(summaryDao.updateFlag(summary));
 
-        List list = summaryDao.getValidSummary(summary);
-        for (Object object : list
-                ) {
-            Summary po = (Summary) object;
-            System.out.println(po.getId());
-        }
+//        List list = summaryDao.getValidSummary(summary);
+//        for (Object object : list
+//                ) {
+//            Summary po = (Summary) object;
+//            System.out.println(po.getId());
+//        }
 //        System.out.println(summaryDao.deleteInvalidSummary(summary));
+
+        MessageDaoImpl messageDao=new MessageDaoImpl();
+        Message message=new Message();
+        message.setId(1);
+        message.setState("123");
+        System.out.println(messageDao.updateMessage(message));
     }
 }

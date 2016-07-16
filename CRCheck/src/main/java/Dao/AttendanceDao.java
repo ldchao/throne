@@ -17,7 +17,11 @@ public interface AttendanceDao {
 
       public boolean deleteAttendance(int pid,String uid);
 
-      public boolean updateAttendance(Attendance attendance);
+      //need the "userId" and "projectId" to change "state",update a list of "Attendance" one time
+      public boolean updateAttendanceState(Attendance attendance);
+
+      //need the "userId" and "projectId" to change "qualityreview",update a list of "Attendance" one time
+      public boolean updateAttendanceQualityreview(Attendance attendance);
 
       public Attendance findAttendance(int pid,String uid);
 
