@@ -82,7 +82,6 @@ function addLastNews(jsondata) {
     var content = div.getElementsByClassName("content_describe")[0];
     var dateinfo = div.getElementsByClassName("date_info")[0];
 
-    var proId = jsondata.projectID;
     var messId = jsondata.messageID;
     proname.innerHTML = data[0];
     kind.innerHTML = data[1];
@@ -121,7 +120,6 @@ function newsDeal(link, messId) {
         url: link,
         data: {"messageId": messId},
         success: function (result) {
-            alert(result)
             if (result == "SUCCESS") {
                 slidein(0, "操作成功");
             } else {
@@ -166,9 +164,15 @@ function getHistory() {
 
 function addHistory(jsondata) {
 
-    alert(jsondata);
 
     var data = jsondata.content.split("&");
+    var state = jsondata.accepting_state;
+    var statedescribe = "已忽略";
+    if(state == "Agree") {
+        statedescribe = "已接受";
+    } else if (state == "Refuse") {
+        statedescribe = "已拒绝";
+    }
 
     var div = document.createElement("div");
     div.setAttribute("class", "projects_div");
@@ -179,14 +183,15 @@ function addHistory(jsondata) {
     var kind = div.getElementsByClassName("kind_div")[0].getElementsByTagName("span")[0];
     var content = div.getElementsByClassName("content_describe")[0];
     var dateinfo = div.getElementsByClassName("date_info")[0];
+    var stateinfo = div.getElementsByClassName("statestyle")[0];
 
-    // var proId = jsondata.projectID;
-    // var messId = jsondata.messageID;
-    // proname.innerHTML = data[0];
-    // kind.innerHTML = data[1];
-    // content.innerHTML = data[2];
-    // dateinfo.innerHTML = "评审日期: " + data[4] + " - " + data[5];
-    // invitor.innerHTML = "邀请人: " + data[3];
+    var messId = jsondata.messageID;
+    proname.innerHTML = data[0];
+    kind.innerHTML = data[1];
+    content.innerHTML = data[2];
+    dateinfo.innerHTML = "评审日期: " + data[4] + " - " + data[5];
+    invitor.innerHTML = "邀请人: " + data[3];
+    stateinfo.innerHTML = "处理状态: " + statedescribe;
 
     document.getElementById("history_div").appendChild(div);
 }
