@@ -70,7 +70,7 @@ public class MessageDaoImpl implements MessageDao{
         }
     }
 
-    public boolean updateMessage(Message message) {
+    public boolean updateMessageState(Message message) {
         Session session= connection.getSession();
         try {
             String hql="update Message m set m.state=? where m.id=?";

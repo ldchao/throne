@@ -57,7 +57,7 @@ public class MessageServiceImpl implements MessageService {
         Message message=new Message();
         message.setId(messageID);
         message.setState(messageState.toString());
-        result=result&messageDao.updateMessage(message);
+        result=result&messageDao.updateMessageState(message);
         message=messageDao.findMessage(messageID);
 
         if(messageState==MessageState.Agree||messageState==MessageState.Delete) {

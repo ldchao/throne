@@ -21,7 +21,7 @@ public class TestMessage {
 //       System.out.print(message.getId());
        // messageDao.deleteMessage("shachao");
         //message.setState("Handle");
-       // messageDao.updateMessage(message);
+       // messageDao.updateMessageState(message);
        //System.out.print( messageDao.getMessageNum("123"));
     }
 }

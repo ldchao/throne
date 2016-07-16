@@ -16,7 +16,7 @@ public interface MessageDao {
     public boolean deleteMessage(int id);
 
     //need the "messageId" to change "state" of "Message",update a "Message" one time
-    public boolean updateMessage(Message message);
+    public boolean updateMessageState(Message message);
 
     public ArrayList<Message> findAllMessage(String uid);
 

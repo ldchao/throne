@@ -72,8 +72,11 @@ public class ReviewRecordServiceImpl implements ReviewRecordService {
         boolean result=true;
 
         AttendanceDao attendanceDao=new AttendanceDaoImpl();
-        Attendance attendance=attendanceDao.findAttendance(projectID,userID);
+        Attendance attendance=new Attendance();
+        attendance.setProjectId(projectID);
+        attendance.setUserId(userID);
         attendance.setState(FinishState.Done.toString());
+        attendanceDao.updateAttendanceState(attendance);
 
         /**
          *  将个人正常评审记录插入汇总表格

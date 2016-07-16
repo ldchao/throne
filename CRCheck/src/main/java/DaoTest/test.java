@@ -1,13 +1,7 @@
 package DaoTest;
 
-import Dao.MessageDao;
-import DaoImpl.CreateIdDaoImpl;
 import DaoImpl.MessageDaoImpl;
-import DaoImpl.SummaryDaoImpl;
 import POJO.Message;
-import POJO.Summary;
-
-import java.util.List;
 
 /**
  * Created by mm on 2016/7/11.
@@ -115,6 +109,6 @@ public class test {
         Message message=new Message();
         message.setId(1);
         message.setState("123");
-        System.out.println(messageDao.updateMessage(message));
+        System.out.println(messageDao.updateMessageState(message));
     }
 }
