@@ -1,6 +1,7 @@
 <%@ page import="model.UserModel" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" isELIgnored="false" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -54,6 +55,7 @@
         userId = user.getId();
     }
 %>
+<c:set var="userId" value="<%=userId%>"/>
 
 <nav class="navbar navbar-fixed-top navbar-inverse">
     <div class="container">
@@ -93,7 +95,7 @@
             <div class="image-small"
                  style="margin-right:12px;">
             </div>
-            <div class="sub-title">${project.userID}
+            <div class="sub-title" id="owner">${project.userID}
             </div>
         </div>
         <div class="project-type" style="display: inline-block;">
@@ -114,10 +116,8 @@
             <div class="image-middle" style=""></div>
         </div>
     </div>
-    <div class="left-time main-text">${day}
-    </div>
 
-    <div class="exist-form">
+    <div class="exist-form" style="margin-top: 20px;">
         <div class="class-form">
             <div class="class-head">
 
@@ -135,51 +135,64 @@
         </div>
     </div>
 
-    <div id="begin" class="submit-button">立即开始评审</div>
+    <div class="left-time main-text">${day}
+    </div>
 
-    <div id="init-form">
-        <div class="form-empty">
-            <div class="form-line row form-title" style="margin-left: 20px;margin-right: 20px;">
-                <div class="col-xs-2 text-left num"
-                     style="padding-left: 5px;padding-right: 5px;margin-top:10px;">1
-                </div>
-                <div class="col-xs-8 text-center"
-                     style="padding-left: 5px;padding-right: 5px;margin-top:10px;">缺陷详细描述
-                </div>
-                <div class="col-xs-2 text-right close"
-                     style="padding-left: 5px;padding-right: 5px;margin-top:10px; " onclick="deleteForm(this)"><i
-                        class="fa fa-times"></i>
-                </div>
-            </div>
-            <div class="form-line row" style="margin-left: 20px;margin-right: 20px;">
-                <div class="col-sm-7"
-                     style="padding-left: 5px;padding-right: 5px;margin-top:10px;">
-                    <input type="text" placeholder="缺陷代码目录, 用‘/’分开" class="textfield"
-                           style="height: 35px; width: 100%;">
-                </div>
-                <div class="col-sm-2"
-                     style="padding-left: 5px;padding-right: 5px;margin-top:10px;">
-                    <input type="text" placeholder="开始行数" class="textfield" style="height: 35px; width: 100%;">
-                </div>
-                <div class="col-sm-3"
-                     style="padding-left: 5px;padding-right: 5px;margin-top:10px;">
-                    <input type="text" placeholder="选取缺陷类型" class="textfield"
-                           style="height: 35px; width: 100%;">
-                </div>
-            </div>
-            <div class="form-line row" style="margin-top: 10px;height: 69px;">
+
+    <c:if test="${project.userID != userId && project.state != 'Over'}">
+
+        <div id="begin" class="submit-button" onclick="beginReview()">立即开始评审</div>
+        <div id="review-block" style="display: none;">
+
+            <div id="init-form">
+                <%--单个缺陷表格--%>
+                <div class="form-empty">
+                    <div class="form-line row form-title" style="margin-left: 20px;margin-right: 20px;">
+                        <div class="col-xs-2 text-left num"
+                             style="padding-left: 5px;padding-right: 5px;margin-top:10px;">1
+                        </div>
+                        <div class="col-xs-8 text-center"
+                             style="padding-left: 5px;padding-right: 5px;margin-top:10px;">缺陷详细描述
+                        </div>
+                        <div class="col-xs-2 text-right close"
+                             style="padding-left: 5px;padding-right: 5px;margin-top:10px; " onclick="deleteForm(this)">
+                            <i class="fa fa-times"></i>
+                        </div>
+                    </div>
+                    <%--第一行表格--%>
+                    <div class="form-line row" style="margin-left: 20px;margin-right: 20px;">
+                        <div class="col-sm-7"
+                             style="padding-left: 5px;padding-right: 5px;margin-top:10px;">
+                            <input type="text" placeholder="缺陷代码目录, 用‘/’分开" class="textfield"
+                                   style="height: 35px; width: 100%;">
+                        </div>
+                        <div class="col-sm-2"
+                             style="padding-left: 5px;padding-right: 5px;margin-top:10px;">
+                            <input type="text" placeholder="开始行数" class="textfield" style="height: 35px; width: 100%;">
+                        </div>
+                        <div class="col-sm-3"
+                             style="padding-left: 5px;padding-right: 5px;margin-top:10px;">
+                            <input type="text" placeholder="选取缺陷类型" class="textfield"
+                                   style="height: 35px; width: 100%;">
+                        </div>
+                    </div>
+                    <div class="form-line row" style="margin-top: 10px;height: 69px;">
             <textarea class="textfield" placeholder="缺陷详细描述"
                       style="height: 69px;display: block;width: 100%;"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="addItem-button" onclick="addForm()">添加新的缺陷</div>
+
+            <div class="control text-center">
+                <div class="submit-button left-button" onclick="publishForm()" style="margin-top:10px;">保存此次评审</div>
+                <div class="cancel-button" style="margin-top:10px;">结束此项目评审</div>
             </div>
         </div>
-    </div>
 
-    <div class="addItem-button" onclick="addForm()">添加新的缺陷</div>
 
-    <div class="control text-center">
-        <div class="submit-button left-button" style="margin-top:10px;">保存此次评审</div>
-        <div class="cancel-button" style="margin-top:10px;">结束此项目评审</div>
-    </div>
+    </c:if>
 </div>
 
 
@@ -372,6 +385,8 @@
 <%-- 用来存放userId --%>
 <a id="storage" style="display: none;"><%=userId%>
 </a>
+<a id="p-state" style="display: none;">${project.state}</a>
+<a id="yesNo" style="display: none;">${project.attendReview}</a>
 
 <!-- Bootstrap core JavaScript
     ================================================== -->
@@ -387,9 +402,7 @@
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 <script src="../js/ie10-viewport-bug-workaround.js"></script>
 <script>
-    $(document).ready(function () {
-        detail.init();
-    });
+
 
     $('#start_date').datetimepicker({
         lang: 'ch',
