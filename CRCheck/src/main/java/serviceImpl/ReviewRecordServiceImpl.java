@@ -72,6 +72,11 @@ public class ReviewRecordServiceImpl implements ReviewRecordService {
         boolean result=true;
 
         AttendanceDao attendanceDao=new AttendanceDaoImpl();
+        Attendance a=attendanceDao.findAttendance(projectID,userID);
+        if(a.getState().equals("Done")){
+            return UniversalState.SUCCESS;
+        }
+
         Attendance attendance=new Attendance();
         attendance.setProjectId(projectID);
         attendance.setUserId(userID);
