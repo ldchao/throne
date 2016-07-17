@@ -42,9 +42,9 @@ public class ReviewController {
     //结束项目评审
     @RequestMapping(value = "/endReview", method = RequestMethod.POST)
     @ResponseBody
-    public String endReview(String userID, int projectID) {
+    public String endReview(String userId, int projectID) {
         ReviewRecordService review=new ReviewRecordServiceImpl();
-        UniversalState state=review.finishReviewRecord(userID, projectID);
+        UniversalState state=review.finishReviewRecord(userId, projectID);
         if(state==UniversalState.SUCCESS)
             return "SUCCESS";
         return "FAIL";
@@ -53,9 +53,9 @@ public class ReviewController {
     //查看个人评审记录
     @RequestMapping(value = "/getPersonReviewList", method = RequestMethod.POST)
     @ResponseBody
-    public List<PersonalReviewRecord> getPersonReviewList(String userID, int projectID){
+    public List<PersonalReviewRecord> getPersonReviewList(String userId, int projectID){
         ReviewRecordService review=new ReviewRecordServiceImpl();
-        List<PersonalReviewRecord> list=review.checkPersonalReviewRecord(userID,projectID);
+        List<PersonalReviewRecord> list=review.checkPersonalReviewRecord(userId,projectID);
         return list;
     }
 
