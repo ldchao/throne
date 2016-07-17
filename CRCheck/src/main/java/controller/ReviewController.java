@@ -58,7 +58,7 @@ public class ReviewController {
     }
 
     //查看评审记录
-    @RequestMapping(value = "/getFinishUserList", method = RequestMethod.POST)
+    @RequestMapping(value = "/getSummaryReview", method = RequestMethod.POST)
     @ResponseBody
     public List<SummaryReviewRecord> checkSummaryReview(int projectID){
         ReviewRecordService review=new ReviewRecordServiceImpl();
