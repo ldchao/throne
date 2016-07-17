@@ -97,4 +97,14 @@ public class MessageController {
             return "SUCCESS";
         return "FAIL";
     }
+    //一键清空
+    @RequestMapping(value = "/DeleteAllMessage", method = RequestMethod.GET)
+    @ResponseBody
+    public String deleteAllMessage(String userId) {
+        MessageService messageService = new MessageServiceImpl();
+        UniversalState state=messageService.deleteAllMessage(userId);
+        if(state==UniversalState.SUCCESS)
+            return "SUCCESS";
+        return "FAIL";
+    }
 }

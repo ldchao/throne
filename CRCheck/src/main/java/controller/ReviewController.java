@@ -20,9 +20,20 @@ public class ReviewController {
     //添加评审
     @RequestMapping(value = "/addReview", method = RequestMethod.POST)
     @ResponseBody
-    public String addReview(ArrayList<PersonalReviewRecord> records) {
+    public String addReview(String userId,int projectId,ArrayList<ArrayList> records) {
         ReviewRecordService review=new ReviewRecordServiceImpl();
-        UniversalState state=review.submitReviewRecord(records);
+        ArrayList<PersonalReviewRecord> list=new ArrayList<PersonalReviewRecord>();
+        for(ArrayList<String> strs:records){
+            PersonalReviewRecord r=new PersonalReviewRecord();
+            r.setId(projectId);
+            r.setUserId(userId);
+            r.setPath(strs.get(0));
+            r.setLineNum(strs.get(1));
+            r.setType(strs.get(2));
+            r.setDescription(strs.get(3));
+            list.add(r);
+        }
+        UniversalState state=review.submitReviewRecord(list);
         if(state==UniversalState.SUCCESS)
             return "SUCCESS";
         return "FAIL";
