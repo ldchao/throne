@@ -118,7 +118,7 @@
     </div>
 
     <div id="all-defect">
-        <div class="exist-form" style="margin-top: 20px;">
+        <div id="exist_copy" class="exist-form" style="margin-top: 20px; display: none">
             <div class="class-form">
                 <%--<div class="class-head">--%>
                 <%--</div>--%>
