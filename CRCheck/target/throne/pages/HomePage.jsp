@@ -80,8 +80,10 @@
                 <div class="user-block">
                     <div class="inline bell"><a href="#"><i
                             class="fa fa-bell" style="font-size:25px;"></i></a></div>
-                    <div class="image-middle"></div>
-                    <div class="inline userName"><%=userId%>
+                    <div class="user">
+                        <div class="image-middle"></div>
+                        <div class="inline userName"><%=userId%>
+                        </div>
                     </div>
                 </div>
 

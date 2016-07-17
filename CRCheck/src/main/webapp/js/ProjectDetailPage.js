@@ -32,26 +32,47 @@ var detail = {
     init: function () {
         form = document.getElementById("init-form").innerHTML;
         defect = document.getElementById("exist_copy").innerHTML;
-
-        
-        $.ajax({
-            type: "post",
-            async: true,
-            url: "/getPersonReviewList",
-            data: {"userId": userId, "projectID": projectId},
-            success: function (result) {
-                if (result.length > 0) {
-                    var allDefect = document.getElementById("all-defect");
-                    allDefect.style.display = "block";
-                    for (var i = 0; i < result.length; i++) {
-                        addDefect(result[i]);
+        alert(1);
+        if (owner == userId) {
+            $.ajax({
+                type: "post",
+                async: true,
+                url: "/getSummaryReview",
+                data: {"projectID": projectId},
+                success: function (result) {
+                    if (result.length > 0) {
+                        var allDefect = document.getElementById("all-defect");
+                        allDefect.style.display = "block";
+                        for (var i = 0; i < result.length; i++) {
+                            addDefect(result[i]);
+                        }
                     }
+                },
+                error: function () {
+                    slidein(1, "获取数据失败");
                 }
-            },
-            error: function () {
-                slidein(1, "获取数据失败");
-            }
-        });
+            });
+        } else {
+            $.ajax({
+                type: "post",
+                async: true,
+                url: "/getPersonReviewList",
+                data: {"userId": userId, "projectID": projectId},
+                success: function (result) {
+                    if (result.length > 0) {
+                        var allDefect = document.getElementById("all-defect");
+                        allDefect.style.display = "block";
+                        for (var i = 0; i < result.length; i++) {
+                            addDefect(result[i]);
+                        }
+                    }
+                },
+                error: function () {
+                    slidein(1, "获取数据失败");
+                }
+            });
+        }
+
 
         detail.judge();
     }
@@ -64,12 +85,10 @@ function addDefect(list) {
     newDefect.innerHTML = defect;
     newDefect.setAttribute("class", "exist-form");
     newDefect.style.marginTop = "20px";
-
-    newDefect.getElementsByClassName("head-text")[0].innerHTML = list.path+":";
-    newDefect.getElementsByClassName("head-text")[1].innerHTML = list.lineNum+"行";
+    newDefect.getElementsByClassName("head-text")[0].innerHTML = list.path + ":";
+    newDefect.getElementsByClassName("head-text")[1].innerHTML = list.lineNum + "行";
     newDefect.getElementsByClassName("head-text")[2].innerHTML = list.type;
     newDefect.getElementsByClassName("info-bottom")[0].innerHTML = list.description;
-
     allDefect.appendChild(newDefect);
 }
 
