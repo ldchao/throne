@@ -97,7 +97,8 @@ public class ReviewRecordServiceImpl implements ReviewRecordService {
             Summary summary=new Summary();
             int summaryID=createIdDao.CreateIntId("Summary");
             summary.setId(summaryID);
-            summary.setProjectId(personalreview.getProjectId());
+            summary.setUserId(userID);
+            summary.setProjectId(projectID);
             summary.setLocation(personalreview.getLocation());
             summary.setType(personalreview.getType());
             summary.setDescription(personalreview.getDescription());
@@ -119,10 +120,15 @@ public class ReviewRecordServiceImpl implements ReviewRecordService {
          */
         CRCService crcService=new CRCServiceImpl();
         int[][] matrix=crcService.getMatrix(projectID);
-        CrcCalculation crcCalculation=new CrcCalculation(matrix);
+        String qualityReview="";
+        if(matrix[0].length==1){
+            qualityReview="数据不足，无法预测缺陷数目。";
+        }else {
+            CrcCalculation crcCalculation = new CrcCalculation(matrix);
 
-        String qualityReview="通过算法一预测项目缺陷数为"+crcCalculation.getMhCH()
-                +";通过算法二预测项目缺陷数为"+crcCalculation.getMtCH()+"。";
+            qualityReview = "通过算法一预测项目缺陷数为" + crcCalculation.getMhCH()
+                    + ";通过算法二预测项目缺陷数为" + crcCalculation.getMtCH() + "。";
+        }
         ProjectService projectService=new ProjectServiceImpl();
         return projectService.updateQualityFeedback(projectID,qualityReview);
     }
