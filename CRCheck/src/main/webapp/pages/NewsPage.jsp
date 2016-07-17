@@ -128,6 +128,10 @@
 
 </div>
 
+<div id="removeAll" class="close" style="display: none" onclick="removeAll()">
+    <i class="fa fa-trash" style="margin-right: 5px;"></i>清空所有历史消息
+</div>
+
 <div id="history_div">
 
     <div id="history" class="projects_div" style="display: none;">
@@ -149,12 +153,11 @@
 
             <div class="right_corner">
 
-               <span class="state_style">处理状态: 已处理</span>
+                <span class="state_style">处理状态: 已处理</span>
 
             </div>
         </div>
     </div>
-
 </div>
 
 <%--发起项目评审--%>

@@ -248,8 +248,8 @@
 
             <div class="checkbox_div">
                 <input id="self_in" type="checkbox">
-                <label class="tip_1" for="self_in">自己参与评审</label>
-            </div>
+            <label class="tip_1" for="self_in">自己参与评审</label>
+        </div>
 
         </div>
 

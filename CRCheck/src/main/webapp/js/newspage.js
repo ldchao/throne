@@ -26,9 +26,13 @@ function switchTab(index) {
     clickdiv.style.display = "block";
 
     if (index == 1) {
+        document.getElementById("removeAll").style.display = "none";
         getLastNews();
     } else {
         getHistory();
+
+        if (clickdiv.getElementsByClassName("noMessage").length == 0)
+            document.getElementById("removeAll").style.display = "block";
     }
 }
 
@@ -215,4 +219,27 @@ function addHistory(jsondata) {
     }
 
     document.getElementById("history_div").appendChild(div);
+}
+
+function removeAll() {
+
+    var userId = document.getElementById("storage").innerHTML;
+    userId = userId.trim();
+    $.ajax({
+        type: "get",
+        async: false,
+        url: "/DeleteAllMessage",
+        data: {"userId": userId},
+        success: function (result) {
+            if (result == "SUCCESS") {
+                slidein(0, "操作成功");
+                refreshTab();
+            } else {
+                slidein(1, "操作失败请稍候再试")
+            }
+        },
+        error: function () {
+            slidein(1, "出故障了请稍候再试");
+        }
+    });
 }

@@ -151,7 +151,6 @@
     </div>
 </div>
 
-
 <%-- 发起项目 --%>
 <div class="invite_div">
     <div class="left_div visible-lg">
