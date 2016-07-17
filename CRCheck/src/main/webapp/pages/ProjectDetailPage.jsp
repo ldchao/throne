@@ -95,8 +95,7 @@
             <div class="image-small"
                  style="margin-right:12px;">
             </div>
-            <div class="sub-title" id="owner">${project.userID}
-            </div>
+            <div class="sub-title" id="owner">${project.userID}</div>
         </div>
         <div class="project-type" style="display: inline-block;">
             <div class="type-image"></div>
@@ -192,7 +191,7 @@
 
             <div class="control text-center">
                 <div class="submit-button left-button" onclick="publishForm()" style="margin-top:10px;">保存此次评审</div>
-                <div class="cancel-button" style="margin-top:10px;">结束此项目评审</div>
+                <div class="cancel-button" onclick="endReview()" style="margin-top:10px;">结束此项目评审</div>
             </div>
         </div>
 
@@ -388,7 +387,8 @@
 </div>
 
 <%-- 用来存放userId --%>
-<a id="storage" style="display: none;"><%=userId%></a>
+<a id="storage" style="display: none;"><%=userId%>
+</a>
 <a id="p-state" style="display: none;">${project.state}</a>
 <a id="yesNo" style="display: none;">${project.attendReview}</a>
 <a id="p-id" style="display: none;">${project.projectID}</a>

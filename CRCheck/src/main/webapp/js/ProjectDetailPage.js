@@ -3,40 +3,21 @@
  */
 var form;
 var defect;
-var state = document.getElementById("p-state").innerHTML;
-var userId = document.getElementById("storage").innerHTML;//当前用户
-var owner = document.getElementById("owner").innerHTML;//项目拥有者
-var yesNo = document.getElementById("yesNo").innerHTML;//是否自己参与评审
-var projectId = document.getElementById("p-id").innerHTML;
+var state = document.getElementById("p-state").innerHTML.trim();
+var userId = document.getElementById("storage").innerHTML.trim();//当前用户
+var owner = document.getElementById("owner").innerHTML.trim();//项目拥有者
+var yesNo = document.getElementById("yesNo").innerHTML.trim();//是否自己参与评审
+var projectId = document.getElementById("p-id").innerHTML.trim();
 var detail = {
 
-    judge: function () {
-
-        var button = document.getElementById("begin");
-        switch (state) {
-            case "NotStart":
-                button.style.backgroundColor = "#D47859";
-                button.innerHTML = "尚未开始评审";
-                button.style.cursor = "default";
-                button.style.readOnly = true;
-                break;
-            case "Over":
-                button.style.backgroundColor = "#6B6F78";
-                button.innerHTML = "无法继续评审";
-                button.style.cursor = "default";
-                button.style.readOnly = true;
-                break;
-        }
-    },
 
     init: function () {
-        form = document.getElementById("init-form").innerHTML;
         defect = document.getElementById("exist_copy").innerHTML;
-        alert(1);
+
         if (owner == userId) {
             $.ajax({
                 type: "post",
-                async: true,
+                async: false,
                 url: "/getSummaryReview",
                 data: {"projectID": projectId},
                 success: function (result) {
@@ -53,9 +34,10 @@ var detail = {
                 }
             });
         } else {
+            form = document.getElementById("init-form").innerHTML;
             $.ajax({
                 type: "post",
-                async: true,
+                async: false,
                 url: "/getPersonReviewList",
                 data: {"userId": userId, "projectID": projectId},
                 success: function (result) {
@@ -66,6 +48,21 @@ var detail = {
                             addDefect(result[i]);
                         }
                     }
+                    var button = document.getElementById("begin");
+                    switch (state) {
+                        case "NotStart":
+                            button.style.backgroundColor = "#D47859";
+                            button.innerHTML = "尚未开始评审";
+                            button.style.cursor = "default";
+                            button.style.readOnly = true;
+                            break;
+                        case "Over":
+                            button.style.backgroundColor = "#6B6F78";
+                            button.innerHTML = "无法继续评审";
+                            button.style.cursor = "default";
+                            button.style.readOnly = true;
+                            break;
+                    }
                 },
                 error: function () {
                     slidein(1, "获取数据失败");
@@ -74,7 +71,6 @@ var detail = {
         }
 
 
-        detail.judge();
     }
 }
 
@@ -133,6 +129,30 @@ function publishForm() {
             "userId": userId,
             "projectId": projectId,
             "records": resultList
+        },
+        success: function (result) {
+            if (result == "SUCCESS") {
+                slidein(0, "提交成功");
+                setTimeout("window.location.reload()", 1800);
+            } else {
+                slidein(1, "提交失败请稍候再试");
+            }
+        },
+        error: function () {
+            slidein(1, "出故障了请稍候再试");
+        }
+    });
+}
+
+function endReview(){
+    publishForm();
+    $.ajax({
+        type: "post",
+        async: false,
+        url: "/endReview",
+        data: {
+            "userId": userId,
+            "projectID": projectId,
         },
         success: function (result) {
             if (result == "SUCCESS") {
