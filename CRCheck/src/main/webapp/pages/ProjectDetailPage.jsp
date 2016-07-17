@@ -120,8 +120,8 @@
     <div id="all-defect">
         <div class="exist-form" style="margin-top: 20px;">
             <div class="class-form">
-                <div class="class-head">
-                </div>
+                <%--<div class="class-head">--%>
+                <%--</div>--%>
                 <div class="class-intent">
                     <div class="info-head text-left">
                         <%--路径--%>

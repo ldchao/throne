@@ -13,7 +13,7 @@
 
 }
 
-#all-defect{
+#all-defect {
     display: none;
 }
 
@@ -82,23 +82,21 @@
     margin-top: 10px;
 }
 
-
-.class-intent{
+.class-intent {
     width: 100%;
     display: block;
     padding: 16px 26px;
     background-color: #F3F5F9;
 }
 
-
-.head-text{
+.head-text {
     color: #7490D3;
     font-size: 22px;
     margin-right: 15px;
     display: inline-block;
 }
 
-.info-head,.info-bottom{
+.info-head, .info-bottom {
     width: 100%;
 
 }

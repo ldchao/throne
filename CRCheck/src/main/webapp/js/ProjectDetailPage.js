@@ -34,12 +34,12 @@ var detail = {
         defect = document.getElementById("all-defect").innerHTML;
 
         $.ajax({
-            type: "get",
+            type: "post",
             async: true,
             url: "/getPersonReviewList",
-            data: {"userId": userId, "projectId": projectId},
+            data: {"userId": userId, "projectID": projectId},
             success: function (result) {
-                if (result != null) {
+                if (result.length > 0) {
                     document.getElementById("all-defect").style.display = "block";
                     for (var i = 0; i < result.length; i++) {
                         addDefect(result[i]);
@@ -90,14 +90,18 @@ function publishForm() {
     var formList = document.getElementsByClassName("form-empty");
     var resultList = new Array();
     for (var i = 0; i < formList.length; i++) {
-        var firstLine = formList[i].childNodes[1].childNodes;
-        var secondLine = firstLine.nextSibling;
-        var singleResult = new Array(4);
+
+
+        var textfields = formList[i].getElementsByClassName("textfield");
+        var singleResult = "";
         for (var j = 0; j < 3; j++) {
-            singleResult[i] = firstLine[i].value;
+            singleResult += textfields[j].value + "&";
         }
-        singleResult[3] = secondLine.value;
+        singleResult += textfields[3].value;
+        //alert(secondLine.innerHTML+"Inner")
+        //alert(secondLine.value + "value")
         resultList[i] = singleResult;
+        alert(resultList);
     }
 
     $.ajax({
@@ -107,11 +111,12 @@ function publishForm() {
         data: {
             "userId": userId,
             "projectId": projectId,
-            "resultList": resultList
+            "records": resultList
         },
         success: function (result) {
             if (result == "SUCCESS") {
                 slidein(0, "提交成功");
+                setTimeout("window.location.reload()", 1800);
             } else {
                 slidein(1, "提交失败请稍候再试");
             }

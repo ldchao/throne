@@ -4,11 +4,11 @@ import enums.UniversalState;
 import model.PersonalReviewRecord;
 import model.SummaryReviewRecord;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import service.ReviewRecordService;
 import serviceImpl.ReviewRecordServiceImpl;
+
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,17 +20,22 @@ public class ReviewController {
     //添加评审
     @RequestMapping(value = "/addReview", method = RequestMethod.POST)
     @ResponseBody
-    public String addReview(String userId,int projectId,ArrayList<ArrayList> records) {
+    public String addReview(HttpServletRequest request) {
+        String userId=request.getParameter("userId");
+        int projectId=Integer.parseInt(request.getParameter("projectId"));
+        String[] records=request.getParameterValues("records");
         ReviewRecordService review=new ReviewRecordServiceImpl();
         ArrayList<PersonalReviewRecord> list=new ArrayList<PersonalReviewRecord>();
-        for(ArrayList<String> strs:records){
+        System.out.println(records.length);
+        for(String record:records){
+            String[] strs=record.split("[&]");
             PersonalReviewRecord r=new PersonalReviewRecord();
             r.setId(projectId);
             r.setUserId(userId);
-            r.setPath(strs.get(0));
-            r.setLineNum(strs.get(1));
-            r.setType(strs.get(2));
-            r.setDescription(strs.get(3));
+            r.setPath(strs[0]);
+            r.setLineNum(strs[1]);
+            r.setType(strs[2]);
+            r.setDescription(strs[3]);
             list.add(r);
         }
         UniversalState state=review.submitReviewRecord(list);
