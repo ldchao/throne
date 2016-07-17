@@ -96,60 +96,56 @@
     </div><!-- /.container -->
 </nav><!-- /.navbar -->
 
-<div class="jumbotron" style="height: 720px;background-color: #8a6d3b;">
-    <div class="container" style="margin-top: 0">
-        <div class="row">
-            <div class="col-sm-6" style="background-color: #7595e0; height: 672px;">
-
-            </div>
-            <div class="col-sm-6" style="background-color: #5e5e5e; height: 672px;">
-
-            </div>
-        </div>
-    </div>
+<div id="huge-image">
+        <%--<div class="row">--%>
+        <%--<div class="col-sm-6" style="background-color: #7595e0; height: 672px;">--%>
+        <%--</div>--%>
+        <%--<div class="col-sm-6" style="background-color: #5e5e5e; height: 672px;">--%>
+        <%--</div>--%>
+        <%--</div>--%>
 </div>
 
-<div class="container">
-    <div class="row">
-        <div class="col-sm-6" style="background-color: #5e5e5e; height: 300px;">
+<%--<div class="container">--%>
+    <%--<div class="row">--%>
+        <%--<div class="col-sm-6" style="background-color: #5e5e5e; height: 300px;">--%>
 
-        </div>
-        <div class="col-sm-6 hidden-sm" style="background-color: #7595e0; height:300px;">
+        <%--</div>--%>
+        <%--<div class="col-sm-6 hidden-sm" style="background-color: #7595e0; height:300px;">--%>
 
-        </div>
-    </div>
+        <%--</div>--%>
+    <%--</div>--%>
 
-    <div class="row">
-        <div class="col-sm-6 hidden-sm" style="background-color: #5e5e5e; height: 300px;">
+    <%--<div class="row">--%>
+        <%--<div class="col-sm-6 hidden-sm" style="background-color: #5e5e5e; height: 300px;">--%>
 
-        </div>
-        <div class="col-sm-6" style="background-color: #7595e0; height:300px;">
+        <%--</div>--%>
+        <%--<div class="col-sm-6" style="background-color: #7595e0; height:300px;">--%>
 
-        </div>
-    </div>
+        <%--</div>--%>
+    <%--</div>--%>
 
-    <div class="row">
-        <div class="col-sm-6" style="background-color: #5e5e5e; height: 300px;">
+    <%--<div class="row">--%>
+        <%--<div class="col-sm-6" style="background-color: #5e5e5e; height: 300px;">--%>
 
-        </div>
-        <div class="col-sm-6 hidden-sm" style="background-color: #7595e0; height:300px;">
+        <%--</div>--%>
+        <%--<div class="col-sm-6 hidden-sm" style="background-color: #7595e0; height:300px;">--%>
 
-        </div>
-    </div>
+        <%--</div>--%>
+    <%--</div>--%>
 
-    <div class="row">
-        <div class="col-sm-6 hidden-sm" style="background-color: #5e5e5e; height: 300px;">
+    <%--<div class="row">--%>
+        <%--<div class="col-sm-6 hidden-sm" style="background-color: #5e5e5e; height: 300px;">--%>
 
-        </div>
-        <div class="col-sm-6" style="background-color: #7595e0; height:300px;">
+        <%--</div>--%>
+        <%--<div class="col-sm-6" style="background-color: #7595e0; height:300px;">--%>
 
-        </div>
-    </div>
-</div>
+        <%--</div>--%>
+    <%--</div>--%>
+<%--</div>--%>
 
 <a href="#" id="back-to-top"><i class="fa fa-angle-up"></i></a>
 
-<footer> © CRCheck 2016</footer>
+<footer>© CRCheck 2016   </footer>
 
 <%--发起项目评审--%>
 <div id="launch">

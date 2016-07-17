@@ -117,9 +117,8 @@
 .launch_div_left {
     width: 30%;
     height: 520px;
-    background-color: #d8d8d8;
+    background-image: url("../image/introduction.svg");
     float: left;
-    border-radius: 6px;
 }
 
 .launch_div_right {
@@ -131,7 +130,7 @@
     font-size: 17px;
 }
 
-.end_date_div .img_div {
+.end_date_div  {
     width: 53px;
     height: 53px;
     background-color: #88a7da;
@@ -139,6 +138,15 @@
     position: absolute;
     bottom: 250px;
     right: 120px;
+}
+
+.img_div{
+    width: 53px;
+    height: 53px;
+    position: absolute;
+    bottom: 250px;
+    right: 120px;
+    background-image: url("../image/logo-circle.svg");
 }
 
 .launch_div_right #pro_name {

@@ -25,9 +25,12 @@
 }
 
 footer {
-    margin-top: 20px;
-    height: 150px;
-    horiz-align: center;
+    line-height: 70px;
+    background-color: #F3F6FF;
+    height: 70px;
+    text-align: center;
+    font-size: 24px;
+    color: #434851;
 }
 
 #back-to-top {
@@ -235,14 +238,14 @@ footer {
     padding-top: 12px;
     padding-left: 12px;
     position: relative;
-    top:-11px;
+    top: -11px;
 }
 
 .bell:hover {
     background-color: #fff;
 }
 
-.user{
+.user {
     cursor: pointer;
     display: inline-block;
     height: 50px;
@@ -250,10 +253,10 @@ footer {
     padding-left: 10px;
     padding-right: 10px;
     position: relative;
-    top:0px;
+    top: 0px;
 }
 
-.user:hover{
+.user:hover {
     background-color: #fff;
 }
 
@@ -275,6 +278,12 @@ footer {
     background-color: #fff;
 }
 
+#huge-image {
+    margin-top: 50px;
+    height: 910px;
+    width: 100%;
+    background-image: url("../image/huge.png");
+}
 
 
 
