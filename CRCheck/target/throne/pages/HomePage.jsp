@@ -78,7 +78,7 @@
                 <%} else {%>
 
                 <div class="user-block">
-                    <div class="inline bell"><a href="#"><i
+                    <div class="inline bell"><a href="NewsPage.jsp"><i
                             class="fa fa-bell" style="font-size:25px;"></i></a></div>
                     <div class="user">
                         <div class="image-middle"></div>

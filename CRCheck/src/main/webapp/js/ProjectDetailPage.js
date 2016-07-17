@@ -115,10 +115,7 @@ function publishForm() {
             singleResult += textfields[j].value + "&";
         }
         singleResult += textfields[3].value;
-        //alert(secondLine.innerHTML+"Inner")
-        //alert(secondLine.value + "value")
         resultList[i] = singleResult;
-        alert(resultList);
     }
 
     $.ajax({

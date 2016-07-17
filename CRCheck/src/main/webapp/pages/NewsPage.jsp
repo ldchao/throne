@@ -78,8 +78,23 @@
                 <li><a href="ProjectPage.jsp">项目</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
+
+                <%if (user == null) {%>
                 <li><a data-toggle="modal" href="#Login">登录</a></li>
                 <li><a data-toggle="modal" href="#Register">注册</a></li>
+                <%} else {%>
+
+                <div class="user-block">
+                    <div class="inline bell"><a href="NewsPage.jsp"><i
+                            class="fa fa-bell" style="font-size:25px;"></i></a></div>
+                    <div class="user">
+                        <div class="image-middle"></div>
+                        <div class="inline userName"><%=userId%>
+                        </div>
+                    </div>
+                </div>
+                <%}%>
+
             </ul>
             <button class="nav common-button navbar-right" style="margin-top:10px; margin-right:15px;"
                     onclick="showLaunch('launch')">发起评审
