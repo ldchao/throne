@@ -117,23 +117,28 @@
         </div>
     </div>
 
-    <div class="exist-form" style="margin-top: 20px;">
-        <div class="class-form">
-            <div class="class-head">
-
-            </div>
-            <div class="class-intent">
-                <div class="info-head text-left">
-                    <p class="head-text">CRC/src/java/a.java</p>
-                    <p class="head-text">111行</p>
-                    <p class="head-text">语法错误</p>
+    <div id="all-defect">
+        <div class="exist-form" style="margin-top: 20px;">
+            <div class="class-form">
+                <div class="class-head">
                 </div>
-                <div class="info-bottom inner-infoText text-left">
-                    语法错误语法错误语法错误语法错误语法错误语法错误语法错误语法错误语法错误语法错误语法错误语法错误语法错误语法错误语法错误
+                <div class="class-intent">
+                    <div class="info-head text-left">
+                        <%--路径--%>
+                        <p class="head-text"></p>
+                        <%--行数--%>
+                        <p class="head-text"></p>
+                        <%--错误类型--%>
+                        <p class="head-text"></p>
+                    </div>
+                    <%--错误描述--%>
+                    <div class="info-bottom inner-infoText text-left">
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
 
     <div class="left-time main-text">${day}
     </div>
@@ -145,7 +150,7 @@
         <div id="review-block" style="display: none;">
 
             <div id="init-form">
-                <%--单个缺陷表格--%>
+                    <%--单个缺陷表格--%>
                 <div class="form-empty">
                     <div class="form-line row form-title" style="margin-left: 20px;margin-right: 20px;">
                         <div class="col-xs-2 text-left num"
@@ -159,7 +164,7 @@
                             <i class="fa fa-times"></i>
                         </div>
                     </div>
-                    <%--第一行表格--%>
+                        <%--第一行表格--%>
                     <div class="form-line row" style="margin-left: 20px;margin-right: 20px;">
                         <div class="col-sm-7"
                              style="padding-left: 5px;padding-right: 5px;margin-top:10px;">
@@ -387,6 +392,7 @@
 </a>
 <a id="p-state" style="display: none;">${project.state}</a>
 <a id="yesNo" style="display: none;">${project.attendReview}</a>
+<a id="p-id" style="display: none;">${project.projectID}</a>
 
 <!-- Bootstrap core JavaScript
     ================================================== -->

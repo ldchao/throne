@@ -2,10 +2,12 @@
  * Created by marioquer on 16/7/13.
  */
 var form;
+var defect;
 var state = document.getElementById("p-state").innerHTML;
 var userId = document.getElementById("storage").innerHTML;//当前用户
 var owner = document.getElementById("owner").innerHTML;//项目拥有者
 var yesNo = document.getElementById("yesNo").innerHTML;//是否自己参与评审
+var projectId = document.getElementById("p-id").innerHTML;
 var detail = {
 
     judge: function () {
@@ -29,23 +31,43 @@ var detail = {
 
     init: function () {
         form = document.getElementById("init-form").innerHTML;
+        defect = document.getElementById("all-defect").innerHTML;
 
-        //$.ajax({
-        //    type: "get",
-        //    async: true,
-        //    url: "/AllAttendProjects",
-        //    data: {"userId": userId},
-        //    success: function (result) {
-        //        for (var i = 0; i < result.length; i++) {
-        //            addCRCpro(result[i]);
-        //        }
-        //    },
-        //    error: function () {
-        //        slidein(1, "获取数据失败");
-        //    }
-        //});
+        $.ajax({
+            type: "get",
+            async: true,
+            url: "/getPersonReviewList",
+            data: {"userId": userId, "projectId": projectId},
+            success: function (result) {
+                if (result != null) {
+                    document.getElementById("all-defect").style.display = "block";
+                    for (var i = 0; i < result.length; i++) {
+                        addDefect(result[i]);
+                    }
+                }
+            },
+            error: function () {
+                slidein(1, "获取数据失败");
+            }
+        });
 
         detail.judge();
+    }
+}
+
+function addDefect(list) {
+    var newDefect = document.createElement("div");
+    newDefect.innerHTML = defect;
+    var allDefect = document.getElementById("all-defect")
+    for (var i = 0; i < list.length - 1; i++) {
+        allDefect.appendChild(newDefect);
+    }
+    var singleDefect = allDefect.getElementsByClassName("exist-form");
+    for (var i = 0; i < list.length; i++) {
+        for (var j = 0; j < list[i].length - 1; j++) {
+            singleDefect[i].getElementsByClassName("head-text")[j] = list[i][j];
+        }
+        singleDefect[i].getElementsByClassName("info-bottom")[0] = list[i][3];
     }
 }
 
@@ -71,7 +93,7 @@ function publishForm() {
         var firstLine = formList[i].childNodes[1].childNodes;
         var secondLine = firstLine.nextSibling;
         var singleResult = new Array(4);
-        for (var j = 0;j<3;j++){
+        for (var j = 0; j < 3; j++) {
             singleResult[i] = firstLine[i].value;
         }
         singleResult[3] = secondLine.value;
@@ -81,14 +103,15 @@ function publishForm() {
     $.ajax({
         type: "post",
         async: false,
-        url: "/Launch",
+        url: "/addReview",
         data: {
-            "resultList": resultList,
+            "userId": userId,
+            "projectId": projectId,
+            "resultList": resultList
         },
         success: function (result) {
-            if (result > -1) {
+            if (result == "SUCCESS") {
                 slidein(0, "提交成功");
-                setTimeout("goTo(" + result + ")", 1800);
             } else {
                 slidein(1, "提交失败请稍候再试");
             }

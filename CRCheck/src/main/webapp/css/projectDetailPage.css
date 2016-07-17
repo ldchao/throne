@@ -13,6 +13,10 @@
 
 }
 
+#all-defect{
+    display: none;
+}
+
 .project-title {
     font-size: 25px;
     height: 53px;
