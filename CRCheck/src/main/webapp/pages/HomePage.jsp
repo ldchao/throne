@@ -76,10 +76,15 @@
                 <li><a data-toggle="modal" href="#Login">登录</a></li>
                 <li><a data-toggle="modal" href="#Register">注册</a></li>
                 <%} else {%>
-                <div class="user-block"><a href="#">
-                    <div class="image-middle inline" style="background-color: red;"></div>
-                    <span class="inline"
-                          style="font-size: 18px;color:#838D9E;background-color: #1b6d85;"><%=userId%></span></a></div>
+
+                <div class="user-block">
+                    <div class="inline bell"><a href="#"><i
+                            class="fa fa-bell" style="font-size:25px;"></i></a></div>
+                    <div class="image-middle"></div>
+                    <div class="inline userName"><%=userId%>
+                    </div>
+                </div>
+
                 <%}%>
             </ul>
             <button class="nav common-button navbar-right" style="margin-top:10px; margin-right:15px;"
@@ -248,8 +253,8 @@
 
             <div class="checkbox_div">
                 <input id="self_in" type="checkbox">
-            <label class="tip_1" for="self_in">自己参与评审</label>
-        </div>
+                <label class="tip_1" for="self_in">自己参与评审</label>
+            </div>
 
         </div>
 

@@ -224,13 +224,38 @@ footer {
 }
 
 .user-block {
-    width: 200px;
     height: 50px;
-    padding: 5px 8px;
-    background-color: #5C6170;
+    background-color: rgb(243, 246, 255);
 }
 
-.user-block:hover {
+.bell {
+    width: 50px;
+    height: 50px;
+    padding-top: 8px;
+    padding-left: 10px;
+    position: relative;
+    top:-11px;
+}
+
+.bell:hover {
+    background-color: #fff;
+}
+
+@media (max-width: 768px) {
+    .user-block {
+        display: none;
+    }
+}
+
+.userName {
+    position: relative;
+    top: -13px;
+    font-size: 24px;
+    color: #838D9E;
+    margin-left: 8px;
+}
+
+.user-hover:hover {
     background-color: #fff;
 }
 

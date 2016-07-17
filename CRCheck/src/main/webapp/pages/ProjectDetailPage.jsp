@@ -388,8 +388,7 @@
 </div>
 
 <%-- 用来存放userId --%>
-<a id="storage" style="display: none;"><%=userId%>
-</a>
+<a id="storage" style="display: none;"><%=userId%></a>
 <a id="p-state" style="display: none;">${project.state}</a>
 <a id="yesNo" style="display: none;">${project.attendReview}</a>
 <a id="p-id" style="display: none;">${project.projectID}</a>
