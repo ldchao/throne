@@ -110,8 +110,7 @@
 }
 
 .del_xbtn {
-    position: absolute;
-    margin-left: 8px;
-    margin-top: -2px;
-
+    /*position: relative;*/
+    margin-left: 15px;
+    margin-top: 7px;
 }

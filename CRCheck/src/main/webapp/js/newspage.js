@@ -34,7 +34,6 @@ function switchTab(index) {
 
 function refreshTab() {
     var lastdiv = document.getElementById("last_div");
-    var histdiv2 = document.getElementById("history_div");
 
     if (lastdiv.style.display == "block") {
         switchTab(1);
@@ -203,6 +202,13 @@ function addHistory(jsondata) {
     dateinfo.innerHTML = "评审日期: " + data[4] + " - " + data[5];
     invitor.innerHTML = "邀请人: " + data[3];
     stateinfo.innerHTML = "处理状态: " + statedescribe;
+
+    var deldiv = document.createElement("div");
+    deldiv.setAttribute("class", "close del_xbtn");
+    var i = document.createElement("i");
+    i.setAttribute("class", "fa fa-trash");
+    deldiv.appendChild(i);
+    proname.appendChild(deldiv);
 
     var delbtn = div.getElementsByClassName("del_xbtn")[0];
     delbtn.onclick = function () {

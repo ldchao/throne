@@ -6,6 +6,7 @@ var idcount = 0;  // 下标
 var currentids = new Array();  // 记录当前的8个随机用户
 var pageNum = 0;  // 页码
 var CRCpro;
+var PUBpro;
 
 function showIntroduce() {
     $("#introduce_child").slideToggle();
@@ -402,7 +403,20 @@ function goTo(proId) {
 // 参与的项目
 $(function () {
     CRCpro = document.getElementById("partin").innerHTML;
+    PUBpro = document.getElementById("mylaunch").innerHTML;
 
+    var userId = document.getElementById("storage").innerHTML;
+    userId = userId.trim();
+    if(userId == "") {
+        document.getElementsByClassName("tab_lbl")[0].style.display = "none";
+    } else {
+        document.getElementsByClassName("tab_lbl")[0].style.display = "block";
+    }
+
+    my_in_pro();
+});
+
+function my_in_pro() {
     var userId = document.getElementById("storage").innerHTML;
     userId = userId.trim();
     if (userId != "") {
@@ -412,8 +426,15 @@ $(function () {
             url: "/AllAttendProjects",
             data: {"userId": userId},
             success: function (result) {
-                for (var i = 0; i < result.length; i++) {
-                    addCRCpro(result[i]);
+                if (result.length > 0) {
+                    for (var i = 0; i < result.length; i++) {
+                        addCRCpro(result[i]);
+                    }
+                } else {
+                    var div = document.createElement("div");
+                    div.innerHTML = "您暂时没有参与的项目";
+                    div.setAttribute("class", "noMessage");
+                    document.getElementById("parent_div").appendChild(div);
                 }
             },
             error: function () {
@@ -421,7 +442,7 @@ $(function () {
             }
         });
     }
-});
+}
 
 function addCRCpro(jsondata) {
 
@@ -445,7 +466,7 @@ function addCRCpro(jsondata) {
     ddl.innerHTML = jsondata.day;
 
     var button = div.getElementsByClassName("continue_btn")[0];
-    if(jsondata.state == "Over"){
+    if (jsondata.state == "Over") {
         button.innerHTML = "项目已结束";
         button.setAttribute("class", "finish_btn");
     }
@@ -454,4 +475,91 @@ function addCRCpro(jsondata) {
     }
 
     document.getElementById("parent_div").appendChild(div);
+}
+
+// 切换参与的项目与发起的项目
+function switchTab(index) {
+    var ids = ["my_in", "my_pub"];
+    var divs = ["parent_div", "publish_div"];
+
+    var currentid = document.getElementById(ids[index]);
+    var clickid = document.getElementById(ids[(index + 1) % 2]);
+
+    var currentdiv = document.getElementById(divs[index]);
+    var clickdiv = document.getElementById(divs[(index + 1) % 2]);
+
+    currentdiv.innerHTML = "";
+    clickdiv.innerHTML = "";
+
+    currentid.style.color = "#6b6f78";
+    currentid.style.borderBottom = "none";
+    clickid.style.color = "#7595e0";
+    clickid.style.borderBottom = "2px solid #7595e0";
+
+    currentdiv.style.display = "none";
+    clickdiv.style.display = "block";
+
+    if (index == 1) {
+        my_in_pro();
+    } else {
+        my_pub_pro();
+    }
+}
+
+function my_pub_pro() {
+    var userId = document.getElementById("storage").innerHTML;
+    userId = userId.trim();
+    if (userId != "") {
+        $.ajax({
+            type: "get",
+            async: false,
+            url: "/AllLaunchProjects",
+            data: {"userId": userId},
+            success: function (result) {
+                if (result.length > 0) {
+                    for (var i = 0; i < result.length; i++) {
+                        addPUBpro(result[i]);
+                    }
+                } else {
+                    var div = document.createElement("div");
+                    div.innerHTML = "您暂时没有发起的项目";
+                    div.setAttribute("class", "noMessage");
+                    document.getElementById("publish_div").appendChild(div);
+                }
+            },
+            error: function () {
+                slidein(1, "发起的项目加载失败");
+            }
+        });
+    }
+}
+
+function addPUBpro(jsondata) {
+    var div = document.createElement("div");
+    div.setAttribute("class", "projects_div");
+    div.innerHTML = PUBpro;
+
+    var proname = div.getElementsByClassName("title")[0];
+    var kind = div.getElementsByClassName("kind_div")[0].getElementsByTagName("span")[0];
+    var content = div.getElementsByClassName("content_describe")[0];
+    var dateinfo = div.getElementsByClassName("date_info")[0];
+    var ddl = div.getElementsByClassName("ddl_tip")[0];
+
+    var proID = jsondata.projectID;
+    proname.innerHTML = jsondata.name;
+    kind.innerHTML = jsondata.type;
+    content.innerHTML = jsondata.discription;
+    dateinfo.innerHTML = "评审日期: " + jsondata.startDate + " - " + jsondata.endDate;
+    ddl.innerHTML = jsondata.day;
+
+    var button = div.getElementsByClassName("continue_btn")[0];
+    if (jsondata.state == "Over") {
+        button.innerHTML = "项目已结束";
+        button.setAttribute("class", "finish_btn");
+    }
+    button.onclick = function () {
+        goTo(proID);
+    }
+
+    document.getElementById("publish_div").appendChild(div);
 }

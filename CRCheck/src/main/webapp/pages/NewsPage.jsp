@@ -132,8 +132,6 @@
 
     <div id="history" class="projects_div" style="display: none;">
 
-        <div class="close del_xbtn"><i class="fa fa-times"></i></div>
-
         <div class="title_div">
             <div class="title">CRC评审项目</div>
 
