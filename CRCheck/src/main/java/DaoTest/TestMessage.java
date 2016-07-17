@@ -10,11 +10,11 @@ public class TestMessage {
     public static void main(String args[]){
         MessageDaoImpl messageDao = new MessageDaoImpl();
         Message message = new Message();
-        message.setId(1);
+        message.setId(40);
         message.setState("NotHandle");
-       message.setUserId("shachao");
+       message.setUserId("dd14");
         message.setContent("get check");
-        message.setProjectId(11);
+        message.setProjectId(13);
         message.setSendOrReceive("send");
         messageDao.addMessage(message);
 //        message=messageDao.findMessage("shachao");

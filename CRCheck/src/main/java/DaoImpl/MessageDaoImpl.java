@@ -57,8 +57,10 @@ public class MessageDaoImpl implements MessageDao{
         try {
             ArrayList<Message> message=findAllMessage(uid);
             for(int i=0;i<message.size();i++) {
-                message.get(i).setId(message.get(i).getId());
-                session.delete(message.get(i));
+                if(!(message.get(i).getState().equals("NotHandle"))) {
+                    message.get(i).setId(message.get(i).getId());
+                    session.delete(message.get(i));
+                }
             }
             Transaction transaction=session.beginTransaction();
             transaction.commit();
