@@ -14,8 +14,8 @@ public class PersonalReviewRecord {
     private String lineNum;//所在行数
     private String type;//错误类型
     private String description;//错误细节
-    private String state;//two state:NOT_ENTIRELY_COMMIT（未完整提交）, ENTIRELY_COMMIT（已完整提交）
-    private ApproveState result;//审批结果
+    private String state;//若未完成提交："正常提交"，若已完成提交："后续提交":;
+    private ApproveState result;//审批结果(审批通过、未通过、未审批)
 
     public PersonalReviewRecord() {
     }
