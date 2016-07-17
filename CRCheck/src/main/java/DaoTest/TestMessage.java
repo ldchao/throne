@@ -10,13 +10,14 @@ public class TestMessage {
     public static void main(String args[]){
         MessageDaoImpl messageDao = new MessageDaoImpl();
         Message message = new Message();
-        message.setId(40);
-        message.setState("NotHandle");
+        message.setId(41);
+        message.setState("Agree");
        message.setUserId("dd14");
         message.setContent("get check");
         message.setProjectId(13);
         message.setSendOrReceive("send");
-        messageDao.addMessage(message);
+      //  messageDao.addMessage(message);
+        messageDao.deleteAllMessage("dd14");
 //        message=messageDao.findMessage("shachao");
 //       System.out.print(message.getId());
        // messageDao.deleteMessage("shachao");
