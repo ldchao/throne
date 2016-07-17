@@ -23,14 +23,13 @@ public class ReviewController {
     public String addReview(HttpServletRequest request) {
         String userId=request.getParameter("userId");
         int projectId=Integer.parseInt(request.getParameter("projectId"));
-        String[] records=request.getParameterValues("records");
+        String[] records=request.getParameterValues("records[]");
         ReviewRecordService review=new ReviewRecordServiceImpl();
         ArrayList<PersonalReviewRecord> list=new ArrayList<PersonalReviewRecord>();
-        System.out.println(records.length);
         for(String record:records){
             String[] strs=record.split("[&]");
             PersonalReviewRecord r=new PersonalReviewRecord();
-            r.setId(projectId);
+            r.setProjectId(projectId);
             r.setUserId(userId);
             r.setPath(strs[0]);
             r.setLineNum(strs[1]);
