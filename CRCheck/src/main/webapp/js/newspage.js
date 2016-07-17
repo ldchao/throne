@@ -34,11 +34,10 @@ function switchTab(index) {
 
 function refreshTab() {
     var lastdiv = document.getElementById("last_div");
-
-    if (lastdiv.style.display == "block") {
-        switchTab(1);
-    } else {
+    if (lastdiv.style.display.toString() == "none") {
         switchTab(0);
+    } else {
+        switchTab(1);
     }
 }
 
