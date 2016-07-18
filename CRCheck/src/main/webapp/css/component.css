@@ -164,11 +164,32 @@ footer {
     background-image: url("../image/portrait.svg");
 }
 
+.images_div {
+    margin-right: 3px;
+    margin-left: 3px;
+    width: 70px;
+    display: inline-block;
+}
+
 .image-middle {
     height: 40px;
     width: 40px;
     display: inline-block;
     background-image: url("../image/portrait.svg");
+}
+
+.image-refuse {
+    height: 40px;
+    width: 40px;
+    display: inline-block;
+    background-image: url("../image/reviewer-del.svg");
+}
+
+.image-other {
+    height: 40px;
+    width: 40px;
+    display: inline-block;
+    background-image: url("../image/portrait-gray.svg");
 }
 
 .sub-title {

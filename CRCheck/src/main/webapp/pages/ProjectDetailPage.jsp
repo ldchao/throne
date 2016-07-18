@@ -132,9 +132,33 @@
     <div class="member">
         <div class="middle-title">参与者</div>
         <div class="member-list">
-            <div class="image-middle" style="margin-right: 15px;"></div>
-            <div class="image-middle" style="margin-right: 15px;"></div>
-            <div class="image-middle" style=""></div>
+            <c:forEach items="${project.invitationList}" var="list">
+
+                <c:choose>
+
+                    <c:when test="${list.accepting_state=='Agree'}">
+                        <div class="images_div">
+                            <div class="image-middle" style=""></div>
+                            <div>${list.userID}</div>
+                        </div>
+                    </c:when>
+
+                    <c:when test="${list.accepting_state=='Refuse'}">
+                        <div class="images_div">
+                            <div class="image-refuse" style=""></div>
+                            <div>${list.userID}</div>
+                        </div>
+                    </c:when>
+
+                    <c:when test="${list.accepting_state=='NotHandle'}">
+                        <div class="images_div">
+                            <div class="image-other" style=""></div>
+                            <div>${list.userID}</div>
+                        </div>
+                    </c:when>
+                </c:choose>
+
+            </c:forEach>
         </div>
     </div>
 
