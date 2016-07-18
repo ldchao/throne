@@ -60,51 +60,69 @@ public class MessageController {
     //接受邀请
     @RequestMapping(value = "/ApproveMessage", method = RequestMethod.GET)
     @ResponseBody
-    public String approveMessage(int messageId) {
+    public String approveMessage(HttpServletRequest request, int messageId) {
         MessageService messageService = new MessageServiceImpl();
-        UniversalState state=messageService.changeMessageState(messageId, MessageState.Agree);
-        if(state==UniversalState.SUCCESS)
+        UniversalState state = messageService.changeMessageState(messageId, MessageState.Agree);
+        if (state == UniversalState.SUCCESS) {
+            UserModel user = (UserModel) request.getSession().getAttribute("User");
+            user.deleteMessageNum();
             return "SUCCESS";
+        }
         return "FAIL";
     }
+
     //拒绝邀请
     @RequestMapping(value = "/RefuseMessage", method = RequestMethod.GET)
     @ResponseBody
-    public String refuseMessage(int messageId) {
+    public String refuseMessage(HttpServletRequest request, int messageId) {
         MessageService messageService = new MessageServiceImpl();
-        UniversalState state=messageService.changeMessageState(messageId, MessageState.Refuse);
-        if(state==UniversalState.SUCCESS)
+        UniversalState state = messageService.changeMessageState(messageId, MessageState.Refuse);
+        if (state == UniversalState.SUCCESS) {
+            UserModel user = (UserModel) request.getSession().getAttribute("User");
+            user.deleteMessageNum();
             return "SUCCESS";
+        }
         return "FAIL";
     }
+
     //忽略消息
     @RequestMapping(value = "/IgnoreMessage", method = RequestMethod.GET)
     @ResponseBody
-    public String ignoreMessage(int messageId) {
+    public String ignoreMessage(HttpServletRequest request, int messageId) {
         MessageService messageService = new MessageServiceImpl();
-        UniversalState state=messageService.changeMessageState(messageId, MessageState.Ignore);
-        if(state==UniversalState.SUCCESS)
+        UniversalState state = messageService.changeMessageState(messageId, MessageState.Ignore);
+        if (state == UniversalState.SUCCESS) {
+            UserModel user = (UserModel) request.getSession().getAttribute("User");
+            user.deleteMessageNum();
             return "SUCCESS";
+        }
         return "FAIL";
     }
+
     //删除消息
     @RequestMapping(value = "/DeleteMessage", method = RequestMethod.GET)
     @ResponseBody
-    public String deleteMessage(int messageId) {
+    public String deleteMessage(HttpServletRequest request, int messageId) {
         MessageService messageService = new MessageServiceImpl();
-        UniversalState state=messageService.deleteMessage(messageId);
-        if(state==UniversalState.SUCCESS)
+        UniversalState state = messageService.deleteMessage(messageId);
+        if (state == UniversalState.SUCCESS) {
+            UserModel user = (UserModel) request.getSession().getAttribute("User");
+            int newNum = messageService.checkMessageCount(user.getId());
+            user.setMessageNum(newNum);
             return "SUCCESS";
+        }
         return "FAIL";
     }
+
     //一键清空
     @RequestMapping(value = "/DeleteAllMessage", method = RequestMethod.GET)
     @ResponseBody
     public String deleteAllMessage(String userId) {
         MessageService messageService = new MessageServiceImpl();
-        UniversalState state=messageService.deleteAllMessage(userId);
-        if(state==UniversalState.SUCCESS)
+        UniversalState state = messageService.deleteAllMessage(userId);
+        if (state == UniversalState.SUCCESS) {
             return "SUCCESS";
+        }
         return "FAIL";
     }
 }
