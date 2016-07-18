@@ -36,4 +36,9 @@ public class UserModel {
     public void setMessageNum(int messageNum) {
         this.messageNum = messageNum;
     }
+
+    public void deleteMessageNum(){
+        this.messageNum--;
+    }
+
 }
