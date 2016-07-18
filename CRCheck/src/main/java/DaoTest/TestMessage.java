@@ -17,12 +17,13 @@ public class TestMessage {
         message.setProjectId(13);
         message.setSendOrReceive("send");
       //  messageDao.addMessage(message);
-        messageDao.deleteAllMessage("dd14");
+       // messageDao.deleteAllMessage("dd14");
 //        message=messageDao.findMessage("shachao");
 //       System.out.print(message.getId());
        // messageDao.deleteMessage("shachao");
         //message.setState("Handle");
        // messageDao.updateMessageState(message);
        //System.out.print( messageDao.getMessageNum("123"));
+        System.out.print(messageDao.getMessageNum("marioquer"));
     }
 }

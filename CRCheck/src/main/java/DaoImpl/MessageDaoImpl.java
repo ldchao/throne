@@ -122,8 +122,14 @@ public class MessageDaoImpl implements MessageDao{
             String hql="from Message m where m.userId='"+uid+"'";
             Query query = session.createQuery(hql);
             ArrayList<Message> list=(ArrayList<Message>) query.list();
+            int n=0;
+            for(int i=0;i<list.size();i++){
+                if(list.get(i).getState().equals("NotHandle")){
+                    n++;
+                }
+            }
             session.close();
-            return list.size();
+            return n;
         }catch (Exception e) {
             e.printStackTrace();
             connection.closeSession(session);
