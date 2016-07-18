@@ -80,8 +80,15 @@
                 <%} else {%>
 
                 <div class="user-block">
-                    <div class="inline bell"><a href="NewsPage.jsp"><i
-                            class="fa fa-bell" style="font-size:25px;"></i></a></div>
+                    <div class="inline bell"><a href="NewsPage.jsp">
+                        <% if (user.getMessageNum() > 0) { %>
+                        <i
+                                class="fa fa-bell" style="font-size:25px;"></i>
+                        <% } else {%>
+                        <i
+                                class="fa fa-bell-o" style="font-size:25px;"></i>
+                        <% }%>
+                    </a></div>
                     <div class="user">
                         <div class="image-middle"></div>
                         <div class="inline userName"><%=userId%>

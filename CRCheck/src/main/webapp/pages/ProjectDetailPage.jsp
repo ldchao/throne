@@ -82,8 +82,15 @@
                 <%} else {%>
 
                 <div class="user-block">
-                    <div class="inline bell"><a href="NewsPage.jsp"><i
-                            class="fa fa-bell" style="font-size:25px;"></i></a></div>
+                    <div class="inline bell"><a href="NewsPage.jsp">
+                        <% if (user.getMessageNum() > 0) { %>
+                        <i
+                                class="fa fa-bell" style="font-size:25px;"></i>
+                        <% } else {%>
+                        <i
+                                class="fa fa-bell-o" style="font-size:25px;"></i>
+                        <% }%>
+                    </a></div>
                     <div class="user">
                         <div class="image-middle"></div>
                         <div class="inline userName"><%=userId%>
@@ -158,7 +165,7 @@
     </div>
 
 
-    <c:if test="${project.userID != userId && project.state != 'Over'}">
+    <c:if test="${(project.userID != userId || project.attendReview == 'YES') && project.state != 'Over'}">
 
         <div id="begin" class="submit-button" onclick="beginReview()">立即开始评审</div>
         <div id="review-block" style="display: none;">

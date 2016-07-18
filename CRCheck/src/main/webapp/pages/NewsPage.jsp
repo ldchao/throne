@@ -85,8 +85,15 @@
                 <%} else {%>
 
                 <div class="user-block">
-                    <div class="inline bell"><a href="NewsPage.jsp"><i
-                            class="fa fa-bell" style="font-size:25px;"></i></a></div>
+                    <div class="inline bell"><a href="NewsPage.jsp">
+                        <% if (user.getMessageNum() > 0) { %>
+                        <i
+                                class="fa fa-bell" style="font-size:25px;"></i>
+                        <% } else {%>
+                        <i
+                                class="fa fa-bell-o" style="font-size:25px;"></i>
+                        <% }%>
+                    </a></div>
                     <div class="user">
                         <div class="image-middle"></div>
                         <div class="inline userName"><%=userId%>
@@ -297,6 +304,7 @@
 </div>
 
 <a href="#" id="back-to-top"><i class="fa fa-angle-up"></i></a>
+<footer>© CRCheck 2016   </footer>
 
 <%-- 用来存放userId --%>
 <a id="storage" style="display: none;"><%=userId%>

@@ -78,8 +78,15 @@
                 <%} else {%>
 
                 <div class="user-block">
-                    <div class="inline bell"><a href="NewsPage.jsp"><i
-                            class="fa fa-bell" style="font-size:25px;"></i></a></div>
+                    <div class="inline bell"><a href="NewsPage.jsp">
+                        <% if (user.getMessageNum() > 0) { %>
+                        <i
+                                class="fa fa-bell" style="font-size:25px;"></i>
+                        <% } else {%>
+                        <i
+                                class="fa fa-bell-o" style="font-size:25px;"></i>
+                        <% }%>
+                    </a></div>
                     <div class="user">
                         <div class="image-middle"></div>
                         <div class="inline userName"><%=userId%>
@@ -97,55 +104,55 @@
 </nav><!-- /.navbar -->
 
 <div id="huge-image">
-        <%--<div class="row">--%>
-        <%--<div class="col-sm-6" style="background-color: #7595e0; height: 672px;">--%>
-        <%--</div>--%>
-        <%--<div class="col-sm-6" style="background-color: #5e5e5e; height: 672px;">--%>
-        <%--</div>--%>
-        <%--</div>--%>
+    <%--<div class="row">--%>
+    <%--<div class="col-sm-6" style="background-color: #7595e0; height: 672px;">--%>
+    <%--</div>--%>
+    <%--<div class="col-sm-6" style="background-color: #5e5e5e; height: 672px;">--%>
+    <%--</div>--%>
+    <%--</div>--%>
 </div>
 
 <%--<div class="container">--%>
-    <%--<div class="row">--%>
-        <%--<div class="col-sm-6" style="background-color: #5e5e5e; height: 300px;">--%>
+<%--<div class="row">--%>
+<%--<div class="col-sm-6" style="background-color: #5e5e5e; height: 300px;">--%>
 
-        <%--</div>--%>
-        <%--<div class="col-sm-6 hidden-sm" style="background-color: #7595e0; height:300px;">--%>
+<%--</div>--%>
+<%--<div class="col-sm-6 hidden-sm" style="background-color: #7595e0; height:300px;">--%>
 
-        <%--</div>--%>
-    <%--</div>--%>
+<%--</div>--%>
+<%--</div>--%>
 
-    <%--<div class="row">--%>
-        <%--<div class="col-sm-6 hidden-sm" style="background-color: #5e5e5e; height: 300px;">--%>
+<%--<div class="row">--%>
+<%--<div class="col-sm-6 hidden-sm" style="background-color: #5e5e5e; height: 300px;">--%>
 
-        <%--</div>--%>
-        <%--<div class="col-sm-6" style="background-color: #7595e0; height:300px;">--%>
+<%--</div>--%>
+<%--<div class="col-sm-6" style="background-color: #7595e0; height:300px;">--%>
 
-        <%--</div>--%>
-    <%--</div>--%>
+<%--</div>--%>
+<%--</div>--%>
 
-    <%--<div class="row">--%>
-        <%--<div class="col-sm-6" style="background-color: #5e5e5e; height: 300px;">--%>
+<%--<div class="row">--%>
+<%--<div class="col-sm-6" style="background-color: #5e5e5e; height: 300px;">--%>
 
-        <%--</div>--%>
-        <%--<div class="col-sm-6 hidden-sm" style="background-color: #7595e0; height:300px;">--%>
+<%--</div>--%>
+<%--<div class="col-sm-6 hidden-sm" style="background-color: #7595e0; height:300px;">--%>
 
-        <%--</div>--%>
-    <%--</div>--%>
+<%--</div>--%>
+<%--</div>--%>
 
-    <%--<div class="row">--%>
-        <%--<div class="col-sm-6 hidden-sm" style="background-color: #5e5e5e; height: 300px;">--%>
+<%--<div class="row">--%>
+<%--<div class="col-sm-6 hidden-sm" style="background-color: #5e5e5e; height: 300px;">--%>
 
-        <%--</div>--%>
-        <%--<div class="col-sm-6" style="background-color: #7595e0; height:300px;">--%>
+<%--</div>--%>
+<%--<div class="col-sm-6" style="background-color: #7595e0; height:300px;">--%>
 
-        <%--</div>--%>
-    <%--</div>--%>
+<%--</div>--%>
+<%--</div>--%>
 <%--</div>--%>
 
 <a href="#" id="back-to-top"><i class="fa fa-angle-up"></i></a>
 
-<footer>© CRCheck 2016   </footer>
+<footer>© CRCheck 2016</footer>
 
 <%--发起项目评审--%>
 <div id="launch">
