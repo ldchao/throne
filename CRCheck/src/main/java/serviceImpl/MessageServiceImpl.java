@@ -60,7 +60,7 @@ public class MessageServiceImpl implements MessageService {
         result=result&messageDao.updateMessageState(message);
         message=messageDao.findMessage(messageID);
 
-        if(messageState==MessageState.Agree||messageState==MessageState.Delete) {
+        if(messageState==MessageState.Agree||messageState==MessageState.Refuse) {
             InvitationListService invitationListService = new InvitationListServiceImpl();
             invitationListService.changeInvitationState(message.getUserId(), message.getProjectId(), messageState);
         }
