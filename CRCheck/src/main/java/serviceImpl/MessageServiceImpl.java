@@ -111,6 +111,8 @@ public class MessageServiceImpl implements MessageService {
         for (Message message:list) {
             if(MessageState.valueOf(message.getState())==MessageState.NotHandle)
                 continue;
+            if(MessageState.valueOf(message.getState())==MessageState.Delete)
+                continue;
             InvitationMessage invitation=new InvitationMessage();
             invitation.setMessageID(message.getId());
             invitation.setUserID(message.getUserId());

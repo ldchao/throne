@@ -12,6 +12,7 @@ import service.MessageService;
 import serviceImpl.MessageServiceImpl;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -104,7 +105,7 @@ public class MessageController {
     @ResponseBody
     public String deleteMessage(HttpServletRequest request, int messageId) {
         MessageService messageService = new MessageServiceImpl();
-        UniversalState state = messageService.deleteMessage(messageId);
+        UniversalState state = messageService.changeMessageState(messageId, MessageState.Delete);
         if (state == UniversalState.SUCCESS) {
             UserModel user = (UserModel) request.getSession().getAttribute("User");
             int newNum = messageService.checkMessageCount(user.getId());
@@ -119,10 +120,13 @@ public class MessageController {
     @ResponseBody
     public String deleteAllMessage(String userId) {
         MessageService messageService = new MessageServiceImpl();
-        UniversalState state = messageService.deleteAllMessage(userId);
-        if (state == UniversalState.SUCCESS) {
-            return "SUCCESS";
+        ArrayList<InvitationMessage> list = messageService.checkhandledMessage(userId);
+        for(InvitationMessage message:list){
+            UniversalState state = messageService.changeMessageState(message.getMessageID(), MessageState.Delete);
+            if (state == UniversalState.FAIL) {
+                return "FAIL";
+            }
         }
-        return "FAIL";
+        return "SUCCESS";
     }
 }
