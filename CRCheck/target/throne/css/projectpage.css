@@ -339,7 +339,45 @@
     width: 40px;
     height: 40px;
     border-radius: 60px;
-    background-image: url("../image/reviewer-add.svg");
+    background-image: url("../image/portrait.svg");
+    position: relative;
+}
+
+.img_each_selected {
+    width: 40px;
+    height: 40px;
+    border-radius: 60px;
+    background-image: url("../image/portrait.svg");
+    position: relative;
+}
+
+.overlay_add {
+     width: 40px;
+     height: 40px;
+    background-image: url("../image/add.svg");
+     opacity: 0.8;
+     position: absolute;
+     top: 0;
+     left: 0;
+     z-index: 9999;
+ }
+
+.overlay_add:hover {
+    background-image: url("../image/del.svg");
+}
+
+.overlay_del {
+    width: 40px;
+    height: 40px;
+    opacity: 0.8;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+}
+
+.overlay_del:hover {
+    background-image: url("../image/del.svg");
 }
 
 .id_each {
@@ -404,21 +442,6 @@
 .selected_divs {
     margin-left: 14px;
     margin-top: 10px;
-}
-
-.img_each_selected {
-    width: 40px;
-    height: 40px;
-    border-radius: 60px;
-    background-image: url("../image/portrait.svg");
-}
-
-.img_each_selected:hover {
-    background-image: url("../image/reviewer-del.svg");
-}
-
-.img_each_after:hover {
-    background-image: url("../image/reviewer-del.svg");
 }
 
 /* 分页 */

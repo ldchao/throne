@@ -92,8 +92,16 @@ function setIds() {
 
                 if (pos > -1) {
                     elem_img.setAttribute("class", "img_each_after");
+                    if (elem_img.getElementsByClassName("overlay_add").length == 0) {
+                        var overlay = document.createElement("div");
+                        elem_img.appendChild(overlay);
+                        overlay.setAttribute("class", "overlay_add");
+                    }
                 } else {
                     elem_img.setAttribute("class", "img_each");
+                    if (elem_img.getElementsByClassName("overlay_add").length > 0) {
+                        elem_img.removeChild(elem_img.getElementsByClassName("overlay_add")[0]);
+                    }
                 }
             }
         },
@@ -118,11 +126,15 @@ function addIds(index) {
     var elem_img = document.getElementById(selectImg);
 
     if (elem_img.getAttribute("class") == "img_each_after") {
+        elem_img.removeChild(elem_img.getElementsByClassName("overlay_add")[0]);
         removeIds(elem_id.innerHTML);
         return;
     }
 
     elem_img.setAttribute("class", "img_each_after");
+    var overlay = document.createElement("div");
+    elem_img.appendChild(overlay);
+    overlay.setAttribute("class", "overlay_add");
 
     // 添加至已添加用户的列表
     idlist[idcount] = elem_id.innerHTML;
@@ -155,6 +167,10 @@ function addIds(index) {
 
     var eachimg = document.createElement("div");
     eachimg.setAttribute("class", "img_each_selected");
+
+    var div_del = document.createElement("div");
+    div_del.setAttribute("class", "overlay_del");
+    eachimg.appendChild(div_del);
 
     var eachid = document.createElement("div");
     eachid.setAttribute("class", "id_each");
@@ -189,7 +205,9 @@ function removeIds(id_remove) {
     var currentpos = isIncurrent(id_remove);
     if (currentpos > -1) {
         var imgs = document.getElementById("above_div").getElementsByClassName("div_each");
-        imgs[currentpos].getElementsByClassName("img_each_after")[0].setAttribute("class", "img_each");
+        var img_after = imgs[currentpos].getElementsByClassName("img_each_after")[0];
+        img_after.setAttribute("class", "img_each");
+        img_after.removeChild(img_after.getElementsByClassName("overlay_add")[0]);
     }
 
     // 如果大于8个,需要补空位
@@ -407,7 +425,7 @@ $(function () {
 
     var userId = document.getElementById("storage").innerHTML;
     userId = userId.trim();
-    if(userId == "") {
+    if (userId == "") {
         document.getElementsByClassName("tab_lbl")[0].style.display = "none";
     } else {
         document.getElementsByClassName("tab_lbl")[0].style.display = "block";

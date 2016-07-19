@@ -145,14 +145,18 @@
 
                     <c:when test="${list.accepting_state=='Refuse'}">
                         <div class="images_div">
-                            <div class="image-refuse" style=""></div>
+                            <div class="image-middle">
+                                <div class="image-refuse"></div>
+                            </div>
                             <div>${list.userID}</div>
                         </div>
                     </c:when>
 
                     <c:when test="${list.accepting_state=='NotHandle'}">
                         <div class="images_div">
-                            <div class="image-other" style=""></div>
+                            <div class="image-middle" style="">
+                                <div class="image-other"></div>
+                            </div>
                             <div>${list.userID}</div>
                         </div>
                     </c:when>

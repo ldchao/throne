@@ -176,20 +176,30 @@ footer {
     width: 40px;
     display: inline-block;
     background-image: url("../image/portrait.svg");
+    position: relative;
 }
 
 .image-refuse {
     height: 40px;
     width: 40px;
     display: inline-block;
-    background-image: url("../image/reviewer-del.svg");
+    background-image: url("../image/del.svg");
+    opacity: 0.9;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 .image-other {
     height: 40px;
     width: 40px;
     display: inline-block;
-    background-image: url("../image/portrait-gray.svg");
+    border-radius: 60px;
+    background-color: black;
+    opacity: 0.5;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 .sub-title {
