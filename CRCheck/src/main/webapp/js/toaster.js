@@ -12,6 +12,10 @@ function slidein(index, remindness) {
     document.getElementById("remind").setAttribute("class", words[index]);
     document.getElementById("remind").innerHTML = remindness;
 
+    if (remindness.length < 8) {
+        document.getElementById("remind").style.marginLeft = "65px";
+    }
+
     window.location.href = '#toaster';
     setTimeout("window.location.href='#toaster_close'", 1500);
 }

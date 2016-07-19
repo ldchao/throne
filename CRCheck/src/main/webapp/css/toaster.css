@@ -2,8 +2,11 @@
 #toaster {
     width: 250px;
     height: 60px;
+    display: inline-block;
     background: white;
-    padding:10px 20px;
+    padding-top: 10px;
+    padding-left: 15px;
+    padding-right: 10px;
     font-size: 30px;
     font-weight: normal;
     position: absolute;
@@ -33,6 +36,7 @@
     position: fixed;
     top: 60px;
     right: 0;
+    display: inline-block;
     z-index: 9999;
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
@@ -50,12 +54,13 @@
 }
 
 #remind {
-    margin-left: 65px;
+    margin-left: 50px;
     margin-top: -40px;
     font-size: 19px;
     line-height: 40px;
     vertical-align: middle;
     font-family: "PingFang SC";
+    display: inline-block;
 }
 
 .green_pic {

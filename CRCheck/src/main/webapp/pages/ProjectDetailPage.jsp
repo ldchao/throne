@@ -138,7 +138,7 @@
 
                     <c:when test="${list.accepting_state=='Agree'}">
                         <div class="images_div">
-                            <div class="image-middle" style=""></div>
+                            <div class="image-middle"></div>
                             <div>${list.userID}</div>
                         </div>
                     </c:when>
@@ -240,7 +240,6 @@
                 <div class="cancel-button" onclick="endReview()" style="margin-top:10px;">结束此项目评审</div>
             </div>
         </div>
-
 
     </c:if>
 </div>

@@ -13,6 +13,7 @@ var detail = {
 
     init: function () {
         defect = document.getElementById("exist_copy").innerHTML;
+        form = document.getElementById("init-form").innerHTML;
 
         if (owner == userId) {
             $.ajax({
@@ -34,7 +35,7 @@ var detail = {
                 }
             });
         } else {
-            form = document.getElementById("init-form").innerHTML;
+            // form = document.getElementById("init-form").innerHTML;
             $.ajax({
                 type: "post",
                 async: false,

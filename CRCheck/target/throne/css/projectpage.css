@@ -332,6 +332,7 @@
     height: 40px;
     border-radius: 60px;
     background-image: url("../image/portrait.svg");
+    position: relative;
 }
 
 .img_each_after {
