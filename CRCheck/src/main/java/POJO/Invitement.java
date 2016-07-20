@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 /**
- * Created by mm on 2016/7/13.
+ * Created by mm on 2016/7/20.
  */
 @Entity
 public class Invitement {

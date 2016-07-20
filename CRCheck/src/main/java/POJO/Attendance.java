@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 /**
- * Created by mm on 2016/7/13.
+ * Created by mm on 2016/7/20.
  */
 @Entity
 public class Attendance {
@@ -57,7 +57,7 @@ public class Attendance {
     }
 
     @Basic
-    @Column(name = "qualityReviewPath", nullable = false, length = -1)
+    @Column(name = "qualityReview", nullable = false, length = -1)
     public String getQualityReview() {
         return qualityReview;
     }

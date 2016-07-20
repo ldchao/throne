@@ -15,7 +15,7 @@
             <column name="projectId" sql-type="int(11)"/>
         </property>
         <property name="content">
-            <column name="content" sql-type="varchar(255)"/>
+            <column name="content" sql-type="longtext"/>
         </property>
         <property name="state">
             <column name="state" sql-type="varchar(20)" length="20"/>

@@ -4,7 +4,7 @@
     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
-    <class name="POJO.Attendance" table="attendance" schema="throne">
+    <class name="POJO.Projectquality" table="projectquality" schema="throne">
         <id name="id">
             <column name="id" sql-type="int(11)"/>
         </id>
@@ -14,11 +14,17 @@
         <property name="projectId">
             <column name="projectId" sql-type="int(11)"/>
         </property>
-        <property name="state">
-            <column name="state" sql-type="varchar(20)" length="20"/>
+        <property name="endTime">
+            <column name="endTime" sql-type="varchar(20)" length="20"/>
         </property>
-        <property name="qualityReview">
-            <column name="qualityReview" sql-type="text"/>
+        <property name="description">
+            <column name="description" sql-type="varchar(255)"/>
+        </property>
+        <property name="method1">
+            <column name="method1" sql-type="double" precision="-1"/>
+        </property>
+        <property name="method2">
+            <column name="method2" sql-type="double" precision="-1"/>
         </property>
     </class>
 </hibernate-mapping>

@@ -1,24 +1,23 @@
 package DaoTest;
 
-import DaoImpl.MessageDaoImpl;
-import POJO.Message;
+import DaoImpl.UserDaoImpl;
+import POJO.User;
 
 /**
  * Created by mm on 2016/7/11.
  */
 public class test {
     public static void main(String[] args) {
-//        connection connection=new connection();
-//        UserDaoImpl userDao=new UserDaoImpl();
-//        User user=new User();
-//        user.setId("ruochao");
-//        user.setPassword("123");
-//        user.setAddress("hello");
-//        user.setUserLogin("online");
-//        user.setUserState("add");
-//        user.setChecklistPath("cshld");
-//        userDao.addUser(user);
-//        userDao.delete("fatchao");
+        UserDaoImpl userDao=new UserDaoImpl();
+        User user=new User();
+        user.setId("ruochao");
+        user.setPassword("123");
+        user.setAddress("hello");
+        user.setUserLogin("online");
+        user.setUserState("add");
+        user.setChecklistPath("cshld");
+//        user.setPower(Power.PUBLIC);
+        userDao.addUser(user);
 
 
 //        SummaryDaoImpl summaryDao=new SummaryDaoImpl();
@@ -105,10 +104,12 @@ public class test {
 //        }
 //        System.out.println(summaryDao.deleteInvalidSummary(summary));
 
-        MessageDaoImpl messageDao=new MessageDaoImpl();
-        Message message=new Message();
-        message.setId(1);
-        message.setState("123");
-        System.out.println(messageDao.updateMessageState(message));
+//        MessageDaoImpl messageDao=new MessageDaoImpl();
+//        Message message=new Message();
+//        message.setId(1);
+//        message.setState("123");
+//        System.out.println(messageDao.updateMessageState(message));
+
+        System.out.print("dd");
     }
 }

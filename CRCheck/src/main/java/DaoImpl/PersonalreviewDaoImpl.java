@@ -20,7 +20,7 @@ public class PersonalreviewDaoImpl implements PersonalreviewDao {
         try {
             if(findPersonalreviewById(po)==null){
                 session.save(po);
-                Transaction transaction=session.beginTransaction();
+                Transaction     transaction=session.beginTransaction();
                 transaction.commit();
                 connection.closeSession(session);
                 return true;
@@ -123,6 +123,10 @@ public class PersonalreviewDaoImpl implements PersonalreviewDao {
         }
     }
 
+    public List findValidPersonalReview(Personalreview po) {
+        return null;
+    }
+
     public Personalreview findPersonalreviewById(Personalreview po){
         Session session=connection.getSession();
         try {
@@ -134,5 +138,17 @@ public class PersonalreviewDaoImpl implements PersonalreviewDao {
             connection.closeSession(session);
             return null;
         }
+    }
+
+    public boolean updateState(Personalreview po) {
+        return false;
+    }
+
+    public boolean updateResult(Personalreview po) {
+        return false;
+    }
+
+    public List getUserPersonalreview(Personalreview po) {
+        return null;
     }
 }

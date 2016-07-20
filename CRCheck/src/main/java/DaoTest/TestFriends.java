@@ -1,6 +1,5 @@
 package DaoTest;
 
-import Dao.FriendsDao;
 import DaoImpl.FriendsDaoImpl;
 import POJO.Friends;
 

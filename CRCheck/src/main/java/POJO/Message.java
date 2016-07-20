@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 /**
- * Created by mm on 2016/7/13.
+ * Created by mm on 2016/7/20.
  */
 @Entity
 public class Message {
@@ -48,7 +48,7 @@ public class Message {
     }
 
     @Basic
-    @Column(name = "content", nullable = false, length = 255)
+    @Column(name = "content", nullable = false, length = -1)
     public String getContent() {
         return content;
     }

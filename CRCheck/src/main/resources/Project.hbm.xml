@@ -38,8 +38,5 @@
         <property name="attendReview">
             <column name="attendReview" sql-type="varchar(20)" length="20"/>
         </property>
-        <property name="qualityReview">
-            <column name="qualityReview" sql-type="text"/>
-        </property>
     </class>
 </hibernate-mapping>
