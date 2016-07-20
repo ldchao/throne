@@ -4,7 +4,6 @@ import Dao.AttendanceDao;
 import Dao.SummaryDao;
 import DaoImpl.AttendanceDaoImpl;
 import DaoImpl.SummaryDaoImpl;
-import POJO.Summary;
 import service.CRCService;
 
 import java.util.ArrayList;

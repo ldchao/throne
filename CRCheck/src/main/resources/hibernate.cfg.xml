@@ -9,8 +9,6 @@
         <property name="hibernate.connection.url">jdbc:mysql://115.159.122.196:3306/throne</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
         <property name="hibernate.search.autoregister_listeners">false</property>
-        <property name="hibernate.connection.username">root</property>
-        <property name="hibernate.connection.password">141250089</property>
         <mapping resource="Project.hbm.xml"/>
         <mapping class="POJO.Project"/>
         <mapping resource="User.hbm.xml"/>
@@ -27,6 +25,10 @@
         <mapping class="POJO.Attendance"/>
         <mapping resource="Summary.hbm.xml"/>
         <mapping class="POJO.Summary"/>
+        <mapping class="POJO.Commitrecord"/>
+        <mapping resource="Commitrecord.hbm.xml"/>
+        <mapping class="POJO.Projectquality"/>
+        <mapping resource="Projectquality.hbm.xml"/>
 
 
     </session-factory>

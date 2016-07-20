@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="dataSourceStorageLocal">
-    <data-source name="MySQL - throne@115.159.122.196" uuid="aa6a8b36-0064-42c2-9aae-665fbcce51e1" />
+    <data-source name="MySQL - throne@115.159.122.196" uuid="aa6a8b36-0064-42c2-9aae-665fbcce51e1">
+      <user-name>root</user-name>
+    </data-source>
   </component>
 </project>

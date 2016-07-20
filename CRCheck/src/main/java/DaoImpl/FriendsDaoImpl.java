@@ -6,7 +6,6 @@ import POJO.Friends;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.springframework.data.jpa.domain.QAbstractAuditable;
 
 import java.util.ArrayList;
 

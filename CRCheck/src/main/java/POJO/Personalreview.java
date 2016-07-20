@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 /**
- * Created by mm on 2016/7/13.
+ * Created by mm on 2016/7/20.
  */
 @Entity
 public class Personalreview {
@@ -14,11 +14,12 @@ public class Personalreview {
     private String userId;
     private Integer projectId;
     private String commitTime;
-    private String location;//the location of the error
-    private String type;//the type of the error
-    private String description;//the detail of the error
-    private String state;//two state:NOT_ENTIRELY_COMMIT, ENTIRELY_COMMIT
-    private String result;//NOT_ADMITED,ADMITTED
+    private String location;
+    private String type;
+    private String description;
+    private String state;
+    private String result;
+    private String fileType;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -110,6 +111,16 @@ public class Personalreview {
         this.result = result;
     }
 
+    @Basic
+    @Column(name = "fileType", nullable = false, length = 20)
+    public String getFileType() {
+        return fileType;
+    }
+
+    public void setFileType(String fileType) {
+        this.fileType = fileType;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -126,6 +137,7 @@ public class Personalreview {
         if (description != null ? !description.equals(that.description) : that.description != null) return false;
         if (state != null ? !state.equals(that.state) : that.state != null) return false;
         if (result != null ? !result.equals(that.result) : that.result != null) return false;
+        if (fileType != null ? !fileType.equals(that.fileType) : that.fileType != null) return false;
 
         return true;
     }
@@ -141,6 +153,7 @@ public class Personalreview {
         result1 = 31 * result1 + (description != null ? description.hashCode() : 0);
         result1 = 31 * result1 + (state != null ? state.hashCode() : 0);
         result1 = 31 * result1 + (result != null ? result.hashCode() : 0);
+        result1 = 31 * result1 + (fileType != null ? fileType.hashCode() : 0);
         return result1;
     }
 }

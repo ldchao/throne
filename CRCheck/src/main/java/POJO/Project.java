@@ -6,22 +6,21 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 /**
- * Created by mm on 2016/7/13.
+ * Created by mm on 2016/7/20.
  */
 @Entity
 public class Project {
     private Integer id;
     private String name;
     private String userId;
-    private String type;// the type of project
-    private String description;// the details of the project
-    private String projectState;//three states: NotStart,Starting,Over
-    private String power;//two states: PUBLIC , PRIVATE
+    private String type;
+    private String description;
+    private String projectState;
+    private String power;
     private String startTime;
     private String endTime;
-    private String codePath;//automatically set
-    private String attendReview;//two state:YES , NO
-    private String qualityReview;//completed quality report of the review
+    private String codePath;
+    private String attendReview;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -133,16 +132,6 @@ public class Project {
         this.attendReview = attendReview;
     }
 
-    @Basic
-    @Column(name = "qualityReview", nullable = false, length = -1)
-    public String getQualityReview() {
-        return qualityReview;
-    }
-
-    public void setQualityReview(String qualityReview) {
-        this.qualityReview = qualityReview;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -163,8 +152,6 @@ public class Project {
         if (codePath != null ? !codePath.equals(project.codePath) : project.codePath != null) return false;
         if (attendReview != null ? !attendReview.equals(project.attendReview) : project.attendReview != null)
             return false;
-        if (qualityReview != null ? !qualityReview.equals(project.qualityReview) : project.qualityReview != null)
-            return false;
 
         return true;
     }
@@ -182,7 +169,6 @@ public class Project {
         result = 31 * result + (endTime != null ? endTime.hashCode() : 0);
         result = 31 * result + (codePath != null ? codePath.hashCode() : 0);
         result = 31 * result + (attendReview != null ? attendReview.hashCode() : 0);
-        result = 31 * result + (qualityReview != null ? qualityReview.hashCode() : 0);
         return result;
     }
 }

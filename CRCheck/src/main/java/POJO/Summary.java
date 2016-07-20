@@ -6,18 +6,14 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 /**
- * Created by mm on 2016/7/14.
+ * Created by mm on 2016/7/20.
  */
 @Entity
 public class Summary {
     private Integer id;
-    private String userId;
     private Integer projectId;
-    private String location;
-    private String type;
-    private String description;
-    private String combination;
-    private Integer flag;
+    private Integer newPersonalReviewId;
+    private Integer oldPersonalReviewId;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -27,16 +23,6 @@ public class Summary {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    @Basic
-    @Column(name = "userId", nullable = false, length = 20)
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
     }
 
     @Basic
@@ -50,53 +36,23 @@ public class Summary {
     }
 
     @Basic
-    @Column(name = "location", nullable = false, length = 255)
-    public String getLocation() {
-        return location;
+    @Column(name = "newPersonalReviewId", nullable = false)
+    public Integer getNewPersonalReviewId() {
+        return newPersonalReviewId;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
-    @Basic
-    @Column(name = "type", nullable = false, length = 255)
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
+    public void setNewPersonalReviewId(Integer newPersonalReviewId) {
+        this.newPersonalReviewId = newPersonalReviewId;
     }
 
     @Basic
-    @Column(name = "description", nullable = false, length = 255)
-    public String getDescription() {
-        return description;
+    @Column(name = "oldPersonalReviewId", nullable = false)
+    public Integer getOldPersonalReviewId() {
+        return oldPersonalReviewId;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    @Basic
-    @Column(name = "combination", nullable = false, length = 255)
-    public String getCombination() {
-        return combination;
-    }
-
-    public void setCombination(String combination) {
-        this.combination = combination;
-    }
-
-    @Basic
-    @Column(name = "flag", nullable = false)
-    public Integer getFlag() {
-        return flag;
-    }
-
-    public void setFlag(Integer flag) {
-        this.flag = flag;
+    public void setOldPersonalReviewId(Integer oldPersonalReviewId) {
+        this.oldPersonalReviewId = oldPersonalReviewId;
     }
 
     @Override
@@ -107,13 +63,11 @@ public class Summary {
         Summary summary = (Summary) o;
 
         if (id != null ? !id.equals(summary.id) : summary.id != null) return false;
-        if (userId != null ? !userId.equals(summary.userId) : summary.userId != null) return false;
         if (projectId != null ? !projectId.equals(summary.projectId) : summary.projectId != null) return false;
-        if (location != null ? !location.equals(summary.location) : summary.location != null) return false;
-        if (type != null ? !type.equals(summary.type) : summary.type != null) return false;
-        if (description != null ? !description.equals(summary.description) : summary.description != null) return false;
-        if (combination != null ? !combination.equals(summary.combination) : summary.combination != null) return false;
-        if (flag != null ? !flag.equals(summary.flag) : summary.flag != null) return false;
+        if (newPersonalReviewId != null ? !newPersonalReviewId.equals(summary.newPersonalReviewId) : summary.newPersonalReviewId != null)
+            return false;
+        if (oldPersonalReviewId != null ? !oldPersonalReviewId.equals(summary.oldPersonalReviewId) : summary.oldPersonalReviewId != null)
+            return false;
 
         return true;
     }
@@ -121,13 +75,9 @@ public class Summary {
     @Override
     public int hashCode() {
         int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (userId != null ? userId.hashCode() : 0);
         result = 31 * result + (projectId != null ? projectId.hashCode() : 0);
-        result = 31 * result + (location != null ? location.hashCode() : 0);
-        result = 31 * result + (type != null ? type.hashCode() : 0);
-        result = 31 * result + (description != null ? description.hashCode() : 0);
-        result = 31 * result + (combination != null ? combination.hashCode() : 0);
-        result = 31 * result + (flag != null ? flag.hashCode() : 0);
+        result = 31 * result + (newPersonalReviewId != null ? newPersonalReviewId.hashCode() : 0);
+        result = 31 * result + (oldPersonalReviewId != null ? oldPersonalReviewId.hashCode() : 0);
         return result;
     }
 }

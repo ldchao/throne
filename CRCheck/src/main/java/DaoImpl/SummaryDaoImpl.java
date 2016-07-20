@@ -93,63 +93,63 @@ public class SummaryDaoImpl implements SummaryDao {
         }
     }
 
-    public boolean updateFlag(Summary po) {
-        Session session=connection.getSession();
-        try {
-            if (findSummaryById(po)!=null){
-                String hql="update Summary s set s.flag=? where s.id=?";
-                Query query=session.createQuery(hql);
-                query.setInteger(0,po.getFlag());
-                query.setInteger(1,po.getId());
-                query.executeUpdate();
-                Transaction transaction=session.beginTransaction();
-                transaction.commit();
-                connection.closeSession(session);
-                return true;
-            }else {
-                connection.closeSession(session);
-                return false;
-            }
-        }catch (Exception e){
-            e.printStackTrace();
-            connection.closeSession(session);
-            return false;
-        }
-    }
-
-    public List getValidSummary(Summary po) {
-        Session session=connection.getSession();
-        try {
-            String hql="from Summary s where s.projectId=? and s.flag=1 order by s.location asc ";
-            Query query=session.createQuery(hql);
-            query.setInteger(0,po.getProjectId());
-            List list=query.list();
-            connection.closeSession(session);
-            return list;
-        }catch (Exception e){
-            e.printStackTrace();
-            connection.closeSession(session);
-            return null;
-        }
-    }
-
-    public boolean deleteInvalidSummary(Summary po) {
-        Session session=connection.getSession();
-        try {
-                String hql = "delete from Summary s where s.projectId=? and s.flag=0";
-                Query query = session.createQuery(hql);
-                query.setInteger(0, po.getProjectId());
-                query.executeUpdate();
-                Transaction transaction = session.beginTransaction();
-                transaction.commit();
-                connection.closeSession(session);
-                return true;
-        }catch (Exception e){
-            e.printStackTrace();
-            connection.closeSession(session);
-            return false;
-        }
-    }
+//    public boolean updateFlag(Summary po) {
+//        Session session=connection.getSession();
+//        try {
+//            if (findSummaryById(po)!=null){
+//                String hql="update Summary s set s.flag=? where s.id=?";
+//                Query query=session.createQuery(hql);
+//                query.setInteger(0,po.getFlag());
+//                query.setInteger(1,po.getId());
+//                query.executeUpdate();
+//                Transaction transaction=session.beginTransaction();
+//                transaction.commit();
+//                connection.closeSession(session);
+//                return true;
+//            }else {
+//                connection.closeSession(session);
+//                return false;
+//            }
+//        }catch (Exception e){
+//            e.printStackTrace();
+//            connection.closeSession(session);
+//            return false;
+//        }
+//    }
+//
+//    public List getValidSummary(Summary po) {
+//        Session session=connection.getSession();
+//        try {
+//            String hql="from Summary s where s.projectId=? and s.flag=1 order by s.location asc ";
+//            Query query=session.createQuery(hql);
+//            query.setInteger(0,po.getProjectId());
+//            List list=query.list();
+//            connection.closeSession(session);
+//            return list;
+//        }catch (Exception e){
+//            e.printStackTrace();
+//            connection.closeSession(session);
+//            return null;
+//        }
+//    }
+//
+//    public boolean deleteInvalidSummary(Summary po) {
+//        Session session=connection.getSession();
+//        try {
+//                String hql = "delete from Summary s where s.projectId=? and s.flag=0";
+//                Query query = session.createQuery(hql);
+//                query.setInteger(0, po.getProjectId());
+//                query.executeUpdate();
+//                Transaction transaction = session.beginTransaction();
+//                transaction.commit();
+//                connection.closeSession(session);
+//                return true;
+//        }catch (Exception e){
+//            e.printStackTrace();
+//            connection.closeSession(session);
+//            return false;
+//        }
+//    }
 
 
 
@@ -164,6 +164,14 @@ public class SummaryDaoImpl implements SummaryDao {
             connection.closeSession(session);
             return null;
         }
+    }
+
+    public List getMergedSummary(Summary po) {
+        return null;
+    }
+
+    public boolean deleteNewPersonalReviewId(Summary po) {
+        return false;
     }
 
 }
