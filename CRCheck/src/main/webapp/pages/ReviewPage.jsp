@@ -6,6 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page import="model.UserModel" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="com.sun.org.apache.xpath.internal.operations.Gt" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <html>
@@ -35,6 +37,9 @@
 
     <!-- 发起项目评审 styles -->
     <link href="../css/projectpage.css" rel="stylesheet">
+
+    <!-- 当前页面 styles -->
+    <link href="../css/reviewpage.css" rel="stylesheet">
 
     <!-- specific styles -->
     <link href="../css/component.css" rel="stylesheet">
@@ -111,22 +116,183 @@
 </nav><!-- /.navbar -->
 
 
-<%-- 上传头像 --%>
-<%--<form action="upfile.do" method="post" name="form1" enctype="multipart/form-data">--%>
-<form style="margin-top: 200px;"><table><tr>
-    <img id="previewImg"src=""width="80"height="80">
-    <td> 请选择头像：</td>
-    <td >
-        <input type="file" name="file" id="file" accept="image/*" onchange="change('previewImg','file')">
-        <input type="submit"value="提交"/>
+<div class="head_div">
+    <div>
+        <div class="title_img"></div>
+        <div class="title_name">CRC评审项目</div>
+        <div class="title_ddl">2天后结束</div>
+    </div>
 
-    </td>
-</table>
-</form>
+    <div class="head_div2">
 
+        <div class="div2_left">
+
+            <div class="hr_info">
+                <div>项目信息</div>
+                <hr class="hr_separate">
+
+                <div class="pro_info">
+                    <div class="title_img"></div>
+                    <div class="pro_launcher">marioquer</div>
+                    <div class="type_img"></div>
+                    <div class="pro_launcher" style="left:35px">Java</div>
+                    <div class="pro_time visible-lg-inline-block">2016-7-19 — 2016-8-1</div>
+                </div>
+
+            </div>
+
+            <div class="hr_info" style="margin-top: 29px">
+                <div>项目描述</div>
+                <hr class="hr_separate">
+                <div>这是一个很帅很帅很帅很帅很帅很帅很帅很帅很
+                    很帅很帅很帅很帅帅很帅很帅很帅很帅很帅很帅
+                    很帅很帅很帅很帅很帅很帅很帅很帅很帅的项目
+                </div>
+            </div>
+        </div>
+
+        <div class="div2_right">
+            <div class="hr_info">
+                <span>参与者</span>
+                <hr class="hr_separate">
+
+                <% for (int i = 0; i < 5; i++) {%>
+                <div class="partner"></div>
+                <%}%>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="dir_div">
+
+    <%
+        String[] filelist = {"&lt;div class=\"launch_div_right\"&gt;",
+                "    &lt;button class=\"close close_div_launch\" onclick=\"closeLaunch('launch')\"&gt;",
+                "        &lt;i class=\"fa fa-times\"&gt;&lt;/i&gt;",
+                "    &lt;/button&gt;",
+                "&lt;/div&gt;"};
+
+        String dir = "CRC评审项目/MSE_ALL/src/java/";
+        int isFile = 1;  // 判断是文件或文件夹
+        int isCode = 0;  // 判断是文件或代码
+        String dirs[] = dir.split("/");
+        for (int i = 0; i < dirs.length; i++) {
+            if (i == 0) {
+    %>
+
+
+    <div class="dir_word" style="font-weight: 400"><%=dirs[i]%>
+    </div>
+
+    <% } else if (i < dirs.length - 1) { %>
+
+    <div class="dir_word"><%=dirs[i]%>
+    </div>
+
+    <% } else {%>
+    <div class="dir_word_last"><%=dirs[i]%>
+    </div>
+    <% } %>
+    &nbsp;/&nbsp;
+    <% } %>
+</div>
+
+<%-- 文件/文件夹 --%>
+<% if (isCode == 1) {%>
+<div class="table_div">
+    <table class="file_table">
+
+        <tr class="table_head">
+            <td style="width: 42%;  text-align: left;">
+                <div class="back_dot"><i class="fa fa-circle" style="margin-right: 4px;"></i><i
+                        class="fa fa-circle"></i></div>
+            </td>
+
+            <%-- 判断是文件或文件夹 --%>
+            <td style="width: 19%">
+                <% if (isFile == 1) { %>
+                评审状态
+                <% } else { %>
+                已评审数
+                <% } %>
+
+            </td>
+
+            <td style="width: 19%;">文件数 / 大小</td>
+            <td style="width: 20%">最近评审时间</td>
+        </tr>
+
+        <%
+            String[] dircontent = {"java", "controller", "css", "js", "image", "jsp"};
+            for (int i = 0; i < 6; i++) {
+        %>
+        <tr class="table_body">
+            <td style="width: 42%; padding-left: 27px; text-align: left;"><%=dircontent[i]%>
+            </td>
+
+            <td style="width: 19%">
+                <%-- 判断是文件夹或文件 --%>
+                <%-- 判断是否已评审 --%>
+                <% if (isFile == 1 && i % 2 == 0) {%>
+                <i class="fa fa-check green_check"></i>
+                <% } else if (isFile == 0) {%>
+                16
+                <% } %>
+            </td>
+
+            <td style="width: 19%;">520KB</td>
+            <td style="width: 20%">2016/07/20</td>
+        </tr>
+        <% } %>
+
+    </table>
+</div>
+<% } else { %>
+
+<%-- 代码文件 --%>
+<div id="code_file" class="table_div">
+
+    <table class="file_table">
+
+        <tr class="top_bottom">
+            <td style="width: 4%; border-right: 1px solid #dfe0e2"></td>
+            <td style="width: 3%; border-right: 1px solid #dfe0e2"></td>
+            <td style="width: 93%; border-right: 1px solid #dfe0e2"></td>
+        </tr>
+
+        <% for (int i = 0; i < filelist.length; i++) {%>
+
+        <tr style="height: 22px; vertical-align: middle" onmouseover="mouseOver(this)" onmouseout="mouseOut(this)">
+            <td style="border-right: 1px solid #dfe0e2; text-align: center;">
+                <i class="fa fa-pencil" style="cursor: pointer;display: none"></i>
+            </td>
+            <td style="border-right: 1px solid #dfe0e2;text-align: center"><%=i + 1%>
+            </td>
+            <td style="border-right: 1px solid #dfe0e2">
+                <pre><%=filelist[i]%></pre>
+            </td>
+        </tr>
+        <% } %>
+
+        <tr class="top_bottom">
+            <td>
+                <input type="checkbox">
+                <span style="position: relative;top: -1px;left: 0; font-size: 12px">全选</span>
+            </td>
+            <td>
+                <div class="del_btn">删除</div>
+            </td>
+            <td></td>
+        </tr>
+    </table>
+
+</div>
+
+<% } %>
 
 <a href="#" id="back-to-top"><i class="fa fa-angle-up"></i></a>
-
 <footer>© CRCheck 2016</footer>
 
 <%--发起项目评审--%>
@@ -321,7 +487,7 @@
 <script src="../js/common.js"></script>
 <script src="../js/toaster.js"></script>
 <script src="../js/projectpage.js"></script>
-<script src="../js/personalpage.js"></script>
+<script src="../js/reviewpage.js"></script>
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 <script src="../js/ie10-viewport-bug-workaround.js"></script>
 <script src="../js/datetimepicker.js"></script>
