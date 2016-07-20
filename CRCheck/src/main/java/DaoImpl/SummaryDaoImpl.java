@@ -167,11 +167,48 @@ public class SummaryDaoImpl implements SummaryDao {
     }
 
     public List getMergedSummary(Summary po) {
-        return null;
+        Session session=connection.getSession();
+        try {
+            String hql="from Summary s where s.projectId=? and s.newPersonalReviewId=?";
+            Query query=session.createQuery(hql);
+            query.setInteger(0,po.getProjectId());
+            query.setInteger(1,po.getNewPersonalReviewId());
+            List list=query.list();
+            connection.closeSession(session);
+            return list;
+
+        }catch (Exception e){
+            e.printStackTrace();
+            connection.closeSession(session);
+            return null;
+        }
     }
 
     public boolean deleteNewPersonalReviewId(Summary po) {
-        return false;
+        Session session=connection.getSession();
+        try {
+            String hql1="from Summary s where s.newPersonalReviewId=?";
+            Query query1=session.createQuery(hql1);
+            query1.setInteger(0,po.getNewPersonalReviewId());
+            List list=query1.list();
+            if(list.size()!=0){
+                String hql2="delete from Summary s where s.newPersonalReviewId=?";
+                Query query2=session.createQuery(hql2);
+                query2.setInteger(0,po.getNewPersonalReviewId());
+                query2.executeUpdate();
+                Transaction transaction=session.beginTransaction();
+                transaction.commit();
+                connection.closeSession(session);
+                return true;
+            }else {
+                connection.closeSession(session);
+                return false;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            connection.closeSession(session);
+            return false;
+        }
     }
 
 }

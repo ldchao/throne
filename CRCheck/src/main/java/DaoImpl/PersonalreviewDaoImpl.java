@@ -124,7 +124,21 @@ public class PersonalreviewDaoImpl implements PersonalreviewDao {
     }
 
     public List findValidPersonalReview(Personalreview po) {
-        return null;
+        Session session=connection.getSession();
+        try {
+            String hql="from Personalreview p where p.projectId=? and p.state<>'Done' and p.id not in " +
+                    " (select s.oldPersonalReviewId from Summary s)";
+            Query query=session.createQuery(hql);
+            query.setInteger(0,po.getProjectId());
+            List list=query.list();
+            connection.closeSession(session);
+            return list;
+
+        }catch (Exception e){
+            e.printStackTrace();
+            connection.closeSession(session);
+            return null;
+        }
     }
 
     public Personalreview findPersonalreviewById(Personalreview po){
@@ -141,14 +155,65 @@ public class PersonalreviewDaoImpl implements PersonalreviewDao {
     }
 
     public boolean updateState(Personalreview po) {
-        return false;
+        Session session=connection.getSession();
+        try{
+            if (findPersonalreviewById(po)!=null){
+                String hql="update Personalreview p set p.state=? where p.id=?";
+                Query query=session.createQuery(hql);
+                query.setString(0,po.getState());
+                query.setInteger(1,po.getId());
+                query.executeUpdate();
+                Transaction transaction=session.beginTransaction();
+                transaction.commit();
+                connection.closeSession(session);
+                return true;
+            }else {
+                connection.closeSession(session);
+                return false;
+            }
+        }catch (Exception e){
+            connection.closeSession(session);
+            return false;
+        }
     }
 
     public boolean updateResult(Personalreview po) {
-        return false;
+        Session session=connection.getSession();
+        try{
+            if (findPersonalreviewById(po)!=null){
+                String hql="update Personalreview p set p.result=? where p.id=?";
+                Query query=session.createQuery(hql);
+                query.setString(0,po.getResult());
+                query.setInteger(1,po.getId());
+                query.executeUpdate();
+                Transaction transaction=session.beginTransaction();
+                transaction.commit();
+                connection.closeSession(session);
+                return true;
+            }else {
+                connection.closeSession(session);
+                return false;
+            }
+        }catch (Exception e){
+            connection.closeSession(session);
+            return false;
+        }
     }
 
     public List getUserPersonalreview(Personalreview po) {
-        return null;
+        Session session=connection.getSession();
+        try {
+            String hql="from Personalreview p where p.projectId=? and p.userId=?";
+            Query query=session.createQuery(hql);
+            query.setInteger(0,po.getProjectId());
+            query.setString(1,po.getUserId());
+            List list=query.list();
+            connection.closeSession(session);
+            return list;
+        }catch (Exception e){
+            e.printStackTrace();
+            connection.closeSession(session);
+            return null;
+        }
     }
 }
