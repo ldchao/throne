@@ -17,7 +17,7 @@ public class ProjectqualityDaoImpl implements ProjectqualityDao {
         return null;
     }
 
-    public double getPredictedDefect(Projectquality po) {
+    public double getPredictedDefect(Projectquality po, String method) {
         return 0;
     }
 }

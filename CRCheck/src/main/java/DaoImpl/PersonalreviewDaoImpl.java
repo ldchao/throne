@@ -216,4 +216,12 @@ public class PersonalreviewDaoImpl implements PersonalreviewDao {
             return null;
         }
     }
+
+    public int getUserFoundDefect(Personalreview po) {
+        return 0;
+    }
+
+    public int getDefectOfResult(Personalreview po) {
+        return 0;
+    }
 }
