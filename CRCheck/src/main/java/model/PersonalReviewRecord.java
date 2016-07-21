@@ -1,7 +1,7 @@
 package model;
 
 import enums.ApproveState;
-import enums.FileTepy;
+import enums.FileType;
 
 /**
  * Created by lvdechao on 2016/7/10.
@@ -18,7 +18,7 @@ public class PersonalReviewRecord {
     private String state;//若未完成提交："正常提交"，若已完成提交："后续提交":;若为合并项：“合并项”
     private ApproveState result;//审批结果(审批通过、未通过、未审批)
 
-    private FileTepy fileType;//分为File或Code两种
+    private FileType fileType;//分为Dir,File或Code三种，Dir不出现
     private String pagesNum;//若为文档增加一个页数
 
     public PersonalReviewRecord() {
@@ -104,11 +104,11 @@ public class PersonalReviewRecord {
         this.result = result;
     }
 
-    public FileTepy getFileType() {
+    public FileType getFileType() {
         return fileType;
     }
 
-    public void setFileType(FileTepy fileType) {
+    public void setFileType(FileType fileType) {
         this.fileType = fileType;
     }
 

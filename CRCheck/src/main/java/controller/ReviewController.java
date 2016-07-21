@@ -1,8 +1,8 @@
 package controller;
 
+import enums.FileType;
 import enums.UniversalState;
 import model.PersonalReviewRecord;
-import model.SummaryReviewRecord;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import service.ReviewRecordService;
@@ -31,10 +31,19 @@ public class ReviewController {
             PersonalReviewRecord r=new PersonalReviewRecord();
             r.setProjectId(projectId);
             r.setUserId(userId);
+            //第一项，所在路径名
             r.setPath(strs[0]);
+            //第二项，所在行数
             r.setLineNum(strs[1]);
+            //第三项，错误类型
             r.setType(strs[2]);
-            r.setDescription(strs[3]);
+            //第四项，文件类型，分为Dir,File或Code三种，Dir不出现
+            FileType ft=FileType.valueOf(strs[3]);
+            //第五项，错误细节
+            r.setDescription(strs[4]);
+            //第六项，若为文档增加一个页数
+            if(ft.equals(FileType.File))
+                r.setPagesNum(strs[5]);
             list.add(r);
         }
         UniversalState state=review.submitReviewRecord(list);
@@ -75,9 +84,9 @@ public class ReviewController {
     //查看评审记录
     @RequestMapping(value = "/getSummaryReview", method = RequestMethod.POST)
     @ResponseBody
-    public List<SummaryReviewRecord> checkSummaryReview(int projectID){
+    public List<PersonalReviewRecord> checkSummaryReview(int projectID){
         ReviewRecordService review=new ReviewRecordServiceImpl();
-        List<SummaryReviewRecord> list=review.checkSummaryReviewRecord(projectID);
+        List<PersonalReviewRecord> list=review.checkSummaryReviewRecord(projectID);
         return list;
     }
 }

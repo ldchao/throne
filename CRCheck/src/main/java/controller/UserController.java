@@ -21,4 +21,5 @@ public class UserController {
         UserService user=new UserServiceImpl();
         return user.getUserList(userid);
     }
+    //TODO 四个不同板块的用户推荐
 }

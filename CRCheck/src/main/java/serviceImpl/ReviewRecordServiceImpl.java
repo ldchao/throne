@@ -5,12 +5,11 @@ import DaoImpl.*;
 import POJO.*;
 import enums.ApproveState;
 import enums.CommitState;
-import enums.FileTepy;
+import enums.FileType;
 import enums.UniversalState;
 import model.*;
 import service.CRCService;
 import service.ReviewRecordService;
-
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -50,7 +49,7 @@ public class ReviewRecordServiceImpl implements ReviewRecordService {
             personalreview.setCommitTime(time);
             personalreview.setFileType(personalReviewRecord.getFileType().toString());
             String path="";
-            if(personalReviewRecord.getFileType()== FileTepy.Code){
+            if(personalReviewRecord.getFileType()== FileType.Code){
                 path=personalReviewRecord.getPath()+" "+personalReviewRecord.getLineNum();
             }else{
                 path=personalReviewRecord.getPath()+" "+personalReviewRecord.getPagesNum()+" "+personalReviewRecord.getLineNum();
@@ -141,10 +140,10 @@ public class ReviewRecordServiceImpl implements ReviewRecordService {
             r.setUserId(p.getUserId());
             r.setProjectId(p.getProjectId());
             r.setCommitTime(p.getCommitTime());
-            FileTepy fileTepy=FileTepy.valueOf(p.getFileType());
+            FileType fileType = FileType.valueOf(p.getFileType());
             String[] location=p.getLocation().split(" ");
             r.setPath(location[0]);
-            if(fileTepy==FileTepy.File){
+            if(fileType == FileType.File){
                 r.setPagesNum(location[1]);
                 r.setLineNum(location[2]);
             }else{
@@ -190,7 +189,7 @@ public class ReviewRecordServiceImpl implements ReviewRecordService {
         personalreview.setCommitTime(time);
         personalreview.setFileType(result.getFileType().toString());
         String path="";
-        if(result.getFileType()== FileTepy.Code){
+        if(result.getFileType()== FileType.Code){
             path=result.getPath()+" "+result.getLineNum();
         }else{
             path=result.getPath()+" "+result.getPagesNum()+" "+result.getLineNum();
@@ -346,10 +345,10 @@ public class ReviewRecordServiceImpl implements ReviewRecordService {
         r.setUserId(p.getUserId());
         r.setProjectId(p.getProjectId());
         r.setCommitTime(p.getCommitTime());
-        FileTepy fileTepy=FileTepy.valueOf(p.getFileType());
+        FileType fileType = FileType.valueOf(p.getFileType());
         String[] location=p.getLocation().split(" ");
         r.setPath(location[0]);
-        if(fileTepy==FileTepy.File){
+        if(fileType == FileType.File){
             r.setPagesNum(location[1]);
             r.setLineNum(location[2]);
         }else{
