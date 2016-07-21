@@ -103,7 +103,7 @@ public class ProjectServiceImpl implements ProjectService {
         p.setUserID(pro.getUserId());
         p.setName(pro.getName());
         p.setProjectID(pro.getId());
-        p.setType(FileTepy.valueOf(pro.getType()));
+        p.setType(FileType.valueOf(pro.getType()));
         p.setDiscription(pro.getDescription());
         p.setPower(Power.valueOf(pro.getPower()));
         p.setStartDate(pro.getStartTime());
