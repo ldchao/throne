@@ -7,7 +7,7 @@ function mouseOver(tr) {
     tr.getElementsByTagName("i")[0].style.display = "block";
 
     tr.getElementsByTagName("i")[0].onclick = function () {
-        showDiv(tr);
+        addDiv(tr);
     }
 }
 
@@ -16,7 +16,7 @@ function mouseOut(tr) {
     tr.getElementsByTagName("i")[0].style.display = "none";
 }
 
-function showDiv(tr) {
+function addDiv(tr) {
     var index = $(tr).parents(".file_table").find("tr").index($(tr));
 
     var row = document.getElementById("code_file").insertRow(index + 1);
@@ -33,7 +33,7 @@ function showDiv(tr) {
 
     var addbtn = div.getElementsByClassName("bug_add")[0];
     addbtn.onclick = function () {
-        showDiv(row);
+        addDiv(row);
     };
 
     var checkbox = div.getElementsByTagName("input")[0];
@@ -75,4 +75,14 @@ function delAll() {
         }
     }
     document.getElementById("selectAll").checked = false;
+}
+
+// 文档评审
+function addDocdiv() {
+
+    var div = document.createElement("div");
+    div.setAttribute("class", "docbug_div");
+    div.innerHTML = document.getElementById("docbug_id").innerHTML;
+
+    document.getElementById("doc_bugs").appendChild(div);
 }

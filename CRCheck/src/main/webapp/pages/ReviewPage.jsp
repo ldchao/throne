@@ -6,8 +6,6 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page import="model.UserModel" %>
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="com.sun.org.apache.xpath.internal.operations.Gt" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <html>
@@ -206,8 +204,8 @@
 
 <%-- 文件/文件夹 --%>
 <div class="table_div">
-    <% if (isCode == 1) {%>
-    <table class="file_table">
+    <% //if (isCode == 1) {%>
+    <table class="file_table" style="display: none">
 
         <tr class="table_head">
             <td style="width: 42%;  text-align: left;">
@@ -216,14 +214,7 @@
             </td>
 
             <%-- 判断是文件或文件夹 --%>
-            <td style="width: 19%">
-                <% if (isFile == 1) { %>
-                评审状态
-                <% } else { %>
-                已评审数
-                <% } %>
-
-            </td>
+            <td style="width: 19%">评审情况</td>
 
             <td style="width: 19%;">文件数 / 大小</td>
             <td style="width: 20%">最近评审时间</td>
@@ -253,10 +244,10 @@
         <% } %>
 
     </table>
-    <% } else { %>
+    <%// } else { %>
 
     <%-- 代码文件 --%>
-    <table id="code_file" class="file_table">
+    <table id="code_file" class="file_table" style="display: none">
 
         <tr class="top_bottom">
             <td style="width: 4%; border-right: 1px solid #dfe0e2"></td>
@@ -289,11 +280,38 @@
             <td></td>
         </tr>
     </table>
-    <% } %>
+    <%// } %>
 
-    <div class="publish_review">提交此次评审</div>
+    <%-- 文档评审 --%>
+    <div id="review_div">
+
+        <div class="top_bottom"></div>
+
+        <div class="middle_body">
+            <div class="doc_preview"></div>
+
+            <div class="doc_right">
+
+                <div class="doc_topside">
+                    <div class="doc_img"></div>
+                    <div class="doc_userId visible-lg-inline-block">marioquer</div>
+                    <div class="doc_download"><i class="fa fa-download"></i> &nbsp;下载</div>
+                </div>
+
+                <div id="doc_bugs"></div>
+
+                <div class="docbug_addbtn" onclick="addDocdiv()"><i class="fa fa-pencil"></i> &nbsp;添加缺陷</div>
+            </div>
+
+            <div class="publish_doc">提交此次评审</div>
+        </div>
+
+        <div class="top_bottom"></div>
+
+    </div>
+
+    <div class="publish_review" style="display: none;">提交此次评审</div>
 </div>
-
 
 <%-- 缺陷块 --%>
 <div id="bugdiv_id" class="bug_div" style="display: none;">
@@ -318,10 +336,19 @@
         <input class="bug_desc" type="text" placeholder="缺陷描述">
 
         <div class="bug_add">添加缺陷</div>
-
     </div>
 </div>
 
+<%-- 文档缺陷快 --%>
+<div id="docbug_id" class="docbug_div" style="display: none">
+    <input class="docbug_input" type="text" placeholder="页数">
+
+    <input class="docbug_input" type="text" placeholder="行数">
+
+    <textarea class="docbug_desc" placeholder="缺陷描述"></textarea>
+
+    <hr class="doc_hr">
+</div>
 
 <a href="#" id="back-to-top"><i class="fa fa-angle-up"></i></a>
 <footer>© CRCheck 2016</footer>
