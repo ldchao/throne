@@ -85,8 +85,14 @@ public class ReviewRecordServiceImpl implements ReviewRecordService {
         ProjectQualityModel projectQualityModel=new ProjectQualityModel();
         projectQualityModel.setUserId(userID);
         projectQualityModel.setProjectId(projectID);
-        // TODO: 2016/7/21 数据层增加接口后修改
-        String description=userID+"完成评审，共提交"+""+"个缺陷";
+
+        PersonalreviewDao personalreviewDao=new PersonalreviewDaoImpl();
+        Personalreview po=new Personalreview();
+        po.setProjectId(projectID);
+        po.setUserId(userID);
+        int defectNum=personalreviewDao.getUserFoundDefect(po);
+
+        String description=userID+"完成评审，共提交"+defectNum+"个缺陷";
         projectQualityModel.setDescription(description);
         return crcService.addQualityReview(projectQualityModel);
 
@@ -258,12 +264,15 @@ public class ReviewRecordServiceImpl implements ReviewRecordService {
 
     public ArrayList<PersonalReviewRecord> disassembleReviewRecord(int id, ArrayList<String> idList) {
         ArrayList<PersonalReviewRecord> result=new ArrayList<PersonalReviewRecord>();
+        SummaryDao summaryDao=new SummaryDaoImpl();
+        Summary summary=new Summary();
+        summary.setNewPersonalReviewId(id);
         for (String childID:idList ) {
             int child_id=Integer.parseInt(childID);
             PersonalReviewRecord personalReviewRecord=checkOnePersonalReviewRecord(child_id);
             result.add(personalReviewRecord);
-
-            // TODO: 2016/7/21 删除summary中的合并路径
+            summary.setOldPersonalReviewId(child_id);
+            summaryDao.deleteSummary(summary);
         }
         return result;
     }

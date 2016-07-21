@@ -3,11 +3,14 @@ package serviceImpl;
 import Dao.AttendanceDao;
 import Dao.CreateIdDao;
 import Dao.ProjectDao;
+import Dao.ProjectqualityDao;
 import DaoImpl.AttendanceDaoImpl;
 import DaoImpl.CreateIdDaoImpl;
 import DaoImpl.ProjectDaoImpl;
+import DaoImpl.ProjectqualityDaoImpl;
 import POJO.Attendance;
 import POJO.Project;
+import POJO.Projectquality;
 import enums.*;
 import model.InvitationMessage;
 import model.ProjectModel;
@@ -107,12 +110,14 @@ public class ProjectServiceImpl implements ProjectService {
         p.setEndDate(pro.getEndTime());
         p.setProjectPath(pro.getCodePath());
         p.setAttendReview(pro.getAttendReview());
-        // TODO: 2016/7/20 数据层接口变更
-//        ProjectqualityDao projectqualityDao=new ProjectqualityDaoImpl();
-//        Projectquality projectquality=new Projectquality();
-//        projectquality.setProjectId(projectID);
-//        double hchao=projectqualityDao.getPredictedDefect(projectquality);
-//        p.setHChao_PredictedDefect(hchao);
+
+        ProjectqualityDao projectqualityDao=new ProjectqualityDaoImpl();
+        Projectquality projectquality=new Projectquality();
+        projectquality.setProjectId(projectID);
+        double hchao=projectqualityDao.getPredictedDefect(projectquality,"method1");
+        double tchao=projectqualityDao.getPredictedDefect(projectquality,"method2");
+        p.setHChao_PredictedDefect(hchao);
+        p.setTChao_PredictedDefect(tchao);
 
         ProjectState nowProjectState= DateHelper.stateAnalyse(pro.getStartTime(),pro.getEndTime());
         p.setState(nowProjectState);
