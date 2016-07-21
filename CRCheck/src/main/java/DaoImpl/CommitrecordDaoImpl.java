@@ -66,9 +66,10 @@ public class CommitrecordDaoImpl implements CommitrecordDao {
                 return null;
             } else {
                ArrayList<String> tList = new ArrayList<String>();
-                for(int i=0;i<tList.size();i++){
+                for(int i=0;i<list.size();i++){
                     Commitrecord commitrecord = (Commitrecord) list.get(i);
                     tList.add(commitrecord.getReviewType());
+                    //System.out.println(i);
                 }
                 for ( int i = 0 ; i < tList.size() - 1 ; i ++ ) {
                     for ( int j = tList.size() - 1 ; j > i; j -- ) {
@@ -127,7 +128,7 @@ public class CommitrecordDaoImpl implements CommitrecordDao {
                int total=0;
                 for(int i=0;i<list.size();i++){
                     Commitrecord commitrecord = (Commitrecord) list.get(i);
-                    
+                    total+=commitrecord.getTime();
                 }
                 return total;
             }
@@ -141,14 +142,77 @@ public class CommitrecordDaoImpl implements CommitrecordDao {
     }
 
     public int getReviewTypeCodeLine(Commitrecord po) {
-        return 0;
+        Session session = connection.getSession();
+        try {
+            String hql = "from Commitrecord c where c.userId='" +po.getUserId()+"' and c.reviewType='"+po.getReviewType()+"'";
+            Query query = session.createQuery(hql);
+            List list = query.list();
+            session.close();
+            if (list.size() == 0) {
+                return 0;
+            } else {
+                int total=0;
+                for(int i=0;i<list.size();i++){
+                    Commitrecord commitrecord = (Commitrecord) list.get(i);
+                    total+=commitrecord.getCodeLine();
+                }
+                return total;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            connection.closeSession(session);
+            return 0;
+        }
     }
 
     public int getReviewCodeLine(Commitrecord po) {
-        return 0;
+        Session session = connection.getSession();
+        try {
+            String hql = "from Commitrecord c where c.userId='" +po.getUserId()+"' and c.reviewType="+po.getProjectId();
+            Query query = session.createQuery(hql);
+            List list = query.list();
+            session.close();
+            if (list.size() == 0) {
+                return 0;
+            } else {
+                int total=0;
+                for(int i=0;i<list.size();i++){
+                    Commitrecord commitrecord = (Commitrecord) list.get(i);
+                    total+=commitrecord.getCodeLine();
+                }
+                return total;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            connection.closeSession(session);
+            return 0;
+        }
     }
 
     public int getReviewTimeOfProject(Commitrecord po) {
-        return 0;
+        Session session = connection.getSession();
+        try {
+            String hql = "from Commitrecord c where c.userId='" +po.getUserId()+"' and c.projectId="+po.getProjectId();
+            Query query = session.createQuery(hql);
+            List list = query.list();
+            session.close();
+            if (list.size() == 0) {
+                return 0;
+            } else {
+                int total=0;
+                for(int i=0;i<list.size();i++){
+                    Commitrecord commitrecord = (Commitrecord) list.get(i);
+                    total+=commitrecord.getTime();
+                }
+                return total;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            connection.closeSession(session);
+            return 0;
+        }
     }
 }
