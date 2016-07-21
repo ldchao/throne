@@ -81,7 +81,7 @@ public class PersonalreviewDaoImpl implements PersonalreviewDao {
     public List findProject(User user, Project project) {
         Session session= connection.getSession();
         try {
-            String hql="from Personalreview p where p.userId='"+user.getId()+"' and projectId='"+project.getId()+"'";
+            String hql="from Personalreview p where p.userId='"+user.getId()+"' and p.projectId="+project.getId();
             Query query=session.createQuery(hql);
             List list=query.list();
             connection.closeSession(session);
@@ -96,7 +96,7 @@ public class PersonalreviewDaoImpl implements PersonalreviewDao {
     public List findProject(Project po) {
         Session session= connection.getSession();
         try{
-            String hql="from Personalreview p where p.projectId='"+po.getId()+"'";
+            String hql="from Personalreview p where p.projectId="+po.getId();
             Query query=session.createQuery(hql);
             List list=query.list();
             connection.closeSession(session);
@@ -126,8 +126,10 @@ public class PersonalreviewDaoImpl implements PersonalreviewDao {
     public List findValidPersonalReview(Personalreview po) {
         Session session=connection.getSession();
         try {
-            String hql="from Personalreview p where p.projectId=? and p.state<>'Done' and p.id not in " +
-                    " (select s.oldPersonalReviewId from Summary s)";
+            String hql="from Personalreview p where p.projectId=? " +
+                    "and p.state<>'Done' " +
+                    "and p.id not in (select s.oldPersonalReviewId from Summary s) " +
+                    "and not exists (select '*' from Attendance a where p.userId=a.userId and p.projectId=a.projectId and a.state='NotDone')";
             Query query=session.createQuery(hql);
             query.setInteger(0,po.getProjectId());
             List list=query.list();
@@ -218,10 +220,35 @@ public class PersonalreviewDaoImpl implements PersonalreviewDao {
     }
 
     public int getUserFoundDefect(Personalreview po) {
-        return 0;
+        Session session=connection.getSession();
+        try {
+            String hql="select count (*) from Personalreview p where p.userId=? and p.projectId=? and p.state='NotDone'";
+            Query query=session.createQuery(hql);
+            query.setString(0, po.getUserId());
+            query.setInteger(1,po.getProjectId());
+            Integer result=(Integer) query.uniqueResult();
+            connection.closeSession(session);
+            return result;
+        }catch (Exception e){
+            connection.closeSession(session);
+            return -1;
+        }
     }
 
     public int getDefectOfResult(Personalreview po) {
-        return 0;
+        Session session=connection.getSession();
+        try {
+            String hql="select count (*) from Personalreview p where p.userId=? and p.projectId=? and p.state='NotDone' and p.result=?";
+            Query query=session.createQuery(hql);
+            query.setString(0, po.getUserId());
+            query.setInteger(1,po.getProjectId());
+            query.setString(2,po.getResult());
+            Integer result=(Integer) query.uniqueResult();
+            connection.closeSession(session);
+            return result;
+        }catch (Exception e){
+            connection.closeSession(session);
+            return -1;
+        }
     }
 }
