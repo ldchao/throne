@@ -34,6 +34,12 @@ function showDiv(tr) {
     var addbtn = div.getElementsByClassName("bug_add")[0];
     addbtn.onclick = function () {
         showDiv(row);
+    };
+
+    var checkbox = div.getElementsByTagName("input")[0];
+    checkbox.onclick = function () {
+        if(checkbox.checked == false)
+            document.getElementById("selectAll").checked = false;
     }
 
     var delbtn = div.getElementsByClassName("del_btn")[0];
@@ -41,7 +47,7 @@ function showDiv(tr) {
         var t = $(this).parents("tr");
         var pos = $(t).parents(".file_table").find("tr").index($(t));
         document.getElementById("code_file").deleteRow(pos);
-    }
+    };
 
     row.appendChild(td);
     document.getElementById("selectAll").checked = false;
@@ -52,7 +58,7 @@ function selectAll() {
     var divs = document.getElementById("code_file").getElementsByClassName("bug_div");
     for (var i = 0; i < divs.length; i++) {
         var box = divs[i].getElementsByTagName("input")[0];
-        box.checked = true;
+        box.checked = document.getElementById("selectAll").checked;
     }
 }
 

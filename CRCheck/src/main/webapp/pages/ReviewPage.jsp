@@ -121,6 +121,7 @@
         <div class="title_img"></div>
         <div class="title_name">CRC评审项目</div>
         <div class="title_ddl">2天后结束</div>
+        <div class="finish_review">结束此项目评审</div>
     </div>
 
     <div class="head_div2">
@@ -204,8 +205,8 @@
 </div>
 
 <%-- 文件/文件夹 --%>
-<% if (isCode == 1) {%>
 <div class="table_div">
+    <% if (isCode == 1) {%>
     <table class="file_table">
 
         <tr class="table_head">
@@ -252,12 +253,9 @@
         <% } %>
 
     </table>
-</div>
-<% } else { %>
+    <% } else { %>
 
-<%-- 代码文件 --%>
-<div class="table_div">
-
+    <%-- 代码文件 --%>
     <table id="code_file" class="file_table">
 
         <tr class="top_bottom">
@@ -291,10 +289,11 @@
             <td></td>
         </tr>
     </table>
+    <% } %>
 
+    <div class="publish_review">提交此次评审</div>
 </div>
 
-<% } %>
 
 <%-- 缺陷块 --%>
 <div id="bugdiv_id" class="bug_div" style="display: none;">
