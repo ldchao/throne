@@ -24,7 +24,8 @@ public class ProjectModel {
     private String endDate;
     //后台安排
     private String projectPath;
-    private String qualityFeedback;
+    private double HChao_PredictedDefect;
+    private double TChao_PredictedDefect;
     //本人是否参与评审
     private String attendReview;
     private ArrayList<InvitationMessage> invitationList;
@@ -119,12 +120,20 @@ public class ProjectModel {
         this.projectPath = projectPath;
     }
 
-    public String getQualityFeedback() {
-        return qualityFeedback;
+    public double getHChao_PredictedDefect() {
+        return HChao_PredictedDefect;
     }
 
-    public void setQualityFeedback(String qualityFeedback) {
-        this.qualityFeedback = qualityFeedback;
+    public void setHChao_PredictedDefect(double HChao_PredictedDefect) {
+        this.HChao_PredictedDefect = HChao_PredictedDefect;
+    }
+
+    public double getTChao_PredictedDefect() {
+        return TChao_PredictedDefect;
+    }
+
+    public void setTChao_PredictedDefect(double TChao_PredictedDefect) {
+        this.TChao_PredictedDefect = TChao_PredictedDefect;
     }
 
     public ArrayList<InvitationMessage> getInvitationList() {

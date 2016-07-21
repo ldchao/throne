@@ -23,9 +23,6 @@ public interface ProjectService {
     //更新项目状态
     public UniversalState updateProjectState(int projectID, ProjectState projectState);
 
-    //更新项目质量总结报告
-    public UniversalState updateQualityFeedback(int projectID,String newQualityFeedback);
-
     //修改项目信息
     public UniversalState updateProjectMessage(int projectID,ProjectModel projectModel);
 

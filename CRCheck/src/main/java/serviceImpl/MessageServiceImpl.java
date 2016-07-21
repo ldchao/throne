@@ -8,7 +8,7 @@ import DaoImpl.CreateIdDaoImpl;
 import DaoImpl.MessageDaoImpl;
 import POJO.Attendance;
 import POJO.Message;
-import enums.FinishState;
+import enums.CommitState;
 import enums.MessageState;
 import enums.UniversalState;
 import model.InvitationMessage;
@@ -71,7 +71,7 @@ public class MessageServiceImpl implements MessageService {
             attendance.setId(createIdDao.CreateIntId("Attendance"));
             attendance.setProjectId(message.getProjectId());
             attendance.setUserId(message.getUserId());
-            attendance.setState(FinishState.NotDone.toString());
+            attendance.setState(CommitState.NotDone.toString());
             attendance.setQualityReview("");
             result = result & attendanceDao.addAttendance(attendance);
         }

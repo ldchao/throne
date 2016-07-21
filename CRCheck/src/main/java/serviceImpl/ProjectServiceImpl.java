@@ -1,14 +1,14 @@
 package serviceImpl;
 
+import Dao.AttendanceDao;
 import Dao.CreateIdDao;
 import Dao.ProjectDao;
+import DaoImpl.AttendanceDaoImpl;
 import DaoImpl.CreateIdDaoImpl;
 import DaoImpl.ProjectDaoImpl;
+import POJO.Attendance;
 import POJO.Project;
-import enums.Language;
-import enums.Power;
-import enums.ProjectState;
-import enums.UniversalState;
+import enums.*;
 import model.InvitationMessage;
 import model.ProjectModel;
 import service.InvitationListService;
@@ -45,14 +45,29 @@ public class ProjectServiceImpl implements ProjectService {
         p.setEndTime(projectModel.getEndDate());
         p.setCodePath("");
         p.setAttendReview(projectModel.getAttendReview());
-        p.setQualityReview("");
+
+        boolean a=true;
+
+        if(projectModel.getAttendReview().equals("YES")){
+            AttendanceDao attendanceDao=new AttendanceDaoImpl();
+            Attendance attendance=new Attendance();
+            CreateIdDao createIdDao=new CreateIdDaoImpl();
+            int attendanceId=createIdDao.CreateIntId("Attendance");
+            attendance.setId(attendanceId);
+            attendance.setUserId(projectModel.getUserID());
+            attendance.setProjectId(id);
+            attendance.setState(CommitState.NotDone.toString());
+            attendance.setQualityReview("");
+            a=a&attendanceDao.addAttendance(attendance);
+        }
+
         //邀请列表处理
         ArrayList<InvitationMessage> list = projectModel.getInvitationList();
         for (InvitationMessage invitationMesage : list) {
             invitationMesage.setProjectID(id);
         }
         //加入数据库
-        boolean a = dao.addProject(p);
+        a=a&dao.addProject(p);
         UniversalState b = invite.saveInvitationList(list);
         //发送消息
         UniversalState c = message.setIssueMessage(projectModel);
@@ -92,7 +107,12 @@ public class ProjectServiceImpl implements ProjectService {
         p.setEndDate(pro.getEndTime());
         p.setProjectPath(pro.getCodePath());
         p.setAttendReview(pro.getAttendReview());
-        p.setQualityFeedback(pro.getQualityReview());
+        // TODO: 2016/7/20 数据层接口变更
+//        ProjectqualityDao projectqualityDao=new ProjectqualityDaoImpl();
+//        Projectquality projectquality=new Projectquality();
+//        projectquality.setProjectId(projectID);
+//        double hchao=projectqualityDao.getPredictedDefect(projectquality);
+//        p.setHChao_PredictedDefect(hchao);
 
         ProjectState nowProjectState= DateHelper.stateAnalyse(pro.getStartTime(),pro.getEndTime());
         p.setState(nowProjectState);
@@ -122,28 +142,13 @@ public class ProjectServiceImpl implements ProjectService {
         return UniversalState.SUCCESS;
     }
 
-    //更新项目质量总结报告
-    public UniversalState updateQualityFeedback(int projectID, String newQualityFeedback) {
-        //初始化找到对应项目
-        ProjectDao dao = new ProjectDaoImpl();
-        Project po = new Project();
-        po.setId(projectID);
-        Project pro = dao.findProject(po);
-        //项目未找到
-        if (pro == null)
-            return UniversalState.FAIL;
-        pro.setQualityReview(newQualityFeedback);
-        dao.updateProject(pro);
-        return UniversalState.SUCCESS;
-    }
-
     //修改项目信息
     public UniversalState updateProjectMessage(int projectID, ProjectModel projectModel) {
         //初始化对象
         ProjectDao dao = new ProjectDaoImpl();
         Project p = new Project();
-//        InvitationListService invite=new InvitationListServiceImpl();
-//        MessageService message=new MessageServiceImpl();
+        InvitationListService invite=new InvitationListServiceImpl();
+        MessageService message=new MessageServiceImpl();
 
         //projectModel转project
         p.setId(projectID);
@@ -157,16 +162,14 @@ public class ProjectServiceImpl implements ProjectService {
         p.setEndTime(projectModel.getEndDate());
         p.setCodePath(projectModel.getProjectPath());
         p.setAttendReview(projectModel.getAttendReview());
-        p.setQualityReview(projectModel.getQualityFeedback());
         //更新数据库
         boolean a = dao.updateProject(p);
-        //UniversalState b = invite.saveInvitationList(projectModel.getInvitationList());
-        //发送消息
-//        UniversalState c = message.setIssueMessage(projectModel);
-//        if(a&&b.equals(UniversalState.SUCCESS)&&c.equals(UniversalState.SUCCESS))
-//            return UniversalState.SUCCESS;
-//        return UniversalState.FAIL;
-        return UniversalState.SUCCESS;
+        UniversalState b = invite.saveInvitationList(projectModel.getInvitationList());
+//        发送消息
+        UniversalState c = message.setIssueMessage(projectModel);
+        if(a&&b.equals(UniversalState.SUCCESS)&&c.equals(UniversalState.SUCCESS))
+            return UniversalState.SUCCESS;
+        return UniversalState.FAIL;
     }
 
     //TODO 测试
