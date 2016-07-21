@@ -100,7 +100,7 @@ public class ProjectServiceImpl implements ProjectService {
         p.setUserID(pro.getUserId());
         p.setName(pro.getName());
         p.setProjectID(pro.getId());
-        p.setType(Language.valueOf(pro.getType()));
+        p.setType(FileTepy.valueOf(pro.getType()));
         p.setDiscription(pro.getDescription());
         p.setPower(Power.valueOf(pro.getPower()));
         p.setStartDate(pro.getStartTime());
@@ -177,7 +177,7 @@ public class ProjectServiceImpl implements ProjectService {
 //        ProjectModel p=new ProjectModel();
 //        p.setUserID("saige");
 //        p.setName("test");
-//        p.setType(Language.C);
+//        p.setType(FileTepy.C);
 //        p.setDiscription("这是一个测试项目");
 //        p.setState(ProjectState.NotStart);
 //        p.setPower(Power.PUBLIC);

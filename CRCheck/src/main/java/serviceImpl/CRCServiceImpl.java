@@ -28,19 +28,23 @@ public class CRCServiceImpl implements CRCService {
 
         int defectNum=0;
         int inspectorNum=0;
-        ArrayList<String> userList;
         int defectIndex=0;
         int inspectorIndex=0;
         int[][] result;
 
         AttendanceDao attendanceDao=new AttendanceDaoImpl();
-        userList=attendanceDao.finduserDone(projectID);
+        ArrayList<String> userList=attendanceDao.finduserDone(projectID);
         inspectorNum=userList.size();
 
         PersonalreviewDao personalreviewDao=new PersonalreviewDaoImpl();
         Personalreview po=new Personalreview();
         po.setProjectId(projectID);
         List<Personalreview> reviewList=personalreviewDao.findValidPersonalReview(po);
+//        for (Personalreview personalreview:reviewList) {
+//            if(userList.indexOf(personalreview.getUserId())==-1){
+//                reviewList.remove(personalreview);
+//            }
+//        }
         defectNum=reviewList.size();
 
         result=new int[defectNum][inspectorNum];

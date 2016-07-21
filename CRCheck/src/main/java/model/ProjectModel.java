@@ -1,6 +1,6 @@
 package model;
 
-import enums.Language;
+import enums.FileTepy;
 import enums.Power;
 import enums.ProjectState;
 
@@ -15,7 +15,7 @@ public class ProjectModel {
     //之后系统递增
     private int ProjectID;
     private String name;
-    private Language type;
+    private FileTepy type;
     private String discription;
     //一开始默认未开始
     private ProjectState state;
@@ -64,11 +64,11 @@ public class ProjectModel {
         this.name = name;
     }
 
-    public Language getType() {
+    public FileTepy getType() {
         return type;
     }
 
-    public void setType(Language type) {
+    public void setType(FileTepy type) {
         this.type = type;
     }
 
