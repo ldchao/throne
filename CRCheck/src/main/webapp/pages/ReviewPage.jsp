@@ -172,6 +172,10 @@
                 "    &lt;button class=\"close close_div_launch\" onclick=\"closeLaunch('launch')\"&gt;",
                 "        &lt;i class=\"fa fa-times\"&gt;&lt;/i&gt;",
                 "    &lt;/button&gt;",
+                "&lt;/div&gt;", "&lt;div class=\"launch_div_right\"&gt;",
+                "    &lt;button class=\"close close_div_launch\" onclick=\"closeLaunch('launch')\"&gt;",
+                "        &lt;i class=\"fa fa-times\"&gt;&lt;/i&gt;",
+                "    &lt;/button&gt;",
                 "&lt;/div&gt;"};
 
         String dir = "CRC评审项目/MSE_ALL/src/java/";
@@ -252,9 +256,9 @@
 <% } else { %>
 
 <%-- 代码文件 --%>
-<div id="code_file" class="table_div">
+<div class="table_div">
 
-    <table class="file_table">
+    <table id="code_file" class="file_table">
 
         <tr class="top_bottom">
             <td style="width: 4%; border-right: 1px solid #dfe0e2"></td>
@@ -278,11 +282,11 @@
 
         <tr class="top_bottom">
             <td>
-                <input type="checkbox">
+                <input type="checkbox" id="selectAll" onclick="selectAll()">
                 <span style="position: relative;top: -1px;left: 0; font-size: 12px">全选</span>
             </td>
             <td>
-                <div class="del_btn">删除</div>
+                <div class="del_btn" onclick="delAll()">删除</div>
             </td>
             <td></td>
         </tr>
@@ -291,6 +295,34 @@
 </div>
 
 <% } %>
+
+<%-- 缺陷块 --%>
+<div id="bugdiv_id" class="bug_div" style="display: none;">
+    <div class="top_side">
+        <input type="checkbox" style="position: relative; top:-6px;">
+        <div class="del_btn" style="display: inline-block;top:-6px">删除</div>
+        <div class="title_img" style="margin-left: 20px; width: 20px; height: 20px;"></div>
+        <div class="userId_div"> marioquer | 2016-07-21 |</div>
+    </div>
+
+    <div>
+        <div class="selectStyle bug_type_div">
+            <select class="mycombox bug_type">
+                <option>缺陷类型</option>
+                <option>语法错误</option>
+                <option>死循环</option>
+                <option>空指针</option>
+                <option>其他</option>
+            </select>
+        </div>
+
+        <input class="bug_desc" type="text" placeholder="缺陷描述">
+
+        <div class="bug_add">添加缺陷</div>
+
+    </div>
+</div>
+
 
 <a href="#" id="back-to-top"><i class="fa fa-angle-up"></i></a>
 <footer>© CRCheck 2016</footer>
