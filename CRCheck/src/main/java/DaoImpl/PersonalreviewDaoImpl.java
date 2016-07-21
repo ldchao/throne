@@ -20,7 +20,7 @@ public class PersonalreviewDaoImpl implements PersonalreviewDao {
         try {
             if(findPersonalreviewById(po)==null){
                 session.save(po);
-                Transaction     transaction=session.beginTransaction();
+                Transaction transaction=session.beginTransaction();
                 transaction.commit();
                 connection.closeSession(session);
                 return true;
@@ -55,71 +55,6 @@ public class PersonalreviewDaoImpl implements PersonalreviewDao {
             e.printStackTrace();
             connection.closeSession(session);
             return false;
-        }
-    }
-
-    public boolean updatePersonalreview(Personalreview po) {
-        Session session= connection.getSession();
-        try {
-            if(findPersonalreviewById(po)!=null) {
-                session.update(po);
-                Transaction transaction = session.beginTransaction();
-                transaction.commit();
-                connection.closeSession(session);
-                return true;
-            }else{
-                connection.closeSession(session);
-                return false;
-            }
-        }catch (Exception e){
-            e.printStackTrace();
-            connection.closeSession(session);
-            return false;
-        }
-    }
-
-    public List findProject(User user, Project project) {
-        Session session= connection.getSession();
-        try {
-            String hql="from Personalreview p where p.userId='"+user.getId()+"' and p.projectId="+project.getId();
-            Query query=session.createQuery(hql);
-            List list=query.list();
-            connection.closeSession(session);
-            return list;
-        }catch (Exception e){
-            e.printStackTrace();
-            connection.closeSession(session);
-            return null;
-        }
-    }
-
-    public List findProject(Project po) {
-        Session session= connection.getSession();
-        try{
-            String hql="from Personalreview p where p.projectId="+po.getId();
-            Query query=session.createQuery(hql);
-            List list=query.list();
-            connection.closeSession(session);
-            return list;
-        }catch (Exception e){
-            e.printStackTrace();
-            connection.closeSession(session);
-            return null;
-        }
-    }
-
-    public List findProject(User po) {
-        Session session= connection.getSession();
-        try{
-            String hql="from Personalreview p where p.userId='"+po.getId()+"'";
-            Query query=session.createQuery(hql);
-            List list=query.list();
-            connection.closeSession(session);
-            return list;
-        }catch (Exception e){
-            e.printStackTrace();
-            connection.closeSession(session);
-            return null;
         }
     }
 
@@ -174,6 +109,7 @@ public class PersonalreviewDaoImpl implements PersonalreviewDao {
                 return false;
             }
         }catch (Exception e){
+            e.printStackTrace();
             connection.closeSession(session);
             return false;
         }
@@ -197,6 +133,7 @@ public class PersonalreviewDaoImpl implements PersonalreviewDao {
                 return false;
             }
         }catch (Exception e){
+            e.printStackTrace();
             connection.closeSession(session);
             return false;
         }
@@ -226,10 +163,11 @@ public class PersonalreviewDaoImpl implements PersonalreviewDao {
             Query query=session.createQuery(hql);
             query.setString(0, po.getUserId());
             query.setInteger(1,po.getProjectId());
-            Integer result=(Integer) query.uniqueResult();
+            Integer result=((Number) query.uniqueResult()).intValue();
             connection.closeSession(session);
             return result;
         }catch (Exception e){
+            e.printStackTrace();
             connection.closeSession(session);
             return -1;
         }
@@ -243,10 +181,11 @@ public class PersonalreviewDaoImpl implements PersonalreviewDao {
             query.setString(0, po.getUserId());
             query.setInteger(1,po.getProjectId());
             query.setString(2,po.getResult());
-            Integer result=(Integer) query.uniqueResult();
+            Integer result=((Number) query.uniqueResult()).intValue();
             connection.closeSession(session);
             return result;
         }catch (Exception e){
+            e.printStackTrace();
             connection.closeSession(session);
             return -1;
         }
