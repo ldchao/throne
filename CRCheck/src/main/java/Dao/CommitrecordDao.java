@@ -26,5 +26,13 @@ public interface CommitrecordDao {
 
     //iterator two
     //need the "userId" and "reviewType" ,it will return the amount of the code lines the "User" reviewed
+    public int getReviewTypeCodeLine(Commitrecord po);
+
+    //iterator two
+    //need the "projectId" and "userId",it will return the amount of the code lines of the "Project" the "User" reviewed
     public int getReviewCodeLine(Commitrecord po);
+
+    //iterator two
+    //need the "projectId" and "userId",it will return the amount of the time of "Project" the "User" spent
+    public int getReviewTimeOfProject(Commitrecord po);
 }

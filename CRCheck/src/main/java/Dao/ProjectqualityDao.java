@@ -17,6 +17,7 @@ public interface ProjectqualityDao {
     public List getProjectqualitys(Projectquality po);
 
     //iterator two
-    //need the "projectId",it will return the predicted amount of the defects
-    public double getPredictedDefect(Projectquality po);
+    //need the "projectId" and the name of method like "method1",it will return the predicted amount of the defects by using "method"
+    public double getPredictedDefect(Projectquality po,String method);
+
 }

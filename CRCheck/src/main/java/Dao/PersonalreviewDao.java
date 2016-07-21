@@ -32,6 +32,7 @@ public interface PersonalreviewDao {
 
     //iterator two
     //just need the "projectId",return a list of "Personalreview" whose "State" is not Done and "id" is not in "OldPersonalReviewId" of "Summary"
+   // and the "User" state of the "Project" is "Done"
     public List findValidPersonalReview(Personalreview po);
 
     //iterator two
@@ -49,4 +50,12 @@ public interface PersonalreviewDao {
     //iterator two
     //need the "projectId" and "userId",it will return a list of related "Personalreview"
     public List getUserPersonalreview(Personalreview po);
+
+    //iterator two
+    //need the "userId" and "projectId",it will return the amount of the defect the "User" found
+    public int getUserFoundDefect(Personalreview po);
+
+    //iteratror two
+    //need the "userId", "projectId" and "result",it will return the amount of the defect the "User" found in the state of "result"
+    public int getDefectOfResult(Personalreview po);
 }

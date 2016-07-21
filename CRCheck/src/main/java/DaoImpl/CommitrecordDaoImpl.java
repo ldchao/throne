@@ -25,7 +25,15 @@ public class CommitrecordDaoImpl implements CommitrecordDao {
         return 0;
     }
 
+    public int getReviewTypeCodeLine(Commitrecord po) {
+        return 0;
+    }
+
     public int getReviewCodeLine(Commitrecord po) {
+        return 0;
+    }
+
+    public int getReviewTimeOfProject(Commitrecord po) {
         return 0;
     }
 }
