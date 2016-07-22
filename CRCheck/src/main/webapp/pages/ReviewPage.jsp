@@ -298,21 +298,7 @@
                     <div class="doc_download"><i class="fa fa-download"></i> &nbsp;下载</div>
                 </div>
 
-                <div id="doc_bugs">
-
-                    <div id="docbug_id" class="docbug_div" style="display: block">
-                        <input class="docbug_input" type="text" placeholder="页数">
-
-                        <input class="docbug_input" type="text" placeholder="行数">
-
-                        <div class="doc_del"><i class="fa fa-times"></i></div>
-
-                        <textarea class="docbug_desc" placeholder="缺陷描述"></textarea>
-
-                        <hr class="doc_hr">
-                    </div>
-
-                </div>
+                <div id="doc_bugs"></div>
 
                 <div class="docbug_addbtn" onclick="addDocdiv()"><i class="fa fa-pencil"></i> &nbsp;添加缺陷</div>
             </div>
@@ -358,6 +344,8 @@
     <input class="docbug_input" type="text" placeholder="页数">
 
     <input class="docbug_input" type="text" placeholder="行数">
+
+    <div class="doc_del"><i class="fa fa-times"></i></div>
 
     <textarea class="docbug_desc" placeholder="缺陷描述"></textarea>
 

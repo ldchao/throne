@@ -84,5 +84,10 @@ function addDocdiv() {
     div.setAttribute("class", "docbug_div");
     div.innerHTML = document.getElementById("docbug_id").innerHTML;
 
+    var delbtn = div.getElementsByClassName("doc_del")[0];
+    delbtn.onclick = function () {
+        document.getElementById("doc_bugs").removeChild(div);
+    };
+
     document.getElementById("doc_bugs").appendChild(div);
 }
