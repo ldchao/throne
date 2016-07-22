@@ -36,8 +36,9 @@
     <!-- 发起项目评审 styles -->
     <link href="../css/projectpage.css" rel="stylesheet">
 
-    <!-- 当前页面 styles -->
     <link href="../css/reviewpage.css" rel="stylesheet">
+
+    <link href="../css/feedbackpage.css" rel="stylesheet">
 
     <!-- specific styles -->
     <link href="../css/component.css" rel="stylesheet">
@@ -113,13 +114,11 @@
     </div><!-- /.container -->
 </nav><!-- /.navbar -->
 
-
 <div class="head_div">
     <div>
         <div class="title_img"></div>
         <div class="title_name">CRC评审项目</div>
         <div class="title_ddl">2天后结束</div>
-        <div class="finish_review">结束此项目评审</div>
     </div>
 
     <div class="head_div2">
@@ -162,209 +161,62 @@
             </div>
         </div>
     </div>
+
 </div>
 
-<div class="dir_div">
-
-    <%
-        String[] filelist = {"&lt;div class=\"launch_div_right\"&gt;",
-                "    &lt;button class=\"close close_div_launch\" onclick=\"closeLaunch('launch')\"&gt;",
-                "        &lt;i class=\"fa fa-times\"&gt;&lt;/i&gt;",
-                "    &lt;/button&gt;",
-                "&lt;/div&gt;", "&lt;div class=\"launch_div_right\"&gt;",
-                "    &lt;button class=\"close close_div_launch\" onclick=\"closeLaunch('launch')\"&gt;",
-                "        &lt;i class=\"fa fa-times\"&gt;&lt;/i&gt;",
-                "    &lt;/button&gt;",
-                "&lt;/div&gt;"};
-
-        String dir = "CRC评审项目/MSE_ALL/src/java/";
-        int isFile = 1;  // 判断是文件或文件夹
-        int isCode = 0;  // 判断是文件或代码
-        String dirs[] = dir.split("/");
-        for (int i = 0; i < dirs.length; i++) {
-            if (i == 0) {
-    %>
-
-
-    <div class="dir_word" style="font-weight: 400"><%=dirs[i]%>
-    </div>
-
-    <% } else if (i < dirs.length - 1) { %>
-
-    <div class="dir_word"><%=dirs[i]%>
-    </div>
-
-    <% } else {%>
-    <div class="dir_word_last"><%=dirs[i]%>
-    </div>
-    <% } %>
-    &nbsp;/&nbsp;
-    <% } %>
-</div>
-
-<%-- 文件/文件夹 --%>
 <div class="table_div">
-    <% //if (isCode == 1) {%>
-    <table class="file_table" style="display: none">
 
-        <tr class="table_head">
-            <td style="width: 42%;  text-align: left;">
-                <div class="back_dot"><i class="fa fa-circle" style="margin-right: 4px;"></i><i
-                        class="fa fa-circle"></i></div>
-            </td>
+    <div class="back_div"><i class="fa fa-angle-double-left">&nbsp;</i>返回项目缺陷列表</div>
 
-            <%-- 判断是文件或文件夹 --%>
-            <td style="width: 19%">评审情况</td>
+    <div class="charts_div container">
+        <div class="row">
+            <div class="col-sm-7" style="margin-top: 15px;">
+                <div class="history_div">
+                    <div class="top_title">历史提交轨迹图</div>
 
-            <td style="width: 19%;">文件数 / 大小</td>
-            <td style="width: 20%">最近评审时间</td>
-        </tr>
+                    <%--历史提交轨迹图--%>
 
-        <%
-            String[] dircontent = {"java", "controller", "css", "js", "image", "jsp"};
-            for (int i = 0; i < 6; i++) {
-        %>
-        <tr class="table_body">
-            <td style="width: 42%; padding-left: 27px; text-align: left;"><%=dircontent[i]%>
-            </td>
-
-            <td style="width: 19%">
-                <%-- 判断是文件夹或文件 --%>
-                <%-- 判断是否已评审 --%>
-                <% if (isFile == 1 && i % 2 == 0) {%>
-                <i class="fa fa-check green_check"></i>
-                <% } else if (isFile == 0) {%>
-                16
-                <% } %>
-            </td>
-
-            <td style="width: 19%;">520KB</td>
-            <td style="width: 20%">2016/07/20</td>
-        </tr>
-        <% } %>
-
-    </table>
-    <%// } else { %>
-
-    <%-- 代码文件 --%>
-    <table id="code_file" class="file_table" style="display: none">
-
-        <tr class="top_bottom">
-            <td style="width: 4%; border-right: 1px solid #dfe0e2"></td>
-            <td style="width: 3%; border-right: 1px solid #dfe0e2"></td>
-            <td style="width: 93%; border-right: 1px solid #dfe0e2"></td>
-        </tr>
-
-        <% for (int i = 0; i < filelist.length; i++) {%>
-
-        <tr style="height: 22px; vertical-align: middle" onmouseover="mouseOver(this)" onmouseout="mouseOut(this)">
-            <td style="border-right: 1px solid #dfe0e2; text-align: center;">
-                <i class="fa fa-pencil" style="cursor: pointer;display: none"></i>
-            </td>
-            <td style="border-right: 1px solid #dfe0e2;text-align: center"><%=i + 1%>
-            </td>
-            <td style="border-right: 1px solid #dfe0e2">
-                <pre><%=filelist[i]%></pre>
-            </td>
-        </tr>
-        <% } %>
-
-        <tr class="top_bottom">
-            <td>
-                <input type="checkbox" id="selectAll" onclick="selectAll()">
-                <span style="position: relative;top: -1px;left: 0; font-size: 12px">全选</span>
-            </td>
-            <td>
-                <div class="del_btn" onclick="delAll()">删除</div>
-            </td>
-            <td></td>
-        </tr>
-    </table>
-    <%// } %>
-
-    <%-- 文档评审 --%>
-    <div id="review_div" style="display: block;">
-
-        <div class="top_bottom"></div>
-
-        <div class="middle_body">
-            <div class="doc_preview"></div>
-
-            <div class="doc_right">
-
-                <div class="doc_topside">
-                    <div class="doc_img"></div>
-                    <div class="doc_userId visible-lg-inline-block">marioquer</div>
-                    <div class="doc_download"><i class="fa fa-download"></i> &nbsp;下载</div>
                 </div>
+            </div>
 
-                <div id="doc_bugs">
+            <div class="col-sm-5">
+                <div class="row">
+                    <div class="echarts_div">
+                        <div class="top_title">预测缺陷数变化折线图</div>
 
-                    <div id="docbug_id" class="docbug_div" style="display: block">
-                        <input class="docbug_input" type="text" placeholder="页数">
+                        <%--预测缺陷数--%>
 
-                        <input class="docbug_input" type="text" placeholder="行数">
-
-                        <div class="doc_del"><i class="fa fa-times"></i></div>
-
-                        <textarea class="docbug_desc" placeholder="缺陷描述"></textarea>
-
-                        <hr class="doc_hr">
                     </div>
 
                 </div>
 
-                <div class="docbug_addbtn" onclick="addDocdiv()"><i class="fa fa-pencil"></i> &nbsp;添加缺陷</div>
+                <div class="row">
+                    <div class="echarts_div">
+                        <div class="top_title">个人评审质量统计图</div>
+
+                        <%--个人评审质量--%>
+
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="echarts_div">
+                        <div class="top_title">项目发现缺陷详情散点图</div>
+
+                        <%--散点图--%>
+
+                    </div>
+                </div>
             </div>
 
-            <div class="publish_doc">提交此次评审</div>
         </div>
-
-        <div class="top_bottom"></div>
-
     </div>
 
-    <div class="publish_review" style="display: none;">提交此次评审</div>
 </div>
 
-<%-- 缺陷块 --%>
-<div id="bugdiv_id" class="bug_div" style="display: none;">
-    <div class="top_side">
-        <input type="checkbox" style="position: relative; top:-6px;">
-        <div class="del_btn" style="display: inline-block;top:-6px">删除</div>
-        <div class="title_img" style="margin-left: 20px; width: 20px; height: 20px;"></div>
-        <div class="userId_div"> marioquer | 2016-07-21 |</div>
-    </div>
-
-    <div>
-        <div class="selectStyle bug_type_div">
-            <select class="mycombox bug_type">
-                <option>缺陷类型</option>
-                <option>语法错误</option>
-                <option>死循环</option>
-                <option>空指针</option>
-                <option>其他</option>
-            </select>
-        </div>
-
-        <input class="bug_desc" type="text" placeholder="缺陷描述">
-
-        <div class="bug_add">添加缺陷</div>
-    </div>
-</div>
-
-<%-- 文档缺陷快 --%>
-<div id="docbug_id" class="docbug_div" style="display: none">
-    <input class="docbug_input" type="text" placeholder="页数">
-
-    <input class="docbug_input" type="text" placeholder="行数">
-
-    <textarea class="docbug_desc" placeholder="缺陷描述"></textarea>
-
-    <hr class="doc_hr">
-</div>
 
 <a href="#" id="back-to-top"><i class="fa fa-angle-up"></i></a>
+
 <footer>© CRCheck 2016</footer>
 
 <%--发起项目评审--%>
@@ -559,13 +411,15 @@
 <script src="../js/common.js"></script>
 <script src="../js/toaster.js"></script>
 <script src="../js/projectpage.js"></script>
-<script src="../js/reviewpage.js"></script>
+<script src="../js/personalpage.js"></script>
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 <script src="../js/ie10-viewport-bug-workaround.js"></script>
 <script src="../js/datetimepicker.js"></script>
 
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 <script src="../js/ie10-viewport-bug-workaround.js"></script>
+<script src="../js/echarts.min.js"></script>
+<script src="../js/jquery.min.js"></script>
 
 <script>
     $('#start_date').datetimepicker({
