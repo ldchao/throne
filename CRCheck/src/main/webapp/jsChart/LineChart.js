@@ -20,12 +20,12 @@ option = {
             }
         },
     },
-    //grid : [ {
-// 			left : '10%',
-// 			right : '15%',
-//        top:'20%',
-// 			height : '90%'
-//    }],
+    grid : [ {
+ 			//left : '10%',
+ 			//right : '10%',
+            top:'5%',
+ 			bottom : '12%'
+    }],
     xAxis: {
         data: ['2014-06-01','2014-06-02','2014-06-03','2014-06-04','2014-06-05','2014-06-06']
     },
@@ -35,8 +35,9 @@ option = {
         }
     },
     visualMap: {
+        show:false,
         orient: 'horizontal',
-        top: '12%',
+        top: '5%',
         right: 'center',
         pieces: [{
             gt: 0,

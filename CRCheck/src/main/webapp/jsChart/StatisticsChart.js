@@ -12,11 +12,11 @@ var colors = ['#2F5F91', '#C43E3E'];
 var itemColors = ['#DDDEE2', '#7FB9E3','#E17963', '#5483B3'];
 
 option = {
-    title: {
-        text: '个人评审统计结果',
-        x:'center',
-        y:'3%'
-    },
+    //title: {
+    //    text: '个人评审统计结果',
+    //    x:'center',
+    //    y:'3%'
+    //},
     tooltip : {
         trigger: 'axis',
         axisPointer : {            // 坐标轴指示器，坐标轴触发有效
@@ -25,23 +25,24 @@ option = {
     },
     legend: {
         data:['未审批缺陷', '正确缺陷','错误缺陷','评审效率'],
-        top:'10%'
+        top:'2%'
     },
-    toolbox: {
-        show : true,
-        feature : {
-            mark : {show: true},
-            dataView : {show: true, readOnly: false},
-            magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
-            restore : {show: true},
-            saveAsImage : {show: true}
-        }
-    },
+    //toolbox: {
+    //    show : true,
+    //    feature : {
+    //        mark : {show: true},
+    //        dataView : {show: true, readOnly: false},
+    //        magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+    //        restore : {show: true},
+    //        saveAsImage : {show: true}
+    //    }
+    //},
     grid :  {
-        left : '10%',
-        right : '10%',
+        //left : '10%',
+        //right : '10%',
         top:'20%',
 // 			height : '36%'
+        bottom:'10%'
     } ,
     calculable : true,
     yAxis: [
