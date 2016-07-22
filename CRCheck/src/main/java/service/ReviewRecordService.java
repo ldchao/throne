@@ -1,5 +1,6 @@
 package service;
 
+import enums.ApproveState;
 import enums.UniversalState;
 import model.PersonalReviewRecord;
 
@@ -38,7 +39,7 @@ public interface ReviewRecordService {
     public ArrayList<PersonalReviewRecord> disassembleReviewRecord(int id,ArrayList<String> idList);
 
     //审批评审记录（审批个人的评审记录，reviewRecordID为个人评审记录表格中ID）
-    public UniversalState approveReviewRecord(PersonalReviewRecord personalReviewRecord);
+    public UniversalState approveReviewRecord(int id, ApproveState approveState);
 
     //删除评审(只删除汇总表格，reviewRecordID为汇总评审记录表格中ID)
     public UniversalState deleteReviewRecord(String reviewRecordID);

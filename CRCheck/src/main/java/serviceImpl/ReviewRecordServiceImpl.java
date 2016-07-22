@@ -277,34 +277,25 @@ public class ReviewRecordServiceImpl implements ReviewRecordService {
     }
 
     //审批评审记录（审批个人的评审记录，reviewRecordID为个人评审记录表格中ID）
-    public UniversalState approveReviewRecord(PersonalReviewRecord personalReviewRecord){
+    public UniversalState approveReviewRecord(int id, ApproveState approveState){
 
         boolean result=true;
         PersonalreviewDao personalreviewDao=new PersonalreviewDaoImpl();
 
         Personalreview personalreview=new Personalreview();
-        personalreview.setId(personalReviewRecord.getId());
-        personalreview.setUserId(personalReviewRecord.getUserId());
-        personalreview.setProjectId(personalReviewRecord.getProjectId());
-        personalreview.setCommitTime(personalReviewRecord.getCommitTime());
-        String path=personalReviewRecord.getPath()+" "+personalReviewRecord.getLineNum();
-        personalreview.setLocation(path);
-        personalreview.setType(personalReviewRecord.getType());
-        personalreview.setDescription(personalReviewRecord.getDescription());
-        personalreview.setState(personalReviewRecord.getState());
-        personalreview.setResult(personalReviewRecord.getResult().toString());
-        result=result&personalreviewDao.addPersionalreview(personalreview);
+        personalreview.setId(id);
+        personalreview.setResult(approveState.toString());
+        result=result&personalreviewDao.updateResult(personalreview);
 
         return result?UniversalState.SUCCESS:UniversalState.FAIL;
     }
 
     //删除评审(只删除汇总表格，reviewRecordID为汇总评审记录表格中ID)
     public UniversalState deleteReviewRecord(String reviewRecordID){
-//        SummaryDao summaryDao=new SummaryDaoImpl();
-//        Summary summary=new Summary();
-//        summary.setId(Integer.parseInt(reviewRecordID));
-//        return summaryDao.delete(summary)?UniversalState.SUCCESS:UniversalState.FAIL;
-        return null;
+        PersonalreviewDao personalreviewDao=new PersonalreviewDaoImpl();
+        Personalreview personalreview=new Personalreview();
+        personalreview.setId(Integer.parseInt(reviewRecordID));
+        return personalreviewDao.deletePersonalreview(personalreview)?UniversalState.SUCCESS:UniversalState.FAIL;
     }
 
     //确定评审，确定以后将不能修改该项目任何评审
