@@ -1,0 +1,23 @@
+.left_slide {
+    width: 59px;
+    height: 126px;
+    background-color: #e4eaf5;
+    float: left;
+    font-size: 20px;
+    margin-left: -59px;
+    margin-right: 15px;
+    display: none;
+}
+
+.check_btn {
+    color: #376b48;
+    cursor: pointer;
+    margin-left: 4px;
+    line-height: 55px;
+}
+
+.times_btn {
+    color: #8f5757;
+    cursor: pointer;
+    line-height: 55px;
+}
