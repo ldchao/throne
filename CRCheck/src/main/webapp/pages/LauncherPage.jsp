@@ -190,6 +190,46 @@
                 </div>
             </div>
         </div>
+
+        <div id="exist_copy_2">
+
+            <div class="exist-form" style="margin-top: 20px; display: block">
+                 <%--onmouseenter="showCheck()" onmouseleave="hideCheck()">--%>
+
+                <div class="left_slide">
+                    <i class="fa fa-check check_btn"></i>
+                    <br>
+                    <i class="fa fa-times times_btn"></i>
+                </div>
+
+                <div class="class-form">
+                    <%--<div class="class-head">--%>
+                    <%--</div>--%>
+                    <div class="class-intent" style="background-color: #fafaef">
+                        <div class="info-head text-left">
+                            <%--路径--%>
+                            <p class="head-text" style="color: #585841">CRC/src/java/a.java</p>
+                            <%--行数--%>
+                            <p class="head-text" style="color: #585841">111 行</p>
+                            <%--错误类型--%>
+                            <p class="head-text" style="color: #585841">语法错误</p>
+
+                            <span class="merge_span" onclick="showMerge()">合并共3个缺陷&nbsp;<i
+                                    class="fa fa-angle-double-down"></i></span>
+                        </div>
+                        <%--错误描述--%>
+                        <div class="info-bottom inner-infoText text-left">
+                            这个缺陷好傻啊啊这个缺陷好傻啊啊这个缺陷好傻啊啊这个缺陷好傻啊啊这
+                            个缺陷好傻啊啊这个缺陷好傻啊啊这个缺陷好傻啊啊这个缺陷好傻啊啊这个
+                            缺陷好傻啊啊这个缺陷好傻啊
+                        </div>
+
+                        <hr class="merge_hr">
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
 </div>

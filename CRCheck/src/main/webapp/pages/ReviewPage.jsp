@@ -247,7 +247,7 @@
     <%// } else { %>
 
     <%-- 代码文件 --%>
-    <table id="code_file" class="file_table" style="display: none">
+    <table id="code_file" class="file_table" style="display: block">
 
         <tr class="top_bottom">
             <td style="width: 4%; border-right: 1px solid #dfe0e2"></td>
@@ -283,7 +283,7 @@
     <%// } %>
 
     <%-- 文档评审 --%>
-    <div id="review_div" style="display: block;">
+    <div id="review_div" style="display: none;">
 
         <div class="top_bottom"></div>
 

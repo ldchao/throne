@@ -21,3 +21,14 @@
     cursor: pointer;
     line-height: 55px;
 }
+
+.merge_span {
+    color: #3a998a;
+    cursor: pointer;
+}
+
+.merge_hr {
+    width: 98%;
+    text-align: center;
+    border: 1px solid #b1c0b9;
+}

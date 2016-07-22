@@ -39,7 +39,20 @@ function Correct(parentDiv, isCor) {
     for(var i=0; i<ps.length; i++) {
         ps[i].style.color = fontcolor[isCor];
     }
+}
 
+function showMerge() {
+    
+    var bigdiv = document.createElement("div");
+    bigdiv.style.display = "none";
+    for(var i=0; i<2; i++) {
+        var div = document.createElement("div");
+        div.innerHTML = document.getElementById("exist_copy_2").innerHTML;
+        div.style.marginTop = "-20px";
+        div.getElementsByClassName("merge_span")[0].style.display = "none";
+        bigdiv.appendChild(div);
+    }
+    document.getElementById("exist_copy_2").appendChild(bigdiv);
 
-    // div.getElementsByClassName("info-head")[0].style.color = fontcolor[isCor];
+    $(bigdiv).slideToggle();
 }
