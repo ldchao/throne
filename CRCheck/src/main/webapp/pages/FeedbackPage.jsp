@@ -53,7 +53,8 @@
     <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
+    <script src="../js/echarts.min.js"></script>
+    <script src="../js/jquery.min.js"></script>
 </head>
 <body>
 
@@ -175,7 +176,6 @@
                     <div class="top_title">历史提交轨迹图</div>
 
                     <%--历史提交轨迹图--%>
-
                 </div>
             </div>
 
@@ -184,18 +184,15 @@
                     <div class="echarts_div">
                         <div class="top_title">预测缺陷数变化折线图</div>
 
-                        <%--预测缺陷数--%>
-
+                        <div class="charts" id="lineChart"></div>
                     </div>
-
                 </div>
 
                 <div class="row">
                     <div class="echarts_div">
                         <div class="top_title">个人评审质量统计图</div>
 
-                        <%--个人评审质量--%>
-
+                        <div class="charts" id="statisticsChart"></div>
                     </div>
                 </div>
 
@@ -203,15 +200,13 @@
                     <div class="echarts_div">
                         <div class="top_title">项目发现缺陷详情散点图</div>
 
-                        <%--散点图--%>
-
+                        <div class="charts" id="scatterDiagram"></div>
                     </div>
                 </div>
             </div>
 
         </div>
     </div>
-
 </div>
 
 
@@ -418,8 +413,11 @@
 
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 <script src="../js/ie10-viewport-bug-workaround.js"></script>
-<script src="../js/echarts.min.js"></script>
-<script src="../js/jquery.min.js"></script>
+<script src="../jsChart/ScatterDiagram.js">
+    showScatterDiagram(14)
+</script>
+<script src="../jsChart/StatisticsChart.js"></script>
+<script src="../jsChart/LineChart.js"></script>
 
 <script>
     $('#start_date').datetimepicker({

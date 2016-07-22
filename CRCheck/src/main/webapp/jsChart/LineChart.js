@@ -4,13 +4,12 @@
 
 var lineChart = echarts
     .init(document.getElementById('lineChart'));
-
 option = {
-    title: {
-        text: '预测缺陷数趋势图',
-        x:'center',
-        y:'5%'
-    },
+    //title: {
+    //    text: '预测缺陷数趋势图',
+    //    x:'center',
+    //    y:'5%'
+    //},
     tooltip: {
         trigger: 'axis',
         axisPointer:{
@@ -21,12 +20,12 @@ option = {
             }
         },
     },
-    grid : [ {
+    //grid : [ {
 // 			left : '10%',
 // 			right : '15%',
-        top:'20%',
+//        top:'20%',
 // 			height : '90%'
-    }],
+//    }],
     xAxis: {
         data: ['2014-06-01','2014-06-02','2014-06-03','2014-06-04','2014-06-05','2014-06-06']
     },

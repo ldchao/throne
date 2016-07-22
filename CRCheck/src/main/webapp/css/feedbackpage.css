@@ -30,16 +30,12 @@
     padding-left: 13px;
 }
 
-.top_title_nowidth {
-    height: 38px;
-    background-color: #dee3ee;
-    font-size: 18px;
-    line-height: 38px;
-    color: #434851;
-    padding-left: 13px;
-}
-
 .echarts_div {
     height: 306px;
     background-color: #f4f5f9;
+}
+
+.charts {
+    width: 100%;
+    height: 268px;
 }
