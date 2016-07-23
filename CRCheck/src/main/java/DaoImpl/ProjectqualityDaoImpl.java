@@ -43,12 +43,10 @@ public class ProjectqualityDaoImpl implements ProjectqualityDao {
             Query query = session.createQuery(hql);
             List list = query.list();
             session.close();
-            if (list.size() == 0) {
-                return null;
-            } else {
+
                Projectquality projectquality = (Projectquality)list.get(0);
                 return projectquality;
-            }
+
 
         } catch (Exception e) {
             e.printStackTrace();

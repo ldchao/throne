@@ -62,9 +62,6 @@ public class CommitrecordDaoImpl implements CommitrecordDao {
             Query query = session.createQuery(hql);
             List list = query.list();
             session.close();
-            if (list.size() == 0) {
-                return null;
-            } else {
                ArrayList<String> tList = new ArrayList<String>();
                 for(int i=0;i<list.size();i++){
                     Commitrecord commitrecord = (Commitrecord) list.get(i);
@@ -79,7 +76,7 @@ public class CommitrecordDaoImpl implements CommitrecordDao {
                     }
                 }
                 return tList;
-            }
+
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -95,18 +92,16 @@ public class CommitrecordDaoImpl implements CommitrecordDao {
             Query query = session.createQuery(hql);
             List list = query.list();
             session.close();
-            if (list.size() == 0) {
-                return null;
-            } else {
-                for(int i=0;i<list.size();i++) {
+
+                for (int i = 0; i < list.size(); i++) {
                     Commitrecord commitrecord = (Commitrecord) list.get(i);
                     if (commitrecord.getCommitTime().compareTo(startTime) < 0 ||
                             commitrecord.getCommitTime().compareTo(endTime) > 0) {
                         list.remove(i);
                     }
                 }
-                        return list;
-                }
+                return list;
+            
 
         } catch (Exception e) {
             e.printStackTrace();
