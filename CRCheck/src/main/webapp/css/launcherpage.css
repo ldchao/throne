@@ -16,10 +16,18 @@
     line-height: 55px;
 }
 
+.check_btn:hover {
+    color: #55b374;
+}
+
 .times_btn {
     color: #8f5757;
     cursor: pointer;
     line-height: 55px;
+}
+
+.times_btn:hover {
+    color: #c95656;
 }
 
 .merge_span {
@@ -27,8 +35,78 @@
     cursor: pointer;
 }
 
-.merge_hr {
-    width: 98%;
-    text-align: center;
-    border: 1px solid #b1c0b9;
+.class-intent_2 {
+    width: 100%;
+    display: block;
+    background-color: #fafaef;
+    padding-bottom: 2px;
+}
+
+.info-head_2 {
+    width: 100%;
+    padding: 16px 26px;
+    padding-bottom: 0px;
+}
+
+.info-bottom_2 {
+    width: 100%;
+    padding: 16px 26px;
+}
+
+.save_this {
+    width: 188px;
+    height: 53px;
+    font-size: 20px;
+    line-height: 53px;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.merge_this {
+    width: 188px;
+    height: 53px;
+    font-size: 20px;
+    line-height:53px;
+    background-color: #d9d976;
+    color: #fff;
+    display: inline-block;
+    cursor: pointer;
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+    -ms-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s;
+}
+
+.merge_this:hover {
+    background-color: #e6e69d;
+}
+
+.finish_this {
+    width: 188px;
+    height: 53px;
+    font-size: 20px;
+    line-height:53px;
+    background-color: #6b6f78;
+    color: #fff;
+    display: inline-block;
+}
+
+.who_div {
+    display: inline-block;
+    float: right;
+    margin-right: 22px;
+}
+
+.who_pic {
+    display: inline-block;
+}
+
+.who_name {
+    display: inline-block;
+    position: relative;
+    left: 5px;
+    top: -8px;
+    color: #778294;
+    font-size: 20px;
 }
