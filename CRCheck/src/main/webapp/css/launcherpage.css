@@ -68,7 +68,7 @@
     font-size: 20px;
     line-height:53px;
     background-color: #d9d976;
-    color: #fff;
+    color: #76766a;
     display: inline-block;
     cursor: pointer;
     -webkit-transition: 0.3s;
@@ -109,4 +109,51 @@
     top: -8px;
     color: #778294;
     font-size: 20px;
+}
+
+.feedback_btn {
+    width: 188px;
+    height: 53px;
+    font-size: 20px;
+    line-height:53px;
+    background-color: #7490d3;
+    color: #fff;
+    display: inline-block;
+    cursor: pointer;
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+    -ms-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s;
+}
+
+.feedback_btn:hover {
+    background-color: #577acb;
+}
+
+.merge_box {
+    position: relative;
+    top: 18px;
+}
+
+.refuse_merge {
+    color: #fff;
+    background-color: #d47859;
+    width: 100px;
+    height: 53px;
+    font-size: 20px;
+    line-height: 53px;
+    border: none;
+    border-radius: 2px;
+    display: inline-block;
+    cursor: pointer;
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+    -ms-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s;
+}
+
+.refuse_merge:hover {
+    background-color: #df9075;
 }

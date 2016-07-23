@@ -70,53 +70,17 @@ function addMerge() {
     }
 }
 
-function showCheck(parentDiv, isSin) {
-
+function showCheck(parentDiv) {
     var slidediv = parentDiv.getElementsByClassName("left_slide")[0];
-    slidediv.style.height = parentDiv.offsetHeight;
     $(slidediv).show(200);
-
-    var correct = slidediv.getElementsByClassName("check_btn")[0];
-    correct.onclick = function () {
-        Correct(parentDiv, 0, isSin);
-    }
-
-    var error = slidediv.getElementsByClassName("times_btn")[0];
-    error.onclick = function () {
-        Correct(parentDiv, 1, isSin);
-    }
 }
 
 function hideCheck(parentDiv) {
     var slidediv = parentDiv.getElementsByClassName("left_slide")[0];
-    $(slidediv).hide(200);
-}
-
-// isCor 0正确, 1错误; isSin 0单个, 1合并, 2合并不要顶栏颜色
-function Correct(parentDiv, isCor, isSin) {
-
-    var classname = ["class-intent", "class-intent_2", "class-intent_2"];
-    var bgcolor = ["#f3f9f5", "f9f3f3"];
-    var fontcolor = ["#376b48", "#8f5757"];
-
-    var div = parentDiv.getElementsByClassName(classname[isSin])[0];
-    div.style.backgroundColor = bgcolor[isCor];
-
-    var ps = div.getElementsByTagName("p");
-    for (var i = 0; i < ps.length; i++) {
-        ps[i].style.color = fontcolor[isCor];
-    }
-
-    var headcolor = ["#E2F6E9", "#FAE8E8"];
-    if (isSin == 1) {
-        div.getElementsByClassName("info-head_2")[0].style.backgroundColor = headcolor[isCor];
+    if (slidediv.getElementsByClassName("merge_box")[0].checked != true) {
+        $(slidediv).hide(200);
     }
 }
 
-function checkQuality() {
-    window.location.href = "FeedbackPage.jsp";
-}
-
-function mergeDefects() {
-    window.location.href = "ReviewerMergePage.jsp";
-}
+// 合并
+ 
