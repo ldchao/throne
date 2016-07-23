@@ -52,7 +52,7 @@ public class ReviewController {
         return "FAIL";
     }
     
-    //结束项目评审
+    //结束个人项目评审
     @RequestMapping(value = "/endReview", method = RequestMethod.POST)
     @ResponseBody
     public String endReview(String userId, int projectID) {
@@ -69,24 +69,6 @@ public class ReviewController {
     public List<PersonalReviewRecord> getPersonReviewList(String userId, int projectID){
         ReviewRecordService review=new ReviewRecordServiceImpl();
         List<PersonalReviewRecord> list=review.checkPersonalReviewRecord(userId,projectID);
-        return list;
-    }
-
-    //查看参评所有完成评审用户名单
-    @RequestMapping(value = "/getFinishUserList", method = RequestMethod.POST)
-    @ResponseBody
-    public List<String> getFinishUserList(int projectID){
-        ReviewRecordService review=new ReviewRecordServiceImpl();
-        List<String> list=review.checkProjectUserList(projectID);
-        return list;
-    }
-
-    //查看评审记录
-    @RequestMapping(value = "/getSummaryReview", method = RequestMethod.POST)
-    @ResponseBody
-    public List<PersonalReviewRecord> checkSummaryReview(int projectID){
-        ReviewRecordService review=new ReviewRecordServiceImpl();
-        List<PersonalReviewRecord> list=review.checkSummaryReviewRecord(projectID);
         return list;
     }
 }
