@@ -155,90 +155,106 @@
         </div>
     </div>
 
-    <div id="all-defect">
+    <div id="all-defect"></div>
 
-        <div id="exist_copy" style="display: none">
+    <div style="margin-top: 50px">
+        <div class="merge_this" style="width: 100px" onclick="Merge()">合并</div>
+        <div class="refuse_merge" style="width: 100px" onclick="UndoMerge()">解开</div>
+        <div class="finish_btn finish_this" style="width: 125px">结束合并</div>
+    </div>
+</div>
 
-            <div class="exist-form" style="margin-top: 20px;">
+<div id="choose">
+    <div class="choose_title">选取合并结果项</div>
 
-                <div class="left_slide" style="height: 57px">
-                    <input class="merge_box" type="checkbox">
-                </div>
+    <div id="defects_parent">
+        <div id="defect_copy" class="def_div" style="display: none">
+            <div class="line_def">111 行</div>
+            <div class="type_def">语法错误</div>
+            <div class="describe_def">这个缺陷好傻啊啊这个缺陷好傻啊啊这个缺陷好傻啊啊这个缺陷好傻啊啊这
+                个缺陷好傻啊啊这个缺陷好傻啊啊
+            </div>
+        </div>
+    </div>
 
-                <div class="class-form">
-                    <%--<div class="class-head">--%>
-                    <%--</div>--%>
-                    <div class="class-intent">
-                        <div class="info-head text-left">
-                            <%--路径--%>
-                            <p class="head-text">CRC/src/java/a.java</p>
-                            <%--行数--%>
-                            <p class="head-text">111 行</p>
-                            <%--错误类型--%>
-                            <p class="head-text">语法错误</p>
+    <hr class="hr_choose">
+    <div class="feedback_btn" style="width: 87%; margin-bottom: 47px">手动输入结果项</div>
 
-                            <div class="who_div">
-                                <div class="image-small who_pic"></div>
-                                <div class="who_name">marioquer</div>
-                            </div>
-                        </div>
-                        <%--错误描述--%>
-                        <div class="info-bottom inner-infoText text-left">
-                            这个缺陷好傻啊啊这个缺陷好傻啊啊这个缺陷好傻啊啊这个缺陷好傻啊啊这
-                            个缺陷好傻啊啊这个缺陷好傻啊啊这个缺陷好傻啊啊这个缺陷好傻啊啊这个
-                            缺陷好傻啊啊这个缺陷好傻啊
-                        </div>
+</div>
+
+<%-- 缺陷块 --%>
+<div id="exist_copy" style="display: none">
+
+    <div class="exist-form" style="margin-top: 20px;">
+
+        <div class="left_slide" style="height: 57px">
+            <input class="merge_box" type="checkbox">
+        </div>
+
+        <div class="class-form">
+            <%--<div class="class-head">--%>
+            <%--</div>--%>
+            <div class="class-intent">
+                <div class="info-head text-left">
+                    <%--路径--%>
+                    <p class="head-text">CRC/src/java/a.java</p>
+                    <%--行数--%>
+                    <p class="head-text">111 行</p>
+                    <%--错误类型--%>
+                    <p class="head-text">语法错误</p>
+
+                    <div class="who_div">
+                        <div class="image-small who_pic"></div>
+                        <div class="who_name">marioquer</div>
                     </div>
+                </div>
+                <%--错误描述--%>
+                <div class="info-bottom inner-infoText text-left">
+                    这个缺陷好傻啊啊这个缺陷好傻啊啊这个缺陷好傻啊啊这个缺陷好傻啊啊这
+                    个缺陷好傻啊啊这个缺陷好傻啊啊这个缺陷好傻啊啊这个缺陷好傻啊啊这个
+                    缺陷好傻啊啊这个缺陷好傻啊
                 </div>
             </div>
         </div>
+    </div>
+</div>
 
-        <div id="exist_copy_2" style="display: none">
+<div id="exist_copy_2" style="display: none">
 
-            <div class="exist-form" style="margin-top: 20px;">
+    <div class="exist-form" style="margin-top: 20px;">
 
-                <div class="left_slide" style="height: 57px">
-                    <input class="merge_box" type="checkbox">
-                </div>
+        <div class="left_slide" style="height: 57px">
+            <input class="merge_box" type="checkbox">
+        </div>
 
-                <div class="class-form">
-                    <div class="class-intent_2">
-                        <div class="info-head_2 text-left" style="padding:-16px -26px">
-                            <%--路径--%>
-                            <p class="head-text" style="color: #585841">CRC/src/java/a.java</p>
-                            <%--行数--%>
-                            <p class="head-text" style="color: #585841">111 行</p>
-                            <%--错误类型--%>
-                            <p class="head-text" style="color: #585841">语法错误</p>
+        <div class="class-form">
+            <div class="class-intent_2">
+                <div class="info-head_2 text-left" style="padding:-16px -26px">
+                    <%--路径--%>
+                    <p class="head-text" style="color: #585841">CRC/src/java/a.java</p>
+                    <%--行数--%>
+                    <p class="head-text" style="color: #585841">111 行</p>
+                    <%--错误类型--%>
+                    <p class="head-text" style="color: #585841">语法错误</p>
 
                             <span class="merge_span">合并共3个缺陷&nbsp;<i
                                     class="fa fa-angle-double-down"></i></span>
 
-                            <div class="who_div">
-                                <div class="image-small who_pic"></div>
-                                <div class="who_name">marioquer</div>
-                            </div>
-                        </div>
-                        <%--错误描述--%>
-                        <div class="info-bottom_2 inner-infoText text-left">
-                            这个缺陷好傻啊啊这个缺陷好傻啊啊这个缺陷好傻啊啊这个缺陷好傻啊啊这
-                            个缺陷好傻啊啊这个缺陷好傻啊啊这个缺陷好傻啊啊这个缺陷好傻啊啊这个
-                            缺陷好傻啊啊这个缺陷好傻啊
-                        </div>
+                    <div class="who_div">
+                        <div class="image-small who_pic"></div>
+                        <div class="who_name">marioquer</div>
                     </div>
+                </div>
+                <%--错误描述--%>
+                <div class="info-bottom_2 inner-infoText text-left">
+                    这个缺陷好傻啊啊这个缺陷好傻啊啊这个缺陷好傻啊啊这个缺陷好傻啊啊这
+                    个缺陷好傻啊啊这个缺陷好傻啊啊这个缺陷好傻啊啊这个缺陷好傻啊啊这个
+                    缺陷好傻啊啊这个缺陷好傻啊
                 </div>
             </div>
         </div>
     </div>
-
-    <div style="margin-top: 50px">
-        <div class="merge_this" style="width: 100px">合并</div>
-        <div class="refuse_merge" style="width: 100px">解开</div>
-        <div class="finish_btn finish_this" style="width: 125px">结束合并</div>
-    </div>
-
 </div>
-
 
 <a href="#" id="back-to-top"><i class="fa fa-angle-up"></i></a>
 
