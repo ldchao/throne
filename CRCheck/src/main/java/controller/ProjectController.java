@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import service.AttendanceService;
 import service.ProjectService;
+import service.ReviewRecordService;
 import serviceImpl.AttendanceServiceImpl;
 import serviceImpl.ProjectServiceImpl;
+import serviceImpl.ReviewRecordServiceImpl;
 import tool.DateHelper;
 import java.util.ArrayList;
 import java.util.List;
@@ -81,7 +83,7 @@ public class ProjectController {
     }
     //进入项目
     @RequestMapping(value = "/pages/projects", method = RequestMethod.GET)
-    public ModelAndView getProject(int projectId) {
+    public ModelAndView getProject(String userId,int projectId) {
         //新增项目
         ProjectService ps = new ProjectServiceImpl();
         ProjectModel project = ps.checkProject(projectId);
@@ -91,8 +93,16 @@ public class ProjectController {
         }
         //计算项目剩余时间
         String day = DateHelper.daysAnalyse(project.getStartDate(),project.getEndDate());
-
-        ModelAndView modelAndView=new ModelAndView("ProjectDetailPage");
+        ModelAndView modelAndView=new ModelAndView();
+        //发起者看看是否有人评审
+        ReviewRecordService record=new ReviewRecordServiceImpl();
+        ArrayList<String> list=record.checkProjectUserList(projectId);
+        //有人且是发布者
+        if(list.size()!=0&&userId==project.getUserID())
+            modelAndView.setViewName("LauncherPage");
+        //否则
+        else
+            modelAndView.setViewName("ProjectDetailPage");
         modelAndView.addObject("project", project);
         modelAndView.addObject("day", day);
         return modelAndView;
