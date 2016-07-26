@@ -110,7 +110,6 @@ public class FileServiceImpl implements FileService {
             System.out.println("文件不存在!");
         }
         return pList;
-        return null;
     }
 
     public static final int DEFAULT_BUFSIZE = 1024 * 16;
