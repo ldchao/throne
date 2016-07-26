@@ -17,4 +17,9 @@ public class FileModel {
     String n;
     //最近评审时间
     String time;
+
+
+
+    public FileModel(String path, FileType dir, String s, String s1, String s2) {
+    }
 }

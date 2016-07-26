@@ -8,5 +8,10 @@ import java.util.List;
  */
 public interface FileService {
 
+    //get all dir and file in this path
     public List<FileModel> getDir(String path);
+
+    public boolean unZip(String filePath,String destination);
+
+    public boolean changeState(FileModel fileModel);
 }
