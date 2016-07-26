@@ -4,6 +4,8 @@ import Dao.UserDao;
 import DaoImpl.UserDaoImpl;
 import POJO.User;
 import enums.Power;
+import enums.UniversalState;
+import model.UserInf;
 import model.UserModel;
 import service.MessageService;
 import service.UserService;
@@ -50,7 +52,24 @@ public class UserServiceImpl implements UserService {
         System.out.println(result);
         return result;
     }
-
+    //更新用户信息
+    public UniversalState update(UserInf inf){
+        //获得用户原信息
+        UserDao dao=new UserDaoImpl();
+        User user=new User();
+        user.setId(inf.getId());
+        user=dao.findUser(user);
+        //更新信息
+        user.setEmail(inf.getEmail());
+        user.setSex(inf.getSex());
+        //TODO-个人主页
+        user.setPhone(inf.getPhone());
+        user.setAddress(inf.getAddress());
+        boolean a=dao.update(user);
+        if(a)
+            return UniversalState.SUCCESS;
+        return UniversalState.FAIL;
+    }
     //测试
     public static void main(String[] args) {
         UserService u=new UserServiceImpl();
