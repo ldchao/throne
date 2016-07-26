@@ -403,6 +403,7 @@ function publishPro() {
     if (selfin == true)
         self = "YES";
 
+    // 判断是否上传
     var isUpload = "NOLOAD";
     var list_info = [userId, proname, prodescribe, codelang, startdate, enddate, limit, PROJECT_ID, isUpload].join("&");
     idlist.splice(0, 0, self);
@@ -434,7 +435,7 @@ function goTo(proId) {
 
     var userId = document.getElementById("storage").innerHTML;
     userId = userId.trim();
-    window.location.href = "projects.action?projectId=" + proId + "?userId=" + userId;
+    window.location.href = "projects.action?projectId=" + proId + "&?userId=" + userId;
 }
 
 // 参与的项目
