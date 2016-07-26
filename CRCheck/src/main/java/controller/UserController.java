@@ -1,5 +1,7 @@
 package controller;
 
+import enums.UniversalState;
+import model.UserInf;
 import model.UserListForm;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,4 +24,15 @@ public class UserController {
         return user.getUserList(userid);
     }
     //TODO 四个不同板块的用户推荐
+
+    //修改用户信息
+    @RequestMapping(value = "/updateUser", method = RequestMethod.POST)
+    @ResponseBody
+    public String getUserList(UserInf inf) {
+        UserService user=new UserServiceImpl();
+        UniversalState state=user.update(inf);
+        if(state==UniversalState.SUCCESS)
+            return "SUCCESS";
+        return "FAIL";
+    }
 }
