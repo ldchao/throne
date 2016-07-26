@@ -1,8 +1,11 @@
 package serviceImpl;
 
+import Dao.FileDao;
+import DaoImpl.FileDaoImpl;
 import enums.FileType;
 import model.FileModel;
 import service.FileService;
+
 
 import java.io.*;
 import java.util.ArrayList;
@@ -17,6 +20,8 @@ import java.util.zip.ZipFile;
  */
 public class FileServiceImpl implements FileService {
 
+    FileDao fileDao = new FileDaoImpl();
+
     public List<FileModel> getDir(String path){
         File file = new File(path);
         ArrayList<FileModel> pList = new ArrayList<FileModel>();
@@ -28,8 +33,11 @@ public class FileServiceImpl implements FileService {
                 if (file2.isDirectory()) {
                     String[] l=file2.list();
                     String fileNum=l.length+"";
-                    pList.add(new FileModel(file2.getAbsolutePath(), FileType.Dir," ",fileNum," "));
-                    //System.out.println("文件夹:" + file2.getAbsolutePath());
+                    POJO.File file1 = new POJO.File();
+                    file1.setPath(file2.getAbsolutePath());
+                    String state=fileDao.getFileState(file1);
+                    String time=fileDao.getFileLastTime(file1);
+                    pList.add(new FileModel(file2.getAbsolutePath(), FileType.Dir,state,fileNum,time));
                     list.add(file2);
                 } else {
                     String s=file2.getAbsolutePath();
@@ -40,9 +48,17 @@ public class FileServiceImpl implements FileService {
                         n=file2.length()+"B";
                     }
                     if(s.substring(s.length()-3,s.length()).equals("doc")){
-                        pList.add(new FileModel(file2.getAbsolutePath(),FileType.File," ",n," "));
+                        POJO.File file1 = new POJO.File();
+                        file1.setPath(file2.getAbsolutePath());
+                        String state=fileDao.getFileState(file1);
+                        String time=fileDao.getFileLastTime(file1);
+                        pList.add(new FileModel(file2.getAbsolutePath(),FileType.File,state,n,time));
                     }else {
-                        pList.add(new FileModel(file2.getAbsolutePath(), FileType.Code, " ", n, " "));
+                        POJO.File file1 = new POJO.File();
+                        file1.setPath(file2.getAbsolutePath());
+                        String state=fileDao.getFileState(file1);
+                        String time=fileDao.getFileLastTime(file1);
+                        pList.add(new FileModel(file2.getAbsolutePath(), FileType.Code,state, n, time));
                         //System.out.println("文件:" + file2.getAbsolutePath()+" "+file2.length());
                     }
                 }
@@ -55,7 +71,11 @@ public class FileServiceImpl implements FileService {
                     if (file2.isDirectory()) {
                         String[] l=file2.list();
                         String fileNum=l.length+"";
-                        pList.add(new FileModel(file2.getAbsolutePath(),FileType.Dir," ",fileNum," "));
+                        POJO.File file1 = new POJO.File();
+                        file1.setPath(file2.getAbsolutePath());
+                        String state=fileDao.getFileState(file1);
+                        String time=fileDao.getFileLastTime(file1);
+                        pList.add(new FileModel(file2.getAbsolutePath(),FileType.Dir,state,fileNum,time));
                         //System.out.println("文件夹:" + file2.getAbsolutePath());
                         list.add(file2);
                     } else {
@@ -68,10 +88,18 @@ public class FileServiceImpl implements FileService {
                             n=file2.length()+"B";
                         }
                         if(s.substring(s.length()-3,s.length()).equals("doc")){
-                            pList.add(new FileModel(file2.getAbsolutePath(),FileType.File," ",n," "));
+                            POJO.File file1 = new POJO.File();
+                            file1.setPath(file2.getAbsolutePath());
+                            String state=fileDao.getFileState(file1);
+                            String time=fileDao.getFileLastTime(file1);
+                            pList.add(new FileModel(file2.getAbsolutePath(),FileType.File,state,n,time));
                             fileNum++;
                         }else {
-                            pList.add(new FileModel(file2.getAbsolutePath(), FileType.Code, " ", n, " "));
+                            POJO.File file1 = new POJO.File();
+                            file1.setPath(file2.getAbsolutePath());
+                            String state=fileDao.getFileState(file1);
+                            String time=fileDao.getFileLastTime(file1);
+                            pList.add(new FileModel(file2.getAbsolutePath(), FileType.Code,state,n,time));
                             //System.out.println("文件:" + file2.getAbsolutePath()+" "+file2.length());
                             fileNum++;
                         }
