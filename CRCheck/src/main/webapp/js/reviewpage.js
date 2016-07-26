@@ -7,7 +7,7 @@ function mouseOver(tr) {
     tr.getElementsByTagName("i")[0].style.display = "block";
 
     tr.getElementsByTagName("i")[0].onclick = function () {
-        addDiv(tr);
+        addDiv(tr, "code_file");
     }
 }
 
@@ -16,10 +16,10 @@ function mouseOut(tr) {
     tr.getElementsByTagName("i")[0].style.display = "none";
 }
 
-function addDiv(tr) {
+function addDiv(tr, parentId) {
     var index = $(tr).parents(".file_table").find("tr").index($(tr));
 
-    var row = document.getElementById("code_file").insertRow(index + 1);
+    var row = document.getElementById(parentId).insertRow(index + 1);
     row.style.height = "97px";
     row.style.width = "100%";
 
@@ -33,12 +33,12 @@ function addDiv(tr) {
 
     var addbtn = div.getElementsByClassName("bug_add")[0];
     addbtn.onclick = function () {
-        addDiv(row);
+        addDiv(row, parentId);
     };
 
     var checkbox = div.getElementsByTagName("input")[0];
     checkbox.onclick = function () {
-        if(checkbox.checked == false)
+        if (checkbox.checked == false)
             document.getElementById("selectAll").checked = false;
     }
 
@@ -46,32 +46,38 @@ function addDiv(tr) {
     delbtn.onclick = function () {
         var t = $(this).parents("tr");
         var pos = $(t).parents(".file_table").find("tr").index($(t));
-        document.getElementById("code_file").deleteRow(pos);
+        document.getElementById(parentId).deleteRow(pos);
     };
 
     row.appendChild(td);
     document.getElementById("selectAll").checked = false;
+
+    return td;
 }
 
-function selectAll() {
+function selectAll(parentId) {
 
-    var divs = document.getElementById("code_file").getElementsByClassName("bug_div");
+    var divs = document.getElementById(parentId).getElementsByClassName("bug_div");
     for (var i = 0; i < divs.length; i++) {
         var box = divs[i].getElementsByTagName("input")[0];
-        box.checked = document.getElementById("selectAll").checked;
+        if(parentId == "code_file") {
+            box.checked = document.getElementById("selectAll").checked;
+        } else {
+            box.checked = document.getElementById("selectAll_merge").checked;
+        }
     }
 }
 
-function delAll() {
+function delAll(parentId) {
 
-    var divs = document.getElementById("code_file").getElementsByClassName("bug_div");
+    var divs = document.getElementById(parentId).getElementsByClassName("bug_div");
     var n = divs.length - 1;
     for (var i = n; i > -1; i--) {
         var box = divs[i].getElementsByTagName("input")[0];
         if (box.checked == true) {
             var t = $(divs[i]).parents("tr");
             var pos = $(t).parents(".file_table").find("tr").index($(t));
-            document.getElementById("code_file").deleteRow(pos);
+            document.getElementById(parentId).deleteRow(pos);
         }
     }
     document.getElementById("selectAll").checked = false;
@@ -90,4 +96,73 @@ function addDocdiv() {
     };
 
     document.getElementById("doc_bugs").appendChild(div);
+}
+
+// 代码评审合并
+window.onload = function () {
+
+    addReDefects(2);
+    addReDefects(6);
+    addReDefects(9);
+}
+
+function addReDefects(pos) {
+
+    var table = document.getElementById("launcher_merge");
+    var trs = table.getElementsByTagName("tr");
+    for (var i = 0; i < trs.length; i++) {
+        var tds = trs[i].getElementsByTagName("td");
+        if (tds.length > 1 && tds[1].innerHTML == pos) {
+            var retd = addDiv(trs[i], "launcher_merge");
+            retd.getElementsByClassName("del_btn")[0].style.display = "none";
+            retd.getElementsByTagName("select")[0].value = "空指针";
+            retd.getElementsByClassName("bug_desc")[0].value = "这是一个空指针缺陷" + tds[1].innerHTML;
+            retd.getElementsByClassName("pos_rec")[0].innerHTML = tds[1].innerHTML;
+            return retd;
+        }
+    }
+}
+
+function CodeMerge() {
+
+    var defects = new Array();
+    var count = 0;
+
+    var divs = document.getElementById("launcher_merge").getElementsByClassName("bug_div");
+    var n = divs.length;
+    for (var i = 0; i < n; i++) {
+        var box = divs[i].getElementsByTagName("input")[0];
+        if (box.checked == true) {
+            defects[count] = new Array();
+            defects[count][0] = divs[i].getElementsByClassName("userId_div")[0].innerHTML; // 评审者
+            defects[count][1] = divs[i].getElementsByTagName("select")[0].value;      // 缺陷类型
+            defects[count][2] = divs[i].getElementsByClassName("bug_desc")[0].value;  // 描述
+            defects[count][3] = divs[i].getElementsByClassName("pos_rec")[0].innerHTML; // 行数位置
+            count++;
+        }
+    }
+
+    if (defects.length > 1) {
+        for (var i = 0; i < count; i++) {
+            var eachdiv = document.createElement("div");
+            eachdiv.innerHTML = document.getElementById("defect_copy").innerHTML;
+            eachdiv.setAttribute("class", "def_div");
+            eachdiv.getElementsByClassName("line_def")[0].innerHTML = defects[i][3] + "行";
+            eachdiv.getElementsByClassName("type_def")[0].innerHTML = defects[i][1];
+            eachdiv.getElementsByClassName("describe_def")[0].innerHTML = defects[i][2];
+
+            document.getElementById("defects_parent").appendChild(eachdiv);
+            showLaunch("choose");
+
+            eachdiv.onclick = function () {
+                var index = $(this).parent().find(".def_div").index($(this)) - 1;
+                var retd = addReDefects(defects[index][3]);
+                retd.getElementsByClassName("merge_span")[0].style.display = "";
+
+                closeLaunch("choose");
+            }
+        }
+    }
+
+    delAll("launcher_merge");
 }
