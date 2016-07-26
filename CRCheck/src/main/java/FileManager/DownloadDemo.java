@@ -1,6 +1,7 @@
 package FileManager;
 
 import com.qiniu.util.Auth;
+
 public class DownloadDemo {
     //设置好账号的ACCESS_KEY和SECRET_KEY
     String ACCESS_KEY = "w28PsJx2KtX1xndjyubAl4DbAjdqgvRTvkZqHwT1";
