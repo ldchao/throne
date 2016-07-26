@@ -83,7 +83,7 @@ public class ProjectController {
     }
     //进入项目
     @RequestMapping(value = "/pages/projects", method = RequestMethod.GET)
-    public ModelAndView getProject(String userId,int projectId) {
+    public ModelAndView getProject(int projectId, String userId) {
         //新增项目
         ProjectService ps = new ProjectServiceImpl();
         ProjectModel project = ps.checkProject(projectId);

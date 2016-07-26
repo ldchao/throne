@@ -165,6 +165,15 @@
 
         <input class="textfield" id="pro_name" type="text" placeholder="项目名称">
 
+        <div class="upload">
+            <span onclick="uploadFile()">上传文件</span>
+
+            <div id="prog_div" class="progress">
+                <div id="inner_prog" class="progress-bar progress-bar-success"></div>
+            </div>
+
+        </div>
+
         <textarea class="textfield" id="pro_describe" placeholder="项目描述"></textarea>
 
         <div class="selectStyle code_language_div textfield">

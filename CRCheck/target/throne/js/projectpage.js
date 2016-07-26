@@ -7,6 +7,7 @@ var currentids = new Array();  // 记录当前的8个随机用户
 var pageNum = 0;  // 页码
 var CRCpro;
 var PUBpro;
+var PROJECT_ID;
 
 function showIntroduce() {
     $("#introduce_child").slideToggle();
@@ -25,6 +26,20 @@ function showLaunch(elem_id) {
     if (userId == "") {
         slidein("2", "您还没登录");
         return;
+    }
+
+    if(elem_id == "launch") {
+        $.ajax({
+            type: "post",
+            async: false,
+            url: "/getProjectId",
+            success: function (result) {
+                PROJECT_ID = result;
+            },
+            error: function () {
+                slidein(1, "获取项目编号失败了");
+            }
+        });
     }
 
     var elem = document.getElementById(elem_id);
@@ -388,7 +403,9 @@ function publishPro() {
     if (selfin == true)
         self = "YES";
 
-    var list_info = [userId, proname, prodescribe, codelang, startdate, enddate, limit].join("&");
+    // 判断是否上传
+    var isUpload = "NOLOAD";
+    var list_info = [userId, proname, prodescribe, codelang, startdate, enddate, limit, PROJECT_ID, isUpload].join("&");
     idlist.splice(0, 0, self);
     var id_info = idlist.join("&");
 
@@ -415,7 +432,10 @@ function publishPro() {
 }
 
 function goTo(proId) {
-    window.location.href = 'projects.action?projectId=' + proId;
+
+    var userId = document.getElementById("storage").innerHTML;
+    userId = userId.trim();
+    window.location.href = "projects.action?projectId=" + proId + "&?userId=" + userId;
 }
 
 // 参与的项目
@@ -580,4 +600,29 @@ function addPUBpro(jsondata) {
     }
 
     document.getElementById("publish_div").appendChild(div);
+}
+
+// 上传文件
+function uploadFile() {
+
+    var progdiv = document.getElementById("prog_div");
+    var proginner = document.getElementById("inner_prog");
+   $(progdiv).show();
+
+    // refreshProg(0);
+
+    
+}
+
+function refreshProg(i) {
+
+    var proginner = document.getElementById("inner_prog");
+    proginner.style.width = i + "%";
+    proginner.innerHTML = i + "%";
+
+    if(i < 100) {
+        i++;
+        // setTimeout("refreshProg("+ i +")", 50);
+    }
+
 }

@@ -39,6 +39,8 @@
     <!-- 当前页面 styles -->
     <link href="../css/reviewpage.css" rel="stylesheet">
 
+    <link href="../css/launcherpage.css" rel="stylesheet">
+
     <!-- specific styles -->
     <link href="../css/component.css" rel="stylesheet">
 
@@ -246,8 +248,8 @@
     </table>
     <%// } else { %>
 
-    <%-- 代码文件 --%>
-    <table id="code_file" class="file_table" style="display: block">
+    <%-- 评审者代码文件 --%>
+    <table id="code_file" class="file_table" style="display: none">
 
         <tr class="top_bottom">
             <td style="width: 4%; border-right: 1px solid #dfe0e2"></td>
@@ -271,16 +273,50 @@
 
         <tr class="top_bottom">
             <td>
-                <input type="checkbox" id="selectAll" onclick="selectAll()">
+                <input type="checkbox" id="selectAll" onclick="selectAll('code_file')">
                 <span style="position: relative;top: -1px;left: 0; font-size: 12px">全选</span>
             </td>
             <td>
-                <div class="del_btn" onclick="delAll()">删除</div>
+                <div class="del_btn" onclick="delAll('code_file')">删除</div>
             </td>
             <td></td>
         </tr>
     </table>
     <%// } %>
+
+    <%-- 发起者代码文件-合并 --%>
+    <table id="launcher_merge" class="file_table" style="display: block">
+
+        <tr class="top_bottom">
+            <td style="width: 4%; border-right: 1px solid #dfe0e2"></td>
+            <td style="width: 3%; border-right: 1px solid #dfe0e2"></td>
+            <td style="width: 93%; border-right: 1px solid #dfe0e2"></td>
+        </tr>
+
+        <% for (int i = 0; i < filelist.length; i++) {%>
+        <tr style="height: 22px; vertical-align: middle">
+            <td style="border-right: 1px solid #dfe0e2; text-align: center;">
+                <i class="fa fa-pencil" style="cursor: pointer;display: none"></i>
+            </td>
+            <td style="border-right: 1px solid #dfe0e2;text-align: center"><%=i + 1%>
+            </td>
+            <td style="border-right: 1px solid #dfe0e2">
+                <pre><%=filelist[i]%></pre>
+            </td>
+        </tr>
+        <% } %>
+
+        <tr class="top_bottom">
+            <td>
+                <input type="checkbox" id="selectAll_merge" onclick="selectAll('launcher_merge')">
+                <span style="position: relative;top: -1px;left: 0; font-size: 12px">全选</span>
+            </td>
+            <td>
+                <div class="del_btn" onclick="CodeMerge()">合并</div>
+            </td>
+            <td></td>
+        </tr>
+    </table>
 
     <%-- 文档评审 --%>
     <div id="review_div" style="display: none;">
@@ -303,6 +339,7 @@
                 <div class="docbug_addbtn" onclick="addDocdiv()"><i class="fa fa-pencil"></i> &nbsp;添加缺陷</div>
             </div>
 
+            <%-- 文档的提交评审 --%>
             <div class="publish_doc">提交此次评审</div>
         </div>
 
@@ -310,7 +347,8 @@
 
     </div>
 
-    <div class="publish_review" style="display: none;">提交此次评审</div>
+    <%-- 除了文档的提交评审 --%>
+    <div class="publish_review" style="display: block;">提交此次评审</div>
 </div>
 
 <%-- 缺陷块 --%>
@@ -320,6 +358,10 @@
         <div class="del_btn" style="display: inline-block;top:-6px">删除</div>
         <div class="title_img" style="margin-left: 20px; width: 20px; height: 20px;"></div>
         <div class="userId_div"> marioquer | 2016-07-21 |</div>
+
+        <span class="merge_span"
+              style="font-size: 14px;position: relative;left: 25px; top: -5px; display: none">合并共3个缺陷&nbsp;<i
+                class="fa fa-angle-double-down"></i></span>
     </div>
 
     <div>
@@ -336,6 +378,8 @@
         <input class="bug_desc" type="text" placeholder="缺陷描述">
 
         <div class="bug_add">添加缺陷</div>
+
+        <a class="pos_rec" style="display: none;"></a>
     </div>
 </div>
 
@@ -350,6 +394,25 @@
     <textarea class="docbug_desc" placeholder="缺陷描述"></textarea>
 
     <hr class="doc_hr">
+</div>
+
+<%-- 选取合并结果项目 --%>
+<div id="choose">
+    <div class="choose_title">选取合并结果项</div>
+
+    <div id="defects_parent">
+        <div id="defect_copy" class="def_div" style="display: none">
+            <div class="line_def">111 行</div>
+            <div class="type_def">语法错误</div>
+            <div class="describe_def">这个缺陷好傻啊啊这个缺陷好傻啊啊这个缺陷好傻啊啊这个缺陷好傻啊啊这
+                个缺陷好傻啊啊这个缺陷好傻啊啊
+            </div>
+        </div>
+    </div>
+
+    <hr class="hr_choose">
+    <div class="feedback_btn" style="width: 87%; margin-bottom: 47px">手动输入结果项</div>
+
 </div>
 
 <a href="#" id="back-to-top"><i class="fa fa-angle-up"></i></a>
