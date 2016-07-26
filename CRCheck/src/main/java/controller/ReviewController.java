@@ -1,12 +1,12 @@
 package controller;
 
-import enums.FileType;
 import enums.UniversalState;
 import model.PersonalReviewRecord;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import service.ReviewRecordService;
 import serviceImpl.ReviewRecordServiceImpl;
+import tool.RecordTransfer;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
@@ -28,29 +28,9 @@ public class ReviewController {
         ArrayList<PersonalReviewRecord> list=new ArrayList<PersonalReviewRecord>();
         for(String record:records){
             String[] strs=record.split("[&]");
-            PersonalReviewRecord r=new PersonalReviewRecord();
+            PersonalReviewRecord r= RecordTransfer.change(strs);
             r.setProjectId(projectId);
             r.setUserId(userId);
-            //第一项，所在路径名
-            r.setPath(strs[0]);
-            //第二项，所在行数
-            r.setLineNum(strs[1]);
-            //第三项，错误类型
-            r.setType(strs[2]);
-            //TODO
-//            //第四项，文件类型，分为Dir,File或Code三种，Dir不出现
-//            FileType ft=FileType.valueOf(strs[3]);
-//            r.setFileType(ft);
-//            //第五项，错误细节
-//            r.setDescription(strs[4]);
-            //第四项，文件类型，分为Dir,File或Code三种，Dir不出现
-            FileType ft=FileType.Code;
-            r.setFileType(ft);
-            //第五项，错误细节
-            r.setDescription(strs[3]);
-            //第六项，若为文档增加一个页数
-            if(ft.equals(FileType.File))
-                r.setPagesNum(strs[5]);
             list.add(r);
         }
         UniversalState state=review.submitReviewRecord(list);
@@ -58,7 +38,7 @@ public class ReviewController {
             return "SUCCESS";
         return "FAIL";
     }
-    
+
     //结束个人项目评审
     @RequestMapping(value = "/endReview", method = RequestMethod.POST)
     @ResponseBody

@@ -1,5 +1,6 @@
 package controller;
 
+
 import enums.UniversalState;
 import model.PersonalReviewRecord;
 import model.ProjectModel;
@@ -12,7 +13,9 @@ import service.ProjectService;
 import service.ReviewRecordService;
 import serviceImpl.ProjectServiceImpl;
 import serviceImpl.ReviewRecordServiceImpl;
-
+import tool.RecordTransfer;
+import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -76,5 +79,79 @@ public class DealController {
         if(state==UniversalState.SUCCESS)
             return "SUCCESS";
         return "FAIL";
+    }
+
+    //合并相同缺陷-重新填写项（参数前面为待合并项ID数组，后面会合并后结果）
+    @RequestMapping(value = "/unionAdd", method = RequestMethod.POST)
+    @ResponseBody
+    public String unionAdd(HttpServletRequest request){
+        //需要传的参数
+        String userId=request.getParameter("userId");
+        int projectId=Integer.parseInt(request.getParameter("projectId"));
+        String[] records=request.getParameterValues("records[]");
+        String[] union=request.getParameterValues("union[]");
+        //参数处理
+        ArrayList<String> list=new ArrayList<String>();
+        for(String s:records){
+            list.add(s);
+        }
+        //新建合并缺陷记录
+        PersonalReviewRecord unionRecord= RecordTransfer.change(union);
+        unionRecord.setProjectId(projectId);
+        unionRecord.setUserId(userId);
+        //调用逻辑层合并
+        ReviewRecordService service=new ReviewRecordServiceImpl();
+        UniversalState state=service.mergeReviewRecord(list,unionRecord);
+        if(state.equals(UniversalState.SUCCESS))
+            return "SUCCESS";
+        return "FAIL";
+    }
+
+    //合并评审记录--选取某条作为合并后项(前面为待合并项ID数组,id为选作展示的项，userid为执行此操作者)
+    @RequestMapping(value = "/unionChoose", method = RequestMethod.POST)
+    @ResponseBody
+    public String unionChoose(HttpServletRequest request){
+        //需要传的参数
+        String userId=request.getParameter("userId");
+        int recordId=Integer.parseInt(request.getParameter("recordId"));
+        String[] records=request.getParameterValues("records[]");
+        //参数处理
+        ArrayList<String> list=new ArrayList<String>();
+        for(String s:records){
+            list.add(s);
+        }
+        //调用逻辑层合并
+        ReviewRecordService service=new ReviewRecordServiceImpl();
+        UniversalState state=service.mergeReviewRecord(list,recordId,userId);
+        if(state.equals(UniversalState.SUCCESS))
+            return "SUCCESS";
+        return "FAIL";
+    }
+
+    //分解评审记录(result只需要personalReviewID--合并项id)
+    @RequestMapping(value = "/disassembleAll", method = RequestMethod.POST)
+    @ResponseBody
+    public ArrayList<PersonalReviewRecord> disassembleAll(int mergedId){
+        ReviewRecordService service=new ReviewRecordServiceImpl();
+        ArrayList<PersonalReviewRecord> list=service.disassembleReviewRecord(mergedId);
+        return list;
+    }
+
+    //分解评审记录（id为合并项ID，idlist为将原来合并子项中要剔除出去的部分），返回剔除掉的部分
+    @RequestMapping(value = "/disassembleSome", method = RequestMethod.POST)
+    @ResponseBody
+    public ArrayList<PersonalReviewRecord> disassembleSome(HttpServletRequest request){
+        //获得参数
+        int mergedId=Integer.parseInt(request.getParameter("recordId"));
+        String[] idList=request.getParameterValues("idList[]");
+        //参数处理
+        ArrayList<String> li=new ArrayList<String>();
+        for(String s:idList){
+            li.add(s);
+        }
+        //调用逻辑层接口
+        ReviewRecordService service=new ReviewRecordServiceImpl();
+        ArrayList<PersonalReviewRecord> list=service.disassembleReviewRecord(mergedId,li);
+        return list;
     }
 }
