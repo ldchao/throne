@@ -3,11 +3,23 @@
  */
 
 window.onload = function () {
-    addSingle();
-    addSingle();
-    addMerge();
-    addMerge();
-}
+
+    var proId = document.getElementById("storage_proId").innerHTML;
+
+    $.ajax({
+        type: "post",
+        async: false,
+        url: "/getSummaryReview",
+        data: {"projectID": proId},
+        success: function (result) {
+            alert(result.length)
+        },
+        error: function () {
+            slidein(1, "出故障了请稍候再试");
+        }
+    });
+
+};
 
 function addSingle() {
 

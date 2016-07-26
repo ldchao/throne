@@ -19,6 +19,7 @@ import serviceImpl.AttendanceServiceImpl;
 import serviceImpl.ProjectServiceImpl;
 import serviceImpl.ReviewRecordServiceImpl;
 import tool.DateHelper;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -81,6 +82,7 @@ public class ProjectController {
         int id = ps.addProject(p);
         return id;
     }
+
     //进入项目
     @RequestMapping(value = "/pages/projects", method = RequestMethod.GET)
     public ModelAndView getProject(int projectId, String userId) {
@@ -92,17 +94,20 @@ public class ProjectController {
             return null;
         }
         //计算项目剩余时间
-        String day = DateHelper.daysAnalyse(project.getStartDate(),project.getEndDate());
-        ModelAndView modelAndView=new ModelAndView();
+        String day = DateHelper.daysAnalyse(project.getStartDate(), project.getEndDate());
+        ModelAndView modelAndView = new ModelAndView();
         //发起者看看是否有人评审
-        ReviewRecordService record=new ReviewRecordServiceImpl();
-        ArrayList<String> list=record.checkProjectUserList(projectId);
+        ReviewRecordService record = new ReviewRecordServiceImpl();
+        ArrayList<String> list = record.checkProjectUserList(projectId);
         //有人且是发布者
-        if(list.size()!=0&&userId==project.getUserID())
+
+        System.out.println("size:" + list.size() + "user:" + userId +"project:" + project.getUserID());
+        if (list.size() != 0 && userId.equals(project.getUserID())) {
             modelAndView.setViewName("LauncherPage");
-        //否则
-        else
+            //否则
+        } else {
             modelAndView.setViewName("ProjectDetailPage");
+        }
         modelAndView.addObject("project", project);
         modelAndView.addObject("day", day);
         return modelAndView;
@@ -114,8 +119,8 @@ public class ProjectController {
     public List<ProjectModel> getAllNewMessage(String userId) {
         AttendanceService attendanceService = new AttendanceServiceImpl();
         List<ProjectModel> list = attendanceService.getOwnProjectID(userId);
-        for(ProjectModel model:list){
-            String day=DateHelper.daysAnalyse(model.getStartDate(),model.getEndDate());
+        for (ProjectModel model : list) {
+            String day = DateHelper.daysAnalyse(model.getStartDate(), model.getEndDate());
             model.setDay(day);
         }
         return list;
@@ -127,8 +132,8 @@ public class ProjectController {
     public List<ProjectModel> getAllOldMessage(String userId) {
         AttendanceService attendanceService = new AttendanceServiceImpl();
         List<ProjectModel> list = attendanceService.getAttendProjectID(userId);
-        for(ProjectModel model:list){
-            String day=DateHelper.daysAnalyse(model.getStartDate(),model.getEndDate());
+        for (ProjectModel model : list) {
+            String day = DateHelper.daysAnalyse(model.getStartDate(), model.getEndDate());
             model.setDay(day);
         }
         return list;

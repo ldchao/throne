@@ -7,7 +7,8 @@
 --%>
 <%@ page import="model.UserModel" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8" %>
+         pageEncoding="UTF-8" isELIgnored="false" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -117,7 +118,7 @@
 <div id="auto-container" class="container text-center">
 
     <div class="row">
-        <div class="project-title" style="background-color: #6b6f78">CRC评审项目</div>
+        <div class="project-title" style="background-color: #6b6f78">${project.name}</div>
     </div>
 
     <div class="project-char text-center">
@@ -125,33 +126,53 @@
             <div class="image-small"
                  style="margin-right:12px;">
             </div>
-            <div class="sub-title" id="owner">marioquer</div>
+            <div class="sub-title" id="owner">${project.userID}</div>
         </div>
         <div class="project-type" style="display: inline-block;">
             <div class="type-image"></div>
-            <div class="sub-title">Java
+            <div class="sub-title">${project.type}
             </div>
         </div>
     </div>
-    <div class="project-time time-text">2016.7.21 - 2016.8.5</div>
+    <div class="project-time time-text">${project.startDate} - ${project.endDate}</div>
     <p class="project-detail main-text text-center">
-        这个项目很帅这个项目很帅这个项目很帅这个项目很帅这个项目很帅这
-        个项目很帅这个项目很帅这个项目很帅这个项目很帅这个项目很帅这个项目很
-        帅这个项目很帅这个项目很帅这个项目很帅这个项目很帅这个项目很帅这个项目
-        很帅这个项目很帅这个项目很帅这个项目很帅这个项目很帅这个项目很帅这个项目
-        很帅这个项目很帅这个项目很帅这个项目很帅这个项目很帅这个项目很帅这个
+        ${project.discription}
     </p>
 
     <div class="member">
         <div class="middle-title">参与者</div>
         <div class="member-list">
+            <c:forEach items="${project.invitationList}" var="list">
 
-            <% for (int i = 0; i < 3; i++) {%>
-            <div class="images_div">
-                <div class="image-middle"></div>
-                <div>userId</div>
-            </div>
-            <%}%>
+                <c:choose>
+
+                    <c:when test="${list.accepting_state=='Agree'}">
+                        <div class="images_div">
+                            <div class="image-middle"></div>
+                            <div>${list.userID}</div>
+                        </div>
+                    </c:when>
+
+                    <c:when test="${list.accepting_state=='Refuse'}">
+                        <div class="images_div">
+                            <div class="image-middle">
+                                <div class="image-refuse"></div>
+                            </div>
+                            <div>${list.userID}</div>
+                        </div>
+                    </c:when>
+
+                    <c:when test="${list.accepting_state=='NotHandle'}">
+                        <div class="images_div">
+                            <div class="image-middle" style="">
+                                <div class="image-other"></div>
+                            </div>
+                            <div>${list.userID}</div>
+                        </div>
+                    </c:when>
+                </c:choose>
+
+            </c:forEach>
         </div>
     </div>
 
@@ -430,6 +451,10 @@
 
 <%-- 用来存放userId --%>
 <a id="storage" style="display: none;"><%=userId%>
+</a>
+
+<%-- 用来存放projectId --%>
+<a id="storage_proId" style="display: none;">${project.projectID}
 </a>
 <!-- Bootstrap core JavaScript
     ================================================== -->
