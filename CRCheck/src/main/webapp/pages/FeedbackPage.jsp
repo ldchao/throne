@@ -413,12 +413,13 @@
 
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 <script src="../js/ie10-viewport-bug-workaround.js"></script>
-<script src="../jsChart/ScatterDiagram.js">
-    showScatterDiagram(14)
-</script>
+<script src="../jsChart/ScatterDiagram.js"></script>
+
 <script src="../jsChart/StatisticsChart.js"></script>
 <script src="../jsChart/LineChart.js"></script>
-
+<script>showScatterDiagram(14)</script>
+<script>getStatisticsChart(14)</script>
+<script>getLineChart(14)</script>
 <script>
     $('#start_date').datetimepicker({
         lang: 'ch',

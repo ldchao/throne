@@ -4,7 +4,6 @@
  * 发现缺陷详情散点图
  */
 
-
 var scatterDiagram = echarts
     .init(document.getElementById('scatterDiagram'));
 
@@ -14,6 +13,8 @@ function showScatterDiagram(id) {
     var users=[];
     var datas=[];
     var defectsNum=[];
+    var defectSum;
+    var userSum;
 
     $.ajax({
         type: "post",
@@ -23,7 +24,8 @@ function showScatterDiagram(id) {
         dataType: "json", //返回数据形式为json
         success: function (result) {
             if (result) {
-                for (var i = 0; i < result.defectList.length; i++) {
+                defectSum=result.defectList.length;
+                for (var i = 0; i <defectSum ; i++) {
                     defectsNum.push(i);
                     var defectItems=[];
                     defectItems.push(result.defectList[i].fileType);
@@ -33,13 +35,15 @@ function showScatterDiagram(id) {
                     defectItems.push(result.defectList[i].description);
                     defects.push(defectItems);
                 }
-                for (var i = 0; i < result.userList.length; i++) {
+                userSum=result.userList.length;
+                for (var i = 0; i < userSum; i++) {
                     users.push(result.userList[i]);
                 }
                 for (var i = 0; i < result.userAndDefectsList.length; i++) {
                     var userAndDefectsItems=[];
                     userAndDefectsItems.push(result.userAndDefectsList[i].userId);
-                    userAndDefectsItems.push(result.userAndDefectsList[i].defectNum);
+                    var num=result.userAndDefectsList[i].defectNum;
+                    userAndDefectsItems.push(num);
                     datas.push(userAndDefectsItems);
                 }
             }
@@ -52,14 +56,17 @@ function showScatterDiagram(id) {
 
     option = {
         title: {
-            text: '缺陷发现详情',
-            subtext: '缺陷总数：6  评审人数：5',
-            x: 50
+            text: '缺陷总数:'+defectSum+'    评审人数：'+userSum,
+            textStyle: {
+                fontSize: 3,
+            },
+            x: '10%'
         },
         grid: {
             left: '3%',
-            right: '7%',
-            bottom: '8%',
+            right: '8%',
+            top:'12%',
+            bottom: '15%',
             containLabel: true
         },
         tooltip: {
@@ -69,8 +76,8 @@ function showScatterDiagram(id) {
                     var index = params.value[1]
                     return params.seriesName + ' :<br/>'
                         + '发现者：' + params.value[0] + '<br/>'
-                        + '所在文档类型：' + defects[index][0] + '<br/>'
-                        + '所在文档位置：' + defects[index][1] + '<br/>'
+                        + '文档类型：' + defects[index][0] + '<br/>'
+                        + '文档位置：' + defects[index][1] + '<br/>'
                         + '缺陷位置：' + defects[index][2] + '<br/>'
                         + '缺陷类型：' + defects[index][3] + '<br/>'
                         + '缺陷详情：'+defects[index][4];

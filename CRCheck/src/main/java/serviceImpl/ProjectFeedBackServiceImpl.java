@@ -1,14 +1,19 @@
 package serviceImpl;
 
 import Dao.AttendanceDao;
+import Dao.CommitrecordDao;
 import Dao.PersonalreviewDao;
+import Dao.ProjectqualityDao;
 import DaoImpl.AttendanceDaoImpl;
+import DaoImpl.CommitrecordDaoImpl;
 import DaoImpl.PersonalreviewDaoImpl;
+import DaoImpl.ProjectqualityDaoImpl;
+import POJO.Commitrecord;
 import POJO.Personalreview;
+import POJO.Projectquality;
+import enums.ApproveState;
 import enums.FileType;
-import model.PersonalReviewRecord;
-import model.ScatterDiagramModel;
-import model.UserAndDefect;
+import model.*;
 import service.CRCService;
 import service.ProjectFeedBackService;
 
@@ -65,8 +70,69 @@ public class ProjectFeedBackServiceImpl implements ProjectFeedBackService{
                     userAndDefectList.add(u);
                 }
             }
+            index++;
         }
         result.setUserAndDefectsList(userAndDefectList);
+        return result;
+    }
+
+    public ArrayList<PersonalQualityModel> getStatisticChartData(int projectID) {
+
+        ArrayList<PersonalQualityModel> result=new ArrayList<PersonalQualityModel>();
+
+        AttendanceDao attendanceDao=new AttendanceDaoImpl();
+        ArrayList<String> userList=attendanceDao.finduserDone(projectID);
+
+        PersonalreviewDao personlreviewDao=new PersonalreviewDaoImpl();
+        Personalreview po=new Personalreview();
+        po.setProjectId(projectID);
+        Commitrecord commitrecord=new Commitrecord();
+        commitrecord.setProjectId(projectID);
+
+        for (String userID:userList) {
+            PersonalQualityModel p=new PersonalQualityModel();
+            p.setUserID(userID);
+
+            po.setUserId(userID);
+            int amoutNum=personlreviewDao.getUserFoundDefect(po);
+            po.setResult(ApproveState.Unapprove.toString());
+            int unApproveNum=personlreviewDao.getDefectOfResult(po);
+            p.setUnApproveDefectNum(unApproveNum);
+            po.setResult(ApproveState.Correct.toString());
+            int correctNum=personlreviewDao.getDefectOfResult(po);
+            p.setCorrectDefectNum(correctNum);
+            po.setResult(ApproveState.Error.toString());
+            int errorNum=personlreviewDao.getDefectOfResult(po);
+            p.setErrorDefectNum(errorNum);
+
+            CommitrecordDao commitrecordDao=new CommitrecordDaoImpl();
+            commitrecord.setUserId(userID);
+            int codeLine=commitrecordDao.getReviewCodeLine(commitrecord);
+            int reviewTime=commitrecordDao.getReviewTimeOfProject(commitrecord);
+
+            double efficiency=(codeLine*amoutNum*1.0)/(reviewTime*1.0);
+            p.setEfficiency(efficiency);
+            result.add(p);
+        }
+        return result;
+    }
+
+    public ArrayList<ProjectQualityModel> getLineChartData(int projectID) {
+        ArrayList<ProjectQualityModel> result=new ArrayList<ProjectQualityModel>();
+        ProjectqualityDao projectqualityDao=new ProjectqualityDaoImpl();
+        Projectquality po=new Projectquality();
+        po.setProjectId(projectID);
+        List<Projectquality> projectqualities=projectqualityDao.getProjectqualitys(po);
+        for (Projectquality p:projectqualities) {
+            ProjectQualityModel r=new ProjectQualityModel();
+            r.setProjectId(p.getProjectId());
+            r.setUserId(p.getUserId());
+            r.setDescription(p.getDescription());
+            r.setEndTime(p.getEndTime());
+            r.setMethod1(p.getMethod1());
+            r.setMethod2(p.getMethod2());
+            result.add(r);
+        }
         return result;
     }
 

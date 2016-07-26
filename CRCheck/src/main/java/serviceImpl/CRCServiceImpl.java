@@ -22,8 +22,6 @@ import java.util.List;
  */
 public class CRCServiceImpl implements CRCService {
 
-
-
     public int[][] getMatrix(int projectID) {
 
         int defectNum=0;
