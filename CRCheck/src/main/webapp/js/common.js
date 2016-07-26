@@ -186,9 +186,25 @@ function sticky() {
     });
 }
 
+function popup() {
+    $(".user-popup").fadeIn(200);
+}
+
+function bodyClick() {
+    $("body").click(function () {
+        $(".user-popup").fadeOut(200);
+    });
+}
+
+function logout(){
+
+}
 
 $(document).ready(function () {
     backToTop();
     sticky();
+    bodyClick();
 })
+
+
 

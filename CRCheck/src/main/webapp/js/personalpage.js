@@ -2,6 +2,10 @@
  * Created by L.H.S on 16/7/20.
  */
 
+
+
+var isEdit = false;
+
 //使用IE条件注释来判断是否IE6，通过判断userAgent不一定准确
 if (document.all) document.write('<!--[if lte IE 6]><script type="text/javascript">window.ie6= true<\/script><![endif]-->');
 // var ie6 = /msie 6/i.test(navigator.userAgent);//不推荐，有些系统的ie6 userAgent会是IE7或者IE8
@@ -37,8 +41,33 @@ function change(picId, fileId) {
 function slideTo(id) {
     if (id == "friend") {
         $("html, body").animate({scrollTop: $("#friend").offset().top - 110}, 400);
-    }else {
+    } else {
         $("html, body").animate({scrollTop: $("#achieve").offset().top - 110}, 400);
+    }
+}
+
+function editInfo() {
+    if (isEdit == false) {
+        var allInfo = document.getElementsByClassName("info");
+        var input = new Array(allInfo.length);
+        for (var i = 0; i < 5; i++) {
+            input[i] = document.createElement("input");
+            input[i].className = "textfield";
+            input[i].type = "text";
+            input[i].style.width = "auto";
+            input[i].style.height = "26px";
+            input[i].style.fontSize = "16px";
+            input[i].style.padding = "8px 6px";
+            input[i].style.display = "inline-block";
+            input[i].style.textAlign = "center";
+            input[i].style.color = "#737474";
+            input[i].value = allInfo[0].innerHTML;
+            allInfo[0].parentNode.replaceChild(input[i], allInfo[0]);
+        }
+        document.getElementById("edit-button").innerHTML = "确认保存";
+        isEdit = true;
+    } else {
+        //还需要有一个保存的弹框
     }
 }
 
