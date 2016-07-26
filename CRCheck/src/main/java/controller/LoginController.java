@@ -57,4 +57,11 @@ public class LoginController {
         return String.valueOf(state);
     }
 
+    //退出登录
+    @RequestMapping(value = "/Logout", method = RequestMethod.POST)
+    @ResponseBody
+    public String Register(HttpServletRequest request) {
+        request.getSession().setAttribute("User", null);
+        return UniversalState.SUCCESS.toString();
+    }
 }

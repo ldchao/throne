@@ -91,7 +91,7 @@ public class CRCServiceImpl implements CRCService {
         projectquality.setEndTime(time);
 
         int[][] matrix=getMatrix(projectQualityModel.getProjectId());
-        if(matrix[0].length==1){
+        if(matrix==null||matrix[0].length==1){
             projectquality.setMethod1(0.0);
             projectquality.setMethod2(0.0);
         }else {
