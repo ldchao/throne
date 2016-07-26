@@ -38,6 +38,7 @@
 
     <!-- specific styles -->
     <link href="../css/component.css" rel="stylesheet">
+    <link href="../css/personalPage.css" rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]>
@@ -111,18 +112,88 @@
 </nav><!-- /.navbar -->
 
 
+<div class="backimage"></div>
+<div class="container all-info">
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="person-block block-shadow">
+                <div class="person-info">
+                    <div class="portrait">
+                        <div class="image-large"><a href="#"></a></div>
+                        <p style="margin-top:5px;font-size: 24px;color: #838D9E;">marioquer</p>
+                    </div>
+                    <div class="info-item" style="margin-top: 0;">
+                        <div class="info-name">个人主页</div>
+                        <div class="info">marioquer.cn</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-name">邮箱</div>
+                        <div class="info">marioquer@hotmail.com</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-name">联系方式</div>
+                        <div class="info">暂未填写</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-name">单位/学校</div>
+                        <div class="info">南京大学</div>
+                    </div>
+                    <button class="common-button" style="margin-top: 10px;">修改资料
+                    </button>
+                </div>
+
+                <div class="person-nav text-center">
+                    <div class="nav-text" onclick="slideTo('friend')">我的好友 ›</div>
+                    <div class="nav-text" onclick="slideTo('achieve')">我的成就 ›</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-9">
+            <div class="list-block">
+                <div class="history-info">
+                    <div class="history-block">
+                        <div class="history-item">
+                            <div class="history-name">评审行数</div>
+                            <div class="history">111</div>
+                        </div>
+                        <div class="history-item">
+                            <div class="history-name">评审时间</div>
+                            <div class="history">11小时</div>
+                        </div>
+                        <div class="history-item">
+                            <div class="history-name">发现缺陷</div>
+                            <div class="history">123个</div>
+                        </div>
+                        <div class="history-item">
+                            <div class="history-name">正确率</div>
+                            <div class="history">67%</div>
+                        </div>
+                        <div class="history-item">
+                            <div class="history-name">平均覆盖率</div>
+                            <div class="history">23%</div>
+                        </div>
+                    </div>
+                </div>
+                <div id="friend" class="friend-block block-shadow"></div>
+                <div id="achieve" class="achieve-block block-shadow"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <%-- 上传头像 --%>
 <%--<form action="upfile.do" method="post" name="form1" enctype="multipart/form-data">--%>
-<form style="margin-top: 200px;"><table><tr>
-    <img id="previewImg"src=""width="80"height="80">
-    <td> 请选择头像：</td>
-    <td >
-        <input type="file" name="file" id="file" accept="image/*" onchange="change('previewImg','file')">
-        <input type="submit"value="提交"/>
+<%--<form style="margin-top: 200px;"><table><tr>--%>
+<%--<img id="previewImg"src=""width="80"height="80">--%>
+<%--<td> 请选择头像：</td>--%>
+<%--<td >--%>
+<%--<input type="file" name="file" id="file" accept="image/*" onchange="change('previewImg','file')">--%>
+<%--<input type="submit"value="提交"/>--%>
 
-    </td>
-</table>
-</form>
+<%--</td>--%>
+<%--</table>--%>
+<%--</form>--%>
 
 
 <a href="#" id="back-to-top"><i class="fa fa-angle-up"></i></a>

@@ -1,0 +1,114 @@
+.backimage {
+    position: absolute;
+    top: 0;
+    background-image: url("../image/background.png");
+    width: 100%;
+    height: 550px;
+}
+
+.all-info {
+    position: relative;
+    max-width: 1230px;
+    margin: 160px auto;
+}
+
+.person-block {
+    text-align: center;
+    margin-left: 20px;
+    width: 262px;
+    height: 506px;
+    background-color: #fff;
+}
+
+.list-block {
+    padding-left: 20px;
+    padding-right: 20px;
+    width: 100%;
+    height: 2000px;
+}
+
+.sticky {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 100px;
+}
+
+.body {
+    background-color: #F7F7F7;
+}
+
+.block-shadow {
+    box-shadow: 0 0 8px rgba(82, 99, 168, 0.4);
+}
+
+.history-info {
+    width: 100%;
+    height: 212px;
+    background-color: rgba(255, 255, 255, 0.6);
+}
+
+.friend-block, .achieve-block {
+    margin-top: 20px;
+    width: 100%;
+    height: 700px;
+    background-color: #fff;
+}
+
+.image-large:hover {
+
+}
+
+.portrait {
+    display: inline-block;
+}
+
+.info-item {
+    font-size: 12px;
+    color: #A1A7B3;
+    margin-top: 10px;
+}
+
+.info {
+    font-size: 14px;
+    color: #4E5C73;
+}
+
+.person-info {
+    padding-top: 24px;
+    height: 375px;
+    background-color: #F7F7F7;
+}
+
+.nav-text {
+    height: 20px;
+    margin-top: 25px;
+    cursor: pointer;
+    font-size: 22px;
+    color: #68708F;
+}
+
+.nav-text:hover {
+    color: #5F7BD3;
+}
+
+.history-block {
+    text-align: center;
+}
+
+.history-item {
+    display: inline-block;
+    margin-top: 80px;
+    margin-left: 25px;
+    margin-right: 25px;
+}
+
+.history-name {
+    color: #263778;
+    font-size: 18px;
+
+}
+
+.history {
+    color: #5062A8;
+    font-size: 26px;
+}

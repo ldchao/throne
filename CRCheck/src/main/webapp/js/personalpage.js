@@ -5,13 +5,15 @@
 //使用IE条件注释来判断是否IE6，通过判断userAgent不一定准确
 if (document.all) document.write('<!--[if lte IE 6]><script type="text/javascript">window.ie6= true<\/script><![endif]-->');
 // var ie6 = /msie 6/i.test(navigator.userAgent);//不推荐，有些系统的ie6 userAgent会是IE7或者IE8
-function change(picId,fileId) {
+function change(picId, fileId) {
     var pic = document.getElementById(picId);
     var file = document.getElementById(fileId);
-    if(window.FileReader){//chrome,firefox7+,opera,IE10,IE9，IE9也可以用滤镜来实现
+    if (window.FileReader) {//chrome,firefox7+,opera,IE10,IE9，IE9也可以用滤镜来实现
         oFReader = new FileReader();
         oFReader.readAsDataURL(file.files[0]);
-        oFReader.onload = function (oFREvent) {pic.src = oFREvent.target.result;};
+        oFReader.onload = function (oFREvent) {
+            pic.src = oFREvent.target.result;
+        };
     }
     else if (document.all) {//IE8-
         file.select();
@@ -30,3 +32,17 @@ function change(picId,fileId) {
     }
 
 }
+
+
+function slideTo(id) {
+    if (id == "friend") {
+        $("html, body").animate({scrollTop: $("#friend").offset().top - 110}, 400);
+    }else {
+        $("html, body").animate({scrollTop: $("#achieve").offset().top - 110}, 400);
+    }
+}
+
+
+
+
+

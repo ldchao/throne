@@ -174,6 +174,21 @@ function backToTop() {
         $("html, body").animate({scrollTop: 0}, 500);
     });
 }
+
+function sticky() {
+    $(window).scroll(function () {
+
+        if ($(this).scrollTop() > 60) {
+            $(".person-block").css({"position": "fixed", "top": "110px"});
+        } else {
+            $(".person-block").css({"position": "static"});
+        }
+    });
+}
+
+
 $(document).ready(function () {
     backToTop();
+    sticky();
 })
+
