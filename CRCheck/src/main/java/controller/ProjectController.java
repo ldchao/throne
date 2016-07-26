@@ -1,5 +1,7 @@
 package controller;
 
+import Dao.CreateIdDao;
+import DaoImpl.CreateIdDaoImpl;
 import enums.FileType;
 import enums.Power;
 import model.InvitationMessage;
@@ -23,6 +25,15 @@ import java.util.List;
  */
 @Controller
 public class ProjectController {
+    //获得创建项目id-点击加号和发起评审时调用
+    @RequestMapping(value = "/getProjectId", method = RequestMethod.POST)
+    @ResponseBody
+    public int getProjectId() {
+        CreateIdDao iddao = new CreateIdDaoImpl();
+        int id = iddao.CreateIntId("Project");
+        return id;
+    }
+
     //发布新项目
     @RequestMapping(value = "/Launch", method = RequestMethod.POST)
     @ResponseBody
