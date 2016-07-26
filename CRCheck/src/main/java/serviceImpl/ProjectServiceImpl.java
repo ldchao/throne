@@ -32,10 +32,8 @@ public class ProjectServiceImpl implements ProjectService {
         Project p = new Project();
         InvitationListService invite = new InvitationListServiceImpl();
         MessageService message = new MessageServiceImpl();
-        //生成项目id
-        CreateIdDao iddao = new CreateIdDaoImpl();
-        int id = iddao.CreateIntId("Project");
-        projectModel.setProjectID(id);
+        //获得项目id
+        int id = projectModel.getProjectID();
         //projectModel转project
         p.setId(id);
         p.setUserId(projectModel.getUserID());

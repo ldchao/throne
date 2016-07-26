@@ -4,6 +4,7 @@ import Dao.CreateIdDao;
 import DaoImpl.CreateIdDaoImpl;
 import enums.FileType;
 import enums.Power;
+import javafx.beans.binding.IntegerExpression;
 import model.InvitationMessage;
 import model.ProjectModel;
 import org.springframework.stereotype.Controller;
@@ -58,10 +59,10 @@ public class ProjectController {
         p.setEndDate(str1[5]);
         //str1第七项-项目权限
         p.setPower(Power.valueOf(str1[6]));
-
-        //TODO str1第八项-是否上传文件，是-UPLOAD，否-NOLOAD
-        p.setProjectPath(str1[7]);
-        //TODO 调用上传文件
+        //str1第八项-项目id
+        p.setProjectID(Integer.parseInt(str1[7]));
+        //str1第九项-是否上传文件，是-UPLOAD，否-NOLOAD
+        p.setProjectPath(str1[8]);
 
         //str2第一项-自己是否参与(YES,NO)
         p.setAttendReview(str2[0]);
