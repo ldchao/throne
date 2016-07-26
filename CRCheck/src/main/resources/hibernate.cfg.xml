@@ -31,6 +31,8 @@
         <mapping resource="Commitrecord.hbm.xml"/>
         <mapping class="POJO.Projectquality"/>
         <mapping resource="Projectquality.hbm.xml"/>
+        <mapping resource="File.hbm.xml"/>
+        <mapping class="POJO.File"/>
 
 
     </session-factory>
