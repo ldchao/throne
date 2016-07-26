@@ -7,6 +7,7 @@ import DaoImpl.ProjectDaoImpl;
 import POJO.Attendance;
 import POJO.Project;
 import POJO.User;
+import enums.CommitState;
 import enums.ProjectState;
 import model.ProjectModel;
 import service.AttendanceService;
@@ -46,5 +47,12 @@ public class AttendanceServiceImpl implements AttendanceService{
         return result;
 
 
+    }
+
+    public String getState(String userID, int projectID) {
+
+        AttendanceDao attendanceDao=new AttendanceDaoImpl();
+        Attendance attendance=attendanceDao.findAttendance(projectID,userID);
+        return attendance.getState();
     }
 }
