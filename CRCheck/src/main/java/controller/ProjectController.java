@@ -47,6 +47,11 @@ public class ProjectController {
         p.setEndDate(str1[5]);
         //str1第七项-项目权限
         p.setPower(Power.valueOf(str1[6]));
+
+        //TODO str1第八项-是否上传文件，是-UPLOAD，否-NOLOAD
+        p.setProjectPath(str1[7]);
+        //TODO 调用上传文件
+
         //str2第一项-自己是否参与(YES,NO)
         p.setAttendReview(str2[0]);
         //str2其他项-邀请用户id

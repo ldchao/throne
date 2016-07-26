@@ -46,7 +46,8 @@ public class ProjectServiceImpl implements ProjectService {
         p.setPower(String.valueOf(projectModel.getPower()));
         p.setStartTime(projectModel.getStartDate());
         p.setEndTime(projectModel.getEndDate());
-        p.setCodePath("");
+        //是否上传文件
+        p.setCodePath(projectModel.getProjectPath());
         p.setAttendReview(projectModel.getAttendReview());
 
         boolean a=true;
