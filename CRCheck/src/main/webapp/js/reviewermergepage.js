@@ -85,7 +85,6 @@ function addMerge(singleDef, mergeDef) {
     headtexts[2].innerHTML = singleDef.type;
     headdiv.getElementsByClassName("who_name")[0].innerHTML = singleDef.userId;
     headdiv.getElementsByClassName("info-bottom_2")[0].innerHTML = singleDef.description;
-
     if (mergeDef.length > 0) {
         headdiv.getElementsByClassName("merge_span")[0].innerHTML = "合并共" + mergeDef.length + "缺陷&nbsp;";
     } else {
@@ -95,7 +94,6 @@ function addMerge(singleDef, mergeDef) {
     var elemi = document.createElement("i");
     elemi.setAttribute("class", "fa fa-angle-double-down");
     headdiv.getElementsByClassName("merge_span")[0].appendChild(elemi);
-
     headdiv.getElementsByClassName("recordId")[0].innerHTML = singleDef.id;
     headdiv.getElementsByClassName("recordId")[1].innerHTML = singleDef.parId;
 
