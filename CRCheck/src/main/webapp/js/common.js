@@ -204,6 +204,8 @@ $(document).ready(function () {
     backToTop();
     sticky();
     bodyClick();
+    window.isEdit = 0;
+    document.getElementById("js-user-popup").style.right = 63+($(".user").width() -130)/2;
 })
 
 

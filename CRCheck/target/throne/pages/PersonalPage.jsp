@@ -60,6 +60,7 @@
     if (user != null) {
         userId = user.getId();
     }
+    String src="../HeadPortraits/"+userId+".png";
 %>
 
 <nav class="navbar navbar-fixed-top navbar-inverse">
@@ -126,8 +127,23 @@
             <div class="person-block block-shadow">
                 <div class="person-info">
                     <div class="portrait">
-                        <div class="image-large"><a href="#"></a></div>
-                        <div class="info" style="margin-top:5px;margin-bottom:10px;font-size: 24px;color: #838D9E;">marioquer</div>
+
+
+                        <form action="../headPortraitsUpload.action" method="post" name="form1"
+                              enctype="multipart/form-data" style="margin-bottom:0;">
+                            <img id="previewImg" width="68" height="68" src=<%=user.getHeadPortrait()%>>
+                            <%--<div style="height: 68px; width: 68px;" id="previewImg"><a href="#"></a></div>--%>
+                            <input type="file" name="imageFile" id="file" accept="image/*"
+                                   onchange="change('previewImg','file')" onmouseover="imageEdit(1)"
+                                   onmouseout="imageEdit(0)">
+                            <div id="portrait-filter"><i class="fa fa-pencil"></i></div>
+                            <%--<input type="submit" value="提交"/>--%>
+                        </form>
+
+
+                        <div class="info" style="margin-top:0;margin-bottom:10px;font-size: 24px;color: #838D9E;">
+                            marioquer
+                        </div>
                     </div>
                     <div class="info-item" style="margin-top: 0;">
                         <div class="info-name">个人主页</div>
@@ -187,20 +203,6 @@
         </div>
     </div>
 </div>
-
-
-<%-- 上传头像 --%>
-<%--<form action="upfile.do" method="post" name="form1" enctype="multipart/form-data">--%>
-<%--<form style="margin-top: 200px;"><table><tr>--%>
-<%--<img id="previewImg"src=""width="80"height="80">--%>
-<%--<td> 请选择头像：</td>--%>
-<%--<td >--%>
-<%--<input type="file" name="file" id="file" accept="image/*" onchange="change('previewImg','file')">--%>
-<%--<input type="submit"value="提交"/>--%>
-
-<%--</td>--%>
-<%--</table>--%>
-<%--</form>--%>
 
 
 <a href="#" id="back-to-top"><i class="fa fa-angle-up"></i></a>
@@ -400,6 +402,8 @@
 <!-- Placed at the end of the document so the pages load faster -->
 <%--<script src="../js/main.js"></script>--%>
 <script src="../js/jquery.js"></script>
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="http://malsup.github.io/jquery.form.js"></script>
 <script src="../js/bootstrap.js"></script>
 <script src="../js/common.js"></script>
 <script src="../js/toaster.js"></script>
