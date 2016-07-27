@@ -1,6 +1,7 @@
 package controller;
 
 
+import enums.ApproveState;
 import enums.UniversalState;
 import model.PersonalReviewRecord;
 import model.ProjectModel;
@@ -61,6 +62,28 @@ public class DealController {
         return list;
     }
 
+    //审批评审记录（审批个人的评审记录，reviewRecordID为个人评审记录表格中ID,approveState要和枚举类里）
+    @RequestMapping(value = "/approveReview", method = RequestMethod.POST)
+    @ResponseBody
+    public String approveReviewRecord(int recordId, String approveState){
+        ApproveState state=ApproveState.valueOf(approveState);
+        ReviewRecordService service=new ReviewRecordServiceImpl();
+        UniversalState s=service.approveReviewRecord(recordId,state);
+        if(s==UniversalState.SUCCESS)
+            return "SUCCESS";
+        return "FAIL";
+    }
+
+    //删除评审(只删除汇总表格，reviewRecordID为汇总评审记录表格中ID)
+    @RequestMapping(value = "/deletekReview", method = RequestMethod.POST)
+    @ResponseBody
+    public String deleteReviewRecord(String recordId){
+        ReviewRecordService service=new ReviewRecordServiceImpl();
+        UniversalState s=service.deleteReviewRecord(recordId);
+        if(s==UniversalState.SUCCESS)
+            return "SUCCESS";
+        return "FAIL";
+    }
     //查看单条合并记录
     @RequestMapping(value = "/getChildReview", method = RequestMethod.POST)
     @ResponseBody
