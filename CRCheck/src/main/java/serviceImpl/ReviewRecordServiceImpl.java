@@ -227,27 +227,50 @@ public class ReviewRecordServiceImpl implements ReviewRecordService {
     public int mergeReviewRecord(ArrayList<String> recordIDList, int id, String userID) {
         boolean state=true;
 
-        Date date=new Date();
-        DateFormat format=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String time=format.format(date);
+//        Date date=new Date();
+//        DateFormat format=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//        String time=format.format(date);
+//
+//        PersonalreviewDao personalreviewDao=new PersonalreviewDaoImpl();
+//        Personalreview po=new Personalreview();
+//        po.setId(id);
+//        Personalreview personalreview=personalreviewDao.findPersonalreviewById(po);
+//
+//        CreateIdDao createIdDao=new CreateIdDaoImpl();
+//        int newid=createIdDao.CreateIntId("Personalreview");
+//        personalreview.setId(newid);
+//        personalreview.setCommitTime(time);
+//        personalreview.setState(CommitState.Combination.toString());
+//        personalreview.setResult(ApproveState.Unapprove.toString());
+//
+//        state=state&personalreviewDao.addPersionalreview(personalreview);
+//
+//        SummaryDao summaryDao=new SummaryDaoImpl();
+//        Summary summary=new Summary();
+//        summary.setNewPersonalReviewId(newid);
+//        summary.setProjectId(personalreview.getProjectId());
+//        for (String recordID:recordIDList) {
+//            summary.setOldPersonalReviewId(Integer.parseInt(recordID));
+//            int summaryId=createIdDao.CreateIntId("Summary");
+//            summary.setId(summaryId);
+//            state=state&summaryDao.addSummary(summary);
+//        }
 
         PersonalreviewDao personalreviewDao=new PersonalreviewDaoImpl();
         Personalreview po=new Personalreview();
         po.setId(id);
         Personalreview personalreview=personalreviewDao.findPersonalreviewById(po);
 
-        CreateIdDao createIdDao=new CreateIdDaoImpl();
-        int newid=createIdDao.CreateIntId("Personalreview");
-        personalreview.setId(newid);
-        personalreview.setCommitTime(time);
-        personalreview.setState(CommitState.Combination.toString());
-        personalreview.setResult(ApproveState.Unapprove.toString());
+        po.setState(CommitState.Combination.toString());
 
-        state=state&personalreviewDao.addPersionalreview(personalreview);
+        personalreviewDao.updateState(po);
+        CreateIdDao createIdDao=new CreateIdDaoImpl();
+
+//        state=state&personalreviewDao.addPersionalreview(personalreview);
 
         SummaryDao summaryDao=new SummaryDaoImpl();
         Summary summary=new Summary();
-        summary.setNewPersonalReviewId(newid);
+        summary.setNewPersonalReviewId(id);
         summary.setProjectId(personalreview.getProjectId());
         for (String recordID:recordIDList) {
             summary.setOldPersonalReviewId(Integer.parseInt(recordID));
@@ -267,7 +290,7 @@ public class ReviewRecordServiceImpl implements ReviewRecordService {
             return -1;
         }
 
-        return state?newid:-1;
+        return state?id:-1;
     }
 
     //分解评审记录

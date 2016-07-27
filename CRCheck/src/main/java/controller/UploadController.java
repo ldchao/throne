@@ -1,5 +1,7 @@
 package controller;
 
+import Dao.UserDao;
+import DaoImpl.UserDaoImpl;
 import POJO.User;
 import enums.UniversalState;
 import model.UserModel;
@@ -112,9 +114,16 @@ public class UploadController {
 			return UniversalState.FAIL.toString();
 		}
 
-		
+		UserDao userDao=new UserDaoImpl();
+		String headPortraitsPath="../HeadPortraits/"+filename;
+		User po=new User();
+		po.setId(user.getId());
+		po.setHeadPortrait(headPortraitsPath);
 
-		return UniversalState.SUCCESS.toString();
+       if( userDao.updateHeadPortrait(po)){
+		user.setHeadPortrait(headPortraitsPath);
+		return UniversalState.SUCCESS.toString();}
+		return  UniversalState.FAIL.toString();
 	}
 
 	@RequestMapping("/moreUpload")
