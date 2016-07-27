@@ -14,4 +14,6 @@ public interface FileService {
     public boolean unZip(String filePath,String destination);
 
     public boolean changeState(FileModel fileModel);
+
+    public List<String> readFile(String path);
 }

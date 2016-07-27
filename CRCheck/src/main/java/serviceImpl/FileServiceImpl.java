@@ -193,4 +193,19 @@ public class FileServiceImpl implements FileService {
     public boolean changeState(FileModel fileModel) {
         return false;
     }
+
+    public List<String> readFile(String path) {
+        ArrayList<String> s = new ArrayList<String>();
+        try {
+            FileReader fr = new FileReader(path);
+            BufferedReader br = new BufferedReader(fr);
+            String str;
+            while ((str = br.readLine()) != null) {
+               s.add(str);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return s;
+    }
 }
