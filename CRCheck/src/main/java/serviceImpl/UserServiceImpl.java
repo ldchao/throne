@@ -75,11 +75,14 @@ public class UserServiceImpl implements UserService {
     public static void main(String[] args) {
         UserService u=new UserServiceImpl();
         //UserModel state=u.getUser("saige");
-        List<String> list=u.getUserList("saisai");
-        for(String s:list)
-            System.out.print(s+" ");
+//        List<String> list=u.getUserList("saisai");
+//        for(String s:list)
+//            System.out.print(s+" ");
 //        System.out.print(String.valueOf(state.getId()));
 //        System.out.print(String.valueOf(state.getPower()));
+
+        UserModel user=u.getUser("chao");
+        System.out.println(user.getHeadPortrait());
     }
 
 }

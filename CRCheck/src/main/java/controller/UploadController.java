@@ -121,8 +121,9 @@ public class UploadController {
 		po.setHeadPortrait(headPortraitsPath);
 
        if( userDao.updateHeadPortrait(po)){
-		user.setHeadPortrait(headPortraitsPath);
-		return UniversalState.SUCCESS.toString();}
+		  user.setHeadPortrait(headPortraitsPath);
+		  return UniversalState.SUCCESS.toString();
+	   }
 		return  UniversalState.FAIL.toString();
 	}
 
