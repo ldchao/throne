@@ -168,7 +168,7 @@ public class ReviewRecordServiceImpl implements ReviewRecordService {
     }
 
     //合并评审记录--重新填写项（前面为待合并项ID，后面会合并后结果）
-    public UniversalState mergeReviewRecord(ArrayList<String> recordIDList, PersonalReviewRecord result){
+    public int mergeReviewRecord(ArrayList<String> recordIDList, PersonalReviewRecord result){
 
         boolean state=true;
 
@@ -217,14 +217,14 @@ public class ReviewRecordServiceImpl implements ReviewRecordService {
         String description=result.getUserId()+"将"+recordIDList.size()+"条缺陷合并为一条。";
         projectQualityModel.setDescription(description);
         if(crcService.addQualityReview(projectQualityModel)==UniversalState.FAIL){
-            return UniversalState.FAIL;
+            return -1;
         }
 
-       return state?UniversalState.SUCCESS:UniversalState.FAIL;
+       return state?id:-1;
     }
 
     //合并评审记录--选取某条作为合并后项(前面为待合并项ID,id为选作展示的项，userid为执行此操作者)
-    public UniversalState mergeReviewRecord(ArrayList<String> recordIDList, int id, String userID) {
+    public int mergeReviewRecord(ArrayList<String> recordIDList, int id, String userID) {
         boolean state=true;
 
         Date date=new Date();
@@ -264,10 +264,10 @@ public class ReviewRecordServiceImpl implements ReviewRecordService {
         String description=userID+"将"+recordIDList.size()+"条缺陷合并为一条。";
         projectQualityModel.setDescription(description);
         if(crcService.addQualityReview(projectQualityModel)==UniversalState.FAIL){
-            return UniversalState.FAIL;
+            return -1;
         }
 
-        return state?UniversalState.SUCCESS:UniversalState.FAIL;
+        return state?newid:-1;
     }
 
     //分解评审记录

@@ -27,10 +27,10 @@ public interface ReviewRecordService {
     public ArrayList<PersonalReviewRecord> checkSummaryReviewRecord(int projectID);
 
     //合并评审记录--重新填写项（前面为待合并项ID，后面会合并后结果）
-    public UniversalState mergeReviewRecord(ArrayList<String> recordIDList, PersonalReviewRecord result);
+    public int mergeReviewRecord(ArrayList<String> recordIDList, PersonalReviewRecord result);
 
     //合并评审记录--选取某条作为合并后项(前面为待合并项ID,id为选作展示的项，userid为执行此操作者)
-    public UniversalState mergeReviewRecord(ArrayList<String> recordIDList, int id,String userID);
+    public int mergeReviewRecord(ArrayList<String> recordIDList, int id,String userID);
 
     //分解评审记录(result只需要personalReviewID)
     public ArrayList<PersonalReviewRecord> disassembleReviewRecord(int id,String userID);
