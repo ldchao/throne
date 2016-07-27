@@ -11,7 +11,6 @@ import service.ReviewRecordService;
 import serviceImpl.ProjectServiceImpl;
 import serviceImpl.ReviewRecordServiceImpl;
 import tool.RecordTransfer;
-
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
@@ -45,11 +44,18 @@ public class ReviewController {
 
     //结束个人项目评审
     @RequestMapping(value = "/endReview", method = RequestMethod.POST)
-    public ModelAndView endReview(String userId, int projectID) {
+    @ResponseBody
+    public String endReview(String userId, int projectID) {
         ReviewRecordService review=new ReviewRecordServiceImpl();
         UniversalState state=review.finishReviewRecord(userId, projectID);
-        if(state!=UniversalState.SUCCESS)
-            return null;
+        if(state==UniversalState.SUCCESS)
+            return "SUCCESS";
+        return "FAIL";
+    }
+
+    //结束后跳转
+    @RequestMapping(value = "/projects/merge", method = RequestMethod.POST)
+    public ModelAndView mergePage(int projectID) {
         //查找项目
         ProjectService ps = new ProjectServiceImpl();
         ProjectModel project = ps.checkProject(projectID);
@@ -57,11 +63,10 @@ public class ReviewController {
         if (project == null) {
             return null;
         }
-        ModelAndView model=new ModelAndView();
+        ModelAndView model = new ModelAndView("ReviewerMergePage");
         model.addObject("project", project);
-            return model;
+        return model;
     }
-
     //查看个人评审记录
     @RequestMapping(value = "/getPersonReviewList", method = RequestMethod.POST)
     @ResponseBody
