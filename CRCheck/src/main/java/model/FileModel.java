@@ -18,7 +18,25 @@ public class FileModel {
     //最近评审时间
     String time;
 
+    public String getPath() {
+        return path;
+    }
 
+    public FileType getType() {
+        return type;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public String getN() {
+        return n;
+    }
+
+    public String getTime() {
+        return time;
+    }
 
     public FileModel(String path, FileType dir, String s, String s1, String s2) {
     }

@@ -2,12 +2,14 @@ package serviceImpl;
 
 import Dao.FileDao;
 import DaoImpl.FileDaoImpl;
+import POJO.*;
 import enums.FileType;
 import model.FileModel;
 import service.FileService;
 
 
 import java.io.*;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.LinkedList;
@@ -191,7 +193,11 @@ public class FileServiceImpl implements FileService {
     }
 
     public boolean changeState(FileModel fileModel) {
-        return false;
+        FileDao fileDao = new FileDaoImpl();
+        POJO.File file = new POJO.File();
+        file.setPath(fileModel.getPath());
+        boolean a = fileDao.changeFileState(file);
+        return a;
     }
 
     public List<String> readFile(String path) {
