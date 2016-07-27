@@ -131,9 +131,9 @@ public class DealController {
     //分解评审记录(result只需要personalReviewID--合并项id)
     @RequestMapping(value = "/disassembleAll", method = RequestMethod.POST)
     @ResponseBody
-    public ArrayList<PersonalReviewRecord> disassembleAll(int mergedId){
+    public ArrayList<PersonalReviewRecord> disassembleAll(int mergedId,String userId){
         ReviewRecordService service=new ReviewRecordServiceImpl();
-        ArrayList<PersonalReviewRecord> list=service.disassembleReviewRecord(mergedId);
+        ArrayList<PersonalReviewRecord> list=service.disassembleReviewRecord(mergedId,userId);
         return list;
     }
 
@@ -143,6 +143,7 @@ public class DealController {
     public ArrayList<PersonalReviewRecord> disassembleSome(HttpServletRequest request){
         //获得参数
         int mergedId=Integer.parseInt(request.getParameter("recordId"));
+        String userId=request.getParameter("userId");
         String[] idList=request.getParameterValues("idList[]");
         //参数处理
         ArrayList<String> li=new ArrayList<String>();
@@ -151,7 +152,7 @@ public class DealController {
         }
         //调用逻辑层接口
         ReviewRecordService service=new ReviewRecordServiceImpl();
-        ArrayList<PersonalReviewRecord> list=service.disassembleReviewRecord(mergedId,li);
+        ArrayList<PersonalReviewRecord> list=service.disassembleReviewRecord(mergedId,userId,li);
         return list;
     }
 }

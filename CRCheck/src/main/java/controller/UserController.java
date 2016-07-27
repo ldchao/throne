@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import service.UserService;
 import serviceImpl.UserServiceImpl;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -28,7 +29,23 @@ public class UserController {
     //修改用户信息
     @RequestMapping(value = "/updateUser", method = RequestMethod.POST)
     @ResponseBody
-    public String updateUser(UserInf inf) {
+    public String updateUser(HttpServletRequest request) {
+        //获得信息
+        String id=request.getParameter("id");
+        String email=request.getParameter("email");
+        String sex=request.getParameter("sex");
+        String phone=request.getParameter("phone");
+        String blog=request.getParameter("blog");
+        String address=request.getParameter("address");
+        //转换信息
+        UserInf inf=new UserInf();
+        inf.setId(id);
+        inf.setEmail(email);
+        inf.setSex(sex);
+        inf.setPhone(phone);
+        inf.setBlog(blog);
+        inf.setAddress(address);
+        //调用更新
         UserService user=new UserServiceImpl();
         UniversalState state=user.update(inf);
         if(state==UniversalState.SUCCESS)
