@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 import service.ProjectFeedBackService;
 import serviceImpl.ProjectFeedBackServiceImpl;
 
@@ -17,6 +18,13 @@ import java.util.ArrayList;
 
 @Controller
 public class ProjectFeedBackController {
+    //进入质量反馈界面
+    @RequestMapping(value = "/feedBack", method = RequestMethod.POST)
+    public ModelAndView feedBack(int projectId){
+        ModelAndView model=new ModelAndView("FeedbackPage");
+        model.addObject("proId",projectId);
+        return model;
+    }
 
     @RequestMapping(value = "/scatterDiagram", method = RequestMethod.POST)
     @ResponseBody
