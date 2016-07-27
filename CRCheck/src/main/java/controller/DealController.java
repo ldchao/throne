@@ -84,7 +84,7 @@ public class DealController {
     //合并相同缺陷-重新填写项（参数前面为待合并项ID数组，后面会合并后结果）
     @RequestMapping(value = "/unionAdd", method = RequestMethod.POST)
     @ResponseBody
-    public String unionAdd(HttpServletRequest request){
+    public int unionAdd(HttpServletRequest request){
         //需要传的参数
         String userId=request.getParameter("userId");
         int projectId=Integer.parseInt(request.getParameter("projectId"));
@@ -101,10 +101,8 @@ public class DealController {
         unionRecord.setUserId(userId);
         //调用逻辑层合并
         ReviewRecordService service=new ReviewRecordServiceImpl();
-        UniversalState state=service.mergeReviewRecord(list,unionRecord);
-        if(state.equals(UniversalState.SUCCESS))
-            return "SUCCESS";
-        return "FAIL";
+        int mergeId=service.mergeReviewRecord(list,unionRecord);
+        return mergeId;
     }
 
     //合并评审记录--选取某条作为合并后项(前面为待合并项ID数组,id为选作展示的项，userid为执行此操作者)
