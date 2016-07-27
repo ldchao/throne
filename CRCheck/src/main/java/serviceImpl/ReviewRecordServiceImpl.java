@@ -375,7 +375,7 @@ public class ReviewRecordServiceImpl implements ReviewRecordService {
     public ArrayList<PersonalReviewRecord> getChildReviewRecord(int id) {
         SummaryDao summaryDao=new SummaryDaoImpl();
         Summary summary=new Summary();
-        summary.setId(id);
+        summary.setNewPersonalReviewId(id);
         List<Summary> summaryList=summaryDao.getMergedSummary(summary);
         ArrayList<PersonalReviewRecord> result=new ArrayList<PersonalReviewRecord>();
         for (Summary s:summaryList) {
