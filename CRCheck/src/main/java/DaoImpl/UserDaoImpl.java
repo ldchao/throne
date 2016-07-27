@@ -105,4 +105,8 @@ public class UserDaoImpl implements UserDao {
             return null;
         }
     }
+
+    public boolean updateAttributes(User po) {
+        return false;
+    }
 }
