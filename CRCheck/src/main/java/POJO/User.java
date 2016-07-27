@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 /**
- * Created by mm on 2016/7/20.
+ * Created by mm on 2016/7/27.
  */
 @Entity
 public class User {
@@ -19,6 +19,7 @@ public class User {
     private String userLogin;
     private String userState;
     private String checklistPath;
+    private String personalPage;
 
     @Id
     @Column(name = "id", nullable = false, length = 20)
@@ -110,6 +111,16 @@ public class User {
         this.checklistPath = checklistPath;
     }
 
+    @Basic
+    @Column(name = "personalPage", nullable = true, length = 255)
+    public String getPersonalPage() {
+        return personalPage;
+    }
+
+    public void setPersonalPage(String personalPage) {
+        this.personalPage = personalPage;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -127,6 +138,7 @@ public class User {
         if (userState != null ? !userState.equals(user.userState) : user.userState != null) return false;
         if (checklistPath != null ? !checklistPath.equals(user.checklistPath) : user.checklistPath != null)
             return false;
+        if (personalPage != null ? !personalPage.equals(user.personalPage) : user.personalPage != null) return false;
 
         return true;
     }
@@ -142,6 +154,7 @@ public class User {
         result = 31 * result + (userLogin != null ? userLogin.hashCode() : 0);
         result = 31 * result + (userState != null ? userState.hashCode() : 0);
         result = 31 * result + (checklistPath != null ? checklistPath.hashCode() : 0);
+        result = 31 * result + (personalPage != null ? personalPage.hashCode() : 0);
         return result;
     }
 }
