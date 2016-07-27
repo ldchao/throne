@@ -62,7 +62,7 @@ public class UserServiceImpl implements UserService {
         //更新信息
         user.setEmail(inf.getEmail());
         user.setSex(inf.getSex());
-        //TODO-个人主页
+        user.setPersonalPage(inf.getBlog());
         user.setPhone(inf.getPhone());
         user.setAddress(inf.getAddress());
         boolean a=dao.update(user);
