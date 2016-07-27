@@ -2,9 +2,13 @@ package controller;
 
 import enums.UniversalState;
 import model.PersonalReviewRecord;
+import model.ProjectModel;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+import service.ProjectService;
 import service.ReviewRecordService;
+import serviceImpl.ProjectServiceImpl;
 import serviceImpl.ReviewRecordServiceImpl;
 import tool.RecordTransfer;
 
@@ -41,13 +45,21 @@ public class ReviewController {
 
     //结束个人项目评审
     @RequestMapping(value = "/endReview", method = RequestMethod.POST)
-    @ResponseBody
-    public String endReview(String userId, int projectID) {
+    public ModelAndView endReview(String userId, int projectID) {
         ReviewRecordService review=new ReviewRecordServiceImpl();
         UniversalState state=review.finishReviewRecord(userId, projectID);
-        if(state==UniversalState.SUCCESS)
-            return "SUCCESS";
-        return "FAIL";
+        if(state!=UniversalState.SUCCESS)
+            return null;
+        //查找项目
+        ProjectService ps = new ProjectServiceImpl();
+        ProjectModel project = ps.checkProject(projectID);
+        //项目不存在
+        if (project == null) {
+            return null;
+        }
+        ModelAndView model=new ModelAndView();
+        model.addObject("project", project);
+            return model;
     }
 
     //查看个人评审记录
