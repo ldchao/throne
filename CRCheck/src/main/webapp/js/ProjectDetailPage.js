@@ -50,9 +50,6 @@ var detail = {
                         }
                     }
                     var button = document.getElementById("begin");
-
-                    alert(state);
-
                     switch (state) {
                         case "NotStart":
                             button.style.backgroundColor = "#D47859";

@@ -60,6 +60,7 @@
 
 .portrait {
     display: inline-block;
+    width: 100%;
 }
 
 .info-item {
@@ -115,7 +116,7 @@
 
 #previewImg {
     border: none;
-    border-radius: 34px;
+    border-radius: 60px;
 }
 
 /*#previewImg:hover{*/
@@ -130,7 +131,7 @@ form #file {
     opacity: 0;
     position: absolute;
     top: 0px;
-    left: 20.5px;
+    left: 96.5px;
     z-index: 999;
 }
 
@@ -141,7 +142,7 @@ form #portrait-filter {
     height: 68px;
     position: absolute;
     top: 0px;
-    left: 20.5px;
+    left: 96.5px;
     border: none;
     border-radius: 34px;
     text-align: center;

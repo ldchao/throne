@@ -61,7 +61,11 @@ public class CrcCalculation {
 	
 	
 	public void HChao(int d, int[] f){
-		MhCh = d + (double)f[1]*f[1]/(double)(2*f[2]);
+		if((2*f[2])==0){
+			MhCh=d;
+		}else{
+		    MhCh = d + (double)f[1]*f[1]/(double)(2*f[2]);
+		}
 	}
 	
 	public void TChao(int d, int t, int[] f, int [] Z){

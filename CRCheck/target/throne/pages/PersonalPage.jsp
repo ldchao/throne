@@ -60,7 +60,7 @@
     if (user != null) {
         userId = user.getId();
     }
-    String src="../HeadPortraits/"+userId+".png";
+    String src = "../HeadPortraits/" + userId + ".png";
 %>
 
 <nav class="navbar navbar-fixed-top navbar-inverse">
@@ -104,7 +104,7 @@
                                 class="fa fa-sign-out fa-fw"></i>&nbsp&nbsp退出账号</a>
                     </div>
                     <div class="user" onmouseover="popup()">
-                        <div class="image-middle"></div>
+                        <img class="image-middle" src=<%=user.getHeadPortrait()%>>
                         <div class="inline userName"><%=userId%>
                         </div>
                     </div>
@@ -127,8 +127,6 @@
             <div class="person-block block-shadow">
                 <div class="person-info">
                     <div class="portrait">
-
-
                         <form action="../headPortraitsUpload.action" method="post" name="form1"
                               enctype="multipart/form-data" style="margin-bottom:0;">
                             <img id="previewImg" width="68" height="68" src=<%=user.getHeadPortrait()%>>
@@ -141,7 +139,9 @@
                         </form>
 
 
-                        <div class="info" style="margin-top:0;margin-bottom:10px;font-size: 24px;color: #838D9E;"><%=userId%></div>
+                        <div class="info"
+                             style="margin-top:0;margin-bottom:10px;font-size: 24px;color: #838D9E;"><%=userId%>
+                        </div>
                     </div>
                     <div class="info-item" style="margin-top: 0;">
                         <div class="info-name">个人主页</div>
