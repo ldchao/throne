@@ -172,7 +172,7 @@ $(document).ready(function () {
 });
 
 function mergeDefects() {
-    window.location.href = "/projects/merge?projectID=" + projectId;
+    window.location.href = "/pages/merge?projectID=" + projectId;
 }
 
 function checkQuality() {

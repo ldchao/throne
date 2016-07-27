@@ -188,7 +188,7 @@
     <div style="margin-top: 50px">
         <div class="merge_this" style="width: 100px" onclick="Merge()">合并</div>
         <div class="refuse_merge" style="width: 100px" onclick="UndoMerge()">解开</div>
-        <div class="finish_btn finish_this" style="width: 125px">结束合并</div>
+        <div class="finish_btn finish_this" style="width: 125px" onclick="finishMerge()">结束合并</div>
     </div>
 </div>
 
@@ -244,6 +244,8 @@
                 </div>
                 <%-- 用来存放记录的id --%>
                 <div class="recordId"></div>
+                <%-- 用来存放父节点的id --%>
+                <div class="recordId"></div>
             </div>
         </div>
     </div>
@@ -282,6 +284,8 @@
                     缺陷好傻啊啊这个缺陷好傻啊
                 </div>
                 <%-- 用来存放记录的id --%>
+                <div class="recordId"></div>
+                <%-- 用来存放父节点的id --%>
                 <div class="recordId"></div>
             </div>
         </div>
