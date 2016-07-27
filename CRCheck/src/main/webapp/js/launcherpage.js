@@ -5,7 +5,8 @@
 window.onload = function () {
 
     var proId = document.getElementById("storage_proId").innerHTML;
-
+    proId = proId.trim();
+    
     $.ajax({
         type: "post",
         async: false,
@@ -77,6 +78,9 @@ function addMerge(singleDef, mergeDef) {
     headdiv.getElementsByClassName("who_name")[0].innerHTML = singleDef.userId;
     headdiv.getElementsByClassName("info-bottom_2")[0].innerHTML = singleDef.description;
     headdiv.getElementsByClassName("merge_span")[0].innerHTML = "共合并" + mergeDef.length + "缺陷";
+    var elemi = document.createElement("i");
+    elemi.setAttribute("class", "fa fa-angle-double-down");
+    headdiv.getElementsByClassName("merge_span")[0].appendChild(elemi);
 
     headdiv.onmouseenter = function () {
         showCheck(this, 1);
@@ -168,4 +172,10 @@ function Correct(parentDiv, isCor, isSin) {
     if (isSin == 1) {
         div.getElementsByClassName("info-head_2")[0].style.backgroundColor = headcolor[isCor];
     }
+}
+
+function mergeDefects() {
+    var proId = document.getElementById("storage_proId").innerHTML;
+    proId = proId.trim();
+    window.location.href = "/pages/merge?projectID=" + proId;
 }
