@@ -3,10 +3,7 @@ package serviceImpl;
 import Dao.*;
 import DaoImpl.*;
 import POJO.*;
-import enums.ApproveState;
-import enums.CommitState;
-import enums.FileType;
-import enums.UniversalState;
+import enums.*;
 import model.*;
 import service.CRCService;
 import service.ReviewRecordService;
@@ -212,6 +209,17 @@ public class ReviewRecordServiceImpl implements ReviewRecordService {
             state=state&summaryDao.addSummary(summary);
         }
 
+        CRCService crcService=new CRCServiceImpl();
+        ProjectQualityModel projectQualityModel=new ProjectQualityModel();
+        projectQualityModel.setUserId(result.getUserId());
+        projectQualityModel.setProjectId(result.getProjectId());
+
+        String description=result.getUserId()+"将"+recordIDList.size()+"条缺陷合并为一条。";
+        projectQualityModel.setDescription(description);
+        if(crcService.addQualityReview(projectQualityModel)==UniversalState.FAIL){
+            return UniversalState.FAIL;
+        }
+
        return state?UniversalState.SUCCESS:UniversalState.FAIL;
     }
 
@@ -248,20 +256,47 @@ public class ReviewRecordServiceImpl implements ReviewRecordService {
             state=state&summaryDao.addSummary(summary);
         }
 
+        CRCService crcService=new CRCServiceImpl();
+        ProjectQualityModel projectQualityModel=new ProjectQualityModel();
+        projectQualityModel.setUserId(userID);
+        projectQualityModel.setProjectId(personalreview.getProjectId());
+
+        String description=userID+"将"+recordIDList.size()+"条缺陷合并为一条。";
+        projectQualityModel.setDescription(description);
+        if(crcService.addQualityReview(projectQualityModel)==UniversalState.FAIL){
+            return UniversalState.FAIL;
+        }
+
         return state?UniversalState.SUCCESS:UniversalState.FAIL;
     }
 
     //分解评审记录
-    public ArrayList<PersonalReviewRecord> disassembleReviewRecord(int id){
+    public ArrayList<PersonalReviewRecord> disassembleReviewRecord(int id,String userID){
         ArrayList<PersonalReviewRecord> result=getChildReviewRecord(id);
+        int size=result.size();
+        int projectID=0;
+        if(size>0){
+            PersonalReviewRecord personalReviewRecord=result.get(0);
+            projectID=personalReviewRecord.getProjectId();
+        }
         PersonalreviewDao personalreviewDao=new PersonalreviewDaoImpl();
         Personalreview po=new Personalreview();
         po.setId(id);
         personalreviewDao.deletePersonalreview(po);
+
+        CRCService crcService=new CRCServiceImpl();
+        ProjectQualityModel projectQualityModel=new ProjectQualityModel();
+        projectQualityModel.setUserId(userID);
+        projectQualityModel.setProjectId(projectID);
+
+        String description=userID+"将一条缺陷分解为"+size+"条。";
+        projectQualityModel.setDescription(description);
+        crcService.addQualityReview(projectQualityModel);
+
         return result;
     }
 
-    public ArrayList<PersonalReviewRecord> disassembleReviewRecord(int id, ArrayList<String> idList) {
+    public ArrayList<PersonalReviewRecord> disassembleReviewRecord(int id,String userID, ArrayList<String> idList) {
         ArrayList<PersonalReviewRecord> result=new ArrayList<PersonalReviewRecord>();
         SummaryDao summaryDao=new SummaryDaoImpl();
         Summary summary=new Summary();
@@ -273,6 +308,21 @@ public class ReviewRecordServiceImpl implements ReviewRecordService {
             summary.setOldPersonalReviewId(child_id);
             summaryDao.deleteSummary(summary);
         }
+        int size=result.size();
+        int projectID=0;
+        if(size>0){
+            PersonalReviewRecord personalReviewRecord=result.get(0);
+            projectID=personalReviewRecord.getProjectId();
+        }
+        CRCService crcService=new CRCServiceImpl();
+        ProjectQualityModel projectQualityModel=new ProjectQualityModel();
+        projectQualityModel.setUserId(userID);
+        projectQualityModel.setProjectId(projectID);
+
+        String description=userID+"将一条缺陷分解为"+(size+1)+"条。";
+        projectQualityModel.setDescription(description);
+        crcService.addQualityReview(projectQualityModel);
+
         return result;
     }
 
@@ -300,11 +350,26 @@ public class ReviewRecordServiceImpl implements ReviewRecordService {
 
     //确定评审，确定以后将不能修改该项目任何评审
     public UniversalState confirmReviewRecord(int projectID) {
-//        SummaryDao summaryDao=new SummaryDaoImpl();
-//        Summary summary=new Summary();
-//        summary.setProjectId(projectID);
-//        return summaryDao.deleteInvalidSummary(summary)?UniversalState.SUCCESS:UniversalState.FAIL;
-        return null;
+
+        ProjectDao dao = new ProjectDaoImpl();
+        Project po = new Project();
+        po.setId(projectID);
+        Project pro = dao.findProject(po);
+        if (pro == null)
+            return UniversalState.FAIL;
+        pro.setProjectState(ProjectState.Over.toString());
+        dao.updateProject(pro);
+
+        CRCService crcService=new CRCServiceImpl();
+        ProjectQualityModel projectQualityModel=new ProjectQualityModel();
+        projectQualityModel.setUserId(pro.getUserId());
+        projectQualityModel.setProjectId(projectID);
+
+        String description="发起者"+pro.getUserId()+"结束整个项目的评审。";
+        projectQualityModel.setDescription(description);
+        return crcService.addQualityReview(projectQualityModel);
+
+        // TODO: 2016/7/27 修改成就系统
     }
 
     public ArrayList<PersonalReviewRecord> getChildReviewRecord(int id) {

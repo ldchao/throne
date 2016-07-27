@@ -33,10 +33,10 @@ public interface ReviewRecordService {
     public UniversalState mergeReviewRecord(ArrayList<String> recordIDList, int id,String userID);
 
     //分解评审记录(result只需要personalReviewID)
-    public ArrayList<PersonalReviewRecord> disassembleReviewRecord(int id);
+    public ArrayList<PersonalReviewRecord> disassembleReviewRecord(int id,String userID);
 
     //分解评审记录（id为合并项，idlist为将原来合并子项中要剔除出去的部分），返回剔除掉的部分
-    public ArrayList<PersonalReviewRecord> disassembleReviewRecord(int id,ArrayList<String> idList);
+    public ArrayList<PersonalReviewRecord> disassembleReviewRecord(int id,String userID,ArrayList<String> idList);
 
     //审批评审记录（审批个人的评审记录，reviewRecordID为个人评审记录表格中ID）
     public UniversalState approveReviewRecord(int id, ApproveState approveState);
@@ -44,7 +44,7 @@ public interface ReviewRecordService {
     //删除评审(只删除汇总表格，reviewRecordID为汇总评审记录表格中ID)
     public UniversalState deleteReviewRecord(String reviewRecordID);
 
-    //确定评审结果，确定后将不能再回退（发起者特有权利）
+    //确定评审结果
     public UniversalState confirmReviewRecord(int projectID);
 
     //根据合并项的id，查看合并前的所有项

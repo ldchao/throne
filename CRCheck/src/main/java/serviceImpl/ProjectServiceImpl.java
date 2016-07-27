@@ -110,21 +110,22 @@ public class ProjectServiceImpl implements ProjectService {
         p.setProjectPath(pro.getCodePath());
         p.setAttendReview(pro.getAttendReview());
 
-        ProjectqualityDao projectqualityDao=new ProjectqualityDaoImpl();
-        Projectquality projectquality=new Projectquality();
-        projectquality.setProjectId(projectID);
-        double hchao=projectqualityDao.getPredictedDefect(projectquality,"method1");
-        double tchao=projectqualityDao.getPredictedDefect(projectquality,"method2");
-        p.setHChao_PredictedDefect(hchao);
-        p.setTChao_PredictedDefect(tchao);
+//        ProjectqualityDao projectqualityDao=new ProjectqualityDaoImpl();
+//        Projectquality projectquality=new Projectquality();
+//        projectquality.setProjectId(projectID);
+//        double hchao=projectqualityDao.getPredictedDefect(projectquality,"method1");
+//        double tchao=projectqualityDao.getPredictedDefect(projectquality,"method2");
+//        p.setHChao_PredictedDefect(hchao);
+//        p.setTChao_PredictedDefect(tchao);
 
-        ProjectState nowProjectState= DateHelper.stateAnalyse(pro.getStartTime(),pro.getEndTime());
-        p.setState(nowProjectState);
         ProjectState oldProjectState=ProjectState.valueOf(pro.getProjectState());
-        if(nowProjectState!=oldProjectState){
-            updateProjectState(pro.getId(),nowProjectState);
+        if(oldProjectState!=ProjectState.Over) {
+            ProjectState nowProjectState = DateHelper.stateAnalyse(pro.getStartTime(), pro.getEndTime());
+            p.setState(nowProjectState);
+            if (nowProjectState != oldProjectState) {
+                updateProjectState(pro.getId(), nowProjectState);
+            }
         }
-
         //获取邀请列表
         InvitationListService service = new InvitationListServiceImpl();
         ArrayList<InvitationMessage> list = service.getInvitationList(projectID);
