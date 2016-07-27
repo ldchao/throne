@@ -99,7 +99,14 @@
                                 class="fa fa-bell-o" style="font-size:25px;"></i>
                         <% }%>
                     </a></div>
-                    <div class="user">
+                    <%--用户中心下拉框--%>
+                    <div class="popup user-popup" id="js-user-popup">
+                        <a class="item" href="PersonalPage.jsp"><i
+                                class="fa fa-user fa-fw"></i>&nbsp&nbsp个人中心</a>
+                        <a class="item" href="/Logout" style="margin-bottom: 5px;"><i
+                                class="fa fa-sign-out fa-fw"></i>&nbsp&nbsp退出账号</a>
+                    </div>
+                    <div class="user" onmouseover="popup()">
                         <div class="image-middle"></div>
                         <div class="inline userName"><%=userId%>
                         </div>

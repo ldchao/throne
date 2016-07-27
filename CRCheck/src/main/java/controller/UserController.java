@@ -28,7 +28,7 @@ public class UserController {
     //修改用户信息
     @RequestMapping(value = "/updateUser", method = RequestMethod.POST)
     @ResponseBody
-    public String getUserList(UserInf inf) {
+    public String updateUser(UserInf inf) {
         UserService user=new UserServiceImpl();
         UniversalState state=user.update(inf);
         if(state==UniversalState.SUCCESS)

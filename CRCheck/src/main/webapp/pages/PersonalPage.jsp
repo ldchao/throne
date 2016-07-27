@@ -99,7 +99,7 @@
                     <div class="popup user-popup" id="js-user-popup">
                         <a class="item" href="PersonalPage.jsp"><i
                                 class="fa fa-user fa-fw"></i>&nbsp&nbsp个人中心</a>
-                        <a class="item" href="#" onclick="logout()" style="margin-bottom: 5px;"><i
+                        <a class="item" href="/Logout" style="margin-bottom: 5px;"><i
                                 class="fa fa-sign-out fa-fw"></i>&nbsp&nbsp退出账号</a>
                     </div>
                     <div class="user" onmouseover="popup()">
@@ -127,9 +127,7 @@
                 <div class="person-info">
                     <div class="portrait">
                         <div class="image-large"><a href="#"></a></div>
-                        <div class="info" style="margin-top:5px;margin-bottom:10px;font-size: 24px;color: #838D9E;">
-                            marioquer
-                        </div>
+                        <div class="info" style="margin-top:5px;margin-bottom:10px;font-size: 24px;color: #838D9E;">marioquer</div>
                     </div>
                     <div class="info-item" style="margin-top: 0;">
                         <div class="info-name">个人主页</div>
@@ -392,6 +390,11 @@
 <%-- 用来存放userId --%>
 <a id="storage" style="display: none;"><%=userId%>
 </a>
+<a id="p-state" style="display: none;">${project.state}</a>
+<a id="yesNo" style="display: none;">${project.attendReview}</a>
+<a id="p-id" style="display: none;">${project.projectID}</a>
+
+
 <!-- Bootstrap core JavaScript
     ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->

@@ -3,6 +3,12 @@
  */
 
 
+var state = document.getElementById("p-state").innerHTML.trim();
+var userId = document.getElementById("storage").innerHTML.trim();//当前用户
+var owner = document.getElementById("owner").innerHTML.trim();//项目拥有者
+var yesNo = document.getElementById("yesNo").innerHTML.trim();//是否自己参与评审
+var projectId = document.getElementById("p-id").innerHTML.trim();
+
 
 var isEdit = false;
 
@@ -52,7 +58,7 @@ function editInfo() {
         var input = new Array(allInfo.length);
         for (var i = 0; i < 5; i++) {
             input[i] = document.createElement("input");
-            input[i].className = "textfield";
+            input[i].className = "textfield edit";
             input[i].type = "text";
             input[i].style.width = "auto";
             input[i].style.height = "26px";
@@ -68,6 +74,40 @@ function editInfo() {
         isEdit = true;
     } else {
         //还需要有一个保存的弹框
+        var allEdit = document.getElementsByClassName("edit");
+
+        $.ajax({
+            type: "post",
+            async: false,
+            url: "/updateUser",
+            data: {
+                "id": allEdit[0],
+                "blog": allEdit[1],
+                "email": allEdit[2],
+                "phone": allEdit[3],
+                "address": allEdit[4],
+                "sex": "男"
+            },
+            success: function (result) {
+                if (result == "SUCCESS") {
+                    var input = new Array(allEdit.length);
+                    for (var i = 0; i < 5; i++) {
+                        input[i] = document.createElement("div");
+                        input[i].className = "info";
+                        input[i].value = allEdit[0].innerHTML;
+                        allEdit[0].parentNode.replaceChild(input[i], allEdit[0]);
+                    }
+                    document.getElementById("edit-button").innerHTML = "修改资料";
+                    isEdit = false;
+                } else {
+                    slidein(1, "提交失败请稍候再试");
+                }
+            },
+            error: function () {
+                slidein(1, "获取数据失败");
+            }
+        });
+
     }
 }
 
