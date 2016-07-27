@@ -106,7 +106,8 @@ public class UserDaoImpl implements UserDao {
         }
     }
 
-    public boolean updateAttributes(User po) {
+    public boolean updateHeadPortrait(User po) {
         return false;
     }
+
 }
