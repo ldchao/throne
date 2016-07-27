@@ -575,7 +575,13 @@
         <data-type>varchar(255)</data-type>
         <default-expression>&apos;&apos;</default-expression>
       </column>
-      <key id="130" parent="12" name="PRIMARY">
+      <column id="130" parent="12" name="personalPage">
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="131" parent="12" name="headPortrait">
+        <data-type>varchar(255)</data-type>
+      </column>
+      <key id="132" parent="12" name="PRIMARY">
         <columns>id</columns>
         <primary>1</primary>
       </key>
