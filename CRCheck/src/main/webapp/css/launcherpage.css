@@ -224,3 +224,7 @@
     width: 87%;
     border: 1px solid #979797;
 }
+
+.recordId {
+    display: none;
+}
