@@ -28,7 +28,7 @@ function showLaunch(elem_id) {
         return;
     }
 
-    if(elem_id == "launch") {
+    if (elem_id == "launch") {
         $.ajax({
             type: "post",
             async: false,
@@ -605,13 +605,38 @@ function addPUBpro(jsondata) {
 // 上传文件
 function uploadFile() {
 
-    var progdiv = document.getElementById("prog_div");
-    var proginner = document.getElementById("inner_prog");
-   $(progdiv).show();
 
-    // refreshProg(0);
+    // var files = document.getElementById("file_input").files;
+    // alert(files[0].name);
 
-    
+    // var progdiv = document.getElementById("prog_div");
+    // var proginner = document.getElementById("inner_prog");
+    // proginner.style.width = 100 + "%";
+    // proginner.innerHTML = 100 + "%";
+    // $(progdiv).show();
+
+
+    var imageFile = $('input[name=name_input]').val();
+alert(imageFile)
+    $('form').ajaxSubmit({
+        type: 'post', // 提交方式 get/post
+        url: '/headPortraitsUpload', // 需要提交的 url
+        data: {
+            "imageFile": imageFile,
+            // "projectId": PROJECT_ID
+        },
+        success: function (result) { // data 保存提交后返回的数据，一般为 json 数据
+            if (result == "SUCCESS") {
+                slidein(0, "文件上传成功");
+            } else {
+                slidein(1, "文件上传失败");
+            }
+        },
+        error: function () {
+            slidein(1, "获取数据失败");
+        }
+    });
+
 }
 
 function refreshProg(i) {
@@ -620,9 +645,16 @@ function refreshProg(i) {
     proginner.style.width = i + "%";
     proginner.innerHTML = i + "%";
 
-    if(i < 100) {
+    if (i < 100) {
         i++;
         // setTimeout("refreshProg("+ i +")", 50);
     }
 
 }
+
+// jQuery(function () {
+//     $("#upload_File").click(function () {
+//         alert(1)
+//         return $("#file_input").click();
+//     });
+// });

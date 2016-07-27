@@ -173,12 +173,16 @@
         <input class="textfield" id="pro_name" type="text" placeholder="项目名称">
 
         <div class="upload">
-            <span onclick="uploadFile()">上传文件</span>
+
+            <form id="form_file" method="post" action="../oneUpload.action" enctype="multipart/form-data">
+                <span id="upload_File">上传文件</span>
+
+                <input type="file" name="name_input" id="file_input" onchange="uploadFile()">
+            </form>
 
             <div id="prog_div" class="progress">
                 <div id="inner_prog" class="progress-bar progress-bar-success"></div>
             </div>
-
         </div>
 
         <textarea class="textfield" id="pro_describe" placeholder="项目描述"></textarea>
@@ -358,6 +362,8 @@
 <!-- Placed at the end of the document so the pages load faster -->
 <%--<script src="../js/main.js"></script>--%>
 <script src="../js/jquery.js"></script>
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="http://malsup.github.io/jquery.form.js"></script>
 <script src="../js/bootstrap.js"></script>
 <script src="../js/common.js"></script>
 <script src="../js/toaster.js"></script>

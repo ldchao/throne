@@ -26,11 +26,12 @@ import java.util.Map;
 public class UploadController {
 
 	@RequestMapping("/oneUpload")
+	@ResponseBody
 	public String oneUpload(@RequestParam("oneFile") MultipartFile oneFile, @RequestParam("projectId") String projectId,HttpServletRequest request){
-
-        // TODO: 2016/7/26 取id ，用来创建文件名，返回id用来存储
+System.out.println("imin");
+		// TODO: 2016/7/26 取id ，用来创建文件名，返回id用来存储
 		String fileId =projectId;
-
+System.out.println(fileId);
 		String realPath=request.getSession().getServletContext().getRealPath("/");
 		String uploadUrl="";
 		String decompressionUrl="";
@@ -79,7 +80,7 @@ public class UploadController {
 			FileService fileService = new FileServiceImpl();
 			fileService.unZip(uploadUrl + filename, decompressionUrl);
 		}
-		return null;
+		return "SUCCESS";
 	}
 
 	private boolean isCompressedFile(String type){

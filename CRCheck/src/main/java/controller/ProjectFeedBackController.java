@@ -19,7 +19,7 @@ import java.util.ArrayList;
 @Controller
 public class ProjectFeedBackController {
     //进入质量反馈界面
-    @RequestMapping(value = "/pages/feedBack", method = RequestMethod.POST)
+    @RequestMapping(value = "/pages/feedBack")
     public ModelAndView feedBack(int projectId){
         ModelAndView model=new ModelAndView("FeedbackPage");
         model.addObject("proId",projectId);
