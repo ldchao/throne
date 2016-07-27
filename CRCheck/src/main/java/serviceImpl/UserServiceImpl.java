@@ -27,6 +27,7 @@ public class UserServiceImpl implements UserService {
         user=dao.findUser(po);
         model.setId(user.getId());
         model.setPower(Power.valueOf(user.getUserState()));
+        model.setHeadPortrait(user.getHeadPortrait());
         MessageService messageService=new MessageServiceImpl();
         int messageNum=messageService.checkMessageCount(userid);
         model.setMessageNum(messageNum);

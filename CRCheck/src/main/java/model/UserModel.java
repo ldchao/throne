@@ -9,6 +9,7 @@ public class UserModel {
     private String id;
     private Power power;
     private int messageNum;
+    private String headPortrait;
 
     public UserModel() {
     }
@@ -41,4 +42,11 @@ public class UserModel {
         this.messageNum--;
     }
 
+    public String getHeadPortrait() {
+        return headPortrait;
+    }
+
+    public void setHeadPortrait(String headPortrait) {
+        this.headPortrait = headPortrait;
+    }
 }

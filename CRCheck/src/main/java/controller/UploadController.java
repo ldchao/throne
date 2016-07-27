@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import service.FileService;
+import serviceImpl.FileServiceImpl;
 //import serviceImpl.FileServiceImpl;
 
 import javax.servlet.http.HttpServletRequest;
@@ -64,8 +65,8 @@ public class UploadController {
 			e.printStackTrace();
 		}
 //
-//		FileService fileService=new FileServiceImpl();
-//		fileService.unZip( uploadUrl + filename,decompressionUrl);
+		FileService fileService=new FileServiceImpl();
+		fileService.unZip( uploadUrl + filename,decompressionUrl);
 
 		return null;
 	}
@@ -110,6 +111,8 @@ public class UploadController {
 			e.printStackTrace();
 			return UniversalState.FAIL.toString();
 		}
+
+		
 
 		return UniversalState.SUCCESS.toString();
 	}
