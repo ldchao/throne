@@ -110,7 +110,7 @@ public class DealController {
     //合并评审记录--选取某条作为合并后项(前面为待合并项ID数组,id为选作展示的项，userid为执行此操作者)
     @RequestMapping(value = "/unionChoose", method = RequestMethod.POST)
     @ResponseBody
-    public String unionChoose(HttpServletRequest request){
+    public int unionChoose(HttpServletRequest request){
         //需要传的参数
         String userId=request.getParameter("userId");
         int recordId=Integer.parseInt(request.getParameter("recordId"));
@@ -122,10 +122,8 @@ public class DealController {
         }
         //调用逻辑层合并
         ReviewRecordService service=new ReviewRecordServiceImpl();
-        UniversalState state=service.mergeReviewRecord(list,recordId,userId);
-        if(state.equals(UniversalState.SUCCESS))
-            return "SUCCESS";
-        return "FAIL";
+        int mergeId=service.mergeReviewRecord(list,recordId,userId);
+        return mergeId;
     }
 
     //分解评审记录(result只需要personalReviewID--合并项id)
