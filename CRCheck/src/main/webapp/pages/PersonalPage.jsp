@@ -141,9 +141,7 @@
                         </form>
 
 
-                        <div class="info" style="margin-top:0;margin-bottom:10px;font-size: 24px;color: #838D9E;">
-                            marioquer
-                        </div>
+                        <div class="info" style="margin-top:0;margin-bottom:10px;font-size: 24px;color: #838D9E;"><%=userId%></div>
                     </div>
                     <div class="info-item" style="margin-top: 0;">
                         <div class="info-name">个人主页</div>

@@ -424,9 +424,9 @@
 
 <script src="../jsChart/StatisticsChart.js"></script>
 <script src="../jsChart/LineChart.js"></script>
-<script>showScatterDiagram(14)</script>
-<script>getStatisticsChart(14)</script>
-<script>getLineChart(14)</script>
+<script>showScatterDiagram(30)</script>
+<script>getStatisticsChart(30)</script>
+<script>getLineChart(30)</script>
 <script>
     $('#start_date').datetimepicker({
         lang: 'ch',
