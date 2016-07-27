@@ -41,8 +41,15 @@ window.onload = function () {
     });
 
     var state = document.getElementById("storage_proState").innerHTML;
+    state = state.trim();
     if (state == "Over") {
-        finishReview(0);
+        document.getElementById("finish_before").style.display = "none";
+        document.getElementById("finish_after").style.display = "";
+        var divs = document.getElementById("all-defect").getElementsByClassName("exist-form");
+        for (var i = 0; i < divs.length; i++) {
+            var leftslide = divs[i].getElementsByClassName("left_slide")[0];
+            leftslide.parentNode.removeChild(leftslide);
+        }
     }
 
 };
@@ -241,7 +248,7 @@ function saveReview() {
 }
 
 // 结束此项目评审 isFir - 1需要ajax; 0不需要
-function finishReview(isFir) {
+function finishReview() {
 
     document.getElementById("finish_before").style.display = "none";
     document.getElementById("finish_after").style.display = "";
@@ -251,30 +258,30 @@ function finishReview(isFir) {
         leftslide.parentNode.removeChild(leftslide);
     }
 
-    if (isFir == 1) {
-        var proId = document.getElementById("storage_proId").innerHTML;
-        proId = proId.trim();
-        $.ajax({
-            type: "post",
-            async: false,
-            url: "/confirmReview",
-            data: {
-                "projectID": proId
-            },
-            success: function (result) {
-                if (result == "SUCCESS") {
-                    slidein(0, "项目已结束");
-                } else {
-                    slidein(1, "操作失败请稍候再试");
-                }
-            },
-            error: function () {
-                slidein(1, "出故障了请稍候再试");
+    var proId = document.getElementById("storage_proId").innerHTML;
+    proId = proId.trim();
+    $.ajax({
+        type: "post",
+        async: false,
+        url: "/confirmReview",
+        data: {
+            "projectID": proId
+        },
+        success: function (result) {
+            if (result == "SUCCESS") {
+                slidein(0, "项目已结束");
+            } else {
+                slidein(1, "操作失败请稍候再试");
             }
-        });
-    }
+        },
+        error: function () {
+            slidein(1, "出故障了请稍候再试");
+        }
+    });
 }
 
 function checkQuality() {
-    window.location.href = "FeedbackPage.jsp";
+    var proId = document.getElementById("storage_proId").innerHTML;
+    proId = proId.trim();
+    window.location.href = "/pages/feedBack?projectId=" + proId;
 }

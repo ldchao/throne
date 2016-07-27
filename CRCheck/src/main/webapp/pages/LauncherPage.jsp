@@ -189,7 +189,7 @@
         <div class="continue_btn save_this" onclick="saveReview()">保存此次评审</div>
         <div class="merge_this" onclick="mergeDefects()">合并相同缺陷</div>
         <div class="feedback_btn" onclick="checkQuality()">查看项目评审质量</div>
-        <div class="finish_btn finish_this" onclick="finishReview(1)">结束此项目评审</div>
+        <div class="finish_btn finish_this" onclick="finishReview()">结束此项目评审</div>
     </div>
 
     <div id="finish_after" style="margin-top: 50px; display: none">
