@@ -53,10 +53,10 @@ public class FileDaoImpl implements FileDao {
             query1.setString(0,po.getPath());
             List list=query1.list();
             if (list.size()!=0){
-                String hql2="update File f set f.path=? where f.state=?";
+                String hql2="update File f set f.state=? where f.path=?";
                 Query query2=session.createQuery(hql2);
-                query2.setString(0,po.getPath());
-                query2.setString(1,po.getState());
+                query2.setString(0,po.getState());
+                query2.setString(1,po.getPath());
                 query2.executeUpdate();
                 Transaction transaction=session.beginTransaction();
                 transaction.commit();

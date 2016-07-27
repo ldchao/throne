@@ -107,7 +107,27 @@ public class UserDaoImpl implements UserDao {
     }
 
     public boolean updateHeadPortrait(User po) {
-        return false;
+        Session session=connection.getSession();
+        try {
+            if (findUser(po)!=null){
+                String hql="update User u set u.headPortrait=:headPortrait where u.id=:id";
+                Query query=session.createQuery(hql);
+                query.setParameter("headPortrait",po.getHeadPortrait());
+                query.setParameter("id",po.getId());
+                query.executeUpdate();
+                Transaction transaction=session.beginTransaction();
+                transaction.commit();
+                connection.closeSession(session);
+                return true;
+            }else {
+                connection.closeSession(session);
+                return false;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            connection.closeSession(session);
+            return false;
+        }
     }
 
 }

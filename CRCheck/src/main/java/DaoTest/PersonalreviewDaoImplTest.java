@@ -119,7 +119,7 @@ public void testUpdateResult() throws Exception {
 //TODO: Test goes here...
     Personalreview personalreview=new Personalreview();
     personalreview.setId(10);
-    personalreview.setResult("shadiao");
+    personalreview.setResult("Approve");
     System.out.println(personalreviewDao.updateResult(personalreview));
 
 } 

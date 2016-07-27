@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="POJO.Contribution" table="contribution" schema="throne">
+        <id name="id">
+            <column name="id" sql-type="int(11)"/>
+        </id>
+        <property name="userId">
+            <column name="userId" sql-type="varchar(20)" length="20"/>
+        </property>
+        <property name="projectId">
+            <column name="projectId" sql-type="int(11)"/>
+        </property>
+        <property name="row">
+            <column name="row" sql-type="double" precision="-1"/>
+        </property>
+        <property name="time">
+            <column name="time" sql-type="double" precision="-1"/>
+        </property>
+        <property name="amount">
+            <column name="amount" sql-type="double" precision="-1"/>
+        </property>
+        <property name="accuracy">
+            <column name="accuracy" sql-type="double" precision="-1"/>
+        </property>
+        <property name="coverage">
+            <column name="coverage" sql-type="double" precision="-1"/>
+        </property>
+    </class>
+</hibernate-mapping>
