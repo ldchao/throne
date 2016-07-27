@@ -155,7 +155,8 @@ function endReview(){
         success: function (result) {
             if (result == "SUCCESS") {
                 slidein(0, "提交成功");
-                setTimeout("window.location.reload()", 1800);
+                document.getElementById("finish_after").style.display = "";
+                document.getElementById("finish_before").style.display = "none";
             } else {
                 slidein(1, "提交失败请稍候再试");
             }
@@ -170,3 +171,10 @@ $(document).ready(function () {
     detail.init();
 });
 
+function mergeDefects() {
+    window.location.href = "/projects/merge?projectID=" + projectId;
+}
+
+function checkQuality() {
+    window.location.href = "FeedbackPage.jsp";
+}

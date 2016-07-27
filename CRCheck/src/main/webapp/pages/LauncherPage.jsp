@@ -236,7 +236,7 @@
                             <%--错误类型--%>
                             <p class="head-text" style="color: #585841">语法错误</p>
 
-                            <span class="merge_span">合并共3个缺陷&nbsp;<i
+                            <span class="merge_span">共合并3个缺陷&nbsp;<i
                                     class="fa fa-angle-double-down"></i></span>
 
                             <div class="who_div">

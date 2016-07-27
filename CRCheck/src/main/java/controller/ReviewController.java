@@ -54,7 +54,7 @@ public class ReviewController {
     }
 
     //结束后跳转
-    @RequestMapping(value = "/projects/merge", method = RequestMethod.POST)
+    @RequestMapping(value = "/projects/merge")
     public ModelAndView mergePage(int projectID) {
         //查找项目
         ProjectService ps = new ProjectServiceImpl();

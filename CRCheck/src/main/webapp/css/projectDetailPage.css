@@ -101,9 +101,45 @@
 
 }
 
+.feedback_btn {
+    width: 188px;
+    height: 53px;
+    font-size: 20px;
+    line-height:53px;
+    background-color: #577acb;
+    color: #fff;
+    display: inline-block;
+    cursor: pointer;
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+    -ms-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s;
+}
 
+.feedback_btn:hover {
+    background-color: #7490d3;
+}
 
+.merge_this {
+    width: 188px;
+    height: 53px;
+    font-size: 20px;
+    line-height:53px;
+    background-color: #d9d976;
+    color: #76766a;
+    display: inline-block;
+    cursor: pointer;
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+    -ms-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s;
+}
 
+.merge_this:hover {
+    background-color: #e6e69d;
+}
 
 
 

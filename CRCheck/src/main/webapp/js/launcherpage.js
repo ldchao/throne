@@ -12,7 +12,27 @@ window.onload = function () {
         url: "/getSummaryReview",
         data: {"projectID": proId},
         success: function (result) {
-            alert(result.length)
+
+            for(var i=0; i<result.length; i++) {
+                if(result[i].state == "正常提交") {
+                    addSingle(result[i]);
+                } else if(result[i].state == "合并项") {
+
+                    $.ajax({
+                        type: "post",
+                        async: false,
+                        url: "/getChildReview",
+                        data: {"reviewId": result[i].id},
+                        success: function (res) {
+                            addMerge(result[i], res);
+                        },
+                        error: function () {
+                            slidein(1, "出故障了请稍候再试");
+                        }
+                    });
+
+                }
+            }
         },
         error: function () {
             slidein(1, "出故障了请稍候再试");
@@ -21,10 +41,17 @@ window.onload = function () {
 
 };
 
-function addSingle() {
+function addSingle(singleDef) {
 
     var div = document.createElement("div");
     div.innerHTML = document.getElementById("exist_copy").innerHTML;
+
+    var headtexts = div.getElementsByClassName("head-text");
+    headtexts[0].innerHTML = singleDef.path;
+    headtexts[1].innerHTML = singleDef.lineNum + "行";
+    headtexts[2].innerHTML = singleDef.type;
+    div.getElementsByClassName("who_name")[0].innerHTML = singleDef.userId;
+    div.getElementsByClassName("info-bottom")[0].innerHTML = singleDef.description;
 
     div.onmouseenter = function () {
         showCheck(this, 0);
@@ -37,11 +64,19 @@ function addSingle() {
     document.getElementById("all-defect").appendChild(div);
 }
 
-function addMerge() {
+function addMerge(singleDef, mergeDef) {
 
     var headdiv = document.createElement("div");
     headdiv.innerHTML = document.getElementById("exist_copy_2").innerHTML;
     headdiv.getElementsByClassName("info-head_2")[0].style.backgroundColor = "#f3f3df";
+
+    var headtexts = headdiv.getElementsByClassName("head-text");
+    headtexts[0].innerHTML = singleDef.path;
+    headtexts[1].innerHTML = singleDef.lineNum + "行";
+    headtexts[2].innerHTML = singleDef.type;
+    headdiv.getElementsByClassName("who_name")[0].innerHTML = singleDef.userId;
+    headdiv.getElementsByClassName("info-bottom_2")[0].innerHTML = singleDef.description;
+    headdiv.getElementsByClassName("merge_span")[0].innerHTML = "共合并" + mergeDef.length + "缺陷";
 
     headdiv.onmouseenter = function () {
         showCheck(this, 1);
@@ -55,11 +90,21 @@ function addMerge() {
 
     var bodydiv = document.createElement("div");
     bodydiv.style.display = "none";
-    for (var i = 0; i < 2; i++) {
+
+    for (var i = 0; i < mergeDef.length; i++) {
         var div = document.createElement("div");
         div.innerHTML = document.getElementById("exist_copy_2").innerHTML;
         div.style.marginTop = "-15px";
         div.getElementsByClassName("merge_span")[0].style.display = "none";
+
+        var texts = div.getElementsByClassName("head-text");
+        texts[0].innerHTML = singleDef.path;
+        texts[1].innerHTML = singleDef.lineNum + "行";
+        texts[2].innerHTML = singleDef.type;
+        div.getElementsByClassName("who_name")[0].innerHTML = singleDef.userId;
+        div.getElementsByClassName("info-bottom_2")[0].innerHTML = singleDef.description;
+
+        
         div.onmouseenter = function () {
             showCheck(this, 2);
         };
@@ -123,12 +168,4 @@ function Correct(parentDiv, isCor, isSin) {
     if (isSin == 1) {
         div.getElementsByClassName("info-head_2")[0].style.backgroundColor = headcolor[isCor];
     }
-}
-
-function checkQuality() {
-    window.location.href = "FeedbackPage.jsp";
-}
-
-function mergeDefects() {
-    window.location.href = "ReviewerMergePage.jsp";
 }

@@ -4,73 +4,77 @@
 
 window.onload = function () {
 
-    var defects = new Array();
-    var reviewers = ["sure", "marioquer", "chao"];
+    var proId = document.getElementById("storage_proId").innerHTML;
+    $.ajax({
+        type: "post",
+        async: false,
+        url: "/getSummaryReview",
+        data: {"projectID": proId},
+        success: function (result) {
 
+            for(var i=0; i<result.length; i++) {
+                if(result[i].state == "正常提交") {
+                    addSingle(result[i]);
+                } else if(result[i].state == "合并项") {
 
-    for (var i = 0; i < 5; i++) {
-        defects[i] = ["CRC/src/java/" + ('a' + i) + ".java", (i + 1) * 10 + i + "行", "语法错误", reviewers[i % 3],
-            "这个缺陷好傻啊啊这个缺陷好傻啊啊这个缺" +
-            "陷好傻啊啊这个缺陷好傻啊啊" +
-            "这个缺陷好傻啊啊这个缺陷好傻啊啊这个缺陷" +
-            "好傻啊啊这个缺陷好傻啊", i];
-    }
+                    $.ajax({
+                        type: "post",
+                        async: false,
+                        url: "/getChildReview",
+                        data: {"reviewId": result[i].id},
+                        success: function (res) {
+                            addMerge(result[i], res);
+                        },
+                        error: function () {
+                            slidein(1, "出故障了请稍候再试");
+                        }
+                    });
 
-    for (var i = 0; i < defects.length; i++) {
-        if (i % 3 == 0) {
-
-            // 合并缺陷的ajax, 二维数组
-            var merges = new Array();
-            for (var j = 0; j < 2; j++) {
-                merges[j] = ["CRC/src/java/" + ('a' + i) + ".java", (i + 1) * 10 + i + j + 2 + "行", "语法错误", reviewers[i % 3],
-                    "这个缺陷好傻啊啊这个缺陷好傻啊啊这个缺" +
-                    "陷好傻啊啊这个缺陷好傻啊啊" +
-                    "这个缺陷好傻啊啊这个缺陷好傻啊啊这个缺陷" +
-                    "好傻啊啊这个缺陷好傻啊", -1];
+                }
             }
-
-            addMerge(defects[i], merges);
-        } else {
-            addSingle(defects[i]);
+        },
+        error: function () {
+            slidein(1, "出故障了请稍候再试");
         }
-    }
-}
+    });
+};
 
-function addSingle(defect) {
+function addSingle(singleDef) {
 
     var div = document.createElement("div");
     div.innerHTML = document.getElementById("exist_copy").innerHTML;
 
-    var hedatexts = div.getElementsByClassName("head-text");
-    hedatexts[0].innerHTML = defect[0];
-    hedatexts[1].innerHTML = defect[1];
-    hedatexts[2].innerHTML = defect[2];
-    div.getElementsByClassName("who_name")[0].innerHTML = defect[3];
-    div.getElementsByClassName("info-bottom")[0].innerHTML = defect[4];
+    var headtexts = div.getElementsByClassName("head-text");
+    headtexts[0].innerHTML = singleDef.path;
+    headtexts[1].innerHTML = singleDef.lineNum + "行";
+    headtexts[2].innerHTML = singleDef.type;
+    div.getElementsByClassName("who_name")[0].innerHTML = singleDef.userId;
+    div.getElementsByClassName("info-bottom")[0].innerHTML = singleDef.description;
 
     div.onmouseenter = function () {
         showCheck(this, 0);
-    }
+    };
 
     div.onmouseleave = function () {
         hideCheck(this, 0);
-    }
+    };
 
     document.getElementById("all-defect").appendChild(div);
 }
 
-function addMerge(defect, merges) {
+function addMerge(singleDef, mergeDef) {
 
     var headdiv = document.createElement("div");
     headdiv.innerHTML = document.getElementById("exist_copy_2").innerHTML;
     headdiv.getElementsByClassName("info-head_2")[0].style.backgroundColor = "#f3f3df";
 
-    var hedatexts = headdiv.getElementsByClassName("head-text");
-    hedatexts[0].innerHTML = defect[0];
-    hedatexts[1].innerHTML = defect[1];
-    hedatexts[2].innerHTML = defect[2];
-    headdiv.getElementsByClassName("who_name")[0].innerHTML = defect[3];
-    headdiv.getElementsByClassName("info-bottom_2")[0].innerHTML = defect[4];
+    var headtexts = headdiv.getElementsByClassName("head-text");
+    headtexts[0].innerHTML = singleDef.path;
+    headtexts[1].innerHTML = singleDef.lineNum + "行";
+    headtexts[2].innerHTML = singleDef.type;
+    headdiv.getElementsByClassName("who_name")[0].innerHTML = singleDef.userId;
+    headdiv.getElementsByClassName("info-bottom_2")[0].innerHTML = singleDef.description;
+    headdiv.getElementsByClassName("merge_span")[0].innerHTML = "共合并" + mergeDef.length + "缺陷";
 
     headdiv.onmouseenter = function () {
         showCheck(this, 1);
@@ -84,18 +88,26 @@ function addMerge(defect, merges) {
 
     var bodydiv = document.createElement("div");
     bodydiv.style.display = "none";
-    for (var i = 0; i < merges.length; i++) {
+
+    for (var i = 0; i < mergeDef.length; i++) {
         var div = document.createElement("div");
         div.innerHTML = document.getElementById("exist_copy_2").innerHTML;
         div.style.marginTop = "-15px";
         div.getElementsByClassName("merge_span")[0].style.display = "none";
 
-        var innertexts = div.getElementsByClassName("head-text");
-        innertexts[0].innerHTML = merges[i][0];
-        innertexts[1].innerHTML = merges[i][1] + "行";
-        innertexts[2].innerHTML = merges[i][2];
-        div.getElementsByClassName("who_name")[0].innerHTML = merges[i][3];
-        div.getElementsByClassName("info-bottom_2")[0].innerHTML = merges[i][4];
+        // var innertexts = div.getElementsByClassName("head-text");
+        // innertexts[0].innerHTML = mergeDef[i][0];
+        // innertexts[1].innerHTML = mergeDef[i][1] + "行";
+        // innertexts[2].innerHTML = mergeDef[i][2];
+        // div.getElementsByClassName("who_name")[0].innerHTML = merges[i][3];
+        // div.getElementsByClassName("info-bottom_2")[0].innerHTML = merges[i][4];
+
+        var texts = div.getElementsByClassName("head-text");
+        texts[0].innerHTML = singleDef.path;
+        texts[1].innerHTML = singleDef.lineNum + "行";
+        texts[2].innerHTML = singleDef.type;
+        div.getElementsByClassName("who_name")[0].innerHTML = singleDef.userId;
+        div.getElementsByClassName("info-bottom_2")[0].innerHTML = singleDef.description;
 
         div.onmouseenter = function () {
             showCheck(this, 2);

@@ -100,8 +100,6 @@ public class ProjectController {
         ReviewRecordService record = new ReviewRecordServiceImpl();
         ArrayList<String> list = record.checkProjectUserList(projectId);
         //有人且是发布者
-
-        System.out.println("size:" + list.size() + "user:" + userId +"project:" + project.getUserID());
         if (list.size() != 0 && userId.equals(project.getUserID())) {
             modelAndView.setViewName("LauncherPage");
             //否则
