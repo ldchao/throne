@@ -23,4 +23,7 @@ public interface UserDao {
 
     //return "User"
     public List getAllUserId();
+
+    //need the "id" ,it will change the attributes of the one "User"
+    public boolean updateAttributes(User po);
 }

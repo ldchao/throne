@@ -46,7 +46,7 @@ public void testGetFileState() throws Exception {
 public void testGetFileLastTime() throws Exception { 
 //TODO: Test goes here...
     File file=new File();
-    file.setPath("222");
+    file.setPath("33");
     System.out.println(fileDao.getFileLastTime(file));
 } 
 
@@ -60,5 +60,13 @@ public void testFindFileById() throws Exception {
 //TODO: Test goes here... 
 } 
 
+
+    @Test
+    public void testChangeFileState() throws Exception{
+        File file=new File();
+        file.setPath("33");
+        file.setState("false");
+        System.out.println(fileDao.changeFileState(file));
+    }
 
 } 

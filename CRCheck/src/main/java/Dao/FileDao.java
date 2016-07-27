@@ -11,4 +11,7 @@ public interface FileDao {
 
     //need the "path" of "File",it will return the "lastTime" of "File"
     public String getFileLastTime(File po);
+
+    //need the "path" of "File",it will change the "state" of "File"
+    public boolean changeFileState(File po);
 }
