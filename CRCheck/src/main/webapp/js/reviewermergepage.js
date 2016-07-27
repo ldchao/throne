@@ -85,8 +85,8 @@ function addMerge(singleDef, mergeDef) {
     headtexts[2].innerHTML = singleDef.type;
     headdiv.getElementsByClassName("who_name")[0].innerHTML = singleDef.userId;
     headdiv.getElementsByClassName("info-bottom_2")[0].innerHTML = singleDef.description;
-    
-    if(mergeDef.length > 0) {
+
+    if (mergeDef.length > 0) {
         headdiv.getElementsByClassName("merge_span")[0].innerHTML = "共合并" + mergeDef.length + "缺陷&nbsp;";
     } else {
         headdiv.getElementsByClassName("merge_span")[0].style.display = "none";
@@ -194,6 +194,15 @@ function Merge() {
     }
 
     if (defects.length > 1) {
+
+        var childs = document.getElementById("defects_parent").getElementsByClassName("def_div");
+        if (childs.length > 1) {
+            var childlen = childs.length - 1;
+            for (var ci = childlen; ci > 0; ci--) {
+                childs[ci].parentNode.removeChild(childs[ci]);
+            }
+        }
+
         for (var i = 0; i < count; i++) {
             var eachdiv = document.createElement("div");
             eachdiv.innerHTML = document.getElementById("defect_copy").innerHTML;
@@ -221,7 +230,6 @@ function Merge() {
                     "id": headdef[5], "parId": -2
                 };
                 recId = singledef.id;
-                recIds[0] = singledef.id;
 
                 var mergedef = new Array();
                 for (var k = 0; k < defects.length; k++) {
@@ -230,9 +238,10 @@ function Merge() {
                         "type": defects[k][2], "userId": defects[k][3], "description": defects[k][4],
                         "id": defects[k][5], "parId": recId
                     };
-                    recIds[k + 1] = defects[k][5];
+                    recIds[k] = defects[k][5];
                 }
 
+                closeLaunch("choose");
                 var userId = document.getElementById("storage").innerHTML;
                 userId = userId.trim();
                 $.ajax({
@@ -248,13 +257,11 @@ function Merge() {
                         slidein(0, "提交成功");
                         singledef.id = result;
                         addMerge(singledef, mergedef);
-                        closeLaunch("choose");
                     },
                     error: function () {
                         slidein(1, "出故障了请稍候再试");
                     }
                 });
-
             }
         }
     }
