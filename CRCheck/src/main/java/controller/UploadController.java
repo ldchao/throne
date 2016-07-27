@@ -25,8 +25,8 @@ import java.util.Map;
 @Controller
 public class UploadController {
 
-	@RequestMapping("/oneUpload")
-	public String oneUpload(@RequestParam("oneFile") MultipartFile oneFile, @RequestParam("projectId") String projectId,HttpServletRequest request){
+	@RequestMapping("/compressedFileUpload")
+	public String compressedFileUpload(@RequestParam("oneFile") MultipartFile oneFile, @RequestParam("projectId") String projectId,HttpServletRequest request){
 
         // TODO: 2016/7/26 取id ，用来创建文件名，返回id用来存储
 		String fileId =projectId;
@@ -69,6 +69,45 @@ public class UploadController {
 //
 		FileService fileService=new FileServiceImpl();
 		fileService.unZip( uploadUrl + filename,decompressionUrl);
+
+		return null;
+	}
+
+	@RequestMapping("/commonFileUpload")
+	public String commonFileUpload(@RequestParam("oneFile") MultipartFile oneFile, @RequestParam("projectId") String projectId,HttpServletRequest request){
+
+		// TODO: 2016/7/26 取id ，用来创建文件名，返回id用来存储
+		String fileId =projectId;
+
+		String realPath=request.getSession().getServletContext().getRealPath("/");
+		String uploadUrl = request.getSession().getServletContext().getRealPath("/")
+				+ "ProjectResources/ProjectDecompressedFile/"+fileId+"/";
+		String filename = oneFile.getOriginalFilename();
+		
+		//文件夹不存在时新建文件夹
+		File dir = new File(uploadUrl);
+		if (!dir.exists()) {
+			dir.mkdirs();
+		}
+
+		System.out.println("文件上传到: " + uploadUrl + filename);
+
+		File targetFile = new File(uploadUrl + filename);
+		if (!targetFile.exists()) {
+			try {
+				targetFile.createNewFile();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+
+		try {
+			oneFile.transferTo(targetFile);
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
 		return null;
 	}

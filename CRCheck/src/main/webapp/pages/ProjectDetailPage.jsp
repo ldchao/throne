@@ -204,6 +204,7 @@
 
         <div id="finish_before">
             <div id="begin" class="submit-button" onclick="beginReview()">立即开始评审</div>
+            <div id="end" class="cancel-button" onclick="endReview()" style="margin-top:10px;">结束此项目评审</div>
             <div id="review-block" style="display: none;">
 
                 <div id="init-form">
@@ -258,13 +259,11 @@
         </div>
     </c:if>
 
-    <c:if test="${project.state == 'Over'}">
-        <div style="margin-top: 30px;">
-            <div class="addItem-button" onclick="addForm()">添加新的缺陷</div>
-            <div class="merge_this" onclick="mergeDefects()">合并相同缺陷</div>
-            <div class="feedback_btn" onclick="checkQuality()">查看项目评审质量</div>
-        </div>
-    </c:if>
+    <div id="endButtons" style="margin-top: 30px;display: none;">
+        <div class="submit-button" onclick="beginReview()">补充新的缺陷</div>
+        <div class="merge_this" onclick="mergeDefects()">合并相同缺陷</div>
+        <div class="feedback_btn" onclick="checkQuality()">查看项目评审质量</div>
+    </div>
 
     <div id="finish_after" style="margin-top: 30px; display: none">
         <div class="merge_this" onclick="mergeDefects()">合并相同缺陷</div>
