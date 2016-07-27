@@ -331,6 +331,16 @@ public class ReviewRecordServiceImpl implements ReviewRecordService {
             summary.setOldPersonalReviewId(child_id);
             summaryDao.deleteSummary(summary);
         }
+
+        List<Summary> summaryList=summaryDao.getMergedSummary(summary);
+        if(summaryList==null||summaryList.size()==0){
+            PersonalreviewDao personalreviewDao=new PersonalreviewDaoImpl();
+            Personalreview po=new Personalreview();
+            po.setId(id);
+            po.setState(CommitState.NotDone.toString());
+            personalreviewDao.updateState(po);
+        }
+
         int size=result.size();
         int projectID=0;
         if(size>0){
