@@ -76,7 +76,7 @@ public class UploadController {
 
 		UserModel user=(UserModel)request.getSession().getAttribute("User");
 		String uploadUrl = request.getSession().getServletContext().getRealPath("/") + "HeadPortraits/";
-
+//		String uploadUrl =  "C:\\resources\\HeadPortraits/";
 		String originalName = imageFile.getOriginalFilename();
 		String nameSplit[]=originalName.split("\\.");
 		int index=nameSplit.length-1;
