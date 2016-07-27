@@ -87,7 +87,7 @@ function addMerge(singleDef, mergeDef) {
     headdiv.getElementsByClassName("info-bottom_2")[0].innerHTML = singleDef.description;
 
     if (mergeDef.length > 0) {
-        headdiv.getElementsByClassName("merge_span")[0].innerHTML = "共合并" + mergeDef.length + "缺陷&nbsp;";
+        headdiv.getElementsByClassName("merge_span")[0].innerHTML = "合并共" + mergeDef.length + "缺陷&nbsp;";
     } else {
         headdiv.getElementsByClassName("merge_span")[0].style.display = "none";
         headdiv.getElementsByClassName("info-head_2")[0].style.backgroundColor = "transparent";
@@ -230,6 +230,7 @@ function Merge() {
                     "id": headdef[5], "parId": -2
                 };
                 recId = singledef.id;
+                recIds[0] =  headdef[5];
 
                 var mergedef = new Array();
                 for (var k = 0; k < defects.length; k++) {
@@ -238,7 +239,7 @@ function Merge() {
                         "type": defects[k][2], "userId": defects[k][3], "description": defects[k][4],
                         "id": defects[k][5], "parId": recId
                     };
-                    recIds[k] = defects[k][5];
+                    recIds[k + 1] = defects[k][5];
                 }
 
                 closeLaunch("choose");

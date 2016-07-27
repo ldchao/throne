@@ -265,7 +265,7 @@
 
     <div style="margin-top: 50px">
         <div class="continue_btn save_this">保存此次评审</div>
-        <div class="merge_this">合并相同缺陷</div>
+        <div class="merge_this" onclick="mergeDefects()">合并相同缺陷</div>
         <div class="finish_btn finish_this">结束此项目评审</div>
     </div>
 
