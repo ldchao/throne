@@ -34,6 +34,22 @@ public class UserServiceImpl implements UserService {
         return model;
     }
 
+    public UserInf getUserInf(String userid){
+        UserInf inf=new UserInf();
+        UserDao dao=new UserDaoImpl();
+        User user=new User();
+        user.setId(userid);
+        user=dao.findUser(user);
+        if(user==null)
+            return null;
+        inf.setId(user.getId());
+        inf.setPhone(user.getPhone());
+        inf.setAddress(user.getAddress());
+        inf.setBlog(user.getPersonalPage());
+        inf.setEmail(user.getEmail());
+        inf.setSex(user.getSex());
+        return inf;
+    }
     public List<String> getUserList(String userid){
         UserDao dao=new UserDaoImpl();
         List<String> list=dao.getAllUserId();

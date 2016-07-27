@@ -3,11 +3,13 @@ package controller;
 import enums.UniversalState;
 import model.UserInf;
 import model.UserListForm;
+import model.UserModel;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 import service.UserService;
 import serviceImpl.UserServiceImpl;
 
@@ -29,6 +31,17 @@ public class UserController {
     }
     //TODO 四个不同板块的用户推荐
 
+    //个人中心-用户信息
+    @RequestMapping(value = "/users")
+    @ResponseBody
+    public String getUser(HttpServletRequest request,String userId){
+        UserService userService = new UserServiceImpl();
+        UserInf inf=userService.getUserInf(userId);
+        if(inf==null)
+            return "FAIL";
+        request.getSession().setAttribute("inf", inf);
+        return "SUCCESS";
+    }
     //修改用户信息
     @RequestMapping(value = "/updateUser", method = RequestMethod.POST)
     @ResponseBody

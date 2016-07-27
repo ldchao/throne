@@ -12,6 +12,7 @@ import java.util.List;
 public interface UserService {
 
     public UserModel getUser(String userid);
+    public UserInf getUserInf(String userid);
     public List<String> getUserList(String userid);
     public UniversalState update(UserInf inf);
 }
