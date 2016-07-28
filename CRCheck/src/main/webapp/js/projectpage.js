@@ -8,6 +8,7 @@ var pageNum = 0;  // 页码
 var CRCpro;
 var PUBpro;
 var PROJECT_ID;
+var isUpload = "NOLOAD";  // 是否上传文件
 
 function showIntroduce() {
     $("#introduce_child").slideToggle();
@@ -404,7 +405,6 @@ function publishPro() {
         self = "YES";
 
     // 判断是否上传
-    var isUpload = "NOLOAD";
     var list_info = [userId, proname, prodescribe, codelang, startdate, enddate, limit, PROJECT_ID, isUpload].join("&");
     idlist.splice(0, 0, self);
     var id_info = idlist.join("&");
@@ -620,6 +620,7 @@ function uploadFile() {
         success: function (result) { // data 保存提交后返回的数据，一般为 json 数据
             if (result == "SUCCESS") {
                 doProgress();
+                isUpload = "UPLOAD";
             } else {
                 slidein(1, "文件上传失败");
             }
