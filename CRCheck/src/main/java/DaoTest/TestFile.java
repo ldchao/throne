@@ -12,15 +12,15 @@ import java.util.List;
 public class TestFile {
     public static void main(String args[]){
         FileService fileService = new FileServiceImpl();
-//        List<FileModel> fileModelList= fileService.getDir("C:/ab");
-//        for(int i=0;i<fileModelList.size();i++){
-//            FileModel fileModel = fileModelList.get(i);
-//            System.out.println(fileModel.getContent());
-//            System.out.println(fileModel.getN());
-//            System.out.println(fileModel.getPath());
-//            System.out.println(fileModel.getTime());
-//            System.out.println(fileModel.getType());
-//        }
-        fileService.unZip("2","C:/ab.zip","C:/");
+        List<FileModel> fileModelList= fileService.getDir("C:/ab");
+        for(int i=0;i<fileModelList.size();i++){
+            FileModel fileModel = fileModelList.get(i);
+            System.out.println(fileModel.getContent());
+            System.out.println(fileModel.getN());
+            System.out.println(fileModel.getPath());
+            System.out.println(fileModel.getTime());
+            System.out.println(fileModel.getType());
+        }
+       // fileService.unZip("2","C:/ab.zip","C:/");
     }
 }
