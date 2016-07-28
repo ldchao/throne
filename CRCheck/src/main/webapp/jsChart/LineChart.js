@@ -48,10 +48,15 @@ function  getLineChart(id) {
                 }
             },
         },
+        legend: {
+            top: '2%',
+            data:['Method1','Method2'],
+            selectedMode: 'single'
+        },
         grid: [{
             //left : '10%',
             //right : '10%',
-            top: '5%',
+            top: '8%',
             bottom: '12%'
         }],
         xAxis: {
@@ -66,29 +71,29 @@ function  getLineChart(id) {
             show: false,
             orient: 'horizontal',
             top: '5%',
-            right: 'center',
+            //right: '',
             pieces: [{
                 gt: 0,
-                lte: 50,
+                lte: 20,
                 color: '#096'
             }, {
-                gt: 50,
-                lte: 100,
+                gt: 20,
+                lte: 40,
                 color: '#ffde33'
             }, {
-                gt: 100,
-                lte: 150,
+                gt: 40,
+                lte: 60,
                 color: '#ff9933'
             }, {
-                gt: 150,
-                lte: 200,
+                gt: 60,
+                lte: 80,
                 color: '#cc0033'
             }, {
-                gt: 200,
-                lte: 250,
+                gt: 80,
+                lte: 100,
                 color: '#660099'
             }, {
-                gt: 250,
+                gt: 100,
                 color: '#7e0023'
             }],
             outOfRange: {
@@ -96,27 +101,41 @@ function  getLineChart(id) {
             }
         },
         series: [{
-            name: '方法一预测缺陷数',
+            name: 'Method1',
             type: 'line',
             data: method1,
             markLine: {
                 silent: true,
                 data: [{
-                    yAxis: 50
+                    yAxis: 20
+                }, {
+                    yAxis: 40
+                }, {
+                    yAxis: 60
+                }, {
+                    yAxis: 80
                 }, {
                     yAxis: 100
-                }, {
-                    yAxis: 150
-                }, {
-                    yAxis: 200
-                }, {
-                    yAxis: 250
                 }]
             }
         }, {
-            name: '方法二预测缺陷数',
+            name: 'Method2',
             type: 'line',
-            data: method2
+            data: method2,
+            markLine: {
+                silent: true,
+                data: [{
+                    yAxis: 20
+                }, {
+                    yAxis: 40
+                }, {
+                    yAxis: 60
+                }, {
+                    yAxis: 80
+                }, {
+                    yAxis: 100
+                }]
+            }
         }]
     }
 

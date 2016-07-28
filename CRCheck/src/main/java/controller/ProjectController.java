@@ -99,11 +99,16 @@ public class ProjectController {
         //发起者看看是否有人评审
         ReviewRecordService record = new ReviewRecordServiceImpl();
         ArrayList<String> list = record.checkProjectUserList(projectId);
+        //文件上传的评审界面
+        if(project.getProjectPath().equals("UPLOAD")){
+            modelAndView.setViewName("ReviewPage");
+        }
         //有人且是发布者
-        if (list.size() != 0 && userId.equals(project.getUserID())) {
+        else if (list.size() != 0 && userId.equals(project.getUserID())) {
             modelAndView.setViewName("LauncherPage");
-            //否则
-        } else {
+        }
+        //线下评审界面
+        else{
             modelAndView.setViewName("ProjectDetailPage");
         }
         modelAndView.addObject("project", project);

@@ -24,4 +24,7 @@ ProjectDao {
 
     //need the "id" of "Project",return "Project"
     public Project findProject(Project po);
+
+    //need the similar name of "userId",it will return a list of "userId" whose "state" is PUBILC
+    public List getSimilarUser(String name);
 }
