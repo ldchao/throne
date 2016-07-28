@@ -83,15 +83,15 @@ var detail = {
                     document.getElementById("begin").style.display = "none";
                     document.getElementById("end").style.display = "none";
                 } else {
-                    if(state!="Over"){
+                    if (state != "Over") {
                         document.getElementById("end").style.display = "inline-block";
-                    }else{
+                    } else {
                         document.getElementById("end").style.display = "none";
                     }
                 }
             },
             error: function () {
-                slidein(1,"出错了")
+                slidein(1, "出错了")
             }
         });
     }
@@ -221,5 +221,5 @@ function mergeDefects() {
 }
 
 function checkQuality() {
-    window.location.href = "FeedbackPage.jsp";
+    window.location.href = "/pages/feedBack?projectId=" + projectId;
 }

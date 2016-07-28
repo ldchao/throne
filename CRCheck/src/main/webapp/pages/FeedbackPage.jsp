@@ -7,7 +7,7 @@
 --%>
 <%@ page import="model.UserModel" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8" %>
+         pageEncoding="UTF-8" isELIgnored="false"%>
 <html>
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -181,7 +181,7 @@
                     <div class="top_title">历史提交轨迹图</div>
 
                     <%--历史提交轨迹图--%>
-                    <div class="commit-item">
+                    <div class="commit-item" id="commit_item" style="display: none;">
                         <i class="fa fa-code-fork"
                            style="font-size:28px;margin-left:10px;color:#838D9E;line-height: 90px;"></i>
                         <div class="commit-content inline">
@@ -259,7 +259,7 @@
             <form id="form_file" method="post" action="../oneUpload.action" enctype="multipart/form-data">
                 <span id="upload_File">上传文件</span>
 
-                <input type="file" name="oneFile" id="file_input" onchange="uploadFile()">
+                <input type="file" name="oneFile" id="file_input">
             </form>
 
             <div id="prog_div" class="progress">
@@ -437,8 +437,9 @@
 </div>
 
 <%-- 用来存放userId --%>
-<a id="storage" style="display: none;"><%=userId%>
-</a>
+<a id="storage" style="display: none;"><%=userId%></a>
+<a id="p-id" style="display: none;">${proId}</a>
+
 <!-- Bootstrap core JavaScript
     ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
@@ -449,6 +450,7 @@
 <script src="../js/common.js"></script>
 <script src="../js/toaster.js"></script>
 <script src="../js/projectpage.js"></script>
+<script src="../js/FeedbackPage.js"></script>
 <script src="../js/personalpage.js"></script>
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 <script src="../js/ie10-viewport-bug-workaround.js"></script>
@@ -460,16 +462,19 @@
 
 <script src="../jsChart/StatisticsChart.js"></script>
 <script src="../jsChart/LineChart.js"></script>
-<script>showScatterDiagram(30)</script>
-<script>getStatisticsChart(30)</script>
-<script>getLineChart(30)</script>
+<script></script>
+<script></script>
+<script></script>
 <script>
+    showScatterDiagram(${proId});
+    getStatisticsChart(${proId});
+    getLineChart(${proId});
+    loadRecord();
     $('#start_date').datetimepicker({
         lang: 'ch',
         timepicker: false,
         format: 'Y-m-d'
     });
-
     $('#end_date').datetimepicker({
         lang: 'ch',
         timepicker: false,
