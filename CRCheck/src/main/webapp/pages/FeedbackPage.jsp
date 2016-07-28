@@ -92,11 +92,9 @@
                 <div class="user-block">
                     <div class="inline bell"><a href="NewsPage.jsp">
                         <% if (user.getMessageNum() > 0) { %>
-                        <i
-                                class="fa fa-bell" style="font-size:25px;"></i>
+                        <img class="message" src="../image/new-message.svg">
                         <% } else {%>
-                        <i
-                                class="fa fa-bell-o" style="font-size:25px;"></i>
+                        <img class="message" src="../image/message.svg">
                         <% }%>
                     </a></div>
                     <%--用户中心下拉框--%>

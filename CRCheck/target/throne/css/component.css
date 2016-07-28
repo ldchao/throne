@@ -294,7 +294,7 @@ footer {
     padding-left: 10px;
     padding-right: 10px;
     position: relative;
-    top: -4px;
+    top: 0px;
 }
 
 .user:hover {
@@ -355,6 +355,11 @@ a:hover {
 .item {
     display: block;
     margin-top: 5px;
+}
+
+.message{
+    width: 26px;
+    height: 26px;
 }
 
 
