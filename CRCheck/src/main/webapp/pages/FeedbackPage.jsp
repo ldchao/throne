@@ -99,7 +99,7 @@
                     </a></div>
                     <%--用户中心下拉框--%>
                     <div class="popup user-popup" id="js-user-popup">
-                        <a class="item" href="PersonalPage.jsp"><i
+                        <a class="item" href="/pages/users"><i
                                 class="fa fa-user fa-fw"></i>&nbsp&nbsp个人中心</a>
                         <a class="item" href="/Logout" style="margin-bottom: 5px;"><i
                                 class="fa fa-sign-out fa-fw"></i>&nbsp&nbsp退出账号</a>
@@ -181,8 +181,28 @@
                     <div class="top_title">历史提交轨迹图</div>
 
                     <%--历史提交轨迹图--%>
-                    <div class="commit-item"></div>
-
+                    <div class="commit-item">
+                        <i class="fa fa-code-fork"
+                           style="font-size:28px;margin-left:10px;color:#838D9E;line-height: 90px;"></i>
+                        <div class="commit-content inline">
+                            <div class="first-line">
+                                <img class="image-small">
+                                <div class="userName-small inline">marioquer</div>
+                                <div class="commit-time inline">10:00</div>
+                            </div>
+                            <div class="second-line">
+                                <div class="discription">送来产额穿就飞龙拆饭五车间分欧外</div>
+                            </div>
+                        </div>
+                        <div class="num1 inline">
+                            <div class="num1-name">Method 1</div>
+                            <div class="num1-content text-center">111个</div>
+                        </div>
+                        <div class="num2 inline">
+                            <div class="num2-name">Method 2</div>
+                            <div class="num2-content text-center">101个</div>
+                        </div>
+                    </div>
 
 
                 </div>

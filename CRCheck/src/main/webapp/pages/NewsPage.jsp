@@ -94,7 +94,7 @@
                     </a></div>
                     <%--用户中心下拉框--%>
                     <div class="popup user-popup" id="js-user-popup">
-                        <a class="item" href="PersonalPage.jsp"><i
+                        <a class="item" href="/pages/users"><i
                                 class="fa fa-user fa-fw"></i>&nbsp&nbsp个人中心</a>
                         <a class="item" href="/Logout" style="margin-bottom: 5px;"><i
                                 class="fa fa-sign-out fa-fw"></i>&nbsp&nbsp退出账号</a>
