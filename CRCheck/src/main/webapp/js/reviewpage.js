@@ -101,9 +101,13 @@ function addDocdiv() {
 // 代码评审合并
 window.onload = function () {
 
-    addReDefects(2);
-    addReDefects(6);
-    addReDefects(9);
+    // addReDefects(2);
+    // addReDefects(6);
+    // addReDefects(9);
+    
+    
+    
+    
 }
 
 function addReDefects(pos) {
