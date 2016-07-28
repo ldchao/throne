@@ -14,7 +14,7 @@ window.onload = function () {
     // addReDefects(6);
     // addReDefects(9);
 
-    getFile(PROJECT_ID + "");
+    getFile(PROJECT_ID);
 };
 
 function mouseOver(tr) {
@@ -180,7 +180,7 @@ function CodeMerge() {
 
 // 读取文件夹
 function getFile(path) {
-    
+
     $.ajax({
         type: "post",
         async: false,
@@ -215,6 +215,7 @@ function getFileContent(path) {
 }
 
 function createFileTable(result) {
+
     for (var i = 0; i < result.length; i++) {
 
         var tr = document.createElement("tr");
@@ -224,8 +225,8 @@ function createFileTable(result) {
         td1.setAttribute("class", "td1_style");
         var pathname = result[i].path.split("/");
         td1.innerHTML = pathname[pathname.length - 1];
+        td1.fileType = result[i].type;
         tr.appendChild(td1);
-
         td1.onclick = function () {
             gotoDir(this);
         };
@@ -283,6 +284,10 @@ function refreshDir(path) {
     headdiv.innerHTML = PROJECT_NAME;
     dir_id.appendChild(headdiv);
 
+    headdiv.onclick = function () {
+        getFile(PROJECT_ID);
+    }
+
     var divi = document.createElement("div");
     divi.innerHTML = "&nbsp;/&nbsp;";
     divi.style.display = "inline-block";
@@ -291,11 +296,15 @@ function refreshDir(path) {
     var dirs = path.split("/");
 
     if (dirs.length > 1) {
-        for (var i = 0; i < dirs.length; i++) {
+        for (var i = 0; i < dirs.length - 1; i++) {
             var div = document.createElement("div");
 
-            if (i < dirs.length - 1) {
+            if (i < dirs.length - 2) {
                 div.setAttribute("class", "dir_word");
+
+                div.onclick = function () {
+                    gotoWithDir(this.innerHTML)
+                }
             } else {
                 div.setAttribute("class", "dir_word_last");
             }
@@ -314,29 +323,57 @@ function refreshDir(path) {
 // 根据表格内目录跳转
 function gotoDir(td) {
 
-    var path = PROJECT_ID + "";
+    var type = td.fileType;
 
+    if (type == "Dir") {
+        var path = PROJECT_ID + "";
+        var dirs = dir_id.getElementsByClassName("dir_word");
+        if (dirs.length > 1) {
+            for (var i = 1; i < dirs.length; i++) {
+                path += ("/" + dirs[i].innerHTML);
+            }
+        }
+
+        var last = dir_id.getElementsByClassName("dir_word_last");
+        if (last.length > 0) {
+            path += ("/" + dir_id.getElementsByClassName("dir_word_last")[0].innerHTML);
+        }
+        path += ("/" + td.innerHTML);
+        getFile(path);
+
+    } else if (type == "Code") {
+
+    } else if (type == "File") {
+
+    }
+}
+
+function gotoWithDir(dirnode) {
+
+    var path = PROJECT_ID;
+
+    var dirs = dir_id.getElementsByClassName("dir_word");
+    if (dirs.length > 1) {
+        for (var i = 1; i < dirs.length; i++) {
+            path += ("/" + dirs[i].innerHTML);
+
+            if (dirnode == dirs[i].innerHTML) {
+                break;
+            }
+        }
+    }
+    getFile(path);
+}
+
+// 返回上一级
+function backLast() {
+
+    var path = PROJECT_ID + "";
     var dirs = dir_id.getElementsByClassName("dir_word");
     if (dirs.length > 1) {
         for (var i = 1; i < dirs.length; i++) {
             path += ("/" + dirs[i].innerHTML);
         }
     }
-    path += ("/" + td.innerHTML);
-
     getFile(path);
-}
-
-// 返回上一级
-function  backLast() {
-
-    var path = PROJECT_ID + "";
-
-    var dirs = dir_id.getElementsByClassName("dir_word");
-    if (dirs.length > 2) {
-        for (var i = 1; i < dirs.length; i++) {
-            path += ("/" + dirs[i].innerHTML);
-        }
-    }
-    path += ("/" + td.innerHTML);
 }

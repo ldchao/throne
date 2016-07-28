@@ -226,7 +226,7 @@
     <table id="file_table_id" class="file_table" style="display: block;">
 
         <tr class="table_head">
-            <td style="width: 42%;  text-align: left;">
+            <td style="width: 42%;  text-align: left;" onclick="backLast()">
                 <div class="back_dot"><i class="fa fa-circle" style="margin-right: 4px;"></i><i
                         class="fa fa-circle"></i></div>
             </td>
