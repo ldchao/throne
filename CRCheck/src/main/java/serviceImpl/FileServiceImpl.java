@@ -69,8 +69,13 @@ public class FileServiceImpl implements FileService {
         return pList;
     }
 
-    private void getDirContent(String absolutePath,int fileNum,String time) {
+    private void getDirContent(String path,int fileNum,String time) {
+        File file = new File(path);
+        if (file.exists()) {
 
+        }else {
+            System.out.println("文件不存在!");
+        }
     }
 
     public static final int DEFAULT_BUFSIZE = 1024 * 16;
