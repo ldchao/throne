@@ -411,7 +411,7 @@ function publishPro() {
 
     $.ajax({
         type: "post",
-        async: false,
+        async: true,
         url: "/Launch",
         data: {
             "info1": list_info,
@@ -419,8 +419,13 @@ function publishPro() {
         },
         success: function (result) {
             if (result > -1) {
-                slidein(0, "提交成功");
-                setTimeout("goTo(" + result + ")", 1800);
+
+                if (isUpload == "UPLOAD") {
+                    uploadFile();
+                }
+                
+                slidein(0, '提交成功');
+                setTimeout("goTo(" + result + ")", 2800);
             } else {
                 slidein(1, "提交失败请稍候再试");
             }
@@ -620,7 +625,6 @@ function uploadFile() {
         success: function (result) { // data 保存提交后返回的数据，一般为 json 数据
             if (result == "SUCCESS") {
                 doProgress();
-                isUpload = "UPLOAD";
             } else {
                 slidein(1, "文件上传失败");
             }
@@ -655,4 +659,11 @@ function doProgress() {
         proginner.innerHTML = "上传成功";
         slidein(0, "文件上传成功");
     }
+}
+
+// 设置文件上传
+function setFile() {
+    var span = document.getElementById("upload_File");
+    span.innerHTML = "待上传";
+    isUpload = "UPLOAD";
 }

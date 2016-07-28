@@ -291,7 +291,7 @@
             <form id="form_file" method="post" action="../oneUpload.action" enctype="multipart/form-data">
                 <span id="upload_File">上传文件</span>
 
-                <input type="file" name="oneFile" id="file_input" onchange="uploadFile()">
+                <input type="file" name="oneFile" id="file_input" onchange="setFile()">
             </form>
 
             <div id="prog_div" class="progress">

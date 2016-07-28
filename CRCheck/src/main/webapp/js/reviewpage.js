@@ -228,7 +228,7 @@ function createFileTable(result) {
 
         td1.onclick = function () {
             gotoDir(this);
-        }
+        };
 
         var td2 = document.createElement("td");
         td2.style.width = "19%";
@@ -311,7 +311,7 @@ function refreshDir(path) {
     }
 }
 
-// 根据目录跳转
+// 根据表格内目录跳转
 function gotoDir(td) {
 
     var path = PROJECT_ID + "";
@@ -325,4 +325,18 @@ function gotoDir(td) {
     path += ("/" + td.innerHTML);
 
     getFile(path);
+}
+
+// 返回上一级
+function  backLast() {
+
+    var path = PROJECT_ID + "";
+
+    var dirs = dir_id.getElementsByClassName("dir_word");
+    if (dirs.length > 2) {
+        for (var i = 1; i < dirs.length; i++) {
+            path += ("/" + dirs[i].innerHTML);
+        }
+    }
+    path += ("/" + td.innerHTML);
 }
