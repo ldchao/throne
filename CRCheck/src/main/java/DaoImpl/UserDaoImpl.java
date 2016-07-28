@@ -130,4 +130,8 @@ public class UserDaoImpl implements UserDao {
         }
     }
 
+    public List getSimilarUser(String name) {
+        return null;
+    }
+
 }

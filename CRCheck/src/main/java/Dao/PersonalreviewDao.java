@@ -17,7 +17,7 @@ public interface PersonalreviewDao {
     public boolean deletePersonalreview(Personalreview po);
 
     //just need the "projectId",return a list of "Personalreview" whose "State" is "NotDone" and "id" is not in "OldPersonalReviewId" of "Summary"
-   // and the "User" state of the "Project" is "Done"
+   // and the "User" state of the "Project" is "Done" and the "result" is not "Error"
     public List findValidPersonalReview(Personalreview po);
 
     //just need the "id",it will return a "Personalreview"
@@ -29,7 +29,7 @@ public interface PersonalreviewDao {
     //need the "id" and the "result",it will update the "result" of a "Personalreview"
     public boolean updateResult(Personalreview po);
 
-    //need the "projectId" and "userId",it will return a list of "Personalreview"
+    //need the "projectId" and "userId",it will return a list of "Personalreview" whose "state" is not "Combination"
     public List getUserPersonalreview(Personalreview po);
 
     //need the "userId" and "projectId",it will return the amount of the defect the "User" found
@@ -37,4 +37,8 @@ public interface PersonalreviewDao {
 
     //need the "userId", "projectId" and "result",it will return the amount of the defect the "User" found in the state of "result"
     public int getDefectOfResult(Personalreview po);
+
+    //just need the "projectId",return a list of "Personalreview" whose "State" is "NotDone" and "id" is not in "OldPersonalReviewId" of "Summary"
+    // and the "User" state of the "Project" is "Done" and the "result" is "Error"
+    public List findValidPersonalReview2(Personalreview po);
 }
