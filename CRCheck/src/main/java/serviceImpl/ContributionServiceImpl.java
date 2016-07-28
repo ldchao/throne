@@ -12,7 +12,11 @@ import java.util.ArrayList;
  */
 public class ContributionServiceImpl implements ContributionService{
 
-    public UniversalState addContribution(String userID, int projectID) {
+    public UniversalState addContribution(int projectID) {
+
+//        User
+
+
         return null;
     }
 

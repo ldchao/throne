@@ -6,6 +6,7 @@ import POJO.*;
 import enums.*;
 import model.*;
 import service.CRCService;
+import service.ContributionService;
 import service.ReviewRecordService;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -16,7 +17,9 @@ import java.util.List;
 /**
  * Created by zs on 2016/7/11.
  */
-public class ReviewRecordServiceImpl implements ReviewRecordService {
+public class ReviewRecordServiceImpl implements ReviewRecordService,Runnable {
+    private int pid;
+
     //提交评审记录
     public UniversalState submitReviewRecord(ArrayList<PersonalReviewRecord> recordList){
         if(recordList.isEmpty()) {
@@ -408,9 +411,13 @@ public class ReviewRecordServiceImpl implements ReviewRecordService {
 
         String description="发起者"+pro.getUserId()+"结束整个项目的评审。";
         projectQualityModel.setDescription(description);
-        return crcService.addQualityReview(projectQualityModel);
+        UniversalState universalState= crcService.addQualityReview(projectQualityModel);
 
-        // TODO: 2016/7/27 修改成就系统
+        Thread t = new Thread(this);
+        pid=projectID;
+        t.start();
+
+        return universalState;
     }
 
     //根据合并项，得到其子项的评审记录
@@ -437,5 +444,8 @@ public class ReviewRecordServiceImpl implements ReviewRecordService {
         return result;
     }
 
-
+    public void run() {
+        ContributionService contributionService=new ContributionServiceImpl();
+        contributionService.addContribution(pid);
+    }
 }

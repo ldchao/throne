@@ -1,7 +1,10 @@
 package controller;
 
+import Dao.ProjectDao;
 import Dao.UserDao;
+import DaoImpl.ProjectDaoImpl;
 import DaoImpl.UserDaoImpl;
+import POJO.Project;
 import POJO.User;
 import enums.UniversalState;
 import model.UserModel;
@@ -75,10 +78,17 @@ public class UploadController {
 			e.printStackTrace();
 		}
 //
+		FileService fileService = new FileServiceImpl();
 		if(isCompressedFile) {
-			FileService fileService = new FileServiceImpl();
 			fileService.unZip(fileId,uploadUrl + filename, decompressionUrl);
+		}else{
+			fileService.addToDB(projectId,uploadUrl + filename);
 		}
+		ProjectDao projectDao=new ProjectDaoImpl();
+		Project po=new Project();
+		po.setId(Integer.parseInt(projectId));
+		po.setCodePath("UPLOAD");
+		projectDao.updateCodePath(po);
 		return "SUCCESS";
 	}
 
