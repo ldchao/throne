@@ -7,7 +7,8 @@
 --%>
 <%@ page import="model.UserModel" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8" %>
+         pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -124,7 +125,7 @@
 <div class="head_div">
     <div>
         <div class="title_img"></div>
-        <div class="title_name">CRC评审项目</div>
+        <div class="title_name">${project.name}</div>
         <div class="title_ddl">2天后结束</div>
         <div class="finish_review">结束此项目评审</div>
     </div>
@@ -139,10 +140,10 @@
 
                 <div class="pro_info">
                     <div class="title_img"></div>
-                    <div class="pro_launcher">marioquer</div>
+                    <div class="pro_launcher">${project.userID}</div>
                     <div class="type_img"></div>
-                    <div class="pro_launcher" style="left:35px">Java</div>
-                    <div class="pro_time visible-lg-inline-block">2016-7-19 — 2016-8-1</div>
+                    <div class="pro_launcher" style="left:35px">${project.type}</div>
+                    <div class="pro_time visible-lg-inline-block">${project.startDate} - ${project.endDate}</div>
                 </div>
 
             </div>
@@ -150,10 +151,7 @@
             <div class="hr_info" style="margin-top: 29px">
                 <div>项目描述</div>
                 <hr class="hr_separate">
-                <div>这是一个很帅很帅很帅很帅很帅很帅很帅很帅很
-                    很帅很帅很帅很帅帅很帅很帅很帅很帅很帅很帅
-                    很帅很帅很帅很帅很帅很帅很帅很帅很帅的项目
-                </div>
+                <div>${project.discription}</div>
             </div>
         </div>
 
@@ -162,9 +160,39 @@
                 <span>参与者</span>
                 <hr class="hr_separate">
 
-                <% for (int i = 0; i < 5; i++) {%>
-                <div class="partner"></div>
-                <%}%>
+                <div class="member-list">
+                    <c:forEach items="${project.invitationList}" var="list">
+
+                        <c:choose>
+
+                            <c:when test="${list.accepting_state=='Agree'}">
+                                <div class="images_div">
+                                    <div class="image-middle"></div>
+                                    <div>${list.userID}</div>
+                                </div>
+                            </c:when>
+
+                            <c:when test="${list.accepting_state=='Refuse'}">
+                                <div class="images_div">
+                                    <div class="image-middle">
+                                        <div class="image-refuse"></div>
+                                    </div>
+                                    <div>${list.userID}</div>
+                                </div>
+                            </c:when>
+
+                            <c:when test="${list.accepting_state=='NotHandle'}">
+                                <div class="images_div">
+                                    <div class="image-middle" style="">
+                                        <div class="image-other"></div>
+                                    </div>
+                                    <div>${list.userID}</div>
+                                </div>
+                            </c:when>
+                        </c:choose>
+
+                    </c:forEach>
+                </div>
 
             </div>
         </div>
@@ -212,7 +240,7 @@
 <%-- 文件/文件夹 --%>
 <div class="table_div">
     <% //if (isCode == 1) {%>
-    <table class="file_table" style="display: none">
+    <table class="file_table" style="display: block;">
 
         <tr class="table_head">
             <td style="width: 42%;  text-align: left;">
@@ -290,7 +318,7 @@
     <%// } %>
 
     <%-- 发起者代码文件-合并 --%>
-    <table id="launcher_merge" class="file_table" style="display: block">
+    <table id="launcher_merge" class="file_table" style="display: none">
 
         <tr class="top_bottom">
             <td style="width: 4%; border-right: 1px solid #dfe0e2"></td>
