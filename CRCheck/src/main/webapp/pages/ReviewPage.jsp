@@ -624,7 +624,6 @@
 <!-- Placed at the end of the document so the pages load faster -->
 <%--<script src="../js/main.js"></script>--%>
 <script src="../js/jquery.js"></script>
-<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 <script src="http://malsup.github.io/jquery.form.js"></script>
 <script src="../js/bootstrap.js"></script>
 <script src="../js/common.js"></script>
