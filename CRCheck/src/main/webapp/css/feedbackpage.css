@@ -18,6 +18,7 @@
 .history_div {
     background-color: #f4f5f9;
     height: 948px;
+    overflow: auto;
 }
 
 .top_title {
