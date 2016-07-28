@@ -84,7 +84,9 @@ var detail = {
                     document.getElementById("end").style.display = "none";
                 } else {
                     if(state!="Over"){
-                        document.getElementById("end").style.display = "block";
+                        document.getElementById("end").style.display = "inline-block";
+                    }else{
+                        document.getElementById("end").style.display = "none";
                     }
                 }
             },

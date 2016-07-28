@@ -1,5 +1,6 @@
 package controller;
 
+import POJO.User;
 import enums.UniversalState;
 import model.UserInf;
 import model.UserListForm;
@@ -32,15 +33,17 @@ public class UserController {
     //TODO 四个不同板块的用户推荐
 
     //个人中心-用户信息
-    @RequestMapping(value = "/users")
-    @ResponseBody
-    public String getUser(HttpServletRequest request,String userId){
+    @RequestMapping(value = "/pages/users")
+    public ModelAndView getUser(HttpServletRequest request){
+        UserModel userModel=(UserModel)request.getSession().getAttribute("User");
+        String userId=userModel.getId();
         UserService userService = new UserServiceImpl();
         UserInf inf=userService.getUserInf(userId);
         if(inf==null)
-            return "FAIL";
-        request.getSession().setAttribute("inf", inf);
-        return "SUCCESS";
+            return null;
+        ModelAndView model=new ModelAndView("PersonalPage");
+        model.addObject("inf",inf);
+        return model;
     }
     //修改用户信息
     @RequestMapping(value = "/updateUser", method = RequestMethod.POST)

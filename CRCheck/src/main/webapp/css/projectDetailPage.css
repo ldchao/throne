@@ -105,7 +105,7 @@
     width: 188px;
     height: 53px;
     font-size: 20px;
-    line-height:53px;
+    line-height: 53px;
     background-color: #577acb;
     color: #fff;
     display: inline-block;
@@ -125,7 +125,7 @@
     width: 188px;
     height: 53px;
     font-size: 20px;
-    line-height:53px;
+    line-height: 53px;
     background-color: #d9d976;
     color: #76766a;
     display: inline-block;
@@ -139,6 +139,11 @@
 
 .merge_this:hover {
     background-color: #e6e69d;
+}
+
+#end {
+    margin-top: 10px;
+    display: inline-block;
 }
 
 

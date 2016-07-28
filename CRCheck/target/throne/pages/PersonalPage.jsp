@@ -6,8 +6,9 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page import="model.UserModel" %>
+<%@ page import="model.UserInf" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8" %>
+         pageEncoding="UTF-8" isELIgnored="false" %>
 <html>
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -61,6 +62,8 @@
         userId = user.getId();
     }
     String src = "../HeadPortraits/" + userId + ".png";
+
+    UserInf userInf = (UserInf) session.getAttribute("inf");
 %>
 
 <nav class="navbar navbar-fixed-top navbar-inverse">
@@ -96,7 +99,7 @@
                     </a></div>
                     <%--用户中心下拉框--%>
                     <div class="popup user-popup" id="js-user-popup">
-                        <a class="item" href="PersonalPage.jsp"><i
+                        <a class="item" href="/pages/users"><i
                                 class="fa fa-user fa-fw"></i>&nbsp&nbsp个人中心</a>
                         <a class="item" href="/Logout" style="margin-bottom: 5px;"><i
                                 class="fa fa-sign-out fa-fw"></i>&nbsp&nbsp退出账号</a>
@@ -137,25 +140,23 @@
                         </form>
 
 
-                        <div class="info"
-                             style="margin-top:0;margin-bottom:10px;font-size: 24px;color: #838D9E;"><%=userId%>
-                        </div>
+                        <div class="info info-username"><%=userId%></div>
                     </div>
                     <div class="info-item" style="margin-top: 0;">
                         <div class="info-name">个人主页</div>
-                        <div class="info">marioquer.cn</div>
+                        <div class="info">${inf.blog}</div>
                     </div>
                     <div class="info-item">
                         <div class="info-name">邮箱</div>
-                        <div class="info">marioquer@hotmail.com</div>
+                        <div class="info">${inf.email}</div>
                     </div>
                     <div class="info-item">
                         <div class="info-name">联系方式</div>
-                        <div class="info">暂未填写</div>
+                        <div class="info">${inf.phone}</div>
                     </div>
                     <div class="info-item">
                         <div class="info-name">单位/学校</div>
-                        <div class="info">南京大学</div>
+                        <div class="info">${inf.address}</div>
                     </div>
                     <button id="edit-button" class="common-button" style="margin-top: 10px;" onclick="editInfo()">修改资料
                     </button>

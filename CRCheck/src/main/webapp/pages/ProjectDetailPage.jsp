@@ -202,7 +202,7 @@
 
         <div id="finish_before">
             <div id="begin" class="submit-button" onclick="beginReview()">立即开始评审</div>
-            <div id="end" class="cancel-button" onclick="endReview()" style="margin-top:10px;">结束此项目评审</div>
+            <div id="end" class="cancel-button" onclick="endReview()">结束此项目评审</div>
             <div id="review-block" style="display: none;">
 
                 <div id="init-form">

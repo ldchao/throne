@@ -74,7 +74,6 @@ function slideTo(id) {
 var isEdit = 0;
 
 function editInfo() {
-    alert(9);
     if (isEdit == 0) {
         var allInfo = document.getElementsByClassName("info");
         var input = new Array(allInfo.length);
@@ -97,38 +96,34 @@ function editInfo() {
     } else {
         //还需要有一个保存的弹框
         var allEdit = document.getElementsByClassName("edit");
-        //var sent = new Array();
-        //for (var i = 0; i < allEdit.length; i++) {
-        //    sent[i] = allEdit[i].innerHTML;
-        //}
-        //sent[5] = "男";
-
         $.ajax({
             type: "post",
             async: false,
             url: "/updateUser",
             data: {
-                inf: {
-                    "id": allEdit[0].value,
-                    "blog": allEdit[1].value,
-                    "email": allEdit[2].value,
-                    "phone": allEdit[3].value,
-                    "address": allEdit[4].value,
-                    "sex": "男"
-                }
-
+                "id": allEdit[0].value,
+                "blog": allEdit[1].value,
+                "email": allEdit[2].value,
+                "phone": allEdit[3].value,
+                "address": allEdit[4].value,
+                "sex": "男"
             },
             success: function (result) {
                 if (result == "SUCCESS") {
                     var input = new Array(allEdit.length);
                     for (var i = 0; i < 5; i++) {
                         input[i] = document.createElement("div");
-                        input[i].className = "info";
-                        input[i].value = allEdit[0].innerHTML;
+                        if (i == 0) {
+                            input[i].className = "info info-username";
+                        } else {
+                            input[i].className = "info";
+                        }
+                        input[i].innerHTML = allEdit[0].value;
                         allEdit[0].parentNode.replaceChild(input[i], allEdit[0]);
                     }
                     document.getElementById("edit-button").innerHTML = "修改资料";
                     isEdit = 0;
+                    slidein(0, "修改信息成功");
                 } else {
                     slidein(1, "提交失败请稍候再试");
                 }
