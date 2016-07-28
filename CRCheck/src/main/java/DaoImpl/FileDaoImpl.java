@@ -96,7 +96,7 @@ public class FileDaoImpl implements FileDao {
     public File findFileById(File po){
         Session session=connection.getSession();
         try {
-            File file=session.get(File.class,po.getId());
+            File file=session.get(File.class,po.getPath());
             connection.closeSession(session);
             return  file;
         }catch (Exception e){

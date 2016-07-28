@@ -170,7 +170,7 @@ public class FileServiceImpl implements FileService {
                 write(eis, destFile);
                 POJO.File file = new POJO.File();
                 int id = Integer.parseInt(proId);
-                file.setId(id);
+                file.setProjectId(id);
                 file.setPath(destDir+entry.getName());
                 file.setState("NOTREVIEWED");
                 file.setLastTime("未开始评审");
