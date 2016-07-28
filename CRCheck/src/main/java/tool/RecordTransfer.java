@@ -8,7 +8,10 @@ import model.PersonalReviewRecord;
  */
 public class RecordTransfer {
     public static PersonalReviewRecord change(String[] strs){
+        //TODO 加文件后要改
         PersonalReviewRecord r=new PersonalReviewRecord();
+        if(strs.length<4)
+            return r;
         //第一项，所在路径名
         r.setPath(strs[0]);
         //第二项，所在行数

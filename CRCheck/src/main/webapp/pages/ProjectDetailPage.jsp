@@ -84,11 +84,9 @@
                 <div class="user-block">
                     <div class="inline bell"><a href="NewsPage.jsp">
                         <% if (user.getMessageNum() > 0) { %>
-                        <i
-                                class="fa fa-bell" style="font-size:25px;"></i>
+                        <img class="message" src="../image/new-message.svg">
                         <% } else {%>
-                        <i
-                                class="fa fa-bell-o" style="font-size:25px;"></i>
+                        <img class="message" src="../image/message.svg">
                         <% }%>
                     </a></div>
                     <%--用户中心下拉框--%>
@@ -99,7 +97,7 @@
                                 class="fa fa-sign-out fa-fw"></i>&nbsp&nbsp退出账号</a>
                     </div>
                     <div class="user" onmouseover="popup()">
-                        <div class="image-middle"></div>
+                        <img class="image-middle" src=<%=user.getHeadPortrait()%>>
                         <div class="inline userName"><%=userId%>
                         </div>
                     </div>
@@ -204,6 +202,7 @@
 
         <div id="finish_before">
             <div id="begin" class="submit-button" onclick="beginReview()">立即开始评审</div>
+            <div id="end" class="cancel-button" onclick="endReview()" style="margin-top:10px;">结束此项目评审</div>
             <div id="review-block" style="display: none;">
 
                 <div id="init-form">
@@ -258,12 +257,11 @@
         </div>
     </c:if>
 
-    <c:if test="${project.state == 'Over'}">
-        <div style="margin-top: 30px;">
-            <div class="merge_this" onclick="mergeDefects()">合并相同缺陷</div>
-            <div class="feedback_btn" onclick="checkQuality()">查看项目评审质量</div>
-        </div>
-    </c:if>
+    <div id="endButtons" style="margin-top: 30px;display: none;">
+        <div class="submit-button" onclick="beginReview()">补充新的缺陷</div>
+        <div class="merge_this" onclick="mergeDefects()">合并相同缺陷</div>
+        <div class="feedback_btn" onclick="checkQuality()">查看项目评审质量</div>
+    </div>
 
     <div id="finish_after" style="margin-top: 30px; display: none">
         <div class="merge_this" onclick="mergeDefects()">合并相同缺陷</div>
@@ -287,6 +285,19 @@
         </button>
 
         <input class="textfield" id="pro_name" type="text" placeholder="项目名称">
+
+        <div class="upload">
+
+            <form id="form_file" method="post" action="../oneUpload.action" enctype="multipart/form-data">
+                <span id="upload_File">上传文件</span>
+
+                <input type="file" name="oneFile" id="file_input" onchange="uploadFile()">
+            </form>
+
+            <div id="prog_div" class="progress">
+                <div id="inner_prog" class="progress-bar progress-bar-success"></div>
+            </div>
+        </div>
 
         <textarea class="textfield" id="pro_describe" placeholder="项目描述"></textarea>
 
@@ -471,6 +482,7 @@
 <!-- Placed at the end of the document so the pages load faster -->
 <%--<script src="../js/main.js"></script>--%>
 <script src="../js/jquery.js"></script>
+<script src="http://malsup.github.io/jquery.form.js"></script>
 <script src="../js/bootstrap.js"></script>
 <script src="../js/common.js"></script>
 <script src="../js/toaster.js"></script>

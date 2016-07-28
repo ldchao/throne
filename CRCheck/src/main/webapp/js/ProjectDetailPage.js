@@ -72,6 +72,26 @@ var detail = {
         }
 
 
+        $.ajax({
+            type: "post",
+            async: false,
+            url: "/checkReviewState",
+            data: {"userID": userId, "projectID": projectId},
+            success: function (result) {
+                if (result == "Done") {
+                    document.getElementById("endButtons").style.display = "block";
+                    document.getElementById("begin").style.display = "none";
+                    document.getElementById("end").style.display = "none";
+                } else {
+                    if(state!="Over"){
+                        document.getElementById("end").style.display = "block";
+                    }
+                }
+            },
+            error: function () {
+                slidein(1,"出错了")
+            }
+        });
     }
 }
 
@@ -92,11 +112,21 @@ function addDefect(list) {
 function addForm() {
     var newForm = document.createElement("div");
     newForm.innerHTML = form;
+    document.getElementById("end").style.display = "none";
     document.getElementById("init-form").appendChild(newForm);
+    sequenceNum();
+}
+
+function sequenceNum() {
+    var forms = document.getElementsByClassName("num");
+    for (var i = 0; i < forms.length; i++) {
+        forms[i].innerHTML = i;
+    }
 }
 
 function deleteForm(node) {
     $(node).parent().parent().remove();
+    sequenceNum();
 }
 
 function beginReview() {
@@ -105,6 +135,7 @@ function beginReview() {
 }
 
 function publishForm() {
+    var isEmpty = false;
     var formList = document.getElementsByClassName("form-empty");
     var resultList = new Array();
     for (var i = 0; i < formList.length; i++) {
@@ -112,6 +143,13 @@ function publishForm() {
 
         var textfields = formList[i].getElementsByClassName("textfield");
         var singleResult = "";
+
+        for (var m = 0; m < 4; m++) {
+            if (textfields[m].value == null || textfields[m].value.trim() == "") {
+                isEmpty = true;
+            }
+        }
+
         for (var j = 0; j < 3; j++) {
             singleResult += textfields[j].value + "&";
         }
@@ -119,30 +157,35 @@ function publishForm() {
         resultList[i] = singleResult;
     }
 
-    $.ajax({
-        type: "post",
-        async: false,
-        url: "/addReview",
-        data: {
-            "userId": userId,
-            "projectId": projectId,
-            "records": resultList
-        },
-        success: function (result) {
-            if (result == "SUCCESS") {
-                slidein(0, "提交成功");
-                setTimeout("window.location.reload()", 1800);
-            } else {
-                slidein(1, "提交失败请稍候再试");
+    if (!isEmpty) {
+        $.ajax({
+            type: "post",
+            async: false,
+            url: "/addReview",
+            data: {
+                "userId": userId,
+                "projectId": projectId,
+                "records": resultList
+            },
+            success: function (result) {
+                if (result == "SUCCESS") {
+                    slidein(0, "提交成功");
+                    setTimeout("window.location.reload()", 1800);
+                } else {
+                    slidein(1, "提交失败请稍候再试");
+                }
+            },
+            error: function () {
+                slidein(1, "出故障了请稍候再试");
             }
-        },
-        error: function () {
-            slidein(1, "出故障了请稍候再试");
-        }
-    });
+        });
+    } else {
+        slidein(1, "您的信息未填写完整");
+    }
+
 }
 
-function endReview(){
+function endReview() {
     publishForm();
     $.ajax({
         type: "post",
@@ -155,7 +198,7 @@ function endReview(){
         success: function (result) {
             if (result == "SUCCESS") {
                 slidein(0, "提交成功");
-                document.getElementById("finish_after").style.display = "";
+                document.getElementById("endButtons").style.display = "";
                 document.getElementById("finish_before").style.display = "none";
             } else {
                 slidein(1, "提交失败请稍候再试");

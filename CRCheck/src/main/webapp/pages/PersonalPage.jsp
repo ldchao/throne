@@ -60,6 +60,7 @@
     if (user != null) {
         userId = user.getId();
     }
+    String src = "../HeadPortraits/" + userId + ".png";
 %>
 
 <nav class="navbar navbar-fixed-top navbar-inverse">
@@ -88,11 +89,9 @@
                 <div class="user-block">
                     <div class="inline bell"><a href="NewsPage.jsp">
                         <% if (user.getMessageNum() > 0) { %>
-                        <i
-                                class="fa fa-bell" style="font-size:25px;"></i>
+                        <img class="message" src="../image/new-message.svg">
                         <% } else {%>
-                        <i
-                                class="fa fa-bell-o" style="font-size:25px;"></i>
+                        <img class="message" src="../image/message.svg">
                         <% }%>
                     </a></div>
                     <%--用户中心下拉框--%>
@@ -103,7 +102,7 @@
                                 class="fa fa-sign-out fa-fw"></i>&nbsp&nbsp退出账号</a>
                     </div>
                     <div class="user" onmouseover="popup()">
-                        <div class="image-middle"></div>
+                        <img class="image-middle" src=<%=user.getHeadPortrait()%>>
                         <div class="inline userName"><%=userId%>
                         </div>
                     </div>
@@ -126,8 +125,21 @@
             <div class="person-block block-shadow">
                 <div class="person-info">
                     <div class="portrait">
-                        <div class="image-large"><a href="#"></a></div>
-                        <div class="info" style="margin-top:5px;margin-bottom:10px;font-size: 24px;color: #838D9E;">marioquer</div>
+                        <form action="../headPortraitsUpload.action" method="post" name="form1"
+                              enctype="multipart/form-data" style="margin-bottom:0;">
+                            <img id="previewImg" width="68" height="68" src=<%=user.getHeadPortrait()%>>
+                            <%--<div style="height: 68px; width: 68px;" id="previewImg"><a href="#"></a></div>--%>
+                            <input type="file" name="imageFile" id="file" accept="image/*"
+                                   onchange="change('previewImg','file')" onmouseover="imageEdit(1)"
+                                   onmouseout="imageEdit(0)">
+                            <div id="portrait-filter"><i class="fa fa-pencil"></i></div>
+                            <%--<input type="submit" value="提交"/>--%>
+                        </form>
+
+
+                        <div class="info"
+                             style="margin-top:0;margin-bottom:10px;font-size: 24px;color: #838D9E;"><%=userId%>
+                        </div>
                     </div>
                     <div class="info-item" style="margin-top: 0;">
                         <div class="info-name">个人主页</div>
@@ -189,20 +201,6 @@
 </div>
 
 
-<%-- 上传头像 --%>
-<%--<form action="upfile.do" method="post" name="form1" enctype="multipart/form-data">--%>
-<%--<form style="margin-top: 200px;"><table><tr>--%>
-<%--<img id="previewImg"src=""width="80"height="80">--%>
-<%--<td> 请选择头像：</td>--%>
-<%--<td >--%>
-<%--<input type="file" name="file" id="file" accept="image/*" onchange="change('previewImg','file')">--%>
-<%--<input type="submit"value="提交"/>--%>
-
-<%--</td>--%>
-<%--</table>--%>
-<%--</form>--%>
-
-
 <a href="#" id="back-to-top"><i class="fa fa-angle-up"></i></a>
 
 <footer>© CRCheck 2016</footer>
@@ -217,6 +215,19 @@
         </button>
 
         <input class="textfield" id="pro_name" type="text" placeholder="项目名称">
+
+        <div class="upload">
+
+            <form id="form_file" method="post" action="../oneUpload.action" enctype="multipart/form-data">
+                <span id="upload_File">上传文件</span>
+
+                <input type="file" name="oneFile" id="file_input" onchange="uploadFile()">
+            </form>
+
+            <div id="prog_div" class="progress">
+                <div id="inner_prog" class="progress-bar progress-bar-success"></div>
+            </div>
+        </div>
 
         <textarea class="textfield" id="pro_describe" placeholder="项目描述"></textarea>
 
@@ -400,6 +411,7 @@
 <!-- Placed at the end of the document so the pages load faster -->
 <%--<script src="../js/main.js"></script>--%>
 <script src="../js/jquery.js"></script>
+<script src="http://malsup.github.io/jquery.form.js"></script>
 <script src="../js/bootstrap.js"></script>
 <script src="../js/common.js"></script>
 <script src="../js/toaster.js"></script>

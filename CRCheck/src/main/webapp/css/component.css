@@ -183,6 +183,8 @@ footer {
     height: 40px;
     width: 40px;
     display: inline-block;
+    border: none;
+    border-radius: 60px;
     background-image: url("../image/portrait.svg");
     position: relative;
 }
@@ -277,7 +279,7 @@ footer {
     padding-top: 12px;
     padding-left: 12px;
     position: relative;
-    top: -11px;
+    top: 0px;
 }
 
 .bell:hover {
@@ -288,7 +290,7 @@ footer {
     cursor: pointer;
     display: inline-block;
     height: 50px;
-    padding-top: 5px;
+    padding-top: 3px;
     padding-left: 10px;
     padding-right: 10px;
     position: relative;
@@ -307,7 +309,7 @@ footer {
 
 .userName {
     position: relative;
-    top: -13px;
+    top: 4px;
     font-size: 24px;
     color: #838D9E;
     margin-left: 8px;
@@ -338,7 +340,6 @@ footer {
 
 .user-popup {
     display: none;
-    right: 80px;
 }
 
 a {
@@ -354,6 +355,11 @@ a:hover {
 .item {
     display: block;
     margin-top: 5px;
+}
+
+.message{
+    width: 26px;
+    height: 26px;
 }
 
 

@@ -34,6 +34,22 @@ public class UserServiceImpl implements UserService {
         return model;
     }
 
+    public UserInf getUserInf(String userid){
+        UserInf inf=new UserInf();
+        UserDao dao=new UserDaoImpl();
+        User user=new User();
+        user.setId(userid);
+        user=dao.findUser(user);
+        if(user==null)
+            return null;
+        inf.setId(user.getId());
+        inf.setPhone(user.getPhone());
+        inf.setAddress(user.getAddress());
+        inf.setBlog(user.getPersonalPage());
+        inf.setEmail(user.getEmail());
+        inf.setSex(user.getSex());
+        return inf;
+    }
     public List<String> getUserList(String userid){
         UserDao dao=new UserDaoImpl();
         List<String> list=dao.getAllUserId();
@@ -75,11 +91,14 @@ public class UserServiceImpl implements UserService {
     public static void main(String[] args) {
         UserService u=new UserServiceImpl();
         //UserModel state=u.getUser("saige");
-        List<String> list=u.getUserList("saisai");
-        for(String s:list)
-            System.out.print(s+" ");
+//        List<String> list=u.getUserList("saisai");
+//        for(String s:list)
+//            System.out.print(s+" ");
 //        System.out.print(String.valueOf(state.getId()));
 //        System.out.print(String.valueOf(state.getPower()));
+
+        UserModel user=u.getUser("chao");
+        System.out.println(user.getHeadPortrait());
     }
 
 }

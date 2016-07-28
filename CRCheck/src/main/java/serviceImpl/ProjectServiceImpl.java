@@ -110,6 +110,7 @@ public class ProjectServiceImpl implements ProjectService {
         p.setProjectPath(pro.getCodePath());
         p.setAttendReview(pro.getAttendReview());
 
+
 //        ProjectqualityDao projectqualityDao=new ProjectqualityDaoImpl();
 //        Projectquality projectquality=new Projectquality();
 //        projectquality.setProjectId(projectID);
@@ -119,13 +120,17 @@ public class ProjectServiceImpl implements ProjectService {
 //        p.setTChao_PredictedDefect(tchao);
 
         ProjectState oldProjectState=ProjectState.valueOf(pro.getProjectState());
-        if(oldProjectState!=ProjectState.Over) {
+        if(oldProjectState==ProjectState.Over){
+            p.setState(oldProjectState);
+        }
+        else{
             ProjectState nowProjectState = DateHelper.stateAnalyse(pro.getStartTime(), pro.getEndTime());
             p.setState(nowProjectState);
             if (nowProjectState != oldProjectState) {
                 updateProjectState(pro.getId(), nowProjectState);
             }
         }
+
         //获取邀请列表
         InvitationListService service = new InvitationListServiceImpl();
         ArrayList<InvitationMessage> list = service.getInvitationList(projectID);

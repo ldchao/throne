@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import service.FileService;
 import serviceImpl.FileServiceImpl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,12 +17,28 @@ import java.util.List;
  */
 @Controller
 public class FileController {
-    //获取文件
+    //获取文件夹内容
     @RequestMapping(value = "/dir/{path}", method = RequestMethod.POST)
     @ResponseBody
     public List<FileModel> getContent(@PathVariable("path") String path){
         FileService s=new FileServiceImpl();
         List<FileModel> list=s.getDir(path);
         return list;
+    }
+    //读取文件
+    @RequestMapping(value = "/file/{path}")
+    @ResponseBody
+    public List<String> getfileContent(@PathVariable("path")String path,String type){
+        FileService s=new FileServiceImpl();
+        path="D:/"+path+"."+type;
+        System.out.println(path);
+        List<String> list=s.readFile(path);
+        List<String> result=new ArrayList<String>();
+        for(String str:list){
+            str=str.replaceAll("<","&lt;");
+            str=str.replaceAll(">","&gt;");
+            result.add(str);
+        }
+        return result;
     }
 }

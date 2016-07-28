@@ -96,10 +96,13 @@ public class CRCServiceImpl implements CRCService {
             projectquality.setMethod2(0.0);
         }else {
             CrcCalculation crcCalculation = new CrcCalculation(matrix);
-            projectquality.setMethod1( crcCalculation.getMhCH());
+            projectquality.setMethod1(crcCalculation.getMhCH());
             projectquality.setMethod2(crcCalculation.getMtCH());
         }
         ProjectqualityDao projectqualityDao=new ProjectqualityDaoImpl();
+        System.out.println(projectquality.getId()+" "+projectquality.getProjectId()
+        +" "+projectquality.getUserId()+" "+projectquality.getEndTime()+" "+projectquality.getDescription()
+        +" "+projectquality.getMethod1()+" "+projectquality.getMethod2());
         return projectqualityDao.addProjectquality(projectquality)?UniversalState.SUCCESS:UniversalState.FAIL;
     }
 

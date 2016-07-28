@@ -8,6 +8,7 @@ var pageNum = 0;  // 页码
 var CRCpro;
 var PUBpro;
 var PROJECT_ID;
+var isUpload = "NOLOAD";  // 是否上传文件
 
 function showIntroduce() {
     $("#introduce_child").slideToggle();
@@ -28,7 +29,7 @@ function showLaunch(elem_id) {
         return;
     }
 
-    if(elem_id == "launch") {
+    if (elem_id == "launch") {
         $.ajax({
             type: "post",
             async: false,
@@ -404,7 +405,6 @@ function publishPro() {
         self = "YES";
 
     // 判断是否上传
-    var isUpload = "NOLOAD";
     var list_info = [userId, proname, prodescribe, codelang, startdate, enddate, limit, PROJECT_ID, isUpload].join("&");
     idlist.splice(0, 0, self);
     var id_info = idlist.join("&");
@@ -606,23 +606,53 @@ function addPUBpro(jsondata) {
 function uploadFile() {
 
     var progdiv = document.getElementById("prog_div");
-    var proginner = document.getElementById("inner_prog");
-   $(progdiv).show();
+    $(progdiv).show();
 
-    // refreshProg(0);
 
-    
+    var imageFile = $('input[name=oneFile]').val();
+    $('form').ajaxSubmit({
+        type: 'post', // 提交方式 get/post
+        url: '/oneUpload', // 需要提交的 url
+        data: {
+            "oneFile": imageFile,
+            "projectId": PROJECT_ID
+        },
+        success: function (result) { // data 保存提交后返回的数据，一般为 json 数据
+            if (result == "SUCCESS") {
+                doProgress();
+                isUpload = "UPLOAD";
+            } else {
+                slidein(1, "文件上传失败");
+            }
+        },
+        error: function () {
+            slidein(1, "获取数据失败");
+        }
+    });
+
 }
 
-function refreshProg(i) {
-
+function SetProgress(progress) {
     var proginner = document.getElementById("inner_prog");
-    proginner.style.width = i + "%";
-    proginner.innerHTML = i + "%";
-
-    if(i < 100) {
-        i++;
-        // setTimeout("refreshProg("+ i +")", 50);
+    proginner.style.width = 100 + "%";
+    if (progress) {
+        proginner.style.width = progress + "%";
+        proginner.innerHTML = progress + "%";
     }
+}
 
+var i = 0;
+function doProgress() {
+    var proginner = document.getElementById("inner_prog");
+    proginner.style.width = 100 + "%";
+
+    if (i <= 100) {
+        setTimeout("doProgress()", 2);
+        SetProgress(i);
+        i++;
+    } else {
+        proginner.style.width = "100%";
+        proginner.innerHTML = "上传成功";
+        slidein(0, "文件上传成功");
+    }
 }

@@ -114,6 +114,8 @@ public class ProjectqualityDaoImpl implements ProjectqualityDao {
             }
 
         }catch(Exception e){
+            e.printStackTrace();
+            connection.closeSession(session);
             return 0.0;
         }
     }

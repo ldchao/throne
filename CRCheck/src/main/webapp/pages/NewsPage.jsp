@@ -87,11 +87,9 @@
                 <div class="user-block">
                     <div class="inline bell"><a href="NewsPage.jsp">
                         <% if (user.getMessageNum() > 0) { %>
-                        <i
-                                class="fa fa-bell" style="font-size:25px;"></i>
+                        <img class="message" src="../image/new-message.svg">
                         <% } else {%>
-                        <i
-                                class="fa fa-bell-o" style="font-size:25px;"></i>
+                        <img class="message" src="../image/message.svg">
                         <% }%>
                     </a></div>
                     <%--用户中心下拉框--%>
@@ -102,7 +100,7 @@
                                 class="fa fa-sign-out fa-fw"></i>&nbsp&nbsp退出账号</a>
                     </div>
                     <div class="user" onmouseover="popup()">
-                        <div class="image-middle"></div>
+                        <img class="image-middle" src=<%=user.getHeadPortrait()%>>
                         <div class="inline userName"><%=userId%>
                         </div>
                     </div>
@@ -199,6 +197,19 @@
         </button>
 
         <input class="textfield row-fluid" id="pro_name" type="text" placeholder="项目名称">
+
+        <div class="upload">
+
+            <form id="form_file" method="post" action="../oneUpload.action" enctype="multipart/form-data">
+                <span id="upload_File">上传文件</span>
+
+                <input type="file" name="oneFile" id="file_input" onchange="uploadFile()">
+            </form>
+
+            <div id="prog_div" class="progress">
+                <div id="inner_prog" class="progress-bar progress-bar-success"></div>
+            </div>
+        </div>
 
         <textarea class="textfield" id="pro_describe" placeholder="项目描述"></textarea>
 
@@ -318,6 +329,7 @@
 </a>
 
 <script src="../js/jquery.js"></script>
+<script src="http://malsup.github.io/jquery.form.js"></script>
 <script src="../js/bootstrap.js"></script>
 <script src="../js/projectpage.js"></script>
 <script src="../js/newspage.js"></script>

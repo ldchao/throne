@@ -38,6 +38,11 @@ public class FileModel {
         return time;
     }
 
-    public FileModel(String path, FileType dir, String s, String s1, String s2) {
+    public FileModel(String path, FileType type, String content, String n, String time) {
+        this.path=path;
+        this.content=content;
+        this.n=n;
+        this.time=time;
+        this.type=type;
     }
 }

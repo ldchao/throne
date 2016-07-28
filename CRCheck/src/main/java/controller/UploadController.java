@@ -26,19 +26,27 @@ import java.util.Map;
 public class UploadController {
 
 	@RequestMapping("/oneUpload")
+	@ResponseBody
 	public String oneUpload(@RequestParam("oneFile") MultipartFile oneFile, @RequestParam("projectId") String projectId,HttpServletRequest request){
 
-        // TODO: 2016/7/26 取id ，用来创建文件名，返回id用来存储
+		// TODO: 2016/7/26 取id ，用来创建文件名，返回id用来存储
 		String fileId =projectId;
-
 		String realPath=request.getSession().getServletContext().getRealPath("/");
-		String uploadUrl = realPath + "ProjectResources/ProjectCompressedFile/"+fileId+"/";
-		String decompressionUrl=realPath+"ProjectResources/ProjectDecompressedFile/"+fileId+"/";
+		String uploadUrl="";
+		String decompressionUrl="";
 		String filename = oneFile.getOriginalFilename();
 
-//		String originalName = oneFile.getOriginalFilename();
-//		String nameSplit[]=originalName.split("\\.");
-//		int index=nameSplit.length-1;
+		String nameSplit[]=filename.split("\\.");
+		int index=nameSplit.length-1;
+		String type=nameSplit[index];
+		boolean isCompressedFile=isCompressedFile(type);
+		if(isCompressedFile){
+			uploadUrl = realPath + "ProjectResources/ProjectCompressedFile/"+fileId+"/";
+			decompressionUrl=realPath+"ProjectResources/ProjectDecompressedFile/"+fileId+"/";
+		}else{
+			uploadUrl = realPath + "ProjectResources/ProjectDecompressedFile/"+fileId+"/";
+		}
+
 //		String filename =fileId;
 //		if(index>0)
 //			filename+="."+nameSplit[index];
@@ -67,10 +75,22 @@ public class UploadController {
 			e.printStackTrace();
 		}
 //
-		FileService fileService=new FileServiceImpl();
-		fileService.unZip( uploadUrl + filename,decompressionUrl);
+		if(isCompressedFile) {
+			FileService fileService = new FileServiceImpl();
+			fileService.unZip(uploadUrl + filename, decompressionUrl);
+		}
+		return "SUCCESS";
+	}
 
-		return null;
+	private boolean isCompressedFile(String type){
+		String[] list={"zip","rar","tar","cab","uue","jar","iso","z","7-zip","ace","lzh","arj","gzip","bz2"};
+		for (String s:list
+			 ) {
+			if(s.equals(type)){
+				return true;
+			}
+		}
+		return false;
 	}
 
 	@RequestMapping("/headPortraitsUpload")
@@ -121,8 +141,9 @@ public class UploadController {
 		po.setHeadPortrait(headPortraitsPath);
 
        if( userDao.updateHeadPortrait(po)){
-		user.setHeadPortrait(headPortraitsPath);
-		return UniversalState.SUCCESS.toString();}
+		  user.setHeadPortrait(headPortraitsPath);
+		  return UniversalState.SUCCESS.toString();
+	   }
 		return  UniversalState.FAIL.toString();
 	}
 

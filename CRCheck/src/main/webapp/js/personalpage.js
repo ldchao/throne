@@ -10,8 +10,6 @@ var yesNo = document.getElementById("yesNo").innerHTML.trim();//是否自己参�
 var projectId = document.getElementById("p-id").innerHTML.trim();
 
 
-var isEdit = false;
-
 //使用IE条件注释来判断是否IE6，通过判断userAgent不一定准确
 if (document.all) document.write('<!--[if lte IE 6]><script type="text/javascript">window.ie6= true<\/script><![endif]-->');
 // var ie6 = /msie 6/i.test(navigator.userAgent);//不推荐，有些系统的ie6 userAgent会是IE7或者IE8
@@ -41,6 +39,27 @@ function change(picId, fileId) {
         }
     }
 
+
+    var imageFile = $('input[name=imageFile]').val();
+
+    $('form').ajaxSubmit({
+        type: 'post', // 提交方式 get/post
+        url: '/headPortraitsUpload', // 需要提交的 url
+        data: {
+            'imageFile': imageFile
+        },
+        success: function (result) { // data 保存提交后返回的数据，一般为 json 数据
+            if (result == "SUCCESS") {
+                slidein(0, "更改头像成功");
+            } else {
+                slidein(1, "更改头像失败");
+            }
+        },
+        error: function () {
+            slidein(1, "获取数据失败");
+        }
+    })
+
 }
 
 
@@ -52,8 +71,11 @@ function slideTo(id) {
     }
 }
 
+var isEdit = 0;
+
 function editInfo() {
-    if (isEdit == false) {
+    alert(9);
+    if (isEdit == 0) {
         var allInfo = document.getElementsByClassName("info");
         var input = new Array(allInfo.length);
         for (var i = 0; i < 5; i++) {
@@ -71,22 +93,30 @@ function editInfo() {
             allInfo[0].parentNode.replaceChild(input[i], allInfo[0]);
         }
         document.getElementById("edit-button").innerHTML = "确认保存";
-        isEdit = true;
+        isEdit = 1;
     } else {
         //还需要有一个保存的弹框
         var allEdit = document.getElementsByClassName("edit");
+        //var sent = new Array();
+        //for (var i = 0; i < allEdit.length; i++) {
+        //    sent[i] = allEdit[i].innerHTML;
+        //}
+        //sent[5] = "男";
 
         $.ajax({
             type: "post",
             async: false,
             url: "/updateUser",
             data: {
-                "id": allEdit[0],
-                "blog": allEdit[1],
-                "email": allEdit[2],
-                "phone": allEdit[3],
-                "address": allEdit[4],
-                "sex": "男"
+                inf: {
+                    "id": allEdit[0].value,
+                    "blog": allEdit[1].value,
+                    "email": allEdit[2].value,
+                    "phone": allEdit[3].value,
+                    "address": allEdit[4].value,
+                    "sex": "男"
+                }
+
             },
             success: function (result) {
                 if (result == "SUCCESS") {
@@ -98,7 +128,7 @@ function editInfo() {
                         allEdit[0].parentNode.replaceChild(input[i], allEdit[0]);
                     }
                     document.getElementById("edit-button").innerHTML = "修改资料";
-                    isEdit = false;
+                    isEdit = 0;
                 } else {
                     slidein(1, "提交失败请稍候再试");
                 }
@@ -107,11 +137,14 @@ function editInfo() {
                 slidein(1, "获取数据失败");
             }
         });
-
     }
 }
 
-
-
-
+function imageEdit(isOk) {
+    if (isOk == "1") {
+        $("#portrait-filter").fadeIn(100);
+    } else {
+        $("#portrait-filter").fadeOut(100);
+    }
+}
 
