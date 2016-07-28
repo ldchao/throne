@@ -35,9 +35,9 @@ public class ContributionController {
     //根据用户查看用户达到的成就点
     @RequestMapping(value = "/checkAchievement")
     @ResponseBody
-    public ArrayList<AchievementModel> checkAchievement(String userID){
+    public ArrayList<Integer> checkAchievement(String userID){
         ContributionService con=new ContributionServiceImpl();
-        ArrayList<AchievementModel> list=con.checkAchievement(userID);
+        ArrayList<Integer> list=con.checkAchievement(userID);
         return list;
     }
 }
