@@ -17,6 +17,26 @@ public class FileModel {
     //最近评审时间
     String time;
 
+    public void setPath(String path) {
+        this.path = path;
+    }
+
+    public void setType(FileType type) {
+        this.type = type;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public void setN(String n) {
+        this.n = n;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
     public String getPath() {
         return path;
     }
