@@ -32,12 +32,15 @@ public class FileServiceImpl implements FileService {
             File[] files = file.listFiles();
             for (File file2 : files) {
                 if (file2.isDirectory()) {
-                    String[] l=file2.list();
-                    String fileNum=l.length+"";
-                    POJO.File file1 = new POJO.File();
-                    file1.setPath(file2.getAbsolutePath());
-                    pList.add(new FileModel(file2.getAbsolutePath(), FileType.Dir,"",fileNum,""));
-                    getDirContent(file2.getAbsolutePath(),0,"");
+                    String s=file2.getAbsolutePath();
+                    if(!(s.equals("__MACOSX"))) {
+                        String[] l = file2.list();
+                        String fileNum = l.length + "";
+                        POJO.File file1 = new POJO.File();
+                        file1.setPath(file2.getAbsolutePath());
+                        pList.add(new FileModel(file2.getAbsolutePath(), FileType.Dir, "", fileNum, ""));
+                        getDirContent(file2.getAbsolutePath(), 0, "");
+                    }
                 } else {
                     String s=file2.getAbsolutePath();
                     String n;
