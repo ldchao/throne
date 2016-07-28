@@ -284,4 +284,8 @@ public class FileServiceImpl implements FileService {
         }
         return s;
     }
+
+    public boolean addToDB(String filePath){
+        return true;
+    }
 }

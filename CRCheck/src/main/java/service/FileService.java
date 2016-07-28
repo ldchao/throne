@@ -16,4 +16,6 @@ public interface FileService {
     public boolean changeState(FileModel fileModel);
 
     public List<String> readFile(String path);
+
+    public boolean addToDB(String filePath);
 }
