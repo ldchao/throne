@@ -205,8 +205,11 @@
     <%--<div class="dir_word"></div>--%>
     <%--<div class="dir_word_last"></div>--%>
     <%--&nbsp;/&nbsp;--%>
-
 </div>
+
+<form>
+    <i class="fa fa-download download_file">&nbsp;&nbsp;下载项目压缩包</i>
+</form>
 
 <%-- 文件/文件夹 --%>
 <div class="table_div">
@@ -251,14 +254,14 @@
 
 
         <%--<tr style="height: 22px; vertical-align: middle" onmouseover="mouseOver(this)" onmouseout="mouseOut(this)">--%>
-            <%--<td class="code_td">--%>
-                <%--<i class="fa fa-pencil pencil_style"></i>--%>
-            <%--</td>--%>
-            <%--<td class="code_td"><%= 1%>--%>
-            <%--</td>--%>
-            <%--<td style="border-right: 1px solid #dfe0e2">--%>
-                <%--<pre><%//filelist[i]%></pre>--%>
-            <%--</td>--%>
+        <%--<td class="code_td">--%>
+        <%--<i class="fa fa-pencil pencil_style"></i>--%>
+        <%--</td>--%>
+        <%--<td class="code_td"><%= 1%>--%>
+        <%--</td>--%>
+        <%--<td style="border-right: 1px solid #dfe0e2">--%>
+        <%--<pre><%//filelist[i]%></pre>--%>
+        <%--</td>--%>
         <%--</tr>--%>
 
         <tr class="top_bottom">
@@ -283,14 +286,14 @@
         </tr>
 
         <%--<tr style="height: 22px; vertical-align: middle">--%>
-            <%--<td style="border-right: 1px solid #dfe0e2; text-align: center;">--%>
-                <%--<i class="fa fa-pencil" style="cursor: pointer;display: none"></i>--%>
-            <%--</td>--%>
-            <%--<td style="border-right: 1px solid #dfe0e2;text-align: center"><%=i + 1%>--%>
-            <%--</td>--%>
-            <%--<td style="border-right: 1px solid #dfe0e2">--%>
-                <%--<pre></pre>--%>
-            <%--</td>--%>
+        <%--<td style="border-right: 1px solid #dfe0e2; text-align: center;">--%>
+        <%--<i class="fa fa-pencil" style="cursor: pointer;display: none"></i>--%>
+        <%--</td>--%>
+        <%--<td style="border-right: 1px solid #dfe0e2;text-align: center"><%=i + 1%>--%>
+        <%--</td>--%>
+        <%--<td style="border-right: 1px solid #dfe0e2">--%>
+        <%--<pre></pre>--%>
+        <%--</td>--%>
         <%--</tr>--%>
 
         <tr class="top_bottom">
@@ -336,7 +339,9 @@
 
     <%-- 除了文档的提交评审 --%>
     <div class="publish_review" style="display: block;" onclick="finishCodeReview()">提交此次评审</div>
-    <div id="finishbtn_reviewer" class="finish_review" style="margin-left: 155px;margin-top: -63px; display: none" onclick="completeReview()">完成此项目评审</div>
+    <div id="finishbtn_reviewer" class="finish_review" style="margin-left: 155px;margin-top: -63px; display: none"
+         onclick="completeReview()">完成此项目评审
+    </div>
     <div id="feed_btn" class="checkfeedback_btn" style="display: none" onclick="checkQuality()">查看项目评审质量</div>
 </div>
 

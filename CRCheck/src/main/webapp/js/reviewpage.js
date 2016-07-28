@@ -47,6 +47,10 @@ window.onload = function () {
         document.getElementById("feed_btn").style.display = "";
     }
 
+    if (userId != PRO_USERID) {
+        document.getElementById("finishbtn_launcher").style.display = "none";
+    }
+
     getFile(PROJECT_ID);
 };
 
@@ -823,4 +827,23 @@ function completeReview() {
 // 项目质量查看
 function checkQuality() {
     window.location.href = "/pages/feedBack?projectId=" + PROJECT_ID;
+}
+
+//下载项目压缩文件
+function downAllFile() {
+    var form = $("<form>");//定义一个form表单
+    form.attr("style", "display:none");
+    form.attr("target", "");
+    form.attr("method", "post");
+    form.attr("action", "/download");
+    var input1 = $("<input>");
+    input1.attr("type", "hidden");
+    input1.attr("name", "fileName");
+
+    var path = PROJECT_ID;
+    input1.attr("value", path);//路径名
+    $("body").append(form);//将表单放置在web中
+    form.append(input1);
+
+    form.submit();//表单提交
 }

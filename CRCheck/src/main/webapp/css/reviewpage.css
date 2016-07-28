@@ -487,3 +487,18 @@ pre {
 .checkfeedback_btn:hover {
     background-color: #7490d3;
 }
+
+.download_file {
+    display: inline-block;
+    float: right;
+    cursor: pointer;
+    font-size: 20px;
+    color: #9a9c9e;
+    position: relative;
+    top: -25px;
+    right: 70px;
+}
+
+.download_file:hover {
+    color: #7490d3;
+}
