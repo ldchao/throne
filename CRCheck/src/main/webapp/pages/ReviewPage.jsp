@@ -127,7 +127,7 @@
         <div class="title_img"></div>
         <div class="title_name">${project.name}</div>
         <div class="title_ddl">2天后结束</div>
-        <div class="finish_review">结束此项目评审</div>
+        <div id="finishbtn_launcher" class="finish_review" onclick="finishPro()">下架此项目</div>
     </div>
 
     <div class="head_div2">
@@ -201,18 +201,6 @@
 
 <div id="dir_id" class="dir_div">
 
-    <%
-        String[] filelist = {"&lt;div class=\"launch_div_right\"&gt;",
-                "    &lt;button class=\"close close_div_launch\" onclick=\"closeLaunch('launch')\"&gt;",
-                "        &lt;i class=\"fa fa-times\"&gt;&lt;/i&gt;",
-                "    &lt;/button&gt;",
-                "&lt;/div&gt;", "&lt;div class=\"launch_div_right\"&gt;",
-                "    &lt;button class=\"close close_div_launch\" onclick=\"closeLaunch('launch')\"&gt;",
-                "        &lt;i class=\"fa fa-times\"&gt;&lt;/i&gt;",
-                "    &lt;/button&gt;",
-                "&lt;/div&gt;"};
-    %>
-
     <%--<div class="dir_word" style="font-weight: 400"></div>--%>
     <%--<div class="dir_word"></div>--%>
     <%--<div class="dir_word_last"></div>--%>
@@ -261,22 +249,17 @@
             <td style="width: 93%; border-right: 1px solid #dfe0e2"></td>
         </tr>
 
-        <%--<% for (int i = 0; i < filelist.length; i++) {%>--%>
 
         <%--<tr style="height: 22px; vertical-align: middle" onmouseover="mouseOver(this)" onmouseout="mouseOut(this)">--%>
-
             <%--<td class="code_td">--%>
                 <%--<i class="fa fa-pencil pencil_style"></i>--%>
             <%--</td>--%>
-
             <%--<td class="code_td"><%= 1%>--%>
             <%--</td>--%>
-
             <%--<td style="border-right: 1px solid #dfe0e2">--%>
                 <%--<pre><%//filelist[i]%></pre>--%>
             <%--</td>--%>
         <%--</tr>--%>
-        <%--<% } %>--%>
 
         <tr class="top_bottom">
             <td>
@@ -299,18 +282,16 @@
             <td style="width: 93%; border-right: 1px solid #dfe0e2"></td>
         </tr>
 
-        <% for (int i = 0; i < filelist.length; i++) {%>
-        <tr style="height: 22px; vertical-align: middle">
-            <td style="border-right: 1px solid #dfe0e2; text-align: center;">
-                <i class="fa fa-pencil" style="cursor: pointer;display: none"></i>
-            </td>
-            <td style="border-right: 1px solid #dfe0e2;text-align: center"><%=i + 1%>
-            </td>
-            <td style="border-right: 1px solid #dfe0e2">
-                <pre><%=filelist[i]%></pre>
-            </td>
-        </tr>
-        <% } %>
+        <%--<tr style="height: 22px; vertical-align: middle">--%>
+            <%--<td style="border-right: 1px solid #dfe0e2; text-align: center;">--%>
+                <%--<i class="fa fa-pencil" style="cursor: pointer;display: none"></i>--%>
+            <%--</td>--%>
+            <%--<td style="border-right: 1px solid #dfe0e2;text-align: center"><%=i + 1%>--%>
+            <%--</td>--%>
+            <%--<td style="border-right: 1px solid #dfe0e2">--%>
+                <%--<pre></pre>--%>
+            <%--</td>--%>
+        <%--</tr>--%>
 
         <tr class="top_bottom">
             <td>
@@ -354,7 +335,9 @@
     </div>
 
     <%-- 除了文档的提交评审 --%>
-    <div class="publish_review" style="display: block;">提交此次评审</div>
+    <div class="publish_review" style="display: block;" onclick="finishCodeReview()">提交此次评审</div>
+    <div id="finishbtn_reviewer" class="finish_review" style="margin-left: 155px;margin-top: -63px; display: none" onclick="completeReview()">完成此项目评审</div>
+    <div id="feed_btn" class="checkfeedback_btn" style="display: none" onclick="checkQuality()">查看项目评审质量</div>
 </div>
 
 <%-- 缺陷块 --%>
@@ -625,6 +608,15 @@
 </a>
 <%-- 用来存放项目name --%>
 <a id="storage_proName" style="display: none;">${project.name}
+</a>
+<%-- 用来存放项目发起者id --%>
+<a id="storage_pro_userId" style="display: none;">${project.userID}
+</a>
+<%-- 用来存放自己是否参与 --%>
+<a id="storage_attendReview" style="display: none;">${project.attendReview}
+</a>
+<%-- 用来存放评审是否结束 --%>
+<a id="storage_state" style="display: none;">${project.state}
 </a>
 <!-- Bootstrap core JavaScript
     ================================================== -->

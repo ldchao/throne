@@ -7,10 +7,10 @@ import model.PersonalReviewRecord;
  * Created by zs on 2016/7/26.
  */
 public class RecordTransfer {
-    public static PersonalReviewRecord change(String[] strs){
+    public static PersonalReviewRecord change(String[] strs) {
         //TODO 加文件后要改
-        PersonalReviewRecord r=new PersonalReviewRecord();
-        if(strs.length<4)
+        PersonalReviewRecord r = new PersonalReviewRecord();
+        if (strs.length < 4)
             return r;
         //第一项，所在路径名
         r.setPath(strs[0]);
@@ -18,21 +18,21 @@ public class RecordTransfer {
         r.setLineNum(strs[1]);
         //第三项，错误类型
         r.setType(strs[2]);
-        if(strs.length==4){
+        if (strs.length == 4) {
             //第四项，文件类型，先默认为code
-            FileType ft=FileType.Code;
+            FileType ft = FileType.Code;
             r.setFileType(ft);
             //第五项，错误细节
             r.setDescription(strs[3]);
-        }
-        else {
+        } else {
             //第四项，文件类型，分为Dir,File或Code三种，Dir不出现
-            FileType ft=FileType.valueOf(strs[3]);
+            FileType ft = FileType.valueOf(strs[3]);
             r.setFileType(ft);
             //第五项，错误细节
             r.setDescription(strs[4]);
             //第六项，若为文档增加一个页数
-            r.setPagesNum(strs[5]);
+            if (ft.equals(FileType.File))
+                r.setPagesNum(strs[5]);
         }
         return r;
     }

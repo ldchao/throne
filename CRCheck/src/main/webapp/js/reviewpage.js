@@ -7,15 +7,41 @@ var code_table_id = document.getElementById("code_file");   // 在线评审代�
 var code_merge_id = document.getElementById("launcher_merge");  // 在线合并
 var doc_id = document.getElementById("review_div");
 var dir_id = document.getElementById("dir_id");
+var userId = document.getElementById("storage").innerHTML.trim();
 var PROJECT_ID = document.getElementById("storage_proId").innerHTML.trim();
 var PROJECT_NAME = document.getElementById("storage_proName").innerHTML.trim();
+var PATH;  // 用来记录路径
+var reviewState = "";  // 审批状态
+var PRO_USERID = document.getElementById("storage_pro_userId").innerHTML.trim();  // 项目发起者
+var ATTEND = document.getElementById("storage_attendReview").innerHTML.trim();  // 自己是否参与
+var STATE = document.getElementById("storage_state").innerHTML.trim();  // 项目是否结束
 
 // 代码评审合并
 window.onload = function () {
 
-    // addReDefects(2);
-    // addReDefects(6);
-    // addReDefects(9);
+    $.ajax({
+        type: "post",
+        async: false,
+        url: "/checkReviewState",
+        data: {
+            "userID": userId,
+            "projectID": PROJECT_ID
+        },
+        success: function (result) {
+            reviewState = result
+        },
+        error: function () {
+            slidein(1, "加载评审状态失败");
+        }
+    });
+
+    if (userId != PRO_USERID || (userId == PRO_USERID && ATTEND == "YES")) {
+        document.getElementById("finishbtn_reviewer").style.display = "";
+    }
+
+    if (STATE == "Over" || reviewState == "Done" || (userId == PRO_USERID && ATTEND == "NO")) {
+        document.getElementById("feed_btn").style.display = "";
+    }
 
     getFile(PROJECT_ID);
 };
@@ -47,7 +73,16 @@ function addDiv(tr, parentId) {
     var div = document.createElement("div");
     div.setAttribute("class", "bug_div");
     div.innerHTML = document.getElementById("bugdiv_id").innerHTML;
+    var day = new Date();
+    var today = day.getFullYear() + "-" + day.getMonth() + "-" + day.getDate();
+    div.getElementsByClassName("userId_div")[0].innerHTML = userId + "&nbsp;|&nbsp" + today;
     td.appendChild(div);
+
+    if (tr.getElementsByClassName("pos_rec").length > 0) {
+        div.getElementsByClassName("pos_rec")[0].innerHTML = tr.getElementsByClassName("pos_rec")[0].innerHTML;
+    } else {
+        div.getElementsByClassName("pos_rec")[0].innerHTML = tr.getElementsByTagName("td")[1].innerHTML;
+    }
 
     var addbtn = div.getElementsByClassName("bug_add")[0];
     addbtn.onclick = function () {
@@ -116,21 +151,22 @@ function addDocdiv() {
     document.getElementById("doc_bugs").appendChild(div);
 }
 
-// 合并缺陷
-function addReDefects(pos) {
+// 添加已有缺陷
+function addReDefects(pos, defect, parentId) {
 
-    var table = document.getElementById("launcher_merge");
+    var table = document.getElementById(parentId);
     var trs = table.getElementsByTagName("tr");
     for (var i = 0; i < trs.length; i++) {
         var tds = trs[i].getElementsByTagName("td");
-        if (tds.length > 1 && tds[1].innerHTML == pos) {
-            var retd = addDiv(trs[i], "launcher_merge");
+        if (tds.length > 1 && tds[1].innerHTML.trim() == pos) {
+            var retd = addDiv(trs[i], parentId);
             retd.getElementsByClassName("del_btn")[0].style.display = "none";
-            retd.getElementsByTagName("select")[0].value = "空指针";
+            retd.getElementsByTagName("select")[0].value = defect.type;
             retd.getElementsByTagName("select")[0].disabled = true;
-            retd.getElementsByClassName("bug_desc")[0].value = "这是一个空指针缺陷" + tds[1].innerHTML;
+            retd.getElementsByClassName("bug_desc")[0].value = defect.description;
             retd.getElementsByClassName("bug_desc")[0].readOnly = true;
-            retd.getElementsByClassName("pos_rec")[0].innerHTML = tds[1].innerHTML;
+            retd.getElementsByClassName("pos_rec")[0].innerHTML = pos;
+            retd.getElementsByClassName("userId_div")[0].innerHTML = defect.userId + "&nbsp;|&nbsp" + defect.commitTime;
             retd.getElementsByClassName("bug_add")[0].style.display = "none";
             return retd;
         }
@@ -148,10 +184,13 @@ function CodeMerge() {
         var box = divs[i].getElementsByTagName("input")[0];
         if (box.checked == true) {
             defects[count] = new Array();
-            defects[count][0] = divs[i].getElementsByClassName("userId_div")[0].innerHTML; // 评审者
+            var userIdDiv = divs[i].getElementsByClassName("userId_div")[0].innerHTML;
+            var sps = userIdDiv.split("|");
+            defects[count][0] = sps[0]; // 评审者
             defects[count][1] = divs[i].getElementsByTagName("select")[0].value;      // 缺陷类型
             defects[count][2] = divs[i].getElementsByClassName("bug_desc")[0].value;  // 描述
             defects[count][3] = divs[i].getElementsByClassName("pos_rec")[0].innerHTML; // 行数位置
+            defects[count][4] = sps[1];  // commit time
             count++;
         }
     }
@@ -170,8 +209,52 @@ function CodeMerge() {
 
             eachdiv.onclick = function () {
                 var index = $(this).parent().find(".def_div").index($(this)) - 1;
-                var retd = addReDefects(defects[index][3]);
-                retd.getElementsByClassName("merge_span")[0].style.display = "";
+                var jsondef = {
+                    "type": defects[index][1], "description": defects[index][2],
+                    "userId": defects[index][0], "commitTime": defects[index][4]
+                };
+                var retd = addReDefects(defects[index][3], jsondef, "launcher_merge");
+
+                var mergespan = retd.getElementsByClassName("merge_span")[0]
+                mergespan.style.display = "";
+                mergespan.innerHTML = "合并共" + count + "缺陷&nbsp;";
+                var elemi = document.createElement("i");
+                elemi.setAttribute("class", "fa fa-angle-double-down");
+                mergespan.appendChild(elemi);
+
+                var bodydiv = document.createElement("div");
+                for (var k = 0; k < defects.length; k++) {
+                    if (k != index) {
+                        var div = document.createElement("div");
+                        div.setAttribute("class", "bug_div");
+                        div.innerHTML = document.getElementById("bugdiv_id").innerHTML;
+                        div.getElementsByClassName("del_btn")[0].style.display = "none";
+                        div.getElementsByTagName("select")[0].value = defects[k][1];
+                        div.getElementsByTagName("select")[0].disabled = true;
+                        div.getElementsByClassName("bug_desc")[0].value = defects[k][2];
+                        div.getElementsByClassName("bug_desc")[0].readOnly = true;
+                        div.getElementsByClassName("pos_rec")[0].innerHTML = defects[index][3];
+                        div.getElementsByClassName("userId_div")[0].innerHTML = defects[k][0] + "&nbsp;|&nbsp" + defects[k][4];
+                        div.getElementsByClassName("bug_add")[0].style.display = "none";
+                        bodydiv.appendChild(div);
+                    }
+                }
+
+                mergespan.onclick = function () {
+                    var lines = $(this).parents("table").find("tr").index($($(this).parents("tr"))) + 1;
+
+                    if (code_merge_id.getElementsByTagName("tr")[lines].getElementsByClassName("bug_div").length > 0) {
+                        code_merge_id.getElementsByTagName("tr")[lines].parentNode.removeChild(code_merge_id.getElementsByTagName("tr")[lines]);
+                    } else {
+                        var bodyrow = code_merge_id.insertRow(lines);
+                        bodyrow.style.width = "100%";
+                        bodyrow.style.height = 97 * (defects.length - 1) + "px";
+                        var td = document.createElement("td");
+                        td.setAttribute("colspan", "3");
+                        td.appendChild(bodydiv);
+                        bodyrow.appendChild(td);
+                    }
+                };
 
                 closeLaunch("choose");
             }
@@ -203,23 +286,30 @@ function getFile(path) {
 }
 
 // 代码文件
-function createCodeTable(result) {
+function createCodeTable(result, parentId) {
 
-    clearTable("code_file", 2);
+    clearTable(parentId, 2);
 
     for (var i = 0; i < result.length; i++) {
 
-        var tr = code_table_id.insertRow(code_table_id.getElementsByTagName("tr").length - 1);
+        var tr = document.getElementById(parentId).insertRow(document.getElementById(parentId).getElementsByTagName("tr").length - 1);
         tr.style.height = "22px";
         tr.style.verticalAlign = "middle";
-        tr.setAttribute("onmouseover", "mouseOver(this)");
-        tr.setAttribute("onmouseout", "mouseOut(this)");
+
+        if (parentId == "code_file") {
+            tr.setAttribute("onmouseover", "mouseOver(this)");
+            tr.setAttribute("onmouseout", "mouseOut(this)");
+        }
 
         var td1 = document.createElement("td");
         td1.setAttribute("class", "code_td");
-        var elemi = document.createElement("i");
-        elemi.setAttribute("class", "fa fa-pencil pencil_style");
-        td1.appendChild(elemi);
+
+        if (parentId == "code_file") {
+            var elemi = document.createElement("i");
+            elemi.setAttribute("class", "fa fa-pencil pencil_style");
+            td1.appendChild(elemi);
+        }
+
         tr.appendChild(td1);
 
         var td2 = document.createElement("td");
@@ -233,21 +323,25 @@ function createCodeTable(result) {
         pre.innerHTML = result[i];
         td3.appendChild(pre);
         tr.appendChild(td3);
-
-        // code_table_id.appendChild(tr);
     }
-
 }
 
 // 读取文件内容
-function getFileContent(path) {
+function getFileContent(path, parentId) {
     $.ajax({
         type: "post",
         async: false,
         url: "/file",
         data: {"path": path},
         success: function (result) {
-            createCodeTable(result);
+            createCodeTable(result, parentId);
+
+            var pathdirs = path.split("/");
+            var dir = "";
+            for (var i = 1; i < pathdirs.length; i++) {
+                dir += (pathdirs[i] + "/");
+            }
+            refreshDir(dir);
         },
         error: function () {
             slidein(1, "出故障了请稍候再试");
@@ -257,6 +351,11 @@ function getFileContent(path) {
 
 // 宏观文件夹
 function createFileTable(result) {
+
+    file_table_id.style.display = "";
+    code_table_id.style.display = "none";
+    code_merge_id.style.display = "none";
+    doc_id.style.display = "none";
 
     for (var i = 0; i < result.length; i++) {
 
@@ -313,6 +412,7 @@ function clearTable(elemId, last) {
 
 // 目录
 function refreshDir(path) {
+    PATH = path;
 
     var divs = dir_id.getElementsByTagName("div");
     var n = divs.length - 1;
@@ -328,7 +428,7 @@ function refreshDir(path) {
 
     headdiv.onclick = function () {
         getFile(PROJECT_ID);
-    }
+    };
 
     var divi = document.createElement("div");
     divi.innerHTML = "&nbsp;/&nbsp;";
@@ -381,13 +481,37 @@ function gotoDir(td) {
 
     var type = td.fileType;
     if (type == "Dir") {
+
         getFile(path);
 
     } else if (type == "Code") {
 
         file_table_id.style.display = "none";
-        code_table_id.style.display = "";
-        getFileContent(path);
+
+        // 项目已经结束,只能查看不能操作
+        if (STATE == "Over") {
+
+        } else if ((userId == PRO_USERID && ATTEND == "NO") ||
+            (userId == PRO_USERID && ATTEND == "YES" && reviewState == "Done")) {
+            // 发起者,自己不可以评审,只能查看\合并\评审;
+
+            code_merge_id.style.display = "";
+            getFileContent(path, "launcher_merge");
+            getAllRecords();
+
+        } else if (userId != PRO_USERID && reviewState == "Done") {
+            // 评审者评审已结束,可以查看\合并, 不能审批
+
+            code_merge_id.style.display = "";
+            getFileContent(path, "launcher_merge");
+            getAllRecords();
+
+        } else {    // 发起者,自己可以评审; 评审者可以评审; 查看自己的评审记录
+
+            code_table_id.style.display = "";
+            getFileContent(path, "code_file");
+            getSelfRecords();
+        }
 
     } else if (type == "File") {
 
@@ -422,4 +546,159 @@ function backLast() {
         }
     }
     getFile(path);
+}
+
+// 提交评审
+function finishCodeReview() {
+
+    //  评审者结束代码评审
+    if (code_table_id.style.display != "none") {
+        var records = new Array();
+        var count = 0;
+
+        var pathName = PATH.substr(0, PATH.length - 1);
+
+        var divs = code_table_id.getElementsByClassName("bug_div");
+
+        if (divs.length > 0) {
+            for (var i = 0; i < divs.length; i++) {
+                var deftype = divs[i].getElementsByClassName("bug_type")[0].value;
+                var defdesc = divs[i].getElementsByClassName("bug_desc")[0].value;
+                var defline = divs[i].getElementsByClassName("pos_rec")[0].innerHTML;
+
+                if (deftype == "缺陷类型" || defdesc == "") {
+                    slidein(2, "您有缺陷未填写完整");
+                    return;
+                } else {
+                    records[count] = [pathName, defline, deftype, "Code", defdesc].join("&");
+                    count++;
+                }
+            }
+        }
+
+        if (count > 0) {
+            $.ajax({
+                type: "post",
+                async: false,
+                url: "/addReview",
+                data: {
+                    "userId": userId,
+                    "projectId": PROJECT_ID,
+                    "records": records
+                },
+                success: function (result) {
+                    if (result == "SUCCESS") {
+                        slidein(0, "提交成功");
+                    }
+                },
+                error: function () {
+                    slidein(1, "出故障了请稍候再试");
+                }
+            });
+        }
+    } else if (code_merge_id.style.display != "none") {
+        //  合并代码提交
+
+        
+    }
+}
+
+// 获取自己的记录
+function getSelfRecords() {
+
+    var pathName = PATH.substr(0, PATH.length - 1);
+    $.ajax({
+        type: "post",
+        async: false,
+        url: "/getOnlineUserRecordList",
+        data: {
+            "userID": userId,
+            "projectID": PROJECT_ID,
+            "path": pathName
+        },
+        success: function (result) {
+            if (result.length > 0) {
+                for (var i = 0; i < result.length; i++) {
+                    addReDefects(result[i].lineNum, result[i], "code_file");
+                }
+            }
+        },
+        error: function () {
+            slidein(1, "获取评审记录失败");
+        }
+    });
+}
+
+// 获取所有记录
+function getAllRecords() {
+
+    var pathName = PATH.substr(0, PATH.length - 1);
+    $.ajax({
+        type: "post",
+        async: false,
+        url: "/getOnlineProjectRecordList",
+        data: {
+            "projectID": PROJECT_ID,
+            "path": pathName
+        },
+        success: function (result) {
+
+            if (result.length > 0) {
+                for (var i = 0; i < result.length; i++) {
+                    addReDefects(result[i].lineNum, result[i], "launcher_merge");
+                }
+            }
+        },
+        error: function () {
+            slidein(1, "获取评审记录失败");
+        }
+    });
+
+}
+
+// 发起者结束项目
+function finishPro() {
+    $.ajax({
+        type: "post",
+        async: false,
+        url: "/confirmReview",
+        data: {
+            "projectID": PROJECT_ID
+        },
+        success: function (result) {
+            if (result == "SUCCESS") {
+                slidein(0, "项目已结束");
+            }
+        },
+        error: function () {
+            slidein(1, "获取评审记录失败");
+        }
+    });
+}
+
+// 审批者结束项目
+function completeReview() {
+    $.ajax({
+        type: "post",
+        async: false,
+        url: "/endReview",
+        data: {
+            "userId": userId,
+            "projectID": PROJECT_ID
+        },
+        success: function (result) {
+            if (result == "SUCCESS") {
+                document.getElementById("feed_btn").style.display = "";
+                slidein(0, "已结束该项目的评审");
+            }
+        },
+        error: function () {
+            slidein(1, "获取评审记录失败");
+        }
+    });
+}
+
+// 项目质量查看
+function checkQuality() {
+    window.location.href = "/pages/feedBack?projectId=" + PROJECT_ID;
 }
