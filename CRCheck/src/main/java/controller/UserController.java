@@ -15,6 +15,7 @@ import service.UserService;
 import serviceImpl.UserServiceImpl;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -77,4 +78,14 @@ public class UserController {
         UserService userService = new UserServiceImpl();
        return userService.getHeadPortraits(userID);
     }
+
+    //搜索好友
+    @RequestMapping(value = "/searchUserList", method = RequestMethod.POST)
+    @ResponseBody
+    public ArrayList<UserModel> searchUserList(String key){
+        UserService service=new UserServiceImpl();
+        ArrayList<UserModel> models=service.searchUserList(key);
+        return models;
+    }
+
 }
