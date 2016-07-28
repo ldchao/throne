@@ -21,7 +21,7 @@ public interface ContributionService {
     public ContributionModel checkContributionSum(String userID);
 
     //根据用户查看用户达到的成就点
-    public ArrayList<AchievementModel> checkAchievement(String userID);
+    public ArrayList<Integer> checkAchievement(String userID);
 
 
 

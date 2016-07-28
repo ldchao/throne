@@ -163,9 +163,9 @@ public class ContributionServiceImpl implements ContributionService{
         return cm;
     }
 
-    public ArrayList<AchievementModel> checkAchievement(String userID) {
+    public ArrayList<Integer> checkAchievement(String userID) {
 
-        ArrayList<AchievementModel> result=new ArrayList<AchievementModel>();
+        ArrayList<Integer> result=new ArrayList<Integer>();
 
         PersonalAchievementDao personalAchievementDao=new PersonalAchievementDaoImpl();
         PersonalAchievement po=new PersonalAchievement();
@@ -173,17 +173,14 @@ public class ContributionServiceImpl implements ContributionService{
         List<Integer> list=personalAchievementDao.getAchievements(po);
 
         AchievementDao achievementDao=new AchievementDaoImpl();
+        int[] count={0,0,0,0,0};
 
         for (Integer id:list) {
-            Achievement a=new Achievement();
-            a.setId(id);
-            Achievement achievement=achievementDao.findAchievementById(a);
-            AchievementModel am=new AchievementModel();
-            am.setType(achievement.getType());
-            am.setValue(achievement.getValue());
-            result.add(am);
+            count[id/5]++;
         }
-
+        for(int i=0;i<5;i++){
+            result.add(count[i]);
+        }
         return result;
     }
 }
