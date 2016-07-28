@@ -201,18 +201,26 @@ public class FileServiceImpl implements FileService {
                 destFile.mkdirs();
             }
             else {
-                destFile.getParentFile().mkdirs();
-                InputStream eis = zipFile.getInputStream(entry);
-                System.out.println(eis.read());
-                write(eis, destFile);
-                POJO.File file = new POJO.File();
-                int id = Integer.parseInt(proId);
-                file.setProjectId(id);
-                file.setPath(destDir+entry.getName());
-                file.setState("NOTREVIEWED");
-                file.setLastTime("未开始评审");
-                FileDao fileDao = new FileDaoImpl();
-                fileDao.addFile(file);
+                String s=destDir + entry.getName();
+                int a=s.length()-9;
+                if(s.length()-9<0){
+                    a=0;
+                }
+                if(!(s.substring(s.length() - 7, s.length()).equals("_MACOSX"))
+                        && (!(s.substring(a, s.length()).equals(".DS_Store")))) {
+                    destFile.getParentFile().mkdirs();
+                    InputStream eis = zipFile.getInputStream(entry);
+                    System.out.println(eis.read());
+                    write(eis, destFile);
+                    POJO.File file = new POJO.File();
+                    int id = Integer.parseInt(proId);
+                    file.setProjectId(id);
+                    file.setPath(destDir + entry.getName());
+                    file.setState("NOTREVIEWED");
+                    file.setLastTime("未开始评审");
+                    FileDao fileDao = new FileDaoImpl();
+                    fileDao.addFile(file);
+                }
             }
         }
     }
