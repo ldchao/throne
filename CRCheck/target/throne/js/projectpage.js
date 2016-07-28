@@ -667,3 +667,25 @@ function setFile() {
     span.innerHTML = "待上传";
     isUpload = "UPLOAD";
 }
+
+
+//下载项目压缩文件
+function downAllFile(){
+    var form=$("<form>");//定义一个form表单
+    form.attr("style","display:none");
+    form.attr("target","");
+    form.attr("method","post");
+    form.attr("action","../download");
+//       form.attr("fileName","55.jpg");
+    var input1=$("<input>");
+    input1.attr("type","hidden");
+    input1.attr("name","fileName");
+
+    var path = "ProjectCompressedFile/"+/*项目存储编号*/+"/文件名"
+
+    input1.attr("value",path);//路径名
+    $("body").append(form);//将表单放置在web中
+    form.append(input1);
+
+    form.submit();//表单提交
+}
