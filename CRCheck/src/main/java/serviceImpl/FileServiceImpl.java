@@ -33,7 +33,7 @@ public class FileServiceImpl implements FileService {
             for (File file2 : files) {
                 if (file2.isDirectory()) {
                     String s=file2.getAbsolutePath();
-                    if(!(s.equals("__MACOSX"))) {
+                    if(!(s.substring(s.length()-7,s.length()).equals("_MACOSX"))) {
                         String[] l = file2.list();
                         String fileNum = l.length + "";
                         POJO.File file1 = new POJO.File();
@@ -75,6 +75,7 @@ public class FileServiceImpl implements FileService {
     private void getDirContent(String path,int fileNum,String time) {
         File file = new File(path);
         if (file.exists()) {
+            File[] files = file.listFiles();
 
         }else {
             System.out.println("文件不存在!");
