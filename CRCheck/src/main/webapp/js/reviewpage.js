@@ -2,6 +2,10 @@
  * Created by L.H.S on 16/7/20.
  */
 
+var file_table_id = document.getElementById("file_table_id");
+var PROJECT_ID = document.getElementById("storage_proId").innerHTML.trim();
+
+
 function mouseOver(tr) {
     tr.style.backgroundColor = "#f3faff";
     tr.getElementsByTagName("i")[0].style.display = "block";
@@ -60,7 +64,7 @@ function selectAll(parentId) {
     var divs = document.getElementById(parentId).getElementsByClassName("bug_div");
     for (var i = 0; i < divs.length; i++) {
         var box = divs[i].getElementsByTagName("input")[0];
-        if(parentId == "code_file") {
+        if (parentId == "code_file") {
             box.checked = document.getElementById("selectAll").checked;
         } else {
             box.checked = document.getElementById("selectAll_merge").checked;
@@ -104,11 +108,9 @@ window.onload = function () {
     // addReDefects(2);
     // addReDefects(6);
     // addReDefects(9);
-    
-    
-    
-    
-}
+
+    getFile(PROJECT_ID + "");
+};
 
 function addReDefects(pos) {
 
@@ -169,4 +171,56 @@ function CodeMerge() {
     }
 
     delAll("launcher_merge");
+}
+
+function getFile(path) {
+
+    $.ajax({
+        type: "post",
+        async: false,
+        url: "/dir/" + path,
+        success: function (result) {
+            createFileTable(result);
+        },
+        error: function () {
+            slidein(1, "出故障了请稍候再试");
+        }
+    });
+}
+
+function createFileTable(result) {
+    for (var i = 0; i < result.length; i++) {
+
+        var tr = document.createElement("tr");
+        tr.setAttribute("class", "table_body");
+
+        var td1 = document.createElement("td");
+        td1.setAttribute("class", "td1_style");
+        var pathname = result[i].path.split("/");
+        td1.innerHTML = pathname[pathname.length - 1];
+        tr.appendChild(td1);
+
+        var td2 = document.createElement("td");
+        td2.style.width = "19%";
+        if (result[i].type != "Dir" && result[i].content == "REVIEWED") {
+            var elem_i = document.createElement("i");
+            elem_i.setAttribute("class", "fa fa-check green_check");
+            td2.appendChild(elem_i);
+        } else if (result[i].type == "Dir") {
+            td2.innerHTML = result[i].content + "/" + result[i].n;
+        }
+        tr.appendChild(td2);
+
+        var td3 = document.createElement("td");
+        td3.style.width = "19%";
+        td3.innerHTML = result[i].n;
+        tr.appendChild(td3);
+
+        var td4 = document.createElement("td");
+        td4.style.width = "19%";
+        td4.innerHTML = result[i].time;
+        tr.appendChild(td4);
+
+        file_table_id.appendChild(tr);
+    }
 }

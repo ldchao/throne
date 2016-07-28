@@ -10,8 +10,7 @@ public class FileModel {
     String path;
     //文件类型
     FileType type;
-    //文件夹-已评审多少
-    //文件-评审状态
+    //文件夹-已评审多少;文件-评审状态 "REVIEWED", "NOTREVIEWED"
     String content;
     //文件数/大小
     String n;

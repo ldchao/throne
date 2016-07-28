@@ -7,7 +7,7 @@
 --%>
 <%@ page import="model.UserModel" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8" isELIgnored="false"%>
+         pageEncoding="UTF-8" isELIgnored="false" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
@@ -239,8 +239,8 @@
 
 <%-- 文件/文件夹 --%>
 <div class="table_div">
-    <% //if (isCode == 1) {%>
-    <table class="file_table" style="display: block;">
+
+    <table id="file_table_id" class="file_table" style="display: block;">
 
         <tr class="table_head">
             <td style="width: 42%;  text-align: left;">
@@ -255,31 +255,19 @@
             <td style="width: 20%">最近评审时间</td>
         </tr>
 
-        <%
-            String[] dircontent = {"java", "controller", "css", "js", "image", "jsp"};
-            for (int i = 0; i < 6; i++) {
-        %>
-        <tr class="table_body">
-            <td style="width: 42%; padding-left: 27px; text-align: left;"><%=dircontent[i]%>
-            </td>
+        <tr class="table_body" style="display: none;">
+            <td class="td1_style"></td>
 
             <td style="width: 19%">
                 <%-- 判断是文件夹或文件 --%>
                 <%-- 判断是否已评审 --%>
-                <% if (isFile == 1 && i % 2 == 0) {%>
                 <i class="fa fa-check green_check"></i>
-                <% } else if (isFile == 0) {%>
-                16
-                <% } %>
             </td>
-
             <td style="width: 19%;">520KB</td>
             <td style="width: 20%">2016/07/20</td>
         </tr>
-        <% } %>
 
     </table>
-    <%// } else { %>
 
     <%-- 评审者代码文件 --%>
     <table id="code_file" class="file_table" style="display: none">
@@ -315,7 +303,6 @@
             <td></td>
         </tr>
     </table>
-    <%// } %>
 
     <%-- 发起者代码文件-合并 --%>
     <table id="launcher_merge" class="file_table" style="display: none">
@@ -646,6 +633,9 @@
 
 <%-- 用来存放userId --%>
 <a id="storage" style="display: none;"><%=userId%>
+</a>
+<%-- 用来存放项目id --%>
+<a id="storage_proId" style="display: none;">${project.projectID}
 </a>
 <!-- Bootstrap core JavaScript
     ================================================== -->

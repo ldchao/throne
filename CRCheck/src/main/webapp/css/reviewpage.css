@@ -444,3 +444,9 @@ pre {
 .publish_doc:hover {
     background-color: #7BE8BF;
 }
+
+.td1_style {
+    width: 42%;
+    padding-left: 27px;
+    text-align: left;
+}
