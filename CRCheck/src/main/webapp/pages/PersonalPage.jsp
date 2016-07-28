@@ -106,7 +106,8 @@
                     </div>
                     <div class="user" onmouseover="popup()">
                         <img class="image-middle" src=<%=user.getHeadPortrait()%>>
-                        <div class="inline userName"><%=userId%></div>
+                        <div class="inline userName"><%=userId%>
+                        </div>
                     </div>
                 </div>
 
@@ -139,7 +140,8 @@
                         </form>
 
 
-                        <div class="info info-username"><%=userId%></div>
+                        <div class="info info-username"><%=userId%>
+                        </div>
                     </div>
                     <div class="info-item" style="margin-top: 0;">
                         <div class="info-name">个人主页</div>
@@ -173,28 +175,132 @@
                     <div class="history-block">
                         <div class="history-item">
                             <div class="history-name">评审行数</div>
-                            <div class="history">111</div>
+                            <div class="history"></div>
                         </div>
                         <div class="history-item">
                             <div class="history-name">评审时间</div>
-                            <div class="history">11小时</div>
+                            <div class="history"></div>
                         </div>
                         <div class="history-item">
                             <div class="history-name">发现缺陷</div>
-                            <div class="history">123个</div>
+                            <div class="history"></div>
                         </div>
                         <div class="history-item">
                             <div class="history-name">正确率</div>
-                            <div class="history">67%</div>
+                            <div class="history"></div>
                         </div>
                         <div class="history-item">
                             <div class="history-name">平均覆盖率</div>
-                            <div class="history">23%</div>
+                            <div class="history"></div>
                         </div>
                     </div>
                 </div>
-                <div id="friend" class="friend-block block-shadow"></div>
-                <div id="achieve" class="achieve-block block-shadow"></div>
+                <%--我的好友--%>
+                <div id="friend" class="friend-block block-shadow">
+                    <div class="achieve-name">我的好友</div>
+                    <div class="myfriend">
+                        <%--好友列表--%>
+                        <%--<div class="result-item inline">--%>
+                            <%--<img class="result-image inline" src="../image/portrait.svg">--%>
+                            <%--<div class="result-name inline">marioquer</div>--%>
+                        <%--</div>--%>
+                    </div>
+                </div>
+                <div class="friend-block block-shadow">
+                    <div class="achieve-name">添加好友</div>
+                    <div class="search-row">
+                        <div style="margin-bottom: 15px;">
+                            <input id="searchField" type="text" class="textfield inline"
+                                   style="width: 540px;height: 40px; background-color: #F1F2FA;" onkeyup="keySearch()">
+                            <button class="common-button inline" style="width:167px;height: 40px;margin-left: 8px;"
+                                    onclick="searchUser()"><i class="fa fa-search"></i> 搜索好友
+                            </button>
+                        </div>
+
+
+                        <%--好友列表框--%>
+                        <div id="user-list" class="result-item">
+                            <img class="result-image inline" src="../image/portrait.svg">
+                            <div class="result-name inline">marioquer</div>
+                            <a href="#" onclick="addFriend(this)"><i class="fa fa-plus result-plus"></i></a>
+                        </div>
+
+                    </div>
+                </div>
+                <%--我的成就--%>
+                <div id="achieve" class="achieve-block block-shadow">
+                    <div class="achieve-name">我的成就</div>
+                    <div class="line">
+                        <div class="lines"></div>
+                        <div class="lines"></div>
+                        <div class="lines"></div>
+                        <div class="lines"></div>
+                        <div class="lines"></div>
+                    </div>
+                    <div class="line-text">
+                        <div class="text-Name">1024行</div>
+                        <div class="text-Name">8192行</div>
+                        <div class="text-Name">20000行</div>
+                        <div class="text-Name">40000行</div>
+                        <div class="text-Name">100000行</div>
+                    </div>
+                    <div class="time">
+                        <div class="times"></div>
+                        <div class="times"></div>
+                        <div class="times"></div>
+                        <div class="times"></div>
+                        <div class="times"></div>
+                    </div>
+                    <div class="line-text">
+                        <div class="text-Name">256分钟</div>
+                        <div class="text-Name">1024分钟</div>
+                        <div class="text-Name">7200分钟</div>
+                        <div class="text-Name">20000分钟</div>
+                        <div class="text-Name">40000分钟</div>
+                    </div>
+                    <div class="defect">
+                        <div class="defects"></div>
+                        <div class="defects"></div>
+                        <div class="defects"></div>
+                        <div class="defects"></div>
+                        <div class="defects"></div>
+                    </div>
+                    <div class="line-text">
+                        <div class="text-Name">64个</div>
+                        <div class="text-Name">256个</div>
+                        <div class="text-Name">1024个</div>
+                        <div class="text-Name">4096个</div>
+                        <div class="text-Name">16384个</div>
+                    </div>
+                    <div class="rightRate">
+                        <div class="rights"></div>
+                        <div class="rights"></div>
+                        <div class="rights"></div>
+                        <div class="rights"></div>
+                        <div class="rights"></div>
+                    </div>
+                    <div class="line-text">
+                        <div class="text-Name">50%</div>
+                        <div class="text-Name">60%</div>
+                        <div class="text-Name">70%</div>
+                        <div class="text-Name">80%</div>
+                        <div class="text-Name">90%</div>
+                    </div>
+                    <div class="cover">
+                        <div class="covers"></div>
+                        <div class="covers"></div>
+                        <div class="covers"></div>
+                        <div class="covers"></div>
+                        <div class="covers"></div>
+                    </div>
+                    <div class="line-text">
+                        <div class="text-Name">5%</div>
+                        <div class="text-Name">10%</div>
+                        <div class="text-Name">20%</div>
+                        <div class="text-Name">30%</div>
+                        <div class="text-Name">50%</div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -425,6 +531,9 @@
 <script src="../js/ie10-viewport-bug-workaround.js"></script>
 
 <script>
+
+    loadAchieve();
+
     $('#start_date').datetimepicker({
         lang: 'ch',
         timepicker: false,

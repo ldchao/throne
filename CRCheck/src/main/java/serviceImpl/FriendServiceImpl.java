@@ -27,6 +27,7 @@ public class FriendServiceImpl implements FriendService{
         Friends friends=new Friends();
         friends.setId(id);
         friends.setUserId(uid);
+        friends.setFriendId(fid);
         return friendsDao.addFriend(friends)?UniversalState.SUCCESS:UniversalState.FAIL;
     }
 
@@ -48,7 +49,7 @@ public class FriendServiceImpl implements FriendService{
         User po=new User();
         for (Friends friends:friendses) {
             UserModel um=new UserModel();
-            um.setId(uid);
+            um.setId(friends.getFriendId());
             po.setId(friends.getFriendId());
             User u=userDao.findUser(po);
             um.setHeadPortrait(u.getHeadPortrait());

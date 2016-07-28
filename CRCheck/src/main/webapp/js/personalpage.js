@@ -3,6 +3,8 @@
  */
 
 
+var userList;
+
 var state = document.getElementById("p-state").innerHTML.trim();
 var userId = document.getElementById("storage").innerHTML.trim();//当前用户
 var owner = document.getElementById("owner").innerHTML.trim();//项目拥有者
@@ -142,4 +144,159 @@ function imageEdit(isOk) {
         $("#portrait-filter").fadeOut(100);
     }
 }
+
+
+function loadAchieve() {
+
+    userList = document.getElementById("user-list").innerHTML;
+
+
+    //加载个人累计的信息
+    $.ajax({
+        type: "post",
+        async: false,
+        url: "/checkContributionSum",
+        data: {
+            "userID": userId
+        },
+        success: function (result) {
+            var allAchieve = document.getElementsByClassName("history");
+            allAchieve[0].innerHTML = result.row + "行";
+            allAchieve[1].innerHTML = result.time + "分钟";
+            allAchieve[2].innerHTML = result.amount + "个";
+            allAchieve[3].innerHTML = result.accuracy + "%";
+            allAchieve[4].innerHTML = result.coverage + "%";
+        },
+        error: function () {
+            slidein(1, "获取数据失败");
+        }
+    });
+
+    //加载成就列表
+    $.ajax({
+        type: "post",
+        async: false,
+        url: "/checkAchievement",
+        data: {
+            "userID": userId
+        },
+        success: function (result) {
+            var lines = document.getElementsByClassName("lines");
+            var times = document.getElementsByClassName("times");
+            var defects = document.getElementsByClassName("defects");
+            var rights = document.getElementsByClassName("rights");
+            var covers = document.getElementsByClassName("covers");
+
+            for (var i = 0; i < result[0]; i++) {
+                lines[i].style.backgroundImage = "url('../image/line/line" + (5 - i) + ".svg')";
+            }
+            for (var i = 0; i < result[1]; i++) {
+                times[i].style.backgroundImage = "url('../image/line/time" + (5 - i) + ".svg')";
+            }
+            for (var i = 0; i < result[2]; i++) {
+                defects[i].style.backgroundImage = "url('../image/line/defect" + (5 - i) + ".svg')";
+            }
+            for (var i = 0; i < result[3]; i++) {
+                rights[i].style.backgroundImage = "url('../image/line/right" + (5 - i) + ".svg')";
+            }
+            for (var i = 0; i < result[4]; i++) {
+                covers[i].style.backgroundImage = "url('../image/line/cover" + (5 - i) + ".svg')";
+            }
+
+        },
+        error: function () {
+            slidein(1, "获取数据失败");
+        }
+    });
+
+    //加载好友列表
+    $.ajax({
+        type: "post",
+        async: false,
+        url: "/findAllFriend",
+        data: {
+            "uid": userId
+        },
+        success: function (result) {
+            for (var i = 0; i < result.length; i++) {
+                var friendblock = document.createElement("div");
+                friendblock.className = "result-item";
+                friendblock.innerHTML = userList;
+                friendblock.style.display = "inline-block";
+                friendblock.getElementsByClassName("result-image")[0].src = result[i].headPortrait;
+                friendblock.getElementsByClassName("result-name")[0].innerHTML = result[i].id;
+                friendblock.getElementsByClassName("result-plus")[0].style.display = "none";
+                document.getElementsByClassName("myfriend")[0].appendChild(friendblock);
+            }
+        },
+        error: function () {
+            slidein(1, "获取数据失败");
+        }
+    });
+
+}
+
+
+function searchUser() {
+    var input = document.getElementById("searchField").value;
+    $.ajax({
+        type: "post",
+        async: false,
+        url: "/searchUserList",
+        data: {
+            "key": input
+        },
+        success: function (result) {
+            for (var i = 0; i < result.length; i++) {
+                var friendblock = document.createElement("div");
+                friendblock.className = "result-item";
+                friendblock.innerHTML = userList;
+                friendblock.style.display = "inline-block";
+                friendblock.getElementsByClassName("result-image")[0].src = result[i].headPortrait;
+                friendblock.getElementsByClassName("result-name")[0].innerHTML = result[i].id;
+                document.getElementsByClassName("search-row")[0].appendChild(friendblock);
+            }
+        },
+        error: function () {
+            slidein(1, "获取数据失败");
+        }
+    });
+}
+
+function keySearch(){
+    if(event.keyCode == "13"){
+        searchUser();
+    }
+}
+
+function addFriend(plus){
+    var fid = plus.parentNode.getElementsByClassName("result-name")[0].innerHTML;
+
+    $.ajax({
+        type: "post",
+        async: false,
+        url: "/addFriend",
+        data: {
+            "uid": userId,
+            "fid": fid
+        },
+        success: function (result) {
+           if(result == "SUCCESS"){
+               alert(0);
+               var node = document.createElement("div");
+               node.innerHTML = plus.parentNode.innerHTML;
+               node.className = "result-item";
+               node.style.display = "inline-block";
+               node.getElementsByClassName("result-plus")[0].style.display = "none";
+               document.getElementsByClassName("myfriend")[0].appendChild(node);
+           }else{
+               alert(1);
+           }
+        },
+        error: function () {
+            slidein(1, "获取数据失败");
+        }
+    });
+}
+
 
