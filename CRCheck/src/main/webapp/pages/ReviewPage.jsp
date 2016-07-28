@@ -368,6 +368,9 @@
 
         <div class="bug_add">添加缺陷</div>
 
+        <%-- 缓存位置 --%>
+        <a class="pos_rec" style="display: none;"></a>
+        <%-- 缓存记录id --%>
         <a class="pos_rec" style="display: none;"></a>
     </div>
 </div>

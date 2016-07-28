@@ -16,6 +16,10 @@ var PRO_USERID = document.getElementById("storage_pro_userId").innerHTML.trim();
 var ATTEND = document.getElementById("storage_attendReview").innerHTML.trim();  // 自己是否参与
 var STATE = document.getElementById("storage_state").innerHTML.trim();  // 项目是否结束
 
+var recordID;
+var recordIDlist = new Array();
+var rec_count = 1;
+
 // 代码评审合并
 window.onload = function () {
 
@@ -166,6 +170,7 @@ function addReDefects(pos, defect, parentId) {
             retd.getElementsByClassName("bug_desc")[0].value = defect.description;
             retd.getElementsByClassName("bug_desc")[0].readOnly = true;
             retd.getElementsByClassName("pos_rec")[0].innerHTML = pos;
+            retd.getElementsByClassName("pos_rec")[1].innerHTML = defect.id;
             retd.getElementsByClassName("userId_div")[0].innerHTML = defect.userId + "&nbsp;|&nbsp" + defect.commitTime;
             retd.getElementsByClassName("bug_add")[0].style.display = "none";
             return retd;
@@ -191,6 +196,7 @@ function CodeMerge() {
             defects[count][2] = divs[i].getElementsByClassName("bug_desc")[0].value;  // 描述
             defects[count][3] = divs[i].getElementsByClassName("pos_rec")[0].innerHTML; // 行数位置
             defects[count][4] = sps[1];  // commit time
+            defects[count][5] = divs[i].getElementsByClassName("pos_rec")[1].innerHTML; // id
             count++;
         }
     }
@@ -211,9 +217,20 @@ function CodeMerge() {
                 var index = $(this).parent().find(".def_div").index($(this)) - 1;
                 var jsondef = {
                     "type": defects[index][1], "description": defects[index][2],
-                    "userId": defects[index][0], "commitTime": defects[index][4]
+                    "userId": defects[index][0], "commitTime": defects[index][4],
+                    "id": defects[index][5]
                 };
                 var retd = addReDefects(defects[index][3], jsondef, "launcher_merge");
+
+                rec_count = 1;
+                recordID = defects[index][5];
+                recordIDlist[0] = recordID;
+                for (var m = 0; m < defects.length; m++) {
+                    if (m != index) {
+                        recordIDlist[rec_count] = defects[m][5];
+                        rec_count++;
+                    }
+                }
 
                 var mergespan = retd.getElementsByClassName("merge_span")[0]
                 mergespan.style.display = "";
@@ -263,6 +280,52 @@ function CodeMerge() {
 
     delAll("launcher_merge");
 }
+
+// 显示合并的文件
+function showMerges(defect, merges, parentId) {
+
+    var retd = addReDefects(defect.lineNum, defect, parentId);
+
+    var mergespan = retd.getElementsByClassName("merge_span")[0]
+    mergespan.style.display = "";
+    mergespan.innerHTML = "合并共" + merges.length + "缺陷&nbsp;";
+    var elemi = document.createElement("i");
+    elemi.setAttribute("class", "fa fa-angle-double-down");
+    mergespan.appendChild(elemi);
+
+    var bodydiv = document.createElement("div");
+    for (var k = 0; k < merges.length; k++) {
+        var div = document.createElement("div");
+        div.setAttribute("class", "bug_div");
+        div.innerHTML = document.getElementById("bugdiv_id").innerHTML;
+        div.getElementsByClassName("del_btn")[0].style.display = "none";
+        div.getElementsByTagName("select")[0].value = merges[k].type;
+        div.getElementsByTagName("select")[0].disabled = true;
+        div.getElementsByClassName("bug_desc")[0].value = merges[k].description;
+        div.getElementsByClassName("bug_desc")[0].readOnly = true;
+        div.getElementsByClassName("pos_rec")[0].innerHTML = merges[k].lineNum;
+        div.getElementsByClassName("userId_div")[0].innerHTML = merges[k].userId + "&nbsp;|&nbsp" + merges[k].commitTime;
+        div.getElementsByClassName("bug_add")[0].style.display = "none";
+        bodydiv.appendChild(div);
+    }
+
+    mergespan.onclick = function () {
+        var lines = $(this).parents("table").find("tr").index($($(this).parents("tr"))) + 1;
+
+        if (code_merge_id.getElementsByTagName("tr")[lines].getElementsByClassName("bug_div").length > 0) {
+            code_merge_id.getElementsByTagName("tr")[lines].parentNode.removeChild(code_merge_id.getElementsByTagName("tr")[lines]);
+        } else {
+            var bodyrow = code_merge_id.insertRow(lines);
+            bodyrow.style.width = "100%";
+            bodyrow.style.height = 97 * (merges.length - 1) + "px";
+            var td = document.createElement("td");
+            td.setAttribute("colspan", "3");
+            td.appendChild(bodydiv);
+            bodyrow.appendChild(td);
+        }
+    };
+}
+
 
 // 读取文件夹
 function getFile(path) {
@@ -514,7 +577,8 @@ function gotoDir(td) {
         }
 
     } else if (type == "File") {
-
+        file_table_id.style.display = "none";
+        doc_id.style.display = "";
     }
 }
 
@@ -599,7 +663,24 @@ function finishCodeReview() {
     } else if (code_merge_id.style.display != "none") {
         //  合并代码提交
 
-        
+        $.ajax({
+            type: "post",
+            async: false,
+            url: "/unionChoose",
+            data: {
+                "userId": userId,
+                "recordId": recordID,
+                "records": recordIDlist
+            },
+            success: function (result) {
+                if (result > -1) {
+                    slidein(0, "提交成功");
+                }
+            },
+            error: function () {
+                slidein(1, "出故障了请稍候再试");
+            }
+        });
     }
 }
 
@@ -619,7 +700,27 @@ function getSelfRecords() {
         success: function (result) {
             if (result.length > 0) {
                 for (var i = 0; i < result.length; i++) {
-                    addReDefects(result[i].lineNum, result[i], "code_file");
+                    if (result[i].state == "正常提交") {
+
+                        addReDefects(result[i].lineNum, result[i], "code_file");
+
+                    } else if (result[i].state == "合并项") {
+                        $.ajax({
+                            type: "post",
+                            async: false,
+                            url: "/getChildReview",
+                            data: {"reviewId": result[i].id},
+                            success: function (res) {
+
+                                showMerges(result[i], res, "code_file");
+
+                            },
+                            error: function () {
+                                slidein(1, "出故障了请稍候再试");
+                            }
+                        });
+
+                    }
                 }
             }
         },
@@ -645,7 +746,28 @@ function getAllRecords() {
 
             if (result.length > 0) {
                 for (var i = 0; i < result.length; i++) {
-                    addReDefects(result[i].lineNum, result[i], "launcher_merge");
+                    if (result[i].state == "正常提交") {
+
+                        addReDefects(result[i].lineNum, result[i], "launcher_merge");
+
+                    } else if (result[i].state == "合并项") {
+
+                        $.ajax({
+                            type: "post",
+                            async: false,
+                            url: "/getChildReview",
+                            data: {"reviewId": result[i].id},
+                            success: function (res) {
+
+                                showMerges(result[i], res, "launcher_merge");
+
+                            },
+                            error: function () {
+                                slidein(1, "出故障了请稍候再试");
+                            }
+                        });
+
+                    }
                 }
             }
         },
