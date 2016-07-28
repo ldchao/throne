@@ -50,6 +50,8 @@ public class UserServiceImpl implements UserService {
         inf.setSex(user.getSex());
         return inf;
     }
+
+
     public List<String> getUserList(String userid){
         UserDao dao=new UserDaoImpl();
         List<String> list=dao.getAllUserId();
@@ -87,6 +89,18 @@ public class UserServiceImpl implements UserService {
             return UniversalState.SUCCESS;
         return UniversalState.FAIL;
     }
+
+    public String getHeadPortraits(String userid) {
+        UserInf inf=new UserInf();
+        UserDao dao=new UserDaoImpl();
+        User user=new User();
+        user.setId(userid);
+        user=dao.findUser(user);
+        if(user==null)
+            return "../image/portrait.svg";
+        return user.getHeadPortrait();
+    }
+
     //测试
     public static void main(String[] args) {
         UserService u=new UserServiceImpl();

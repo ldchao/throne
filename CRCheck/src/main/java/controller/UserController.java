@@ -71,4 +71,10 @@ public class UserController {
             return "SUCCESS";
         return "FAIL";
     }
+    @RequestMapping(value = "/getHeadPortraits", method = RequestMethod.POST)
+    @ResponseBody
+    public String getHeadPortraits(String userID) {
+        UserService userService = new UserServiceImpl();
+       return userService.getHeadPortraits(userID);
+    }
 }

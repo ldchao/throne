@@ -39,7 +39,7 @@ public interface PersonalreviewDao {
     public int getDefectOfResult(Personalreview po);
 
     //just need the "projectId",return a list of "Personalreview" whose "State" is "NotDone" and "id" is not in "OldPersonalReviewId" of "Summary"
-    // and the "User" state of the "Project" is "Done" and the "result" is "Error"
+    // and the "User" state of the "Project" is "Done"
     public List findValidPersonalReview2(Personalreview po);
 
     //online version of findValidPersonalReview
@@ -48,7 +48,7 @@ public interface PersonalreviewDao {
     //online version of getUserPersonalreview
     public List getUserPersonalreviewOnline(Personalreview po,String path);
 
-    /*
+    /**
     No.
     author:
     time:

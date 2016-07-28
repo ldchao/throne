@@ -15,4 +15,5 @@ public interface UserService {
     public UserInf getUserInf(String userid);
     public List<String> getUserList(String userid);
     public UniversalState update(UserInf inf);
+    public String getHeadPortraits(String userid);
 }
