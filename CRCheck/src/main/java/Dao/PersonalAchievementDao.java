@@ -10,7 +10,7 @@ import java.util.ArrayList;
  */
 public interface PersonalAchievementDao {
     //need the "userId",it will return an arrayList of "achievementId" which are ordered by "achievementId"
-    public ArrayList<String> getAchievements(PersonalAchievementDao po);
+    public ArrayList<Integer> getAchievements(PersonalAchievement po);
 
     //need all the attributes
     public boolean addPersonalAchievement(PersonalAchievement po);

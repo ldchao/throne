@@ -34,7 +34,15 @@ public void after() throws Exception {
 */ 
 @Test
 public void testAddUser() throws Exception { 
-//TODO: Test goes here... 
+//TODO: Test goes here...
+    User user=new User();
+    user.setId("Frebin");
+    user.setPassword("chaoshuai");
+    user.setUserLogin("shuai");
+    user.setUserState("shuai");
+    user.setChecklistPath("shuai");
+    user.setEmail("live");
+    System.out.println(userDao.addUser(user));
 } 
 
 /** 

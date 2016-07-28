@@ -27,4 +27,7 @@ ProjectDao {
 
     //need the similar "name" of "Project" ,it will return a list of "Preject" whose "state" is PUBILC
     public List getSimilarProject(String name);
+
+    //need the "id" and "codePath",it will change the "codePath" of a "Project"
+    public boolean updateCodePath(Project po);
 }
