@@ -77,7 +77,7 @@ public class UploadController {
 //
 		if(isCompressedFile) {
 			FileService fileService = new FileServiceImpl();
-			fileService.unZip(uploadUrl + filename, decompressionUrl);
+			fileService.unZip(fileId,uploadUrl + filename, decompressionUrl);
 		}
 		return "SUCCESS";
 	}

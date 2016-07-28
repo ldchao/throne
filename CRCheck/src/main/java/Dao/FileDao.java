@@ -14,4 +14,7 @@ public interface FileDao {
 
     //need the "path" of "File",it will change the "state" of "File"
     public boolean changeFileState(File po);
+
+    //add "File" into database
+    public boolean addFile(File po);
 }

@@ -73,6 +73,26 @@ public class FileDaoImpl implements FileDao {
         }
     }
 
+    public boolean addFile(File po) {
+        Session session = connection.getSession();
+        try{
+            if(findFileById(po)==null){
+                session.save(po);
+                Transaction transaction =session.beginTransaction();
+                transaction.commit();
+                connection.closeSession(session);
+                return true;
+            }else{
+                connection.closeSession(session);
+                return false;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            connection.closeSession(session);
+            return false;
+        }
+    }
+
     public File findFileById(File po){
         Session session=connection.getSession();
         try {

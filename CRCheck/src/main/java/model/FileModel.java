@@ -14,6 +14,27 @@ public class FileModel {
     String content;
     //文件数/大小
     String n;
+
+    public void setPath(String path) {
+        this.path = path;
+    }
+
+    public void setType(FileType type) {
+        this.type = type;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public void setN(String n) {
+        this.n = n;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
     //最近评审时间
     String time;
 
