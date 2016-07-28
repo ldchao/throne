@@ -118,15 +118,20 @@ public class FileServiceImpl implements FileService {
             for (File file2 : files) {
                 if (file2.isDirectory()) {
                     String s = file2.getAbsolutePath();
-                    if(!(s.substring(s.length()-7,s.length()).equals("_MACOSX"))) {
+                    if(!(s.substring(s.length() - 7, s.length()).equals("_MACOSX"))
+                            && (!(s.substring(s.length() - 9, s.length()).equals(".DS_Store")))) {
                         getDirTime(file2.getAbsolutePath(),time);
                     }
                 }else{
-                    POJO.File file1 = new POJO.File();
-                    String state = fileDao.getFileState(file1);
-//                    if(state.equals("REVIEWED")){
-//                        fileNum++;
-//                    }
+                    String s = file2.getAbsolutePath();
+                    if(!(s.substring(s.length() - 7, s.length()).equals("_MACOSX"))
+                            && (!(s.substring(s.length() - 9, s.length()).equals(".DS_Store")))) {
+                        POJO.File file1 = new POJO.File();
+                        String thisTime = fileDao.getFileLastTime(file1);
+                        if(thisTime.compareTo(time)>0){
+                            time=thisTime;
+                        }
+                    }
                 }
             }
         }else {
