@@ -199,7 +199,7 @@
     </div>
 </div>
 
-<div class="dir_div">
+<div id="dir_id" class="dir_div">
 
     <%
         String[] filelist = {"&lt;div class=\"launch_div_right\"&gt;",
@@ -211,31 +211,13 @@
                 "        &lt;i class=\"fa fa-times\"&gt;&lt;/i&gt;",
                 "    &lt;/button&gt;",
                 "&lt;/div&gt;"};
-
-        String dir = "CRC评审项目/MSE_ALL/src/java/";
-        int isFile = 1;  // 判断是文件或文件夹
-        int isCode = 0;  // 判断是文件或代码
-        String dirs[] = dir.split("/");
-
-        for (int i = 0; i < dirs.length; i++) {
-            if (i == 0) {
     %>
 
+    <%--<div class="dir_word" style="font-weight: 400"></div>--%>
+    <%--<div class="dir_word"></div>--%>
+    <%--<div class="dir_word_last"></div>--%>
+    <%--&nbsp;/&nbsp;--%>
 
-    <div class="dir_word" style="font-weight: 400"><%=dirs[i]%>
-    </div>
-
-    <% } else if (i < dirs.length - 1) { %>
-
-    <div class="dir_word"><%=dirs[i]%>
-    </div>
-
-    <% } else {%>
-    <div class="dir_word_last"><%=dirs[i]%>
-    </div>
-    <% } %>
-    &nbsp;/&nbsp;
-    <% } %>
 </div>
 
 <%-- 文件/文件夹 --%>
@@ -637,6 +619,9 @@
 </a>
 <%-- 用来存放项目id --%>
 <a id="storage_proId" style="display: none;">${project.projectID}
+</a>
+<%-- 用来存放项目name --%>
+<a id="storage_proName" style="display: none;">${project.name}
 </a>
 <!-- Bootstrap core JavaScript
     ================================================== -->

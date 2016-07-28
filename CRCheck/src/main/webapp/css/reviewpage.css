@@ -449,4 +449,9 @@ pre {
     width: 42%;
     padding-left: 27px;
     text-align: left;
+    cursor: pointer;
+}
+
+.td1_style:hover {
+    color: #4572dc;
 }

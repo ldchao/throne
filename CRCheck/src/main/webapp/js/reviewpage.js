@@ -3,7 +3,9 @@
  */
 
 var file_table_id = document.getElementById("file_table_id");
+var dir_id = document.getElementById("dir_id");
 var PROJECT_ID = document.getElementById("storage_proId").innerHTML.trim();
+var PROJECT_NAME = document.getElementById("storage_proName").innerHTML.trim();
 
 // 代码评审合并
 window.onload = function () {
@@ -178,13 +180,18 @@ function CodeMerge() {
 
 // 读取文件夹
 function getFile(path) {
-
+    
     $.ajax({
         type: "post",
         async: false,
-        url: "/dir/" + path,
+        url: "/dir",
+        data: {
+            "path": path,
+        },
         success: function (result) {
+            clearTable("file_table_id");
             createFileTable(result);
+            refreshDir(result[0].path);
         },
         error: function () {
             slidein(1, "出故障了请稍候再试");
@@ -215,10 +222,13 @@ function createFileTable(result) {
 
         var td1 = document.createElement("td");
         td1.setAttribute("class", "td1_style");
-        alert( result[i].path);
         var pathname = result[i].path.split("/");
         td1.innerHTML = pathname[pathname.length - 1];
         tr.appendChild(td1);
+
+        td1.onclick = function () {
+            gotoDir(this);
+        }
 
         var td2 = document.createElement("td");
         td2.style.width = "19%";
@@ -243,4 +253,76 @@ function createFileTable(result) {
 
         file_table_id.appendChild(tr);
     }
+}
+
+// 清空表格原有内容
+function clearTable(elemId) {
+
+    var elem = document.getElementById(elemId);
+    var trs = elem.getElementsByTagName("tr");
+    if (trs.length > 1) {
+        var n = trs.length;
+        for (var i = n - 1; i > 0; i--) {
+            trs[i].parentNode.removeChild(trs[i]);
+        }
+    }
+}
+
+// 目录
+function refreshDir(path) {
+
+    var divs = dir_id.getElementsByTagName("div");
+    var n = divs.length - 1;
+    for (var i = n; i > -1; i--) {
+        divs[i].parentNode.removeChild(divs[i]);
+    }
+
+    var headdiv = document.createElement("div");
+    headdiv.setAttribute("class", "dir_word");
+    headdiv.style.fontWeight = "400";
+    headdiv.innerHTML = PROJECT_NAME;
+    dir_id.appendChild(headdiv);
+
+    var divi = document.createElement("div");
+    divi.innerHTML = "&nbsp;/&nbsp;";
+    divi.style.display = "inline-block";
+    dir_id.appendChild(divi);
+
+    var dirs = path.split("/");
+
+    if (dirs.length > 1) {
+        for (var i = 0; i < dirs.length; i++) {
+            var div = document.createElement("div");
+
+            if (i < dirs.length - 1) {
+                div.setAttribute("class", "dir_word");
+            } else {
+                div.setAttribute("class", "dir_word_last");
+            }
+
+            div.innerHTML = dirs[i];
+            dir_id.appendChild(div);
+
+            var divi2 = document.createElement("div");
+            divi2.innerHTML = "&nbsp;/&nbsp;";
+            divi2.style.display = "inline-block";
+            dir_id.appendChild(divi2);
+        }
+    }
+}
+
+// 根据目录跳转
+function gotoDir(td) {
+
+    var path = PROJECT_ID + "";
+
+    var dirs = dir_id.getElementsByClassName("dir_word");
+    if (dirs.length > 1) {
+        for (var i = 1; i < dirs.length; i++) {
+            path += ("/" + dirs[i].innerHTML);
+        }
+    }
+    path += ("/" + td.innerHTML);
+
+    getFile(path);
 }

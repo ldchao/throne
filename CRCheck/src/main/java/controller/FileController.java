@@ -19,9 +19,9 @@ import java.util.List;
 @Controller
 public class FileController {
     //获取文件夹内容
-    @RequestMapping(value = "/dir/{path}", method = RequestMethod.POST)
+    @RequestMapping(value = "/dir", method = RequestMethod.POST)
     @ResponseBody
-    public List<FileModel> getContent(@PathVariable("path") String path, HttpServletRequest request) {
+    public List<FileModel> getContent(String path, HttpServletRequest request) {
         String pathHeader = request.getSession().getServletContext().getRealPath("/");
         String p = pathHeader + "ProjectResources/ProjectDecompressedFile/" + path;
         FileService fs = new FileServiceImpl();
