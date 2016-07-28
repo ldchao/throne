@@ -173,7 +173,7 @@ public class FileServiceImpl implements FileService {
         return time;
     }
 
-    public static final int DEFAULT_BUFSIZE = 1024 * 16;
+    public static final int DEFAULT_BUFSIZE = 1024 * 160;
     /**
      * 解压Zip文件
      * @param srcZipFile
@@ -216,7 +216,7 @@ public class FileServiceImpl implements FileService {
                         && (!(s.substring(a, s.length()).equals(".DS_Store")))) {
                     destFile.getParentFile().mkdirs();
                     InputStream eis = zipFile.getInputStream(entry);
-                    System.out.println(eis.read());
+                    //System.out.println(eis.read());
                     write(eis, destFile);
                     POJO.File file = new POJO.File();
                     int id = Integer.parseInt(proId);
@@ -243,7 +243,8 @@ public class FileServiceImpl implements FileService {
             bufOs = new BufferedOutputStream(new FileOutputStream(destFile));
             byte[] buf = new byte[DEFAULT_BUFSIZE];
             int len = 0;
-            while ((len = bufIs.read(buf, 0, buf.length)) > 0) {
+            while ((len = bufIs.read(buf, 0, buf.length)) >= 0) {
+                System.out.println("len"+buf[0]);
                 bufOs.write(buf, 0, len);
             }
         } catch (IOException ex) {
