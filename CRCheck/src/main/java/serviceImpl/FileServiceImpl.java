@@ -289,11 +289,11 @@ public class FileServiceImpl implements FileService {
         POJO.File file = new POJO.File();
         int id = Integer.parseInt(proId);
         file.setProjectId(id);
-        file.setPath(destDir + entry.getName());
+        file.setPath(filePath);
         file.setState("NOTREVIEWED");
         file.setLastTime("未开始评审");
         FileDao fileDao = new FileDaoImpl();
-        fileDao.addFile(file);
-        return true;
+        boolean a=fileDao.addFile(file);
+        return a;
     }
 }
