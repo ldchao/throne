@@ -90,7 +90,15 @@ public void testGetSimilarProject() throws Exception {
             ) {
         System.out.println(po.getName());
     }
-} 
+}
 
+    @Test
+    public void testUpdateCodePath() throws Exception {
+//TODO: Test goes here...
+        Project project=new Project();
+        project.setId(34);
+        project.setCodePath("yes");
+        System.out.println(projectDao.updateCodePath(project));
+    }
 
 } 

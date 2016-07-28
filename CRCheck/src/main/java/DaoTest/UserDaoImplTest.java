@@ -41,7 +41,7 @@ public void testAddUser() throws Exception {
     user.setUserLogin("shuai");
     user.setUserState("shuai");
     user.setChecklistPath("shuai");
-    user.setEmail("live");
+//    user.setEmail("live");
     System.out.println(userDao.addUser(user));
 } 
 

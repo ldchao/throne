@@ -135,6 +135,24 @@ public class ProjectDaoImpl implements ProjectDao{
     }
 
     public boolean updateCodePath(Project po) {
-        return false;
+        Session session=connection.getSession();
+        try {
+            Project project=findProject(po);
+            if (project!=null){
+                project.setCodePath(po.getCodePath());
+                session.update(project);
+                Transaction transaction=session.beginTransaction();
+                transaction.commit();
+                connection.closeSession(session);
+                return true;
+            }else {
+                connection.closeSession(session);
+                return false;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            connection.closeSession(session);
+            return false;
+        }
     }
 }
