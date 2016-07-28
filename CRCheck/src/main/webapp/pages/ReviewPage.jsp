@@ -216,6 +216,7 @@
         int isFile = 1;  // 判断是文件或文件夹
         int isCode = 0;  // 判断是文件或代码
         String dirs[] = dir.split("/");
+
         for (int i = 0; i < dirs.length; i++) {
             if (i == 0) {
     %>

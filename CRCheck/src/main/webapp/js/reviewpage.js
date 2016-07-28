@@ -5,6 +5,15 @@
 var file_table_id = document.getElementById("file_table_id");
 var PROJECT_ID = document.getElementById("storage_proId").innerHTML.trim();
 
+// 代码评审合并
+window.onload = function () {
+
+    // addReDefects(2);
+    // addReDefects(6);
+    // addReDefects(9);
+
+    getFile(PROJECT_ID + "");
+};
 
 function mouseOver(tr) {
     tr.style.backgroundColor = "#f3faff";
@@ -102,16 +111,7 @@ function addDocdiv() {
     document.getElementById("doc_bugs").appendChild(div);
 }
 
-// 代码评审合并
-window.onload = function () {
-
-    // addReDefects(2);
-    // addReDefects(6);
-    // addReDefects(9);
-
-    getFile(PROJECT_ID + "");
-};
-
+// 合并缺陷
 function addReDefects(pos) {
 
     var table = document.getElementById("launcher_merge");
@@ -122,8 +122,11 @@ function addReDefects(pos) {
             var retd = addDiv(trs[i], "launcher_merge");
             retd.getElementsByClassName("del_btn")[0].style.display = "none";
             retd.getElementsByTagName("select")[0].value = "空指针";
+            retd.getElementsByTagName("select")[0].disabled = true;
             retd.getElementsByClassName("bug_desc")[0].value = "这是一个空指针缺陷" + tds[1].innerHTML;
+            retd.getElementsByClassName("bug_desc")[0].readOnly = true;
             retd.getElementsByClassName("pos_rec")[0].innerHTML = tds[1].innerHTML;
+            retd.getElementsByClassName("bug_add")[0].style.display = "none";
             return retd;
         }
     }
@@ -173,8 +176,24 @@ function CodeMerge() {
     delAll("launcher_merge");
 }
 
+// 读取文件夹
 function getFile(path) {
 
+    $.ajax({
+        type: "post",
+        async: false,
+        url: "/dir/" + path,
+        success: function (result) {
+            createFileTable(result);
+        },
+        error: function () {
+            slidein(1, "出故障了请稍候再试");
+        }
+    });
+}
+
+// 读取文件内容
+function getFileContent(path) {
     $.ajax({
         type: "post",
         async: false,
@@ -196,6 +215,7 @@ function createFileTable(result) {
 
         var td1 = document.createElement("td");
         td1.setAttribute("class", "td1_style");
+        alert( result[i].path);
         var pathname = result[i].path.split("/");
         td1.innerHTML = pathname[pathname.length - 1];
         tr.appendChild(td1);
