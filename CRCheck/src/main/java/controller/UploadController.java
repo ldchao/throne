@@ -28,10 +28,9 @@ public class UploadController {
 	@RequestMapping("/oneUpload")
 	@ResponseBody
 	public String oneUpload(@RequestParam("oneFile") MultipartFile oneFile, @RequestParam("projectId") String projectId,HttpServletRequest request){
-System.out.println("imin");
+
 		// TODO: 2016/7/26 取id ，用来创建文件名，返回id用来存储
 		String fileId =projectId;
-System.out.println(fileId);
 		String realPath=request.getSession().getServletContext().getRealPath("/");
 		String uploadUrl="";
 		String decompressionUrl="";

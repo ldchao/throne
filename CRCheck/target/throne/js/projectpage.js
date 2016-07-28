@@ -616,14 +616,13 @@ function uploadFile() {
     // $(progdiv).show();
 
 
-    var imageFile = $('input[name=name_input]').val();
-alert(imageFile)
+    var imageFile = $('input[name=oneFile]').val();
     $('form').ajaxSubmit({
         type: 'post', // 提交方式 get/post
-        url: '/headPortraitsUpload', // 需要提交的 url
+        url: '/oneUpload', // 需要提交的 url
         data: {
-            "imageFile": imageFile,
-            // "projectId": PROJECT_ID
+            "oneFile": imageFile,
+            "projectId": PROJECT_ID
         },
         success: function (result) { // data 保存提交后返回的数据，一般为 json 数据
             if (result == "SUCCESS") {
@@ -633,7 +632,7 @@ alert(imageFile)
             }
         },
         error: function () {
-            slidein(1, "获取kjS数据失败");
+            slidein(1, "获取数据失败");
         }
     });
 
