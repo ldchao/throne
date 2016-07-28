@@ -42,8 +42,8 @@ public class FileServiceImpl implements FileService {
                         String fileNum = l.length + "";
                         POJO.File file1 = new POJO.File();
                         file1.setPath(file2.getAbsolutePath());
-                        int filNum=getDirContent(file2.getAbsolutePath(),0);
-                        String content=fileNum+"";
+                        int Num=getDirContent(file2.getAbsolutePath(),0);
+                        String content=Num+"";
                         String time=getDirTime(file2.getAbsolutePath(),"");
                         pList.add(new FileModel(file2.getAbsolutePath(), FileType.Dir,content, fileNum, time));
                     }
@@ -115,15 +115,21 @@ public class FileServiceImpl implements FileService {
                         p = p.replaceAll("\\\\", "/");
                         file1.setPath(p);
                         String state = fileDao.getFileState(file1);
+                        //System.out.println("state:"+fileNum);
                         if (state.equals("REVIEWED")) {
+                           // System.out.println("sdsadsfkas");
                             fileNum++;
                         }
+
                     }
                 }
+
             }
+
         }else {
             System.out.println("文件不存在!");
         }
+        //System.out.println("f:"+fileNum);
         return fileNum;
     }
 
