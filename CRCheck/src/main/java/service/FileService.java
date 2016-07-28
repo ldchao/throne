@@ -17,5 +17,5 @@ public interface FileService {
 
     public List<String> readFile(String path);
 
-    public boolean addToDB(String filePath);
+    public boolean addToDB(String proId,String filePath);
 }

@@ -285,7 +285,15 @@ public class FileServiceImpl implements FileService {
         return s;
     }
 
-    public boolean addToDB(String filePath){
+    public boolean addToDB(String proId,String filePath){
+        POJO.File file = new POJO.File();
+        int id = Integer.parseInt(proId);
+        file.setProjectId(id);
+        file.setPath(destDir + entry.getName());
+        file.setState("NOTREVIEWED");
+        file.setLastTime("未开始评审");
+        FileDao fileDao = new FileDaoImpl();
+        fileDao.addFile(file);
         return true;
     }
 }
