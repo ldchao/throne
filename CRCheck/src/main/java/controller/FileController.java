@@ -37,12 +37,13 @@ public class FileController {
     }
 
     //读取文件
-    @RequestMapping(value = "/file/{path}")
+    @RequestMapping(value = "/file")
     @ResponseBody
-    public List<String> getfileContent(@PathVariable("path") String path, HttpServletRequest request, int projectId, String type) {
+    public List<String> getfileContent(String path, int projectId, HttpServletRequest request) {
         String pathHeader = request.getSession().getServletContext().getRealPath("/");
+        String p = pathHeader + "ProjectResources/ProjectDecompressedFile/" + projectId+"/"+path;
         FileService s = new FileServiceImpl();
-        List<String> list = s.readFile(path);
+        List<String> list = s.readFile(p);
         List<String> result = new ArrayList<String>();
         for (String str : list) {
             str = str.replaceAll("<", "&lt;");
