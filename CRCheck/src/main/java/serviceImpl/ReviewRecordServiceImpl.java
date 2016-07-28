@@ -203,10 +203,29 @@ public class ReviewRecordServiceImpl implements ReviewRecordService {
         summary.setNewPersonalReviewId(id);
         summary.setProjectId(result.getProjectId());
         for (String recordID:recordIDList) {
-            summary.setOldPersonalReviewId(Integer.parseInt(recordID));
-            int summaryId=createIdDao.CreateIntId("Summary");
-            summary.setId(summaryId);
-            state=state&summaryDao.addSummary(summary);
+            int reviewID=Integer.parseInt(recordID);
+            Summary po=new Summary();
+            po.setNewPersonalReviewId(reviewID);
+            List<Summary> summaryList=summaryDao.getMergedSummary(po);
+            if(summaryList.size()==0||summaryList==null){
+                summary.setOldPersonalReviewId(reviewID);
+                int summaryId=createIdDao.CreateIntId("Summary");
+                summary.setId(summaryId);
+                state=state&summaryDao.addSummary(summary);
+            }else{
+                Personalreview personalreview1=new Personalreview();
+                personalreview1.setId(reviewID);
+                System.out.println("删除"+reviewID);
+                personalreviewDao.deletePersonalreview(personalreview1);
+                for(Summary s:summaryList){
+                    summary.setOldPersonalReviewId(s.getOldPersonalReviewId());
+                    int summaryId=createIdDao.CreateIntId("Summary");
+                    summary.setId(summaryId);
+                    state=state&summaryDao.addSummary(summary);
+                }
+            }
+
+
         }
 
         CRCService crcService=new CRCServiceImpl();
@@ -240,6 +259,7 @@ public class ReviewRecordServiceImpl implements ReviewRecordService {
         int newid=createIdDao.CreateIntId("Personalreview");
         personalreview.setId(newid);
         personalreview.setCommitTime(time);
+        personalreview.setUserId(userID);
         personalreview.setState(CommitState.Combination.toString());
         personalreview.setResult(ApproveState.Unapprove.toString());
 
@@ -250,10 +270,27 @@ public class ReviewRecordServiceImpl implements ReviewRecordService {
         summary.setNewPersonalReviewId(newid);
         summary.setProjectId(personalreview.getProjectId());
         for (String recordID:recordIDList) {
-            summary.setOldPersonalReviewId(Integer.parseInt(recordID));
-            int summaryId=createIdDao.CreateIntId("Summary");
-            summary.setId(summaryId);
-            state=state&summaryDao.addSummary(summary);
+            int reviewID=Integer.parseInt(recordID);
+            Summary po2=new Summary();
+            po2.setNewPersonalReviewId(reviewID);
+            List<Summary> summaryList=summaryDao.getMergedSummary(po2);
+
+            if(summaryList.size()==0||summaryList==null){
+                summary.setOldPersonalReviewId(reviewID);
+                int summaryId=createIdDao.CreateIntId("Summary");
+                summary.setId(summaryId);
+                state=state&summaryDao.addSummary(summary);
+            }else{
+                Personalreview personalreview1=new Personalreview();
+                personalreview1.setId(reviewID);
+                personalreviewDao.deletePersonalreview(personalreview1);
+                for(Summary s:summaryList){
+                    summary.setOldPersonalReviewId(s.getOldPersonalReviewId());
+                    int summaryId=createIdDao.CreateIntId("Summary");
+                    summary.setId(summaryId);
+                    state=state&summaryDao.addSummary(summary);
+                }
+            }
         }
 
 //        PersonalreviewDao personalreviewDao=new PersonalreviewDaoImpl();
@@ -290,7 +327,7 @@ public class ReviewRecordServiceImpl implements ReviewRecordService {
             return -1;
         }
 
-        return state?id:-1;
+        return state?newid:-1;
     }
 
     //分解评审记录
