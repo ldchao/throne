@@ -102,7 +102,7 @@
                                 class="fa fa-sign-out fa-fw"></i>&nbsp&nbsp退出账号</a>
                     </div>
                     <div class="user" onmouseover="popup()">
-                        <div class="image-middle"></div>
+                        <img class="image-middle" src=<%=user.getHeadPortrait()%>>
                         <div class="inline userName"><%=userId%>
                         </div>
                     </div>
