@@ -133,8 +133,4 @@ public class UserDaoImpl implements UserDao {
     public List getSimilarUser(String name) {
         return null;
     }
-
-    public List getSimilarProject(String name) {
-        return null;
-    }
 }

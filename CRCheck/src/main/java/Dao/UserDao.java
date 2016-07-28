@@ -27,6 +27,6 @@ public interface UserDao {
     //need the "id" and "headPortrait" ,it will change the "headPortrait" of the one "User"
     public boolean updateHeadPortrait(User po);
 
-    //need the similar "name" of "Project" ,it will return a list of "Preject" whose "state" is PUBILC
-    public List getSimilarProject(String name);
+    //need the similar name of "userId",it will return a list of "userId" whose "state" is PUBILC
+    public List getSimilarUser(String name);
 }

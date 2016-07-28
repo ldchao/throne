@@ -108,7 +108,7 @@ public class ProjectDaoImpl implements ProjectDao{
         }
     }
 
-    public List getSimilarUser(String name) {
+    public List getSimilarProject(String name) {
         return null;
     }
 }

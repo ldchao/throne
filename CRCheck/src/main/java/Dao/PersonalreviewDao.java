@@ -41,4 +41,20 @@ public interface PersonalreviewDao {
     //just need the "projectId",return a list of "Personalreview" whose "State" is "NotDone" and "id" is not in "OldPersonalReviewId" of "Summary"
     // and the "User" state of the "Project" is "Done" and the "result" is "Error"
     public List findValidPersonalReview2(Personalreview po);
+
+    //online version of findValidPersonalReview
+    public List findValidPersonalReviewOnline(Personalreview po,String path);
+
+    //online version of getUserPersonalreview
+    public List getUserPersonalreviewOnline(Personalreview po,String path);
+
+    /*
+    No.
+    author:
+    time:
+    function:
+     */
+    //online version of findValidPersonalReview2
+    public List findValidPersonalReview2Online(Personalreview po,String paht);
+
 }

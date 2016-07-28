@@ -65,7 +65,8 @@ public class PersonalreviewDaoImpl implements PersonalreviewDao {
                     "and p.state<>'Done' " +
                     "and p.result<>'Error'"+
                     "and p.id not in (select s.oldPersonalReviewId from Summary s) " +
-                    "and not exists (select '*' from Attendance a where p.userId=a.userId and p.projectId=a.projectId and a.state='NotDone')";
+                    "and not exists (select '*' from Attendance a where p.userId=a.userId and p.projectId=a.projectId and a.state='NotDone')" +
+                    "order by p.location";
             Query query=session.createQuery(hql);
             query.setInteger(0,po.getProjectId());
             List list=query.list();
@@ -143,7 +144,7 @@ public class PersonalreviewDaoImpl implements PersonalreviewDao {
     public List getUserPersonalreview(Personalreview po) {
         Session session=connection.getSession();
         try {
-            String hql="from Personalreview p where p.projectId=? and p.userId=? and p.state<>'Combination'";
+            String hql="from Personalreview p where p.projectId=? and p.userId=? and p.state<>'Combination'order by p.location";
             Query query=session.createQuery(hql);
             query.setInteger(0,po.getProjectId());
             query.setString(1,po.getUserId());
@@ -197,11 +198,78 @@ public class PersonalreviewDaoImpl implements PersonalreviewDao {
         try {
             String hql="from Personalreview p where p.projectId=? " +
                     "and p.state<>'Done' " +
-                    "and p.result='Error'"+
                     "and p.id not in (select s.oldPersonalReviewId from Summary s) " +
-                    "and not exists (select '*' from Attendance a where p.userId=a.userId and p.projectId=a.projectId and a.state='NotDone')";
+                    "and not exists (select '*' from Attendance a where p.userId=a.userId and p.projectId=a.projectId and a.state='NotDone')" +
+                    "order by p.location";
             Query query=session.createQuery(hql);
             query.setInteger(0,po.getProjectId());
+            List list=query.list();
+            connection.closeSession(session);
+            return list;
+
+        }catch (Exception e){
+            e.printStackTrace();
+            connection.closeSession(session);
+            return null;
+        }
+    }
+
+    public List findValidPersonalReviewOnline(Personalreview po,String path) {
+        Session session=connection.getSession();
+        try {
+            String hql="from Personalreview p where p.projectId=? " +
+                    "and p.state<>'Done' " +
+                    "and p.result<>'Error'"+
+                    "and p.id not in (select s.oldPersonalReviewId from Summary s) " +
+                    "and not exists (select '*' from Attendance a where p.userId=a.userId and p.projectId=a.projectId and a.state='NotDone')" +
+                    "and p.location like :name " +
+                    "order by p.location";
+            Query query=session.createQuery(hql);
+            query.setInteger(0,po.getProjectId());
+            query.setParameter("name",path+"%");
+            List list=query.list();
+            connection.closeSession(session);
+            return list;
+
+        }catch (Exception e){
+            e.printStackTrace();
+            connection.closeSession(session);
+            return null;
+        }
+    }
+
+    public List getUserPersonalreviewOnline(Personalreview po,String path) {
+        Session session=connection.getSession();
+        try {
+            String hql="from Personalreview p where p.projectId=? and p.userId=? and p.state<>'Combination'" +
+                    "and p.location like :name " +
+                    "order by p.location";
+            Query query=session.createQuery(hql);
+            query.setInteger(0,po.getProjectId());
+            query.setString(1,po.getUserId());
+            query.setParameter("name",path+"%");
+            List list=query.list();
+            connection.closeSession(session);
+            return list;
+        }catch (Exception e){
+            e.printStackTrace();
+            connection.closeSession(session);
+            return null;
+        }
+    }
+
+    public List findValidPersonalReview2Online(Personalreview po,String path) {
+        Session session=connection.getSession();
+        try {
+            String hql="from Personalreview p where p.projectId=? " +
+                    "and p.state<>'Done' " +
+                    "and p.id not in (select s.oldPersonalReviewId from Summary s) " +
+                    "and not exists (select '*' from Attendance a where p.userId=a.userId and p.projectId=a.projectId and a.state='NotDone')" +
+                    "and p.location like :name " +
+                    "order by p.location";
+            Query query=session.createQuery(hql);
+            query.setInteger(0,po.getProjectId());
+            query.setParameter("name",path+"%");
             List list=query.list();
             connection.closeSession(session);
             return list;

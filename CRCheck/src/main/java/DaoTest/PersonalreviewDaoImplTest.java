@@ -133,8 +133,8 @@ public void testUpdateResult() throws Exception {
 public void testGetUserPersonalreview() throws Exception { 
 //TODO: Test goes here...
     Personalreview personalreview=new Personalreview();
-    personalreview.setUserId("chao");
-    personalreview.setProjectId(14);
+    personalreview.setUserId("sure");
+    personalreview.setProjectId(30);
     List list=personalreviewDao.getUserPersonalreview(personalreview);
     ArrayList<Personalreview> arrayList=(ArrayList<Personalreview>)list;
     for (Personalreview po:arrayList
@@ -170,7 +170,19 @@ public void testGetDefectOfResult() throws Exception {
     personalreview.setProjectId(14);
     personalreview.setResult("Unapprove");
     System.out.println(personalreviewDao.getDefectOfResult(personalreview));
-} 
+}
 
-
+    @Test
+    public void testGetUserPersonalreviewOnline() throws Exception {
+//TODO: Test goes here...
+        Personalreview personalreview=new Personalreview();
+        personalreview.setUserId("sure");
+        personalreview.setProjectId(30);
+        List list=personalreviewDao.getUserPersonalreviewOnline(personalreview,"123");
+        ArrayList<Personalreview> arrayList=(ArrayList<Personalreview>)list;
+        for (Personalreview po:arrayList
+                ) {
+            System.out.println(po.getId());
+        }
+    }
 } 
