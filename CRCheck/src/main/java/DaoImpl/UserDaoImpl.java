@@ -134,4 +134,7 @@ public class UserDaoImpl implements UserDao {
         return null;
     }
 
+    public List getSimilarProject(String name) {
+        return null;
+    }
 }
