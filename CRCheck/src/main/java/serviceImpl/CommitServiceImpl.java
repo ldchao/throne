@@ -32,7 +32,7 @@ public class CommitServiceImpl implements CommitService{
         commitrecord.setCommitTime(time);
         commitrecord.setTime(commitRecordModel.getTime());
         commitrecord.setCodeLine(commitRecordModel.getCodeLine());
-        commitrecord.setReviewType(commitrecord.getReviewType());
+        commitrecord.setReviewType(commitRecordModel.getReviewType());
         return commitrecordDao.addCommitrecord(commitrecord)?UniversalState.SUCCESS:UniversalState.FAIL;
     }
 }

@@ -249,6 +249,39 @@
                 <div class="addItem-button" onclick="addForm()">添加新的缺陷</div>
 
                 <div class="control text-center">
+
+                    <div id="timeline">
+
+                    <%--时间和行数--%>
+                    <div class="form-line row" style="margin-left: 20px;margin-right: 20px;">
+                        <div class="col-sm-4"
+                             style="padding-left: 5px;padding-right: 5px;margin-top:10px;">
+                            <input id="line-num" type="text" placeholder="此次评审代码行数" class="textfield"
+                                   style="height: 35px; width: 100%;">
+                        </div>
+                        <div class="col-sm-4"
+                             style="padding-left: 5px;padding-right: 5px;margin-top:10px;">
+                            <input id="time-num" type="text" placeholder="所用时间(min)" class="textfield"
+                                   style="height: 35px; width: 100%;">
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="selectStyle code_language_div textfield">
+                                <select id="type-select" class="mycombox"
+                                        style="height:25px;padding-left: 5px;padding-right: 5px;margin-top:10px;margin-top:0;">
+                                    <option>评审类型</option>
+                                    <option>代码评审</option>
+                                    <option>文档评审</option>
+                                </select>
+                            </div>
+
+
+                            <%--<input type="text" placeholder="评审类型" class="textfield"--%>
+                                   <%--style="height: 35px; width: 100%;">--%>
+                        </div>
+                    </div>
+                    </div>
+
+
                     <div class="submit-button left-button" onclick="publishForm()" style="margin-top:10px;">保存此次评审</div>
                     <div class="cancel-button" onclick="endReview()" style="margin-top:10px;">结束此项目评审</div>
                 </div>

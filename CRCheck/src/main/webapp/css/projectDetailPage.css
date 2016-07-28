@@ -59,9 +59,17 @@
     text-align: center;
 }
 
-#init-form {
+#init-form{
     margin-top: 20px;
     display: block;
+}
+
+#timeline{
+    margin-top: 20px;
+    background-color: #BEC4D2;
+    display: block;
+    padding-top: 4px;
+    padding-bottom: 21px;
 }
 
 .form-empty {

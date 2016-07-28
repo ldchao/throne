@@ -134,6 +134,8 @@ function deleteForm(node) {
 function beginReview() {
     document.getElementById("review-block").style.display = "block";
     document.getElementById("begin").style.display = "none";
+    document.getElementById("end").style.display = "none";
+
 }
 
 function publishForm() {
@@ -173,6 +175,39 @@ function publishForm() {
                 if (result == "SUCCESS") {
                     slidein(0, "提交成功");
                     setTimeout("window.location.reload()", 1800);
+
+                    var type1;
+                    if(document.getElementById("type-select").value == "代码评审"){
+                        type1 = "Code";
+                    }else if(document.getElementById("type-select").value == "文档评审"){
+                        type1 = "File";
+                    }
+
+                    $.ajax({
+                        type: "post",
+                        async: false,
+                        url: "/commit",
+                        data: {
+                            "userId": userId,
+                            "projectId": projectId,
+                            "codeLine": document.getElementById("line-num").value,
+                            "reviewType":type1,
+                            "time": document.getElementById("time-num").value
+                        },
+                        success: function (result) {
+                            if (result == "SUCCESS") {
+                            } else {
+                                slidein(1, "提交失败请稍候再试");
+                            }
+                        },
+                        error: function () {
+                            slidein(1, "出故障了请稍候再试");
+                        }
+                    });
+
+
+
+
                 } else {
                     slidein(1, "提交失败请稍候再试");
                 }
@@ -184,6 +219,9 @@ function publishForm() {
     } else {
         slidein(1, "您的信息未填写完整");
     }
+
+
+
 
 }
 
