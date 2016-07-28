@@ -455,3 +455,13 @@ pre {
 .td1_style:hover {
     color: #4572dc;
 }
+
+.code_td {
+    border-right: 1px solid #dfe0e2;
+    text-align: center;
+}
+
+.pencil_style {
+    cursor: pointer;
+    display: none;
+}

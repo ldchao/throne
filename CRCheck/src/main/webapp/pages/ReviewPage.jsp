@@ -261,19 +261,22 @@
             <td style="width: 93%; border-right: 1px solid #dfe0e2"></td>
         </tr>
 
-        <% for (int i = 0; i < filelist.length; i++) {%>
+        <%--<% for (int i = 0; i < filelist.length; i++) {%>--%>
 
-        <tr style="height: 22px; vertical-align: middle" onmouseover="mouseOver(this)" onmouseout="mouseOut(this)">
-            <td style="border-right: 1px solid #dfe0e2; text-align: center;">
-                <i class="fa fa-pencil" style="cursor: pointer;display: none"></i>
-            </td>
-            <td style="border-right: 1px solid #dfe0e2;text-align: center"><%=i + 1%>
-            </td>
-            <td style="border-right: 1px solid #dfe0e2">
-                <pre><%=filelist[i]%></pre>
-            </td>
-        </tr>
-        <% } %>
+        <%--<tr style="height: 22px; vertical-align: middle" onmouseover="mouseOver(this)" onmouseout="mouseOut(this)">--%>
+
+            <%--<td class="code_td">--%>
+                <%--<i class="fa fa-pencil pencil_style"></i>--%>
+            <%--</td>--%>
+
+            <%--<td class="code_td"><%= 1%>--%>
+            <%--</td>--%>
+
+            <%--<td style="border-right: 1px solid #dfe0e2">--%>
+                <%--<pre><%//filelist[i]%></pre>--%>
+            <%--</td>--%>
+        <%--</tr>--%>
+        <%--<% } %>--%>
 
         <tr class="top_bottom">
             <td>

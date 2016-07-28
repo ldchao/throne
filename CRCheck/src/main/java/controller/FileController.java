@@ -39,9 +39,9 @@ public class FileController {
     //读取文件
     @RequestMapping(value = "/file")
     @ResponseBody
-    public List<String> getfileContent(String path, int projectId, HttpServletRequest request) {
+    public List<String> getfileContent(String path, HttpServletRequest request) {
         String pathHeader = request.getSession().getServletContext().getRealPath("/");
-        String p = pathHeader + "ProjectResources/ProjectDecompressedFile/" + projectId+"/"+path;
+        String p = pathHeader + "ProjectResources/ProjectDecompressedFile/"+path;
         FileService s = new FileServiceImpl();
         List<String> list = s.readFile(p);
         List<String> result = new ArrayList<String>();

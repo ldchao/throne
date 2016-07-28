@@ -3,6 +3,9 @@
  */
 
 var file_table_id = document.getElementById("file_table_id");
+var code_table_id = document.getElementById("code_file");   // 在线评审代码
+var code_merge_id = document.getElementById("launcher_merge");  // 在线合并
+var doc_id = document.getElementById("review_div");
 var dir_id = document.getElementById("dir_id");
 var PROJECT_ID = document.getElementById("storage_proId").innerHTML.trim();
 var PROJECT_NAME = document.getElementById("storage_proName").innerHTML.trim();
@@ -189,7 +192,7 @@ function getFile(path) {
             "path": path,
         },
         success: function (result) {
-            clearTable("file_table_id");
+            clearTable("file_table_id", 1);
             createFileTable(result);
             refreshDir(result[0].path);
         },
@@ -199,14 +202,52 @@ function getFile(path) {
     });
 }
 
+// 代码文件
+function createCodeTable(result) {
+
+    clearTable("code_file", 2);
+
+    for (var i = 0; i < result.length; i++) {
+
+        var tr = code_table_id.insertRow(code_table_id.getElementsByTagName("tr").length - 1);
+        tr.style.height = "22px";
+        tr.style.verticalAlign = "middle";
+        tr.setAttribute("onmouseover", "mouseOver(this)");
+        tr.setAttribute("onmouseout", "mouseOut(this)");
+
+        var td1 = document.createElement("td");
+        td1.setAttribute("class", "code_td");
+        var elemi = document.createElement("i");
+        elemi.setAttribute("class", "fa fa-pencil pencil_style");
+        td1.appendChild(elemi);
+        tr.appendChild(td1);
+
+        var td2 = document.createElement("td");
+        td2.setAttribute("class", "code_td");
+        td2.innerHTML = i + 1;
+        tr.appendChild(td2);
+
+        var td3 = document.createElement("td");
+        td3.style.borderRight = "border-right: 1px solid #dfe0e2";
+        var pre = document.createElement("pre");
+        pre.innerHTML = result[i];
+        td3.appendChild(pre);
+        tr.appendChild(td3);
+
+        // code_table_id.appendChild(tr);
+    }
+
+}
+
 // 读取文件内容
 function getFileContent(path) {
     $.ajax({
         type: "post",
         async: false,
-        url: "/dir/" + path,
+        url: "/file",
+        data: {"path": path},
         success: function (result) {
-            createFileTable(result);
+            createCodeTable(result);
         },
         error: function () {
             slidein(1, "出故障了请稍候再试");
@@ -214,6 +255,7 @@ function getFileContent(path) {
     });
 }
 
+// 宏观文件夹
 function createFileTable(result) {
 
     for (var i = 0; i < result.length; i++) {
@@ -256,14 +298,14 @@ function createFileTable(result) {
     }
 }
 
-// 清空表格原有内容
-function clearTable(elemId) {
+// 清空表格原有内容 last - 2不删除最后一行; 1删除
+function clearTable(elemId, last) {
 
     var elem = document.getElementById(elemId);
     var trs = elem.getElementsByTagName("tr");
-    if (trs.length > 1) {
-        var n = trs.length;
-        for (var i = n - 1; i > 0; i--) {
+    if (trs.length > last) {
+        var n = trs.length - last;
+        for (var i = n; i > 0; i--) {
             trs[i].parentNode.removeChild(trs[i]);
         }
     }
@@ -323,25 +365,29 @@ function refreshDir(path) {
 // 根据表格内目录跳转
 function gotoDir(td) {
 
+    var path = PROJECT_ID + "";
+    var dirs = dir_id.getElementsByClassName("dir_word");
+    if (dirs.length > 1) {
+        for (var i = 1; i < dirs.length; i++) {
+            path += ("/" + dirs[i].innerHTML);
+        }
+    }
+
+    var last = dir_id.getElementsByClassName("dir_word_last");
+    if (last.length > 0) {
+        path += ("/" + dir_id.getElementsByClassName("dir_word_last")[0].innerHTML);
+    }
+    path += ("/" + td.innerHTML);
+
     var type = td.fileType;
-
     if (type == "Dir") {
-        var path = PROJECT_ID + "";
-        var dirs = dir_id.getElementsByClassName("dir_word");
-        if (dirs.length > 1) {
-            for (var i = 1; i < dirs.length; i++) {
-                path += ("/" + dirs[i].innerHTML);
-            }
-        }
-
-        var last = dir_id.getElementsByClassName("dir_word_last");
-        if (last.length > 0) {
-            path += ("/" + dir_id.getElementsByClassName("dir_word_last")[0].innerHTML);
-        }
-        path += ("/" + td.innerHTML);
         getFile(path);
 
     } else if (type == "Code") {
+
+        file_table_id.style.display = "none";
+        code_table_id.style.display = "";
+        getFileContent(path);
 
     } else if (type == "File") {
 
