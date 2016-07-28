@@ -5,11 +5,11 @@
 <hibernate-mapping>
 
     <class name="POJO.File" table="file" schema="throne">
-        <id name="id">
-            <column name="id" sql-type="int(11)"/>
-        </id>
-        <property name="path">
+        <id name="path">
             <column name="path" sql-type="varchar(255)"/>
+        </id>
+        <property name="projectId">
+            <column name="projectId" sql-type="int(11)"/>
         </property>
         <property name="state">
             <column name="state" sql-type="varchar(20)" length="20"/>

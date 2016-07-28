@@ -1,7 +1,6 @@
 package DaoTest;
 
 import DaoImpl.FileDaoImpl;
-import POJO.File;
 import org.junit.Test;
 import org.junit.Before; 
 import org.junit.After;
@@ -33,7 +32,7 @@ public void after() throws Exception {
 public void testGetFileState() throws Exception { 
 //TODO: Test goes here...
     File file=new File();
-    file.setPath("11");
+    file.setPath("C://ab/a.txt");
     System.out.println(fileDao.getFileState(file));
 } 
 

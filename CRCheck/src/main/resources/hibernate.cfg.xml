@@ -31,8 +31,6 @@
         <mapping resource="Commitrecord.hbm.xml"/>
         <mapping class="POJO.Projectquality"/>
         <mapping resource="Projectquality.hbm.xml"/>
-        <mapping resource="File.hbm.xml"/>
-        <mapping class="POJO.File"/>
         <mapping resource="User.hbm.xml"/>
         <mapping class="POJO.Achievement"/>
         <mapping resource="Achievement.hbm.xml"/>
@@ -40,6 +38,8 @@
         <mapping resource="Contribution.hbm.xml"/>
         <mapping class="POJO.PersonalAchievement"/>
         <mapping resource="PersonalAchievement.hbm.xml"/>
+        <mapping class="POJO.File"/>
+        <mapping resource="File.hbm.xml"/>
 
 
     </session-factory>

@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Created by mm on 2016/7/28.
  */
-public interface ContributionDa0 {
+public interface ContributionDao {
     //need all the attributes
     public boolean addContribution(Contribution po);
 

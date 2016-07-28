@@ -1,6 +1,7 @@
 package Dao;
 
 import POJO.Achievement;
+import POJO.User;
 
 import java.util.List;
 
@@ -9,8 +10,8 @@ import java.util.List;
  */
 public interface AchievementDao {
     //need the "userId" , "type" and "value" ,it will return a list of "Achievement" whose value is satisfactory and the "User" doesn't have
-    public List getSatisfactoryAchievement(Achievement po,double value);
+    public List getSatisfactoryAchievement(Achievement po, String userId);
 
     //need the "userId", it will return an "Achievement"
-    public Achievement getAchievement(Achievement po);
+    public Achievement findAchievementById(Achievement po);
 }

@@ -6,26 +6,16 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 /**
- * Created by mm on 2016/7/26.
+ * Created by mm on 2016/7/28.
  */
 @Entity
 public class File {
-    private Integer id;
     private String path;
+    private Integer projectId;
     private String state;
     private String lastTime;
 
     @Id
-    @Column(name = "id", nullable = false)
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    @Basic
     @Column(name = "path", nullable = false, length = 255)
     public String getPath() {
         return path;
@@ -33,6 +23,16 @@ public class File {
 
     public void setPath(String path) {
         this.path = path;
+    }
+
+    @Basic
+    @Column(name = "projectId", nullable = false)
+    public Integer getProjectId() {
+        return projectId;
+    }
+
+    public void setProjectId(Integer projectId) {
+        this.projectId = projectId;
     }
 
     @Basic
@@ -62,8 +62,8 @@ public class File {
 
         File file = (File) o;
 
-        if (id != null ? !id.equals(file.id) : file.id != null) return false;
         if (path != null ? !path.equals(file.path) : file.path != null) return false;
+        if (projectId != null ? !projectId.equals(file.projectId) : file.projectId != null) return false;
         if (state != null ? !state.equals(file.state) : file.state != null) return false;
         if (lastTime != null ? !lastTime.equals(file.lastTime) : file.lastTime != null) return false;
 
@@ -72,8 +72,8 @@ public class File {
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (path != null ? path.hashCode() : 0);
+        int result = path != null ? path.hashCode() : 0;
+        result = 31 * result + (projectId != null ? projectId.hashCode() : 0);
         result = 31 * result + (state != null ? state.hashCode() : 0);
         result = 31 * result + (lastTime != null ? lastTime.hashCode() : 0);
         return result;

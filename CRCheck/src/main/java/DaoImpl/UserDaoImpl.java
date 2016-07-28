@@ -131,6 +131,28 @@ public class UserDaoImpl implements UserDao {
     }
 
     public List getSimilarUser(String name) {
-        return null;
+        Session session=connection.getSession();
+        try {
+            String hql="from User u where u.id like :name";
+            String temp="";
+            Query query=session.createQuery(hql);
+
+            //transfer to the format of %
+            if (!name.trim().equals("")){
+                temp+="%";
+                for(int i=0;i<name.length();i++){
+                    temp+=name.charAt(i)+"%";
+                }
+            }
+
+            query.setParameter("name",temp);
+            List list=query.list();
+            connection.closeSession(session);
+            return list;
+        }catch (Exception e){
+            e.printStackTrace();
+            connection.closeSession(session);
+            return null;
+        }
     }
 }

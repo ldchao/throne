@@ -4,7 +4,9 @@ import DaoImpl.UserDaoImpl;
 import POJO.User;
 import org.junit.Test;
 import org.junit.Before; 
-import org.junit.After; 
+import org.junit.After;
+
+import java.util.ArrayList;
 
 /** 
 * UserDaoImpl Tester. 
@@ -87,7 +89,15 @@ public void testUpdateHeadPortrait() throws Exception {
     user.setId("asdf");
     user.setHeadPortrait("shabichao");
     System.out.println(userDao.updateHeadPortrait(user));
-} 
+}
 
-
+    @Test
+    public void testGetSimilarUser() throws Exception {
+//TODO: Test goes here...
+        ArrayList<User> arrayList=(ArrayList<User>) userDao.getSimilarUser("qe");
+        for (User po:arrayList
+             ) {
+            System.out.println(po.getId());
+        }
+    }
 } 
