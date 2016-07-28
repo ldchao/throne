@@ -20,7 +20,6 @@ public class LoginServiceImpl implements LoginService {
         user.setId(userId);
         user.setPassword(password);
         user.setUserState(String.valueOf(power));
-        user.setHeadPortrait("../image/portrait.svg");
         user.setUserLogin("ONLINE");
         user.setChecklistPath("src");
         boolean result=true;

@@ -2,6 +2,7 @@ package controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,9 +20,7 @@ public class DownloadController {
      */
 
 	@RequestMapping("/download")
-	public String download(HttpServletRequest request, HttpServletResponse response){
-//		public String download(@RequestParam String fileName , HttpServletRequest request, HttpServletResponse response){
-		String fileName=(String)request.getSession().getAttribute("fileName");
+	public String download(@RequestParam String fileName , HttpServletRequest request, HttpServletResponse response){
 		response.setContentType("text/html;charset=utf-8");
 		try {
 			request.setCharacterEncoding("UTF-8");

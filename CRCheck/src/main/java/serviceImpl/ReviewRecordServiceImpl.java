@@ -114,7 +114,7 @@ public class ReviewRecordServiceImpl implements ReviewRecordService {
         ArrayList<PersonalReviewRecord> result=new ArrayList<PersonalReviewRecord>();
 
         for (Personalreview p:list) {
-            PersonalReviewRecord r=exchange(p);
+            PersonalReviewRecord r=ReviewRecordHelper.exchange(p);
             result.add(r);
         }
         return result;
@@ -127,41 +127,12 @@ public class ReviewRecordServiceImpl implements ReviewRecordService {
         PersonalreviewDao personalreviewDao=new PersonalreviewDaoImpl();
         Personalreview po=new Personalreview();
         po.setProjectId(projectID);
-        List<Personalreview> reviewList=personalreviewDao.findValidPersonalReview(po);
+        List<Personalreview> reviewList=personalreviewDao.findValidPersonalReview2(po);
 
         ArrayList<PersonalReviewRecord> result=new ArrayList<PersonalReviewRecord>();
 
         for (Personalreview p:reviewList) {
-            PersonalReviewRecord r=new PersonalReviewRecord();
-            r.setId(p.getId());
-            r.setUserId(p.getUserId());
-            r.setProjectId(p.getProjectId());
-            r.setCommitTime(p.getCommitTime());
-            FileType fileType = FileType.valueOf(p.getFileType());
-            String[] location=p.getLocation().split(" ");
-            r.setPath(location[0]);
-            if(fileType == FileType.File){
-                r.setPagesNum(location[1]);
-                r.setLineNum(location[2]);
-            }else{
-                r.setLineNum(location[1]);
-            };
-            r.setType(p.getType());
-            r.setDescription(p.getDescription());
-            CommitState finishState= CommitState.valueOf(p.getState());
-            String state;
-            switch (finishState){
-                case Done:
-                    state="后续提交";
-                    break;
-                case NotDone:
-                    state="正常提交";
-                    break;
-                default:
-                    state="合并项";
-            }
-            r.setState(state);
-            r.setResult(ApproveState.valueOf(p.getResult()));
+            PersonalReviewRecord r=ReviewRecordHelper.exchange(p);
             result.add(r);
         }
         return result;
@@ -356,6 +327,7 @@ public class ReviewRecordServiceImpl implements ReviewRecordService {
         return result;
     }
 
+    //分解评审记录（将某几项挑出）
     public ArrayList<PersonalReviewRecord> disassembleReviewRecord(int id,String userID, ArrayList<String> idList) {
         ArrayList<PersonalReviewRecord> result=new ArrayList<PersonalReviewRecord>();
         SummaryDao summaryDao=new SummaryDaoImpl();
@@ -441,6 +413,7 @@ public class ReviewRecordServiceImpl implements ReviewRecordService {
         // TODO: 2016/7/27 修改成就系统
     }
 
+    //根据合并项，得到其子项的评审记录
     public ArrayList<PersonalReviewRecord> getChildReviewRecord(int id) {
         SummaryDao summaryDao=new SummaryDaoImpl();
         Summary summary=new Summary();
@@ -454,48 +427,15 @@ public class ReviewRecordServiceImpl implements ReviewRecordService {
         return result;
     }
 
+    //查看一条评审记录
     private PersonalReviewRecord checkOnePersonalReviewRecord(int id){
         PersonalreviewDao personalreviewDao=new PersonalreviewDaoImpl();
         Personalreview po=new Personalreview();
         po.setId(id);
         Personalreview personalreview=personalreviewDao.findPersonalreviewById(po);
-        PersonalReviewRecord result=exchange(personalreview);
+        PersonalReviewRecord result=ReviewRecordHelper.exchange(personalreview);
         return result;
     }
 
-    private PersonalReviewRecord exchange(Personalreview p){
-        PersonalReviewRecord r=new PersonalReviewRecord();
-        r.setId(p.getId());
-        r.setUserId(p.getUserId());
-        r.setUserId(p.getUserId());
-        r.setProjectId(p.getProjectId());
-        r.setCommitTime(p.getCommitTime());
-        FileType fileType = FileType.valueOf(p.getFileType());
-        String[] location=p.getLocation().split(" ");
-        r.setPath(location[0]);
-        if(fileType == FileType.File){
-            r.setPagesNum(location[1]);
-            r.setLineNum(location[2]);
-        }else{
-            r.setLineNum(location[1]);
-        }
-        r.setType(p.getType());
-        r.setDescription(p.getDescription());
-        CommitState finishState= CommitState.valueOf(p.getState());
-        String state;
-        switch (finishState){
-            case Done:
-                state="后续提交";
-                break;
-            case NotDone:
-                state="正常提交";
-                break;
-            default:
-                state="合并项";
-        }
-        r.setState(state);
-        r.setResult(ApproveState.valueOf(p.getResult()));
-        return r;
-    }
 
 }
