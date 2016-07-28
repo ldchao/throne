@@ -101,6 +101,20 @@ public class UserServiceImpl implements UserService {
         return user.getHeadPortrait();
     }
 
+    public ArrayList<UserModel> searchUserList(String key) {
+
+        ArrayList<UserModel> result=new ArrayList<UserModel>();
+        UserDao userDao=new UserDaoImpl();
+        List<User> userList=userDao.getSimilarUser(key);
+        for(User u:userList){
+            UserModel um=new UserModel();
+            um.setId(u.getId());
+            um.setHeadPortrait(u.getHeadPortrait());
+            result.add(um);
+        }
+        return result;
+    }
+
     //测试
     public static void main(String[] args) {
         UserService u=new UserServiceImpl();

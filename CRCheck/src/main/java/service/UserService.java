@@ -4,6 +4,7 @@ import enums.UniversalState;
 import model.UserInf;
 import model.UserModel;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,4 +17,5 @@ public interface UserService {
     public List<String> getUserList(String userid);
     public UniversalState update(UserInf inf);
     public String getHeadPortraits(String userid);
+    public ArrayList<UserModel> searchUserList(String key);
 }
