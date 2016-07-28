@@ -28,18 +28,19 @@ public class FileServiceImpl implements FileService {
         File file = new File(path);
         ArrayList<FileModel> pList = new ArrayList<FileModel>();
         if (file.exists()) {
-
             File[] files = file.listFiles();
             for (File file2 : files) {
                 if (file2.isDirectory()) {
                     String s=file2.getAbsolutePath();
-                    if(!(s.substring(s.length()-7,s.length()).equals("_MACOSX"))) {
+                    if(!(s.substring(s.length()-7,s.length()).equals("_MACOSX")
+                            &&(!(s.substring(s.length()-9,s.length()).equals(".DS_Store"))))) {
                         String[] l = file2.list();
                         String fileNum = l.length + "";
                         POJO.File file1 = new POJO.File();
                         file1.setPath(file2.getAbsolutePath());
-                        pList.add(new FileModel(file2.getAbsolutePath(), FileType.Dir, "", fileNum, ""));
-                        getDirContent(file2.getAbsolutePath(), 0, "");
+                        int filNum=getDirContent(file2.getAbsolutePath(),0);
+                        String content=fileNum+"";
+                        pList.add(new FileModel(file2.getAbsolutePath(), FileType.Dir,content, fileNum, ""));
                     }
                 } else {
                     String s=file2.getAbsolutePath();
@@ -56,10 +57,14 @@ public class FileServiceImpl implements FileService {
                         String time=fileDao.getFileLastTime(file1);
                         pList.add(new FileModel(file2.getAbsolutePath(),FileType.File,state,n,time));
                     }else {
-                        if(!(s.substring(s.length()-7,s.length()).equals("__MACOSX"))) {
+                        if(!(s.substring(s.length()-7,s.length()).equals("__MACOSX"))
+                                &&(!(s.substring(s.length()-9,s.length()).equals(".DS_Store")))) {
                             POJO.File file1 = new POJO.File();
-                            file1.setPath(file2.getAbsolutePath());
+                            String p = file2.getAbsolutePath();
+                            p=p.replaceAll("\\\\","/");
+                            file1.setPath(p);
                             String state = fileDao.getFileState(file1);
+                            //System.out.println("state:"+state);
                             String time = fileDao.getFileLastTime(file1);
                             pList.add(new FileModel(file2.getAbsolutePath(), FileType.Code, state, n, time));
                         }
@@ -72,14 +77,57 @@ public class FileServiceImpl implements FileService {
         return pList;
     }
 
-    private void getDirContent(String path,int fileNum,String time) {
+    private int getDirContent(String path,int fileNum) {
         File file = new File(path);
+        FileDao fileDao = new FileDaoImpl();
         if (file.exists()) {
             File[] files = file.listFiles();
-
+            for (File file2 : files) {
+                if (file2.isDirectory()) {
+                    String s = file2.getAbsolutePath();
+                    if(!(s.substring(s.length()-7,s.length()).equals("_MACOSX"))) {
+                        getDirContent(file2.getAbsolutePath(),fileNum);
+                    }
+                }else{
+                    POJO.File file1 = new POJO.File();
+                    String p = file2.getAbsolutePath();
+                    p=p.replaceAll("\\\\","/");
+                    file1.setPath(p);
+                    String state = fileDao.getFileState(file1);
+                    if(state.equals("REVIEWED")){
+                        fileNum++;
+                    }
+                }
+            }
         }else {
             System.out.println("文件不存在!");
         }
+        return fileNum;
+    }
+
+    private String getDirTime(String path,String time){
+        File file = new File(path);
+        FileDao fileDao = new FileDaoImpl();
+        if (file.exists()) {
+            File[] files = file.listFiles();
+            for (File file2 : files) {
+                if (file2.isDirectory()) {
+                    String s = file2.getAbsolutePath();
+                    if(!(s.substring(s.length()-7,s.length()).equals("_MACOSX"))) {
+                        getDirTime(file2.getAbsolutePath(),time);
+                    }
+                }else{
+                    POJO.File file1 = new POJO.File();
+                    String state = fileDao.getFileState(file1);
+//                    if(state.equals("REVIEWED")){
+//                        fileNum++;
+//                    }
+                }
+            }
+        }else {
+            System.out.println("文件不存在!");
+        }
+        return time;
     }
 
     public static final int DEFAULT_BUFSIZE = 1024 * 16;
