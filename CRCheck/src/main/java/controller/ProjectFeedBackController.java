@@ -1,5 +1,6 @@
 package controller;
 import model.PersonalQualityModel;
+import model.ProjectModel;
 import model.ProjectQualityModel;
 import model.ScatterDiagramModel;
 import org.springframework.stereotype.Controller;
@@ -8,7 +9,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import service.ProjectFeedBackService;
+import service.ProjectService;
 import serviceImpl.ProjectFeedBackServiceImpl;
+import serviceImpl.ProjectServiceImpl;
+import tool.DateHelper;
 
 import java.util.ArrayList;
 
@@ -22,7 +26,17 @@ public class ProjectFeedBackController {
     @RequestMapping(value = "/pages/feedBack")
     public ModelAndView feedBack(int projectId){
         ModelAndView model=new ModelAndView("FeedbackPage");
-        model.addObject("proId",projectId);
+        //查找项目
+        ProjectService ps = new ProjectServiceImpl();
+        ProjectModel project = ps.checkProject(projectId);
+        //项目不存在
+        if (project == null) {
+            return null;
+        }
+        //计算项目剩余时间
+        String day = DateHelper.daysAnalyse(project.getStartDate(), project.getEndDate());
+        model.addObject("project", project);
+        model.addObject("day", day);
         return model;
     }
 

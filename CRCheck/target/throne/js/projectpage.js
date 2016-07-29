@@ -411,7 +411,7 @@ function publishPro() {
 
     $.ajax({
         type: "post",
-        async: true,
+        async: false,
         url: "/Launch",
         data: {
             "info1": list_info,
@@ -425,7 +425,7 @@ function publishPro() {
                 }
                 
                 slidein(0, '提交成功');
-                setTimeout("goTo(" + result + ")", 2800);
+                setTimeout("goTo(" + result + ")", 3800);
             } else {
                 slidein(1, "提交失败请稍候再试");
             }
@@ -651,7 +651,7 @@ function doProgress() {
     proginner.style.width = 100 + "%";
 
     if (i <= 100) {
-        setTimeout("doProgress()", 2);
+        setTimeout("doProgress()", 1);
         SetProgress(i);
         i++;
     } else {

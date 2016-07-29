@@ -50,6 +50,16 @@ public class ProjectServiceImpl implements ProjectService {
 
         boolean a=true;
 
+
+
+        //邀请列表处理
+        ArrayList<InvitationMessage> list = projectModel.getInvitationList();
+        for (InvitationMessage invitationMesage : list) {
+            invitationMesage.setProjectID(id);
+        }
+        //加入数据库
+        a=a&dao.addProject(p);
+
         if(projectModel.getAttendReview().equals("YES")){
             AttendanceDao attendanceDao=new AttendanceDaoImpl();
             Attendance attendance=new Attendance();
@@ -63,13 +73,6 @@ public class ProjectServiceImpl implements ProjectService {
             a=a&attendanceDao.addAttendance(attendance);
         }
 
-        //邀请列表处理
-        ArrayList<InvitationMessage> list = projectModel.getInvitationList();
-        for (InvitationMessage invitationMesage : list) {
-            invitationMesage.setProjectID(id);
-        }
-        //加入数据库
-        a=a&dao.addProject(p);
         UniversalState b = invite.saveInvitationList(list);
         //发送消息
         UniversalState c = message.setIssueMessage(projectModel);
