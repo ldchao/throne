@@ -36,6 +36,8 @@ public class DownloadController {
 
 		String ctxPath = request.getSession().getServletContext().getRealPath("/") + "ProjectResources/";
 
+		System.out.println(ctxPath);
+
 		String getCompressedPath=ctxPath+"ProjectCompressedFile/"+fileName;
 
 		FileService fileService=new FileServiceImpl();
@@ -43,7 +45,7 @@ public class DownloadController {
 		String downLoadPath ="";
 		if(list.size()>0){
 			FileModel f=list.get(0);
-			downLoadPath=f.getContent();
+			downLoadPath=f.getPath();
 		}
 
 //		String downLoadPath = ctxPath + fileName;

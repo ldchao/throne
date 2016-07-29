@@ -207,9 +207,7 @@
     <%--&nbsp;/&nbsp;--%>
 </div>
 
-<form>
-    <i class="fa fa-download download_file">&nbsp;&nbsp;下载项目压缩包</i>
-</form>
+<i onclick="downAllFile()" class="fa fa-download download_file">&nbsp;&nbsp;下载项目压缩包</i>
 
 <%-- 文件/文件夹 --%>
 <div class="table_div">

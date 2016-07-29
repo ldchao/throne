@@ -282,7 +282,6 @@ function addFriend(plus){
         },
         success: function (result) {
            if(result == "SUCCESS"){
-               alert(0);
                var node = document.createElement("div");
                node.innerHTML = plus.parentNode.innerHTML;
                node.className = "result-item";
