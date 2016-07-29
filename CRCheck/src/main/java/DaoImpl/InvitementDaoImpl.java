@@ -145,11 +145,7 @@ public class InvitementDaoImpl implements InvitementDao{
             Query query = session.createQuery(hql);
             ArrayList<Invitement> aList = (ArrayList<Invitement>) query.list();
             connection.closeSession(session);
-            if(aList.size()!=0){
                 return aList;
-            }else {
-                return null;
-            }
         }catch (Exception e){
             e.printStackTrace();
             connection.closeSession(session);
@@ -164,11 +160,7 @@ public class InvitementDaoImpl implements InvitementDao{
             Query query = session.createQuery(hql);
             ArrayList<Invitement> aList = (ArrayList<Invitement>) query.list();
             connection.closeSession(session);
-            if(aList.size()!=0){
                 return aList;
-            }else {
-                return null;
-            }
         }catch (Exception e){
             e.printStackTrace();
             connection.closeSession(session);
