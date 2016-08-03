@@ -200,7 +200,7 @@
 
 <div class="table_div">
 
-    <div class="back_div"><i class="fa fa-angle-double-left">&nbsp;</i>返回项目缺陷列表</div>
+    <div class="back_div" onclick="backToList()"><i class="fa fa-angle-double-left">&nbsp;</i>返回项目缺陷列表</div>
 
     <div class="charts_div container">
         <div class="row">

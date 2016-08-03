@@ -37,3 +37,6 @@ function loadRecord() {
     });
 }
 
+function backToList() {
+    history.back();
+}
