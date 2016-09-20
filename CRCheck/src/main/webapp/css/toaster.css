@@ -11,6 +11,7 @@
     font-weight: normal;
     position: absolute;
     right: -270px;
+    top: 60px;
     -webkit-transition: all .3s ease-in-out;
     -moz-transition: all .3s ease-in-out;
     transition: all .3s ease-in-out;
@@ -34,7 +35,7 @@
 /* 滑出界面 */
 #toaster_close {
     position: fixed;
-    top: 60px;
+    top: -60px;
     right: 0;
     display: inline-block;
     z-index: 9999;
