@@ -26,11 +26,11 @@ public class FileController {
         String p = pathHeader + "ProjectResources/ProjectDecompressedFile/" + path;
         FileService fs = new FileServiceImpl();
         List<FileModel> list = fs.getDir(p);
+        int length=0;
         for(FileModel model:list){
             String s=model.getPath();
-            s=s.replaceFirst(pathHeader+"ProjectResources/ProjectDecompressedFile/","");
-            int l=s.indexOf("/");
-            s=s.substring(l+1);
+            length=p.length();
+            s=s.substring(length+1);
             model.setPath(s);
         }
         return list;
