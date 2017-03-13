@@ -64,3 +64,11 @@ CRCheck/CRCheck.iml
 CRCheck/.idea/artifacts/CRCheck_war_exploded.xml
 
 CRCheck/CRCheck.iml
+
+*.xml
+
+*.iml
+
+CRCheck/.idea/misc.xml
+
+CRCheck/.idea/dataSources.xml
