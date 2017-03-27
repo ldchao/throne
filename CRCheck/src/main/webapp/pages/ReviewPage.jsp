@@ -245,9 +245,14 @@
     <table id="code_file" class="file_table" style="display: none">
 
         <tr class="top_bottom">
-            <td style="width: 4%; border-right: 1px solid #dfe0e2"></td>
-            <td style="width: 3%; border-right: 1px solid #dfe0e2"></td>
-            <td style="width: 93%; border-right: 1px solid #dfe0e2"></td>
+            <td>
+                <input type="checkbox" id="selectAll_top" onclick="selectAll('code_file', 0)">
+                <span style="position: relative;top: -1px;left: 0; font-size: 12px">全选</span>
+            </td>
+            <td>
+                <div class="del_btn" onclick="delAll('code_file')">删除</div>
+            </td>
+            <td></td>
         </tr>
 
 
@@ -264,7 +269,7 @@
 
         <tr class="top_bottom">
             <td>
-                <input type="checkbox" id="selectAll" onclick="selectAll('code_file')">
+                <input type="checkbox" id="selectAll" onclick="selectAll('code_file', 1)">
                 <span style="position: relative;top: -1px;left: 0; font-size: 12px">全选</span>
             </td>
             <td>
@@ -278,9 +283,14 @@
     <table id="launcher_merge" class="file_table" style="display: none">
 
         <tr class="top_bottom">
-            <td style="width: 4%; border-right: 1px solid #dfe0e2"></td>
-            <td style="width: 3%; border-right: 1px solid #dfe0e2"></td>
-            <td style="width: 93%; border-right: 1px solid #dfe0e2"></td>
+            <td>
+                <input type="checkbox" id="selectAll_merge_top" onclick="selectAll('launcher_merge', 0)">
+                <span style="position: relative;top: -1px;left: 0; font-size: 12px">全选</span>
+            </td>
+            <td>
+                <div class="del_btn" onclick="CodeMerge()">合并</div>
+            </td>
+            <td></td>
         </tr>
 
         <%--<tr style="height: 22px; vertical-align: middle">--%>
@@ -296,7 +306,7 @@
 
         <tr class="top_bottom">
             <td>
-                <input type="checkbox" id="selectAll_merge" onclick="selectAll('launcher_merge')">
+                <input type="checkbox" id="selectAll_merge" onclick="selectAll('launcher_merge', 1)">
                 <span style="position: relative;top: -1px;left: 0; font-size: 12px">全选</span>
             </td>
             <td>
@@ -328,7 +338,7 @@
             </div>
 
             <%-- 文档的提交评审 --%>
-            <div class="publish_doc">提交此次评审</div>
+            <div class="publish_doc">保存</div>
         </div>
 
         <div class="top_bottom"></div>
@@ -336,9 +346,9 @@
     </div>
 
     <%-- 除了文档的提交评审 --%>
-    <div class="publish_review" style="display: block;" onclick="finishCodeReview()">提交此次评审</div>
+    <div class="publish_review" style="display: block;" onclick="finishCodeReview()">保存</div>
     <div id="finishbtn_reviewer" class="finish_review" style="margin-left: 155px;margin-top: -63px; display: none"
-         onclick="completeReview()">完成此项目评审
+         onclick="completeReview()">结束
     </div>
     <div id="feed_btn" class="checkfeedback_btn" style="display: none" onclick="checkQuality()">查看项目评审质量</div>
 </div>

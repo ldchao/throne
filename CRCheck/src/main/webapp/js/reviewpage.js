@@ -99,9 +99,11 @@ function addDiv(tr, parentId) {
 
     var checkbox = div.getElementsByTagName("input")[0];
     checkbox.onclick = function () {
-        if (checkbox.checked == false)
+        if (checkbox.checked == false) {
             document.getElementById("selectAll").checked = false;
-    }
+            document.getElementById("selectAll_top").checked = false;
+        }
+    };
 
     var delbtn = div.getElementsByClassName("del_btn")[0];
     delbtn.onclick = function () {
@@ -112,19 +114,27 @@ function addDiv(tr, parentId) {
 
     row.appendChild(td);
     document.getElementById("selectAll").checked = false;
+    document.getElementById("selectAll_top").checked = false;
+
 
     return td;
 }
 
-function selectAll(parentId) {
+// top 0,上； top1,下
+function selectAll(parentId, top) {
+
+    var codeFile = ["selectAll_top", "selectAll"];
+    var launchMerge = ["selectAll_merge_top", "selectAll_merge"];
 
     var divs = document.getElementById(parentId).getElementsByClassName("bug_div");
     for (var i = 0; i < divs.length; i++) {
         var box = divs[i].getElementsByTagName("input")[0];
         if (parentId == "code_file") {
-            box.checked = document.getElementById("selectAll").checked;
+            box.checked = document.getElementById(codeFile[top]).checked;
+            document.getElementById(codeFile[(top + 1) % 2]).checked = box.checked;
         } else {
-            box.checked = document.getElementById("selectAll_merge").checked;
+            box.checked = document.getElementById(launchMerge[top]).checked;
+            document.getElementById(launchMerge[(top + 1) % 2]).checked = box.checked;
         }
     }
 }
@@ -142,6 +152,7 @@ function delAll(parentId) {
         }
     }
     document.getElementById("selectAll").checked = false;
+    document.getElementById("selectAll_top").checked = false;
 }
 
 // 文档评审
@@ -206,6 +217,15 @@ function CodeMerge() {
     }
 
     if (defects.length > 1) {
+
+        var childs = document.getElementById("defects_parent").getElementsByClassName("def_div");
+        if (childs.length > 1) {
+            var childlen = childs.length - 1;
+            for (var ci = childlen; ci > 0; ci--) {
+                childs[ci].parentNode.removeChild(childs[ci]);
+            }
+        }
+
         for (var i = 0; i < count; i++) {
             var eachdiv = document.createElement("div");
             eachdiv.innerHTML = document.getElementById("defect_copy").innerHTML;

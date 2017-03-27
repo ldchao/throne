@@ -219,10 +219,6 @@ function publishForm() {
     } else {
         slidein(1, "您的信息未填写完整");
     }
-
-
-
-
 }
 
 function endReview() {

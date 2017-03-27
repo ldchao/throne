@@ -384,6 +384,11 @@ function publishPro() {
         + (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-'
         + date.getDate();
 
+
+    console.log("start: " + startdate);
+    console.log("end: " + enddate);
+    console.log("today: " + today);
+
     if (proname == "" || prodescribe == "" || codelang == "编程语言"
         || startdate == "" || enddate == "") {
         slidein(1, "请填写完整信息");
@@ -513,9 +518,10 @@ function addCRCpro(jsondata) {
         button.innerHTML = "项目已结束";
         button.setAttribute("class", "finish_btn");
     }
-    button.onclick = function () {
+
+    div.onclick = function () {
         goTo(proID);
-    }
+    };
 
     document.getElementById("parent_div").appendChild(div);
 }
@@ -664,6 +670,6 @@ function doProgress() {
 // 设置文件上传
 function setFile() {
     var span = document.getElementById("upload_File");
-    span.innerHTML = "待上传";
+    span.innerHTML = "已选取";
     isUpload = "UPLOAD";
 }

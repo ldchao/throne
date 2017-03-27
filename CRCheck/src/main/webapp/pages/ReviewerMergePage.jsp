@@ -169,7 +169,7 @@
 
                     <c:when test="${list.accepting_state=='NotHandle'}">
                         <div class="images_div">
-                            <div class="image-middle" style="">
+                            <div class="image-middle">
                                 <div class="image-other"></div>
                             </div>
                             <div>${list.userID}</div>

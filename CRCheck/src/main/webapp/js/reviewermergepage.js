@@ -99,11 +99,11 @@ function addMerge(singleDef, mergeDef) {
 
     headdiv.onmouseenter = function () {
         showCheck(this, 1);
-    }
+    };
 
     headdiv.onmouseleave = function () {
         hideCheck(this, 1);
-    }
+    };
 
     document.getElementById("all-defect").appendChild(headdiv);
 
@@ -163,9 +163,9 @@ function hideCheck(parentDiv) {
 function Merge() {
 
     var recId;
-    var recIds = new Array();
-    var defects = new Array();
-    var pos = new Array();
+    var recIds = [];
+    var defects = [];
+    var pos = [];
     var count = 0;
 
     var divs = document.getElementById("all-defect").getElementsByClassName("exist-form");
@@ -269,8 +269,8 @@ function Merge() {
 
 function UndoMerge() {
 
-    var defects = new Array();
-    var pos = new Array();
+    var defects = [];
+    var pos = [];
     var count = 0;
 
     var divs = document.getElementById("all-defect").getElementsByClassName("exist-form");

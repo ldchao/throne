@@ -236,6 +236,7 @@
                 <option>WebApp</option>
                 <option>Android</option>
                 <option>iOS</option>
+                <option>其他</option>
             </select>
         </div>
 

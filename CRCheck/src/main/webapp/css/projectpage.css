@@ -503,6 +503,8 @@
     cursor: pointer;
     content: "\e079";
     display: inline-block;
+    vertical-align: middle;
+    font-size: 18px;
 }
 
 #pages {
@@ -515,6 +517,7 @@
     height: 7px;
     cursor: pointer;
     display: inline-block;
+    vertical-align: middle;
     margin: auto 2px;
     background-color: #e7ecf5;
     border-radius: 60px;
@@ -529,6 +532,8 @@
     cursor: pointer;
     content: "\e080";
     display: inline-block;
+    vertical-align: middle;
+    font-size: 18px;
 }
 
 /* 参与的项目 */
@@ -536,8 +541,14 @@
     width: 73%;
     background-color: #f3f5f9;
     margin: 40px auto;
-    padding-bottom: 20px;
+    padding-bottom: 15px;
     padding-top: 7px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.projects_div:hover {
+    box-shadow: 0 0 6px #7490d3;
 }
 
 .title_div {
@@ -546,7 +557,7 @@
 }
 
 .title {
-    font-size: 24px;
+    font-size: 22px;
     color: #7490d3;
     float: left;
     margin-left: 27px;
@@ -557,7 +568,7 @@
     float: right;
     margin-right: 27px;
     margin-top: 5px;
-    font-size: 22px;
+    font-size: 20px;
     color: #778294;
 }
 
@@ -574,7 +585,7 @@
     padding-top: 45px;
     padding-left: 27px;
     padding-right: 27px;
-    font-size: 18px;
+    font-size: 16px;
     color: #5c6170;
 }
 
@@ -586,21 +597,21 @@
 }
 
 .date_info {
-    font-size: 18px;
+    font-size: 16px;
     color: #7591d5;
     display: inline-block;
     margin-top: 3px;
 }
 
 .launcher_info {
-    font-size: 18px;
+    font-size: 16px;
     color: #778294;
     display: inline-block;
     margin-top: 3px;
 }
 
 .ddl_tip {
-    font-size: 18px;
+    font-size: 16px;
     line-height: 34px;
     color: #7591d5;
     display: inline-block;
@@ -610,7 +621,7 @@
 .continue_btn {
     color: #fff;
     background-color: #5ad4a6;
-    font-size: 18px;
+    font-size: 16px;
     width: 112px;
     height: 34px;
     border: none;
@@ -618,7 +629,6 @@
     display: inline-block;
     -webkit-transition: 0.3s;
     -moz-transition: 0.3s;
-    -ms-transition: 0.3s;
     -o-transition: 0.3s;
     transition: 0.3s;
 }
@@ -630,7 +640,7 @@
 .finish_btn {
     color: #fff;
     background-color: rgb(107, 111, 120);
-    font-size: 18px;
+    font-size: 16px;
     width: 112px;
     height: 34px;
     border: none;
@@ -639,7 +649,6 @@
     cursor: pointer;
     -webkit-transition: 0.3s;
     -moz-transition: 0.3s;
-    -ms-transition: 0.3s;
     -o-transition: 0.3s;
     transition: 0.3s;
 }
