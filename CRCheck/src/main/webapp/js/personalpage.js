@@ -86,11 +86,10 @@ function editInfo() {
             input[i].style.width = "auto";
             input[i].style.height = "26px";
             input[i].style.fontSize = "16px";
-            input[i].style.padding = "8px 6px";
             input[i].style.display = "inline-block";
             input[i].style.textAlign = "center";
             input[i].style.color = "#737474";
-            input[i].value = allInfo[0].innerHTML;
+            input[i].value = allInfo[0].innerHTML.trim();
             allInfo[0].parentNode.replaceChild(input[i], allInfo[0]);
         }
         document.getElementById("edit-button").innerHTML = "确认保存";
