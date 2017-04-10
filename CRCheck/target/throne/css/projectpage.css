@@ -323,6 +323,17 @@
     transition: 0.3s;
 }
 
+.inner_confirm {
+    width: 50px;
+    top: 395px;
+    right: 30px;
+    height: 20px;
+    font-size: 13px;
+    line-height: 20px;
+    padding: 0 0;
+    box-shadow: none;
+}
+
 .shadow:hover {
     background-color: #7Caaf2;
 }
@@ -334,7 +345,7 @@
     right: 22%;
     z-index: 2050;
     width: 292px;
-    height: 420px;
+    height: 425px;
     margin-left: -80px;
     background-color: #fff;
     border: none;
@@ -478,7 +489,7 @@
 .tip_1 {
     font-size: 13px;
     color: #486eaa;
-    font-family: "PingFang SC";
+    font-family: "PingFang SC", serif;
     margin-left: 5px;
     font-weight: inherit;
 }

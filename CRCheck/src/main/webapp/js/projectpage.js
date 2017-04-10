@@ -78,6 +78,11 @@ function closeLaunch(elem_id) {
     })();
 }
 
+// 选取评审者列表，已选取
+function hasSelected() {
+    $(".invitation_list_btn").html("已选取");
+}
+
 // 随机八个用户
 function setIds() {
 

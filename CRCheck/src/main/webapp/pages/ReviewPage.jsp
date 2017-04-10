@@ -404,28 +404,10 @@
     <hr class="doc_hr">
 </div>
 
-<%-- 选取合并结果项目 --%>
-<div id="choose">
-    <div class="choose_title">选取合并结果项</div>
-
-    <div id="defects_parent">
-        <div id="defect_copy" class="def_div" style="display: none">
-            <div class="line_def">111 行</div>
-            <div class="type_def">语法错误</div>
-            <div class="describe_def">这个缺陷好傻啊啊这个缺陷好傻啊啊这个缺陷好傻啊啊这个缺陷好傻啊啊这
-                个缺陷好傻啊啊这个缺陷好傻啊啊
-            </div>
-        </div>
-    </div>
-
-    <hr class="hr_choose">
-    <div class="feedback_btn" style="width: 87%; margin-bottom: 47px">手动输入结果项</div>
-
-</div>
-
 <a href="#" id="back-to-top"><i class="fa fa-angle-up"></i></a>
 <footer>© CRCheck 2016</footer>
 
+<%@include file="common/MergeChoose.jsp"%>
 <%@include file="common/Modal.jsp"%>
 
 <%-- 用来存放userId --%>

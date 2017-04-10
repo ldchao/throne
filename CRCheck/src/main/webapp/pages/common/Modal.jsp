@@ -63,7 +63,7 @@
 
         <hr class="hr_decorate">
 
-        <button class="invitation_list_btn" onclick="showLaunch('reviewer_div')">评审者列表</button>
+        <button class="invitation_list_btn" onclick="showLaunch('reviewer_div')">邀请评审者</button>
 
         <div class="shadow" onclick="publishPro()">
             发起项目评审
@@ -122,11 +122,14 @@
 
             </div>
 
-            <div class="checkbox_div">
-                <input id="self_in" type="checkbox">
-                <label class="tip_1" for="self_in">自己参与评审</label>
-            </div>
+            <div>
+                <div class="checkbox_div" style="position: relative; left: -60px;">
+                    <input id="self_in" type="checkbox">
+                    <label class="tip_1" for="self_in">自己参与评审</label>
+                </div>
 
+                <div class="shadow inner_confirm" onclick="closeLaunch('reviewer_div');hasSelected()">确认</div>
+            </div>
         </div>
 
     </div>

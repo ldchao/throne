@@ -44,17 +44,6 @@
     <!-- specific styles -->
     <link href="../css/component.css" rel="stylesheet">
 
-    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-    <!--[if lt IE 9]>
-    <script src="../js/ie8-responsive-file-warning.js"></script><![endif]-->
-    <script src="../js/ie-emulation-modes-warning.js"></script>
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-    <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
 </head>
 <body>
 
@@ -190,24 +179,6 @@
     </div>
 </div>
 
-<div id="choose">
-    <div class="choose_title">选取合并结果项</div>
-
-    <div id="defects_parent">
-        <div id="defect_copy" class="def_div" style="display: none">
-            <div class="line_def">111 行</div>
-            <div class="type_def">语法错误</div>
-            <div class="describe_def">这个缺陷好傻啊啊这个缺陷好傻啊啊这个缺陷好傻啊啊这个缺陷好傻啊啊这
-                个缺陷好傻啊啊这个缺陷好傻啊啊
-            </div>
-        </div>
-    </div>
-
-    <hr class="hr_choose">
-    <div class="feedback_btn" style="width: 87%; margin-bottom: 47px">手动输入结果项</div>
-
-</div>
-
 <%-- 缺陷块 --%>
 <div id="exist_copy" style="display: none">
 
@@ -294,6 +265,7 @@
 
 <footer>© CRCheck 2016</footer>
 
+<%@include file="common/MergeChoose.jsp"%>
 <%@include file="common/Modal.jsp"%>
 
 <%-- 用来存放userId --%>
@@ -320,6 +292,17 @@
 
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 <script src="../js/ie10-viewport-bug-workaround.js"></script>
+
+<!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+<!--[if lt IE 9]>
+<script src="../js/ie8-responsive-file-warning.js"></script><![endif]-->
+<script src="../js/ie-emulation-modes-warning.js"></script>
+
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+<script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+<script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
 
 <script>
     $('#start_date').datetimepicker({
