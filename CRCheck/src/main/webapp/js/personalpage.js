@@ -246,6 +246,9 @@ function searchUser() {
             "key": input
         },
         success: function (result) {
+            if (result.length == 0) {
+                document.getElementById("list").innerHTML = "";
+            }
             for (var i = 0; i < result.length; i++) {
                 var friendblock = document.createElement("div");
                 friendblock.className = "result-item";
@@ -253,7 +256,8 @@ function searchUser() {
                 friendblock.style.display = "inline-block";
                 friendblock.getElementsByClassName("result-image")[0].src = result[i].headPortrait;
                 friendblock.getElementsByClassName("result-name")[0].innerHTML = result[i].id;
-                document.getElementsByClassName("search-row")[0].appendChild(friendblock);
+                document.getElementById("list").innerHTML = "";
+                document.getElementById("list").appendChild(friendblock);
             }
         },
         error: function () {
@@ -262,13 +266,13 @@ function searchUser() {
     });
 }
 
-function keySearch(){
-    if(event.keyCode == "13"){
+function keySearch() {
+    if (event.keyCode == "13") {
         searchUser();
     }
 }
 
-function addFriend(plus){
+function addFriend(plus) {
     var fid = plus.parentNode.getElementsByClassName("result-name")[0].innerHTML;
 
     $.ajax({
@@ -280,16 +284,16 @@ function addFriend(plus){
             "fid": fid
         },
         success: function (result) {
-           if(result == "SUCCESS"){
-               var node = document.createElement("div");
-               node.innerHTML = plus.parentNode.innerHTML;
-               node.className = "result-item";
-               node.style.display = "inline-block";
-               node.getElementsByClassName("result-plus")[0].style.display = "none";
-               document.getElementsByClassName("myfriend")[0].appendChild(node);
-           }else{
-               alert(1);
-           }
+            if (result == "SUCCESS") {
+                var node = document.createElement("div");
+                node.innerHTML = plus.parentNode.innerHTML;
+                node.className = "result-item";
+                node.style.display = "inline-block";
+                node.getElementsByClassName("result-plus")[0].style.display = "none";
+                document.getElementsByClassName("myfriend")[0].appendChild(node);
+            } else {
+                alert(1);
+            }
         },
         error: function () {
             slidein(1, "获取数据失败");

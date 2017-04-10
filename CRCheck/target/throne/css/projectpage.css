@@ -238,6 +238,7 @@
 }
 
 .date_style {
+    cursor: pointer;
     width: 141px;
     height: 36px;
     border: none;
