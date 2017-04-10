@@ -606,9 +606,10 @@ function addPUBpro(jsondata) {
         button.innerHTML = "项目已结束";
         button.setAttribute("class", "finish_btn");
     }
-    button.onclick = function () {
+
+    div.onclick = function () {
         goTo(proID);
-    }
+    };
 
     document.getElementById("publish_div").appendChild(div);
 }

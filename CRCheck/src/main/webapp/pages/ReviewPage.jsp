@@ -357,7 +357,8 @@
 <div id="bugdiv_id" class="bug_div" style="display: none;">
     <div class="top_side">
         <input type="checkbox" style="position: relative; top:-6px;">
-        <div class="del_btn" style="display: inline-block;top:-6px">删除</div>
+        <div class="del_btn each_del">
+            <i class="fa fa-trash"></i></div>
         <div class="title_img" style="margin-left: 20px; width: 20px; height: 20px;"></div>
         <div class="userId_div"> marioquer | 2016-07-21 |</div>
 
@@ -379,7 +380,9 @@
 
         <input class="bug_desc" type="text" placeholder="缺陷描述">
 
-        <div class="bug_add">添加缺陷</div>
+        <div style="background-color: #fff; width: 100%; height: 35px;">
+            <div class="bug_add">添加缺陷</div>
+        </div>
 
         <%-- 缓存位置 --%>
         <a class="pos_rec" style="display: none;"></a>

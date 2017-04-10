@@ -69,10 +69,10 @@ function mouseOut(tr) {
 }
 
 function addDiv(tr, parentId) {
+
     var index = $(tr).parents(".file_table").find("tr").index($(tr));
 
     var row = document.getElementById(parentId).insertRow(index + 1);
-    row.style.height = "97px";
     row.style.width = "100%";
 
     var td = document.createElement("td");
@@ -84,6 +84,13 @@ function addDiv(tr, parentId) {
     var day = new Date();
     var today = day.getFullYear() + "-" + day.getMonth() + "-" + day.getDate();
     div.getElementsByClassName("userId_div")[0].innerHTML = userId + "&nbsp;|&nbsp" + today;
+
+    // 如果arguments>2，即内部多行添加
+    if (arguments.length > 2) {
+        $(row).css("height", "62px");
+        $(div).css("margin-top", "-35px");
+    }
+
     td.appendChild(div);
 
     if (tr.getElementsByClassName("pos_rec").length > 0) {
@@ -94,7 +101,7 @@ function addDiv(tr, parentId) {
 
     var addbtn = div.getElementsByClassName("bug_add")[0];
     addbtn.onclick = function () {
-        addDiv(row, parentId);
+        addDiv(row, parentId, "three");  // 3个arguments
     };
 
     var checkbox = div.getElementsByTagName("input")[0];
