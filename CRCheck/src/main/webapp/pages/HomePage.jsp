@@ -93,7 +93,7 @@
                                 class="fa fa-sign-out fa-fw"></i>&nbsp&nbsp退出账号</a>
                     </div>
                     <div class="user" onmouseover="popup()">
-                        <img class="image-middle" src=<%=user.getHeadPortrait()%>>
+                        <img class="image-middle" src=<%=user.getHeadPortrait()%> onerror="this.src='../image/portrait.svg'">
                         <div class="inline userName"><%=userId%>
                         </div>
                     </div>
