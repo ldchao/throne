@@ -111,8 +111,22 @@
 </nav><!-- /.navbar -->
 
 <div id="introduce_parent" onclick="showIntroduce()"></div>
-<div id="introduce_child">
-    <h1>介绍部分</h1>
+<%-- 发起项目 --%>
+<div id="introduce_child" class="invite_div">
+    <div class="left_div visible-lg">
+        <span class="text_style_left">邀请你的项目伙伴</span>
+        <span class="text_style_left">定时高效</span>
+    </div>
+
+    <div class="circle_div" onclick="showLaunch('launch')">
+        <hr class="add_style_1">
+        <hr class="add_style_2">
+    </div>
+
+    <div class="right_div visible-lg">
+        <span class="text_style_right">从这里开始添加你的</span>
+        <span class="text_style_right">评审项目</span>
+    </div>
 </div>
 
 <div class="tab_lbl">
@@ -177,25 +191,6 @@
         </div>
     </div>
 </div>
-
-<%-- 发起项目 --%>
-<div class="invite_div">
-    <div class="left_div visible-lg">
-        <span class="text_style_left">邀请你的项目伙伴</span>
-        <span class="text_style_left">定时高效</span>
-    </div>
-
-    <div class="circle_div" onclick="showLaunch('launch')">
-        <hr class="add_style_1">
-        <hr class="add_style_2">
-    </div>
-
-    <div class="right_div visible-lg">
-        <span class="text_style_right">从这里开始添加你的</span>
-        <span class="text_style_right">评审项目</span>
-    </div>
-</div>
-
 
 <a href="#" id="back-to-top"><i class="fa fa-angle-up"></i></a>
 
