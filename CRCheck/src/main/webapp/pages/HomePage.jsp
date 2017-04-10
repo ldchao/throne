@@ -157,7 +157,7 @@
 
 <a href="#" id="back-to-top"><i class="fa fa-angle-up"></i></a>
 
-<footer>© CRCheck 2016</footer>
+<footer style="margin-top: 0;">© CRCheck 2016</footer>
 
 <%--发起项目评审--%>
 <div id="launch">

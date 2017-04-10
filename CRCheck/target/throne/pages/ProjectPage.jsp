@@ -110,25 +110,6 @@
     </div><!-- /.container -->
 </nav><!-- /.navbar -->
 
-<div id="introduce_parent" onclick="showIntroduce()"></div>
-<%-- 发起项目 --%>
-<div id="introduce_child" class="invite_div">
-    <div class="left_div visible-lg">
-        <span class="text_style_left">邀请你的项目伙伴</span>
-        <span class="text_style_left">定时高效</span>
-    </div>
-
-    <div class="circle_div" onclick="showLaunch('launch')">
-        <hr class="add_style_1">
-        <hr class="add_style_2">
-    </div>
-
-    <div class="right_div visible-lg">
-        <span class="text_style_right">从这里开始添加你的</span>
-        <span class="text_style_right">评审项目</span>
-    </div>
-</div>
-
 <div class="tab_lbl">
     <span id="my_in" onclick="switchTab(1)">我参与的项目</span>
     <span id="my_pub" onclick="switchTab(0)">我发布的项目</span>

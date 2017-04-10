@@ -380,8 +380,8 @@
 
         <input class="bug_desc" type="text" placeholder="缺陷描述">
 
-        <div style="background-color: #fff; width: 100%; height: 35px;">
-            <div class="bug_add">添加缺陷</div>
+        <div style="background-color: #fff; width: 100%; padding: 2px auto;">
+            <div class="bug_add">再加一条</div>
         </div>
 
         <%-- 缓存位置 --%>

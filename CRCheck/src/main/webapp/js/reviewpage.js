@@ -684,6 +684,7 @@ function finishCodeReview() {
                 success: function (result) {
                     if (result == "SUCCESS") {
                         slidein(0, "提交成功");
+                        setTimeout("window.location.reload()", 1800);
                     }
                 },
                 error: function () {
@@ -706,6 +707,7 @@ function finishCodeReview() {
             success: function (result) {
                 if (result > -1) {
                     slidein(0, "提交成功");
+                    setTimeout("window.location.reload()", 1800);
                 }
             },
             error: function () {

@@ -88,6 +88,7 @@ function addLastNews(jsondata) {
     var div = document.createElement("div");
     div.setAttribute("class", "projects_div");
     div.innerHTML = newsRec;
+    div.style.cursor = "default";
 
     var proname = div.getElementsByClassName("title")[0];
     var invitor = div.getElementsByClassName("invitor")[0];
@@ -190,6 +191,7 @@ function addHistory(jsondata) {
     var div = document.createElement("div");
     div.setAttribute("class", "projects_div");
     div.innerHTML = newsHis;
+    div.style.cursor = "default";
 
     var proname = div.getElementsByClassName("title")[0];
     var invitor = div.getElementsByClassName("invitor")[0];
