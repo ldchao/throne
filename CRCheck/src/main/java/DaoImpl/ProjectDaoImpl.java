@@ -79,7 +79,7 @@ public class ProjectDaoImpl implements ProjectDao{
     public List findProjectByUserId(User po) {
         Session session=connection.getSession();
         try {
-            String hql="from Project p where userId='"+po.getId()+"'";
+            String hql="from Project p where userId='"+po.getId()+"' order by p.id desc";
             Query query=session.createQuery(hql);
             List list=query.list();
             connection.closeSession(session);
@@ -111,7 +111,7 @@ public class ProjectDaoImpl implements ProjectDao{
     public List getSimilarProject(String name) {
         Session session=connection.getSession();
         try {
-            String hql="from Project p where p.name like :name";
+            String hql="from Project p where p.name like :name order by p.id desc";
             String temp="";
             Query query=session.createQuery(hql);
 
